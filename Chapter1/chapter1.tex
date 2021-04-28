@@ -121,25 +121,15 @@ According to general relativity, spacetime is curved by its contents. Objects in
 \end{align}
 where the energy density $\rho$ and pressure $P$ only depends on time.
 
-Note that the 4-velocity of From the geodesic equation (\ref{eqn:geodesic}), 
+Note that the 4-velocity must follow the geodesic equation (\ref{eqn:geodesic}), and divergence of the energy-momentum tensor vanishes for a perfect fluid;
+\begin{align}
+	\nabla_\nu T^{\mu\nu} =& (\rho + P) \nabla_\nu \left( U^\mu U^\nu \right) + P \nabla_\mu g^{\mu\nu} \\
+	=& 
+\end{align}
 
-We further assume that components of the universe follow a simple equation of state $P = \omega \rho$. 
+TODO: dervie conservation equation. Explain cosmic inventory table.
 
-The universe consists of many different components, but they can be broadly categorised into three: radiation, matter, and dark energy. Radiation includes  Here, we assume that they are perfect fluids characterised by 
-
-
-Cosmic inventory. Radiation, matter, dark energy. 
-
-Divergence-free T -> conservation equations. Friedmann equations.
-
-Critical density. $\Omega_X := \rho_X / \rho_{crit,0}$. Dependence on $a$. Radiation, Matter, Dark Energy domination.
-
-Table of cosmic inventory. Type / Examples / Equation of state / $a$ dependence
-
-Conformal time, growth of the universe.
-
-Redshift
-
+The universe consists of many different particles, but they can be broadly categorised into three: radiation, matter, and dark energy. Here, we assume that they are perfect fluids with a constant equation fo state; $P = \omega \rho$. 
 
 \begin{table}[h]
 	\caption{Cosmic inventory. The fractional density values are quoted from CMB analysis (quote Planck 2018)}
@@ -152,7 +142,7 @@ Redshift
 		\hline
 		\multirow{2}{*}{Radiation $(r)$} & Photon $(\gamma)$ & \multirow{2}{*}{$\omega = 1/3$} & \multirow{2}{*}{$\rho \propto a^{-4}$} & $\Omega_{\gamma} \approx 1 \times 10^{-4}$ \\
 		& Neutrino $(\nu)$ & & & $\Omega_{\nu} < 2 \times 10^{-2}$ \\
-
+		
 		\hline		
 		\multirow{2}{*}{Matter $(m)$} & Cold dark matter $(c)$ & \multirow{2}{*}{$\omega = 0$} & \multirow{2}{*}{$\rho \propto a^{-3}$} & $\Omega_{c} \approx 0.27$ \\
 		& Baryon $(b)$ & & & $\Omega_{b} \approx 0.05$ \\
@@ -162,6 +152,17 @@ Redshift
 		\hline 
 	\end{tabular}
 \end{table}
+
+
+\subsection{Evolution of the universe}
+
+TODO:
+
+Friedmann equations.
+
+Critical density. $\Omega_X := \rho_X / \rho_{crit,0}$. Dependence on $a$. Radiation, Matter, Dark Energy domination.
+
+Define conformal time, growth of the universe. Define redshift.
 
 \begin{table}[h]
 	\caption{Evolution of the universe.}
