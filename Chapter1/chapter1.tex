@@ -15,6 +15,31 @@
 %********************************** %First Section  **************************************
 \section{From background to foreground}
 
+New outline:
+- GR. Statistical homogeneity and isotropy -> FLRW metric. No static solution.
+
+- Hubble's results. Expanding universe -> Big Bang.
+
+- Discovery of CMB. CMB is a key prediction of Big Bang theory
+
+- Big Bang theory's problem with initial conditions. Inflation. Quantum fluctuations as seeds for inhomogeneities of the universe.
+
+- CMB anisotropy, 1 in $10^5$. Consistent with inflationary predictions.
+
+- Observational evidence for dark energy and dark matter. Emergence of inflationary LCDM.
+
+- LCDM successful. Planck CMB power spectrum -> consistent and measures parameters to percent level. Era of precision cosmology.
+
+- Quick summary of CMB's usefulness! Its existence, anisotropy and spectrum all contributed...  CMB probes initial conditions, growth of the universe and matter distribution (through lensing).
+
+- Next big question - inflation's mechanism? Primordial non-Gaussianity is a robust prediction of many models. Three-point correlation function as a key statistic for differentiation.
+
+- CMB bispectrum. Planck gave a lot of insight. No detection, but oscillatory models are of interest. Main challenge - computational complexity.
+
+- Next generation of CMB experiments upcoming. Polarisation sensitivity improved, higher resolution. Need for development of new, improved pipeline capable of dealing with high resolution data.
+
+- Thesis organisation.
+
 Radio astronomers Arno Penzias and Robert Wilson were calibrating their 50-feet-long horn antenna when they found a mysterious background noise. The measurements were independent of time and location in the sky, and persisted after the removal of various potential contaminants. After the theoretical work of Robert Dicke, Jim Peebles, and David Wilkinson was brought forward \cite{Dicke1965}, Penzias and Wilson identified the noise as cosmic microwave background radiation (CMB): ancient light from the early universe reaching us after billions of years \cite{Penzias1965}. The discovery provided us with one of the most valuable probes of the physical universe, leading to major development in observational cosmology.
 
 On the theoretical side, modern mathematical formulation of cosmology owes to Einstein's work on general relativity in 1915. Using his framework, Friedmann, Lemaître, Robertson, and Walker contributed to writing down the unique metric for spatially homogeneous and isotropic universe. The FLRW metric dictates growth of the universe from the Big Bang to present day. Such expansion of the universe was supported by Edwin Hubble's measurements of Cepheid variables and redshift (add year), as well as the aforementioned discovery of CMB. What is widely accepted to be the standard model of modern cosmology, the $\Lambda$CDM model, appeared only in the late 1990s. The six-parameter model assumes presence of cold dark matter and dark energy, in addition to baryons and radiation, as main contributors to the total energy density of the universe.
@@ -59,7 +84,7 @@ Here and throughout this thesis, $\partial_\mu$ denote the partial derivative wi
 
 Defining tangent vector as $U^\mu = dx^\mu / ds$, the equation can be rewritten in a covariant form given by
 \begin{align}
-	\left( \nabla_U U \right)^a \,=\, U^b \nabla_U U^a \,=\, 0.
+	\left( \nabla_U U \right)^a \,=\, U^b \nabla_b U^a \,=\, 0.
 \end{align}
 We follow the convention where Roman letters are used for abstract indices. Note that in terms of local coordinates, the covariant derivative of a vector field is defined as $\nabla_\nu U^\mu = \partial_\nu U^\mu + \Gamma^\mu_{\nu\rho} U^\rho$.
 
@@ -108,47 +133,69 @@ Ricci curvature and Einstein tensor of the FLRW metric follows from definitions 
 	R_{00} =& - \frac{\ddot{3a}}{a} \\
 	R_{ij} =& \left[ \frac{\ddot{a}}{a} + 2 \left( \frac{\dot{a}}{a} \right)^2 + \frac{2k}{a^2} \right] a^2 \gamma_{ij}, \label{eqn:FLRW_Ricci_spatial}\\
 	R =& 6 \left[ \frac{\ddot{a}}{a} + \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right], \\
-	G_{00} =& 3 \left[ \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right], \\
-	G_{ij} =& \left[ - \frac{2\ddot{a}}{a} - \left( \frac{\dot{a}}{a} \right)^2 - \frac{k}{a^2} \right] a^2 \gamma_{ij}.
+	G_{00} =& 3 \left[ \left( \frac{\dot{a}}{a} \right)^2 + \frac{k}{a^2} \right], \label{eqn:Einstein_tensor_FLRW_00} \\
+	G_{ij} =& \left[ - \frac{2\ddot{a}}{a} - \left( \frac{\dot{a}}{a} \right)^2 - \frac{k}{a^2} \right] a^2 \gamma_{ij}. \label{eqn:Einstein_tensor_FLRW_ij}
 \end{align}
 While deriving (\ref{eqn:FLRW_Ricci_spatial}) we used the fact that the Ricci tensor of three-dimensional spatial metric $\gamma$ is equal to $2k\gamma_{ij}$. \footnote{In general, the Ricci tensor of any $n$-dimensional constant-curvature space with metric $g_{ij}$ is given by $R_{ij} = (n-1)\kappa g_{ij}$. Here $\kappa$ denotes sectional curvature of the space, which is equal to $k$ for $\gamma$ defined in (\ref{eqn:FLRW_metric_spatial}).} Also note that components $G_{0i}$ vanish and $G_{ij} \propto g_{ij}$, which is expected for a spatially homogeneous and isotropic spacetime.
 
 \subsection{Cosmic inventory}
 
-According to general relativity, spacetime is curved by its contents. Objects interact with gravity through the energy-momentum tensor $T_{\mu\nu}$, which encapsulates their energy, momentum flux, and stress. Here, we assume that components of the homogenous universe can be modelled as \textit{perfect} fluids; they are completely characterised by rest frame energy density and isotropic pressure. Defining the 4-velocity to be $U^\mu = dx^\mu / ds$, the energy-momentum tensor of a perfect fluid is given by
+According to general relativity, spacetime is curved by its contents. Particles interact with gravity through the energy-momentum tensor $T_{\mu\nu}$, which encapsulates their energy, momentum flux, and stress. Thanks to spatial homogeneity and isotropy, components of the homogenous universe can be modelled as \textit{perfect} fluids; they are completely characterised by their rest frame energy density and isotropic pressure. Defining the 4-velocity to be $U^\mu = dx^\mu / ds$ \footnote{Here $s$ is an affine parametrisation of geodesic followed by the fluid. It is equal to proper time $\tau$ for massive particles geodesics, and $g_{\mu\nu}U^\mu U^\nu = -1$. Massless particles such as photons follow null trajectory, and $s$ is chosen so that $g_{\mu\nu}U^\mu U^\nu = 0$.}, the energy-momentum tensor of a perfect fluid is given by
 \begin{align}
-	T_{\mu\nu} = (\rho + P) U_\mu U_\nu + P g_{\mu\nu},
+	T_{\mu\nu} = (\rho + P) U_\mu U_\nu + P g_{\mu\nu}, \label{eqn:em_tensor_perfect_fluid}
 \end{align}
-where the energy density $\rho$ and pressure $P$ only depends on time.
+where the energy density $\rho$ and pressure $P$ only depends on time. For an observer comoving with the fluid, $T = \text{diag}\{\rho,P,P,P\}$.
 
-Note that the 4-velocity must follow the geodesic equation (\ref{eqn:geodesic}), and divergence of the energy-momentum tensor vanishes for a perfect fluid;
+Divergence of the energy-momentum tensor vanishes for a perfect fluid;
 \begin{align}
-	\nabla_\nu T^{\mu\nu} =& (\rho + P) \nabla_\nu \left( U^\mu U^\nu \right) + P \nabla_\mu g^{\mu\nu} \\
-	=& 
+	\nabla_\nu T^{\mu\nu} =& (\rho + P) \nabla_\nu \left( U^\mu U^\nu \right) + P \nabla_\mu g^{\mu\nu} \label{eqn:em_tensor_vanishing_div_1} \\
+	=& (\rho + P) \left( U^\mu \nabla_\nu U^\nu + U^\nu \nabla_\mu U^\nu \right) + \nabla_\mu g^{\mu\nu} \label{eqn:em_tensor_vanishing_div_2}\\
+	=& 0. \label{eqn:em_tensor_vanishing_div_3}
+\end{align}
+The first term in (\ref{eqn:em_tensor_vanishing_div_2}) vanishes because the fluid's 4-velocity satisfies the geodesic equation (\ref{eqn:geodesic}). Incompressibility implies that $\nabla_\nu U^\nu = 0$, and we see the second term also vanishes. The last term is zero since the Levi-Civita connections are \textit{metric}; i.e., $\nabla g = 0$.
+
+Using connections of the FLRW metric computed in the previous section, the $\mu=0$ component of (\ref{eqn:em_tensor_vanishing_div_3}) yields the continuity equation;
+\begin{align}
+	\dot{\rho} + \frac{3\dot{a}}{a} \left( \rho + P \right) = 0. \label{eqn:continuity}
+\end{align}
+Further imposing a constant equation of state $w = P / \rho$, 
+\begin{align}
+	\frac{\dot{\rho}}{\rho} + 3(1+w) \frac{\dot{a}}{a} = 0, \\
+	\rho \propto a^{-3(1+w)}. \label{eqn:energy_density_and_scale_factor}
 \end{align}
 
-TODO: dervie conservation equation. Explain cosmic inventory table.
+The universe contains a number of different components, but all known particles can be broadly categorised into three: radiation, matter, and dark energy.
 
-The universe consists of many different particles, but they can be broadly categorised into three: radiation, matter, and dark energy. Here, we assume that they are perfect fluids with a constant equation fo state; $P = \omega \rho$. 
+Radiation consists of photons and neutrinos. The energy-momentum tensor of radiation is traceless, fixing the equation of state to be $w=1/3$. While the number density of photons decrease as $\propto a^{-3}$, their energy density scales as $\propto a^{-4}$ instead because their wavelength gets stretched out as the universe expands. We define the \textit{redshift} $z$ to quantify this effect;
+\begin{align}
+	1 + z := \frac{1}{a}.	\label{def:redshift}
+\end{align}
+Hence, a photon with original wavelength $\lambda_0$ gets redshifted by $\Delta\lambda = z \lambda_0$. Note that the redshift is directly related to the scale factor $a(t)$. It can be used to parametrise time, as well as distance to a light source. Neutrinos show similar behaviours to photons since they remain ultra-relativistic.
+
+Matter includes cold dark matter, electrons and protons. The latter two are often grouped as baryons, even though electrons are not technically baryonic. Pressure from non-relativistic matter is negligible, and $w = 0$. Their number density scales $\propto a^{-3}$ as the universe expands, and so does their energy density. Cold dark matter constitutes about 85\% of the matter and a significant proportion of the total energy density today.
+
+Dark energy is perhaps the most mysterious of the three, despite having the largest contribution to the total energy density at present time. First evidence of its existence came from Type Ia supernovae measurements which implied that the universe's expansion is accelerating. Subsequent observations of CMB and baryonic acoustic oscillations provided further proof. Exact physical mechanism for dark energy is not yet known, but potential explanations include the cosmological constant and quintessence. For purposes of the $\Lambda$CDM model, dark energy has negative pressure ($w=-1$), hence its energy density is independent of the scale factor.
+
+Table \ref{table:cosmic_inventory} summarises the species of the universe and their properties discussed above. The last column contains fractional energy density of particles and shows how abundant each species are at present time. Precise definition of fractional density is to follow in the next section.
 
 \begin{table}[h]
-	\caption{Cosmic inventory. The fractional density values are quoted from CMB analysis (quote Planck 2018)}
+	\caption{Cosmic inventory. The fractional density values are quoted from Planck CMB analysis \cite{PlanckCollaboration2018Parameters}.}
 	\centering
 	\label{table:cosmic_inventory}
 	\renewcommand{\arraystretch}{1.5} 
 	\begin{tabular}{c | c | c | c | c}
-		& Examples & Equation of State & Density Growth & Density Today \\ 
+		& Examples & Equation of State & Density Growth & Fractional Density Today \\ 
 		
 		\hline
-		\multirow{2}{*}{Radiation $(r)$} & Photon $(\gamma)$ & \multirow{2}{*}{$\omega = 1/3$} & \multirow{2}{*}{$\rho \propto a^{-4}$} & $\Omega_{\gamma} \approx 1 \times 10^{-4}$ \\
+		\multirow{2}{*}{Radiation $(r)$} & Photon $(\gamma)$ & \multirow{2}{*}{$w = 1/3$} & \multirow{2}{*}{$\rho \propto a^{-4}$} & $\Omega_{\gamma} \approx 1 \times 10^{-4}$ \\
 		& Neutrino $(\nu)$ & & & $\Omega_{\nu} < 2 \times 10^{-2}$ \\
 		
 		\hline		
-		\multirow{2}{*}{Matter $(m)$} & Cold dark matter $(c)$ & \multirow{2}{*}{$\omega = 0$} & \multirow{2}{*}{$\rho \propto a^{-3}$} & $\Omega_{c} \approx 0.27$ \\
+		\multirow{2}{*}{Matter $(m)$} & Cold dark matter $(c)$ & \multirow{2}{*}{$w = 0$} & \multirow{2}{*}{$\rho \propto a^{-3}$} & $\Omega_{c} \approx 0.27$ \\
 		& Baryon $(b)$ & & & $\Omega_{b} \approx 0.05$ \\
 		
 		\hline
-		Dark Energy $(\Lambda)$ & & $\omega=-1$ & $\rho=\text{const}$  & $\Omega_\Lambda \approx 0.68$\\
+		Dark Energy $(\Lambda)$ & & $w=-1$ & $\rho=\text{const}$  & $\Omega_\Lambda \approx 0.68$\\
 		\hline 
 	\end{tabular}
 \end{table}
@@ -156,16 +203,67 @@ The universe consists of many different particles, but they can be broadly categ
 
 \subsection{Evolution of the universe}
 
-TODO:
+We are now ready to calculate the time evolution of the homogeneous universe. The Einstein field equation of general relativity reads
+\begin{align}
+	G_{\mu\nu} = 8\pi G T_{\mu\nu},
+\end{align}
+where $G$ is the Newtonian constant of gravitation. \footnote{Constant $G$ is not to be confused with the Einstein tensor $G_{\mu\nu}$ on the left hand side.} Substituting in the Einstein tensor for the FLRW metric from (\ref{eqn:Einstein_tensor_FLRW_00}-\ref{eqn:Einstein_tensor_FLRW_ij}) and the energy-momentum tensor from (\ref{eqn:em_tensor_perfect_fluid}), we obtain
+\begin{align}
+	3 \left[ \left(\frac{\dot{a}}{a}\right) + \frac{k}{a^2} \right] =& 8\pi G \rho, \\
+	-\frac{2\ddot{a}}{a} - \left(\frac{\dot{a}}{a}\right)^2 - \frac{k}{a^2} =& 8\pi G P.
+\end{align}
+Rearranging above yields the Friedmann equations;
+\begin{align}
+	\left(\frac{\dot{a}}{a}\right)^2 =& \frac{8\pi G}{3}\rho - \frac{k}{a^2}, \label{eqn:Friedmann_1}\\
+	\frac{\ddot{a}}{a} =& - \frac{4\pi G}{3} \left(\rho + 3P\right). \label{eqn:Friedmann_2}
+\end{align}
+Note that the continuity equation (\ref{eqn:continuity}) can be obtained from (\ref{eqn:Friedmann_2}) and the time derivative of (\ref{eqn:Friedmann_1}).
 
-Friedmann equations.
+The Hubble parameter is defined as $H := \dot{a}/a$. From (\ref{eqn:Friedmann_1}) we may compute the critical energy density for which the curvature $k$ vanishes;
+\begin{align}
+	\rho_{\text{crit},0} := \frac{3H_0^2}{8\pi G}.
+\end{align}
+Subscripts $0$ indicate that they are evaluated at present time $t=t_0$, where $a(t_0)=1$.
 
-Critical density. $\Omega_X := \rho_X / \rho_{crit,0}$. Dependence on $a$. Radiation, Matter, Dark Energy domination.
+In reality, energy density and pressure appearing in the Friedmann equations are sums of contributions from different fluid components. Fractional density of a given fluid X is defined as
+\begin{align}
+	\Omega_X := \frac{\rho_X}{\rho_{\text{crit},0}}.
+\end{align}
+In previous section we derived how each fluid's energy density depends on the scale factor. Quoting results summarised in Table \ref{table:cosmic_inventory}, the Friedmann equations can be rewritten as follows;
+\begin{align}
+	\dot{a}^2 =& H_0^2 \left( \frac{\Omega_{r,0}}{a^2} + \frac{\Omega_{m,0}}{a} + \Omega_{\Lambda,0} \; a^2 \right) - k, \label{eqn:Friedmann_3}\\
+	\ddot{a} =& H_0^2 \left( - \frac{\Omega_{r,0}}{a^3} - \frac{\Omega_{m,0}}{2a^2} + \Omega_{\Lambda,0} \; a \right). \label{eqn:Friedmann_4}
+\end{align}
+These equations dictate the growth (or shrinking) of the universe given curvature and energy density composition today. For $k <= 0$, the right hand side of (\ref{eqn:Friedmann_3}) is always positive regardless of fractional density value. In this case, the fact that universe is currently expanding suffices to show that scale factor $a$ has been increasing monotonically. The universe began with the Big Bang at $a=0$.
 
-Define conformal time, growth of the universe. Define redshift.
+When $k > 0$, $\dot{a}$ vanishes at one or two values of $a$. There are multiple scenarios in this case, including the Einstein's Static Universe (ESU) where $\dot{a} = \ddot{a} = 0$. The ESU is however unstable; perturbing around the static solution as $a(t)=a_{\text{ESU}}(1+\xi(t))$ in (\ref{eqn:Friedmann_4}) gives $\ddot{\xi}>0$ to leading order, which implies that there exists a growing solution for $\xi$. In fact, there are no stable static solutions to the Friedmann equations, rendering such models implausible. Another possibility is a closed universe, where the scale factor grows until it hits the maximum and then decreases. This scenario requires $\ddot{a}<0$ at all times. Measurements of Type Ia supernovae strongly suggest that the universe is in an accelerating phase, ruling out this option as well. Lastly, there is the bouncing universe model. The scale factor starts large, drops to a minimum value, and bounces back to an accelerating growth. This model has been disregarded due to the need for introduction of various new physics in the early universe, but has recently regained popularity as an alternative to inflation.
 
+Constraints from modern cosmological observations indicate that our universe is extremely flat, with $k\approx 0$. For the rest of this thesis we set the curvature $k=0$ and follow a standard Big Bang theory.
+
+Note the different powers of the scale factor $a$ are associated with each component of the universe in (\ref{eqn:Friedmann_3}). According to the CMB measurements $\Omega_{r,0} \ll \Omega_{m,0} < \Omega_{\Lambda,0}$. The energy density is therefore dominated by a single component at a time, resulting in three different eras:
+\begin{itemize}
+	\item Radiation domination (RD) where $0 < a < \Omega_{r,0}/\Omega_{m,0}$,
+	\item Matter domination (MD) with $\Omega_{r,0}/\Omega_{m,0} < a < (\Omega_{m,0}/\Omega_{\Lambda,0})^{1/3}$, and
+	\item Dark energy domination ($\Lambda$D) for $a > (\Omega_{m,0}/\Omega_{\Lambda,0})^{1/3}$.
+\end{itemize}
+When the universe consists mainly of a single fluid component $X$, we can simplify the Friedmann equations as follows;
+\begin{align}
+	\dot{a}^2 =& H_0^2 \Omega_{X,0} \; a^{-1-3w_X}, \label{eqn:Friedmann_single_fluid}\\
+	a \propto& t^\frac{2}{3(1+w_X)}, \;\; \text{if} \; w_X \neq -1.
+\end{align}
+Note that the scale factor grows exponentially for $\Lambda$D as $w_\Lambda=-1$; $a\propto \exp(Ht)$.
+
+It is often convenient to consider \textit{conformal} time defined as $\tau := \int_{t_i}^{t} (1/a(t')) dt'$, for some initial time reference $t_i$. As $dt = ad\tau$, the flat FLRW metric is given in terms of conformal time by
+\begin{align}
+	ds^2 = -dt^2 + a(t)^2 d\mathbf{x}^2 = a(t)^2 \left[ -d\tau^2 + d\mathbf{x}^2 \right]. \label{eqn:conformal_time}
+\end{align}
+Rewriting (\ref{eqn:Friedmann_single_fluid}) with $da/d\tau = a \dot{a}$, we obtain
+\begin{align}
+	a \propto \tau^\frac{2}{3w_X+1}.
+\end{align}
+Calculations in this section are summarised in Table \ref{table:evolution_of_the_universe}.
 \begin{table}[h]
-	\caption{Evolution of the universe.}
+	\caption{Evolution of the universe. Ranges for the scale factor are computed from the cosmological parameters estimated in \cite{PlanckCollaboration2018Parameters}.}
 	\centering
 	\label{table:evolution_of_the_universe}
 	\renewcommand{\arraystretch}{1.5} 
@@ -185,20 +283,112 @@ Define conformal time, growth of the universe. Define redshift.
 
 \section{Inflation}
 
-\subsection{The horizon problem}
+Soon after the quantitative formulation of Big Bang cosmology, several issues with the initial conditions were raised. The CMB was observed to be nearly homogeneous, even though many parts of it should have been causally disconnected at the time. Curvature of the universe is extremely close to zero, while $k=0$ is an unstable stationary point. The standard Big Bang cosmology provided little justification for such initial smoothness and fine-tuning.
 
+The theory of cosmic inflation not only resolved most of these problems successfully, but also provided a physical mechanism for the generation of inhomogeneities in the universe. Quantum fluctuations of the inflationary field seeds the initial conditions, whose statistical properties are consistent with current observations. Inflation has therefore become the most widely accepted theory of the early universe to date.
+
+In this section we formulate the puzzles which led to the introduction of inflation (\ref{section:the_horizon_problem}) and outline the basic inflationary paradigm (\ref{section:slow-roll_inflation}).
+
+\subsection{The horizon problem}
+\label{section:the_horizon_problem}
+
+According to relativity, information cannot travel faster than the speed of light. It is therefore possible to have two different points in spacetime that are causally disconnected; their lightcones do not intersect, so no events since the Big Bang could have affected both. Physical properties at such two points are independent of each other. The aim of this section is to compute the size of causally disjoint regions at the epoch of recombination, when most of the CMB photons start free-streaming.
+
+Consider a photon travelling in a straight line. Writing the radial part of $d\mathbf{x}^2$ as $d\chi^2$, our spacetime metric (\ref{eqn:conformal_time}) becomes
+\begin{align}
+	ds^2 = a(\tau)^2 (-d\tau^2 +d\chi^2).
+\end{align}
+Photons follow null geodesics, meaning $ds^2=0$ along their trajectories. Thus $\chi(\tau) = \tau + const$ or $\chi(\tau) = -\tau + const$. They appear to be straight and diagonal lines on the $\chi$-$\tau$ plane, as shown in Figure \ref{fig:horizon_problem}. The distance light travels starting from some initial time $\tau_i$ to $\tau_f$ is then given by
+\begin{align}
+	\chi_\text{PH} := \tau_f - \tau_i = \int_{a_i}^{a_f} \frac{d\tau}{da} da = \int_{a_i}^{a_f} \frac{1}{a\dot{a}} da. \label{def:physical_horizon}
+\end{align}
+Here, $\chi_\text{PH}$ is called the particle horizon. No particles could have travelled further than this distance since the initial time $\tau_i$.
+
+Suppose that the universe is dominated by a single perfect fluid $X$ in between $a_i$ and $a_f$. The simplified Friedmann equation (\ref{eqn:Friedmann_single_fluid}) then gives
+\begin{align}
+	\chi_\text{PH} = \int_{a_i}^{a_f} \frac{a^{(3w_X - 1)/2}}{H_0 \sqrt{\Omega_{X,0}}} da = \frac{2}{(3w_X+1) H_0 \sqrt{\Omega_{X,0}}} \left( a_f^{(3w_X+1)/2} - a_i^{(3w_X+1)/2} \right). \label{eqn:particle_horizon_form}
+\end{align}
+Note that the particle horizon is bounded as $a_i \rightarrow 0$ if and only if $3w_X+1>0$.
+
+According to the conventional big bang cosmology, the universe begins at $a_i=0$ with radiation contributing the most to energy density. The CMB last scattering surface lies around redshift $z \sim 1090$ (or $a_\text{rec}=9.17\times 10^{-4}$) in matter domination era. Quoting cosmological parameters from tables \ref{table:cosmic_inventory} and \ref{table:evolution_of_the_universe}, as well as treating radiation and matter domination separately in the integral, we get $\chi_\text{CMB} \approx 340$ Mpc.
+
+Conformal distance to the last scattering surface $\chi_*$ can also be computed using the same formula (\ref{eqn:particle_horizon_form}), now integrating from $a_\text{rec}$ to $a_0=1$. Approximating again by separating matter and dark energy domination era, $\chi_* \approx 15000$ Mpc. This is much larger than $\chi_\text{PH}$!
+
+As shown in Figure \ref{fig:horizon_problem}, CMB photons at two different opposite sides of the sky had no causal contact at all; their particle horizons have zero overlap. Furthermore, $\chi_\text{CMB}/\chi_* \approx 1.3$ degrees. Every disjoint $1.3\deg$ patch in the sky were causally unrelated at the time of recombination. There is no obvious reason for cosmological parameters in these patches to be similar. Despite this fact, the observed CMB is isotropic everywhere in temperature to order $O(10^{-5})$. This is the horizon problem; the universe at recombination is too homogeneous considering the small particle horizon then.
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.7\textwidth]{horizon_problem.png}
-	\caption[Horizon problem]{Horizon problem.}
+	\caption[Horizon problem]{The horizon problem. According to the conventional big bang cosmology, different regions of the CMB we observe today have had no overlap in their particle horizon. Yet, the CMB is measured close to uniform everywhere.}
 	\label{fig:horizon_problem}
 \end{figure}
 
+To resolve this issue, we need the particle horizon at recombination to be larger. The theory of cosmic inflation achieves this by having a period in the early universe where $3w+1<0$. In this case, we see from (\ref{eqn:particle_horizon_form}) that $\chi_\text{PH}$ is unbounded as $a_i \rightarrow 0$. The initial conformal time $\tau_i \rightarrow -\inf$, allowing enough proper time for the particle horizon growth. Then even the two opposite regions of the CMB we see can have had causal contact in the past, as depicted in Figure \ref{fig:horizon_solution}.
 \begin{figure}[htbp!] 
 	\centering    
-	\includegraphics[width=0.7\textwidth]{horizon_solution.png}
-	\caption[Horizon problem]{Solution to the horizon problem.}
+	\includegraphics[width=0.6\textwidth]{horizon_solution.png}
+	\caption[Horizon problem]{Solution to the horizon problem. Inflation allows more conformal time for different regions to have been in causal contact before recombination.}
 	\label{fig:horizon_solution}
 \end{figure}
 
+Inflation can alternatively be characterised using the comoving hubble radius defined as
+\begin{align}
+	\mathcal{H}^{-1} := \frac{1}{aH}.
+\end{align}
+Note that the particle horizon can then be expressed in terms of the comoving hubble radius as
+\begin{align}
+	\chi_\text{PH} = \int_{a_i}^{a_f} \frac{1}{a \dot{a}} da = \int_{\ln a_i}^{\ln a_f} \mathcal{H}^{-1} d\ln a. \label{eqn:particle_horizon_comoving_hubble}
+\end{align}
+
+The particle horizon represents the distance where objects could have \textit{ever} talked to each other. On the other hand, the comoving hubble radius is a scale for how far information can reach \textit{now}. \footnote{Two points $\mathcal{H}^{-1}$ apart drifts away with relative physical velocity $v_\text{phys} = \dot{a} \mathcal{H}^{-1} = 1$, which is equal to $c$ in our units. It is difficult for such points to have causal interaction right now, especially within Hubble time $H^{-1}$.} As can be seen from (\ref{eqn:particle_horizon_form}), $\mathcal{H}^{-1} \propto a^{(3w_X+1)/2}$, which is $\propto a$ for radiation domination and $\propto a^{1/2}$ during matter domination.
+
+Inflation explains homogeneity of the observed CMB by requiring $\mathcal{H}^{-1}$ to have shrunk rapidly in early times; $d\mathcal{H}^{-1}/d\ln a < 0$. We find that $\ddot{a} > 0$, so the universe undergoes accelerated expansion. Steep decrease in $\mathcal{H}^{-1}$ is expressed using a `slow-roll' parameter
+\begin{align}
+	\epsilon := - \frac{d\ln H}{d\ln a} = -\frac{\dot{H}}{H^2} \ll 1.
+\end{align}
+Inflation also needs to last long enough for the particle horizon to grow sufficiently large. We define another parameter to denote this constraint;
+\begin{align}
+	\eta := \frac{d\ln \epsilon}{d\ln a} = \frac{\dot{\epsilon}}{\epsilon H} \ll 1.
+\end{align}
+% The simplest model of inflation provided in the next section keeps $\epsilon, \eta \ll 1$.
+
+
 \subsection{Slow-roll inflation}
+\label{section:slow-roll_inflation}
+
+The simplest model of inflation consists of a single scalar field $\phi$. The action for a real scalar field with canonical kinetic term and potential $V(\phi)$ is given by
+\begin{align}
+	S_\phi = \int dt d^3 \mathbf{x} \; \sqrt{-g} \left[ -\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi - V(\phi) \right],		\label{eqn:real_scalar_field_action}
+\end{align}
+where $g:=\det g$. Denoting the integrand as the Lagrangian density $\Lagr[t, \mathbf{x}, \phi, \partial_\mu \phi]$, the energy-momentum tensor can be expressed using functional derivatives as
+\begin{align}
+	T_{\mu\nu} = \frac{-2}{\sqrt{-g}} \frac{\delta\Lagr}{\delta g^{\mu\nu}} = -2 \frac{\delta \Lagr}{\delta g^{\mu\nu}} + g_{\mu\nu} \Lagr.
+\end{align}
+Here, we used the identity $\delta\sqrt{-g} = -(1/2) \sqrt{-g} g_{\mu\nu} \delta g^{\mu\nu}$. Substituting (\ref{eqn:real_scalar_field_action}),
+\begin{align}
+	T_{\mu\nu} = \left( \partial_\mu \phi \right) \left( \partial_\nu \phi \right) + g_{\mu\nu} \left( -\frac{1}{2} g^{\rho\sigma} \partial_\rho \phi \partial_\sigma \phi - V(\phi) \right).
+\end{align}
+Now suppose that $\phi$ drives inflation in the FLRW background. Due to the symmetries present in homogeneous and isotropic metric, the inflation field can only depend on time; $\phi(\mathbf{x}, t) = \bar{\phi}(t)$. We can read off the inflation field's energy density and pressure from the energy-momentum tensor.
+\begin{align}
+	\rho_{\bar{\phi}} =& -T^0_{\;\;0} = \frac{1}{2} \dot{\bar{\phi}}^2 + V(\bar{\phi}),	\\
+	P_{\bar{\phi}} \delta^i_j =& T^i_{\;\;j} = \delta^i_j \left( \frac{1}{2} \dot{\bar{\phi}}^2 - V(\bar{\phi}) \right).
+\end{align}
+The two terms $\frac{1}{2} \dot{\bar{\phi}}^2$ and $V(\bar{\phi})$ can be interpreted as the kinetic and potential energy of inflation field, respectively. The equation of state is also expressed in terms of the two;
+\begin{align}
+	w_{\bar{\phi}} = \frac{P_{\bar{\phi}}}{\rho_{\bar{\phi}}} = \frac{\frac{1}{2} \dot{\bar{\phi}}^2 + V(\bar{\phi})}{\frac{1}{2} \dot{\bar{\phi}}^2 - V(\bar{\phi})}.
+\end{align}
+It follows that $\bar{\phi}$ satisfies the condition $3w_{\bar{\phi}}+1<0$ required for inflation, as long as the potential energy dominates over kinetic energy. This is the simplest example of slow-roll inflation.
+
+Classical equations of motion 
+
+\subsection{Quantum fluctuations}
+
+Perturbation from single field.
+
+M-S equation. Solution (mode functions).
+
+Hamiltonian.
+
+Canonical quantisation.
+
+Power spectrum.
+
