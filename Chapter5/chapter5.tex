@@ -84,9 +84,131 @@ Legendre functions basis. Augmentation - 1/k basis.
 Decomposition. Separability -> three separate integrations
 
 \section{Implementation and optimisation}
+
+The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still practically impossible unless thoroughly optimised. In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
+
 \subsection{Algorithm}
 Basic order of integration, psuedo-codes, justifications
 Data used, programs used, etc.
+
+% I want to remove 'end for's - figure out later!
+
+\begin{algorithm}[htbp]
+	\caption{Computing $\beta$s: the na\"ive method}
+	\label{alg:beta_first_attempt}
+	\begin{algorithmic}[1] % The number tells where the line numbering should start	
+		\State Allocate $M(i,p,n)$
+		\Comment{Memory $\sim O(N_{sims} \cdot p_{max} \cdot N_{pix})$}
+
+		\\
+		\For{each map $i$}
+			\For{each mode $p$}
+			\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\State \textbf{compute} $M(i,p,n)$ by SHT
+			\EndFor
+		\EndFor \Comment{$M(i,p,n)$ ready}
+		\\
+		
+		\For{each map $i$}
+			\For{each set of modes $(p_1,p_2,p_3)$}
+				\For{each pixel $n$}
+				\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}
+					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq M(i,p_1,n) \cdot M(i,p_2,n) \cdot M(i,p_3,n)$
+				\EndFor
+			\EndFor
+		\EndFor
+
+		\\	
+		\For{each map $i$}
+			\For{each map $j \neq i$}
+				\For{each set of modes $(p_1,p_2,p_3)$}
+					\For{each pixel $n$}
+					\Comment{$O(N_{sims}^2 \cdot p_{max}^3 \cdot N_{pix})$}
+						\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq M(j,p_1,n) \cdot M(j,p_2,n) \cdot M(i,p_3,n)$
+					\EndFor
+				\EndFor
+			\EndFor
+		\EndFor
+
+	\end{algorithmic}
+\end{algorithm}
+
+(Afterwards, subtract beta cubic from beta linear and divide it by Nsims-1) 
+
+\begin{algorithm}[htbp]
+	\caption{Computing $\beta$s: optimised for computation}
+	\label{alg:beta_second_attempt}
+	\begin{algorithmic}[1] % The number tells where the line numbering should start	
+		\State Allocate $M(i,p,n)$ \Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix})$}
+		\State Allocate $C(p_1,p_2,n)$ \Comment{$O(p_{max} \cdot p_{max} \cdot N_{pix})$}
+		\\
+		\For{each map $i$}
+			\For{each mode $p$}
+				\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\State \textbf{compute} $M(i,p,n)$ by SHT
+			\EndFor
+		\EndFor \Comment{$M(i,p,n)$ ready}
+		\\
+		\For{each map $j$}
+			\For{each pair of modes $(p_1,p_2)$}
+				\For{each pixel $n$}
+					\Comment{$O(N_{sims} \cdot p_{max}^2 \cdot N_{pix})$}
+					\State $C(p_1,p_2,n) \pluseq M(j,p_1,n) \cdot M(j,p_2,n)$
+				\EndFor
+			\EndFor
+		\EndFor \Comment{$C(p_1,p_2,n)$ ready}
+		\\
+		\For{each map $i$}
+			\For{each set of modes $(p_1,p_2,p_3)$}
+				\For{each pixel $n$}
+					\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}
+					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq M(i, p_1, n) \cdot M(i, p_2, n) \cdot M(i, p_3, n)$
+					\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot M(i, p_3, n)$
+				\EndFor
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[htbp]
+	\caption{Computing $\beta$s: fast and memory efficient}
+	\label{alg:beta_third_attempt}
+	\begin{algorithmic}[1] % The number tells where the line numbering should start	
+		\State Allocate $m(p,n)$ \Comment{$O(p_{max} \cdot N_{pix})$}
+		\State Allocate $C(p_1,p_2,n)$ \Comment{$O(p_{max} \cdot p_{max} \cdot N_{pix})$}
+		\\
+		\For{each map $i$}
+			\For{each mode $p$}
+				\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
+			\EndFor
+			\\
+			\For{each pair of modes $(p_1,p_2)$}
+				\Comment{$O(N_{sims} \cdot p_{max}^2 \cdot N_{pix})$}
+				\For{each pixel $n$}
+					\State $C(p_1,p_2,n) \pluseq m(p_1,n) \cdot m(p_2,n)$
+				\EndFor
+			\EndFor
+		\EndFor
+		\Comment{$C(p_1,p_2,n)$ ready}
+		\\
+		\For{each map $i$}
+			\For{each of mode $p$}
+				\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
+			\EndFor
+			\\
+			\For{each set of modes $(p_1,p_2,p_3)$}			
+				\For{each pixel $n$}
+					\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}	
+					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
+					\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot m( p_3, n)$
+				\EndFor
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
 
 \subsection{Parallel computing}
 Table: 3 levels of parallelisation. How CMB-BEst exploits each level.
