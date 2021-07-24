@@ -314,17 +314,29 @@ We choose Algorithm \ref{alg:beta_third_attempt} to be our main method of comput
 
 \subsection{Parallel computing}
 
+% Do I need more computing related references here maybe?
 
+In order to fully benefit from the modern computer architecture, parallel computing is a must. In this section, we outline how CMB-BEst was parallelised for optimal performance on supercomputers.
+
+Following \cite{Jeffers2016intel}, we discuss parallelism in three different levels: domain, thread, and data. They mostly correspond to nodes, cores, and registers in modern computer clusters. Each level has distinct characteristics which make them ideal for different parallelisation techniques. We make the full use of each level in our methodology.
+
+\textit{Domain} parallelism refers to dividing the task into many domains where each domain entails heavy computation, while having limited data communication between them. Since the domains are largely independent, Message Passing Interface (MPI) is a suitable tool for parallelisation. MPI is a communication protocol where many instances (`ranks') of the same code may transfer data while running separately from each other. A perfect example of domain parallelism in CMB-BEst would be our line-of-sight integration over $r$. Almost no data are shared between different $r$s, despite the heavy computational cost from map operations within each domain. CMB-BEst therefore scales well with the number of MPI ranks.
+
+\textit{Thread} parallelism opportunities arise when there are many independent computational tasks on a single set of data. Most modern supercomputers use multi-core processors. Each core, or processing units, can run one or more threads, executing instructions independently from each other while sharing memory space. Note that MPI would not be as effective here due to the large amount of data sharing needed; ranks have to either continuously communicate with each other, or store individual copies of the data. This type of parallelism is extremely common in many applications, including SHTs and map integrations in CMB-BEst. Open Multi-Processing (OpenMP) is one of the most popular implementations of multi-threading publicly available. We utilise the \textsc{C} OpenMP interface in our code. 
+
+\textit{Data} parallelism applies when same arithmetic operations are applied to multiple data items, ideally adjacent in memory space. This type of parallel processing is called SIMD: single instruction, multiple data. Many procedures involving large arrays fall into this category. We use Advanced Vector Extensions (AVX) supported by Intel processors to exploit data parallelism in CMB-BEst, especially for operations involving large (filtered) map arrays. In particular, Intel's Xeon Phi series implement AVX-512, where 512-bit registers hold up to 8 double-precision floating numbers. A single instruction can be applied on all of them at once in a single clock cycle, providing a major boost to computation speed. We explicitly align large arrays in memory for optimal vectorisation performance.
+
+Table \ref{table:three_levels_of_parallelism} summarises discussions in this section.
 
 \begin{table}[h]
-	\caption{Three levels of parallelism utilised in CMB-BEst. The levels and characteristics are chosen based on \cite{jeffers2016intel}.}
+	\caption{Three levels of parallelism utilised in CMB-BEst. The levels and characteristics are chosen based on \cite{Jeffers2016intel}.}
 	\centering
 	\label{table:three_levels_of_parallelism}
 	\renewcommand{\arraystretch}{1.5} 
 	\begin{tabular}{m{0.12\textwidth}   m{0.35\textwidth}   m{0.15\textwidth}   m{0.3\textwidth}} \toprule
 		 & Characteristics & Methods & Utilisation \\
 		
-		\toprule
+		\midrule
 		Domain \newline Parallelism &
 		\begin{itemize}[leftmargin=*]
 			\item Limited data communication between domains
