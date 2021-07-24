@@ -47,29 +47,31 @@ Every term appearing in (\ref{eqn:bispectrum_estimator_standard}) except the Gau
 
 Define the filtered maps as
 \begin{align}
-	M^{(i)}_p (\vv{n}, r) := \sum_{l,m} \frac{\tilde{q}_p (l,r)}{C_l} a^{(i)}_{lm} Y_{lm} (\vv{n}),
+	M^{(i)}_p (\vv{n}, r) := \sum_{l,m} \frac{\tilde{q}_p (l,r)}{C_l} a^{(i)}_{lm} Y_{lm} (\vv{n}), \label{def:filtered_maps}
 \end{align}
-where $a^{(i)}_{lm}$'s are represent the spherical harmonic transform of the $i$th CMB map. The convention is so that $0$th map corresponds to the observed CMB map, while maps number $1$-$N_{sims}$ are Gaussian simulations. Without the factors involving $\tilde{q}$ and $C_l$'s, $M$ is simply equal to the original map in real space. Each mode extracts different anisotropy scales present in the map.
+where $a^{(i)}_{lm}$'s are represent the spherical harmonic transform of the $i$th CMB map. For later convenience, we use a convention where the $0$th map corresponds to the observed CMB map. Maps number $1$-$N_{sims}$ are Gaussian simulations. Note that without the factors involving $\tilde{q}$ and $C_l$'s, $M$ is simply equal to the original map in real space. Each mode extracts different anisotropy scales present in the map.
 
 The bispectrum estimator (\ref{eqn:bispectrum_estimator_standard}) reduces to
 \begin{align}
-	\hat{f}_{NL} = \frac{1}{N} \sum_{p_j} \alpha_{p_1 p_2 p_3} (\beta^{cub}_{p_1 p_2 p_3} - 3 \beta^{lin}_{p_1 p_2 p_3}),
+	\hat{f}_{NL}^{(i)} = \frac{1}{N} \sum_{p_j} \alpha_{p_1 p_2 p_3} (\beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3}),
 \end{align}
 where most of the computation required is now contained in the `$\beta$'s, given by
 \begin{align}
-	\beta^{cub}_{p_1 p_2 p_3} &:= \int dr \int d^2\vv{n} \; M^{(0)}_{p_1} (\vv{n},r) M^{(0)}_{p_2} (\vv{n},r) M^{(0)}_{p_3} (\vv{n},r),	\label{def:beta_cubic} \\
-	\beta^{lin}_{p_1 p_2 p_3} &:= \frac{1}{N_{sims}} \sum_{j=1}^{N_{sim}} \int dr \int d^2\vv{n} \; M^{(j)}_{p_1} (\vv{n},r) M^{(j)}_{p_2} (\vv{n},r) M^{(0)}_{p_3} (\vv{n},r). \label{def:beta_linear}
+	\beta^{cub,(i)}_{p_1 p_2 p_3} &:= \int dr \int d^2\vv{n} \; M^{(i)}_{p_1} (\vv{n},r) M^{(i)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r),	\label{def:beta_cubic} \\
+	\beta^{lin,(i)}_{p_1 p_2 p_3} &:= \frac{1}{N_{sims}} \sum_{j \neq i} \int dr \int d^2\vv{n} \; M^{(j)}_{p_1} (\vv{n},r) M^{(j)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r). \label{def:beta_linear}
 \end{align}
+Here we evaluate $f_{NL}$ estimates for each of the Gaussian simulations $i=1,\cdots,N_{sims}$. Naturally, they are normally distributed with mean zero. Under the null hypothesis that the initial fluctuations are purely Gaussian and there exist no primordial non-Gaussianity, the value of $f_{NL}$ estimated from the observed CMB map is also drawn from the same normal distribution. Any statistically significant deviations from zero would therefore allow us to reject the null hypothesis.
+
 It is important to note that the beta matrices depends only on the choice of mode functions and input map data, and are independent of the theoretical bispectrum considered. Once $\beta^{cub}$ and $\beta^{lin}$ are computed and stored, we may constrain any model of interest by decomposing the template to get $\alpha$, and then simply taking a dot product: $\vv{\alpha} \cdot \vv{\beta} / N$.
 
 The normalisation can also be obtained in a similar fashion;
 \begin{align}
-	N = \sum_{p_j, p'_j} \alpha_{p_1 p_2 p_3} \Gamma_{p_1 p_2 p_3, p'_1, p'_2, p'_3} \alpha_{p'_1, p'_2, p'_3},
+	N = \sum_{p_j, p'_j} \alpha_{p_1 p_2 p_3} \Gamma_{p_1 p_2 p_3, p'_1 p'_2 p'_3} \alpha_{p'_1 p'_2 p'_3},
 \end{align}
 or equivalently, $N = \vv{\alpha}^T \Gamma \vv{\alpha}$. We exploit separability once again to compute the $\Gamma$ matrix;
 \begin{align}
-	\Gamma_{p_1 p_2 p_3, p'_1, p'_2, p'_3} &:= \int dr \int d\mu \mathcal{P}_{p_1 p'_1}(\mu, r, r') \mathcal{P}_{p_3 p'_3}(\mu, r, r') \mathcal{P}_{p_3 p'_3}(\mu, r, r'), 	\label{def:gamma} 	\\
-	\mathcal{P}_{p p'}(\mu, r, r') &:= \sum_l \frac{2l+1}{(8\pi)^{1/3} C_l} \tilde{q}_p'(l,r) \tilde{q}_p(l,r') P_l(\mu),
+	\Gamma_{p_1 p_2 p_3, p'_1 p'_2 p'_3} &:= \int dr \int d\mu \mathcal{P}_{p_1 p'_1}(\mu, r, r') \mathcal{P}_{p_3 p'_3}(\mu, r, r') \mathcal{P}_{p_3 p'_3}(\mu, r, r'), 	\label{def:gamma} 	\\
+	\mathcal{P}_{p p'}(\mu, r, r') &:= \sum_l \frac{2l+1}{(8\pi)^{1/3} C_l} \tilde{q}_{p'}(l,r) \tilde{q}_p(l,r') P_l(\mu),
 \end{align}
 where $P_l(\mu)$'s are the Legendre polynomials.
 
@@ -77,28 +79,111 @@ In summary, CMB-BEst computes the main quantities: $\beta^{cub}$, $\beta^{lin}$,
 
 \subsection{Basis functions}
 
-Special case (pmax=2) -> ones used in forecast for constant feature models.
-KSW choice (pmax=4)
-Legendre functions basis. Augmentation - 1/k basis.
+One of the greatest strengths of CMB-BEst lies in its flexibility with the choice of basis functions. Adopting a specialised basis set provides optimised results to specific models of interest, while a more general construction of basis enable wider search of the model space.
 
-Decomposition. Separability -> three separate integrations
+First, we observe that the KSW estimator \cite{Komatsu2005} is equivalent to a simple monomial basis in our method;
+\begin{align}
+	q_p(k) = k^{p-1}, \;\;\; p = 0, 1, 2, 3.
+\end{align}
+All three standard templates - local, equilateral, and orthogonal - can be expressed as a sum of separable terms in the form $q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3)$. Shape function of the local template, for example, is given by
+\begin{align}
+	S^{local}(k_1 k_2 k_3) :=& 2A^2 \left[ \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} + \frac{k_3^2}{k_1 k_2}  \right] \\
+	=& 2A^2 \left[q_3(k_1)q_0(k_2)q_0(k_3) + q_0(k_1)q_3(k_2)q_0(k_3) + q_0(k_1)q_0(k_2)q_3(k_3) \right],
+\end{align}
+where $A$ is the primordial power spectrum amplitude. Decomposition coefficients $\alpha_{p_1 p_2 p_3}$ have three non-zero components: $\alpha_{300} = \alpha_{030} = \alpha_{003} = 2A^2$. Coefficients for the equilateral and orthogonal templates can similarly be found.
+
+We set the scalar spectral index $n_s = 1$ for simplicity above. In the presence of non-unit $n_s$, we modify the basis as follows;
+\begin{align}
+	q_p(k) = k^2 \left[ k_* \left( \frac{k}{k_*} \right)^{(4-n_s)/3} \right]^{p-4}, \;\; p=0,1,2,3.
+\end{align}
+The pivot scale $k_*$ is defined such that the power spectrum evaluates to $A$ at $k=k_*$. Including $k_*$ here ensures that the $q_p(k)$'s have the right units. Note that the prefactor $k^2$ comes from the definition of shape function and is therefore unaffected by $n_s$.
+
+For studying models with linearly spaced, high-frequency oscillation, a Fourier-like basis
+\begin{align}
+	q_0(k) = \sin (\omega k), \; q_1(k) = \cos (\omega k),
+\end{align}
+for a fixed $\omega$ is an appropriate choice. This is in fact equivalent to the method we used to study feature models in Chapter \ref{chapter:CMB_state-4_forecast}. The small size of the basis lets us efficiently constrain theoretical models with given characteristic scale $\omega$. By scanning over a range of $\omega$, or including modes with different values of $\omega$ in the basis, we may also perform a more comprehensive analysis of oscillatory features.
+
+Lastly, we introduce a basis which consists of Legendre polynomials.
+\begin{align}
+	q_p(k) = P_p(\bar{k}), \;\;\text{where}\;\; \bar{k} = \frac{2k-k_{min}-k_{max}}{k_{max}-k_{min}}.
+\end{align}
+Here we linearly map the range from $k \in [k_{min},k_{max}]$ to $\bar{k} \in [-1,1]$, which is the interval where Legendre polynomials are defined. The number of modes are not bounded; the larger the basis, the more complete coverage of theory space we get.
+
+The Legendre basis has two main advantages over others. First of all, the mode functions are inherently orthogonal, so that $\int_{-1}^{1} d\bar{k} P_{l}(\bar{k}) P_{l'}(\bar{k}) = 0$ whenever $l \neq l'$. This property allows us to greatly simplify the way of decomposing theoretical templates. Given a shape function $S^{(t)} (k_1, k_2, k_3)$, the decomposed coefficients can be found by
+\begin{align}
+	\alpha^{(t)}_{p_1 p_2 p_3} = \int dk_1 dk_2 dk_3 \; S^{(t)}(k_1, k_2, k_3) q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3), \label{def:Legendre_basis}
+\end{align}
+as long as the modes are normalised appropriately. In practice, we may perform the three one-dimensional integrals one by one, which leads to an efficient and numerically stable algorithm.
+
+Secondly, the Legendre basis enables direct connection to some numerical codes for computing bispectra from various inflationary models, most notably \textit{Primodal} \cite{Clarke2021}.\textit{Primodal} is a code for evaluating primordial bispectra from general single-field models. As opposed to other public codes, its output is expressed in terms of the expansion coefficients with respect to the Legendre polynomials. Hence, the result can be directly plugged in to CMB-BEst, creating one fluid pipeline from model to estimation.
+
+As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomials with one or more particular functions for better description of some bispectrum templates. One solid choice is to add a mode $q(k) = k^{n_s -2}$, orthogonalised with respect to the rest of the basis. This significantly boosts the performance of decomposing local-type bispectra.
+
+Ideally, we would like the $k$ range used in the definition (\ref{def:Legendre_basis}) to be as wide as possible, so that more information from different scales are incorporated in the estimation process. Wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_{max}/k_{min} = 1000$ is an overall sweet spot for analysing Planck data.
+
+Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $k_{max}/k_{min}=1000$, as \textit{the Legendre} basis. Any deviation from such will be explicitly mentioned.
 
 \section{Implementation and optimisation}
 
-The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still practically impossible unless thoroughly optimised. In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
+The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still practically impossible due to its computational complexity unless thoroughly optimised. In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
+
+Throughout this section we will treat the functions of interest as discrete arrays. Our notations for indices and their limits are summarised in Table \ref{table:index_conventions}. We adopt simple trapezoidal rule for most numerical integrals, except for the $\mu$ integral in (\ref{def:gamma}) which uses Gauss-Legendre quadrature \cite{Hale2013}. Multi-dimensional arrays are stored in the row major order, equivalent to the \textsc{C} convention. We use the \textsc{libsharp} library \cite{Reinecke2013libsharp} for Spherical Harmonic Transforms (SHTs), and \textsc{Healpix} \cite{Gorski2005healpix} for pixelisation of the sky. Intel's Vtune amplifier served as a main profiling tool for our \textsc{C} code.
+
+\begin{table}
+	\caption{Our index conventions for discretised arrays and their sizes.}
+	\centering
+	\label{table:index_conventions}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{tabular}{m{0.1\textwidth}  m{0.1\textwidth}  m{0.7\textwidth}} \toprule
+		Index & Range & Description \\
+		
+		\midrule
+		$r$ & $[0, N_r)$ & Line-of-sight integral $r$ grid index. \\
+		
+		$p, p_j$ & $[0, p_{max})$ & Mode number. $p_j$ is a shorthand for $(p_1, p_2, p_3)$. \\
+		
+		$i,j$ & $[0, N_{sims}]$ & Map number. Index $i=0$ corresponds to the observed CMB map, while $i>0$ are for simulated Gaussian maps. \\			
+		
+		$n$ & $[0, N_{pix})$ & Map pixel number. \\ 
+		
+		$l,m$ & $[0, l_{max})$ & Spherical harmonic multipole moments. Note $-l \le m \le l$. \\
+		
+		$\mu$ & $[0, N_\mu)$ & Gauss-Legendre quadrature $\mu$ grid index. \\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+We mainly used Intel's Vtune amplifier as a performance profiling tool for our \textsc{C} code.
 
 \subsection{Algorithm}
-Basic order of integration, psuedo-codes, justifications
-Data used, programs used, etc.
 
-% I want to remove 'end for's - figure out later!
+Our goal is to compute three key quantities: $\Gamma$ (\ref{def:gamma}), $\beta^{cub}$ (\ref{def:beta_cubic}), and $\beta^{lin}$ (\ref{def:beta_linear}). The matrix $\Gamma$ allows us to find the normalisation factor $N$ for a given theoretical template, while the two $\beta$'s provide the amplitude of $f_{NL}$ for each CMB maps and simulations used, up to normalisation.
+
+In most cases of interest, the bottleneck point of our pipeline is computing the linear term $\beta^{lin}$. Even though the $\Gamma$ matrix computation through (\ref{def:gamma}) grows more rapidly with the number of basis functions ($\propto p_{max}^6$) than the $\beta$'s ($\propto p_{max}^3$), it does not involve operations with high-definition maps and remains subdominant in terms of total cost.
+
+We dedicate this section to explain our algorithm design for $\beta$ computation in detail. The discretised versions of (\ref{def:beta_cubic}-\ref{def:beta_linear}) are given by
+\begin{align}
+	\beta^{cub}(i, p_1,p_2,p_3) &= \sum_r \sum_n \; M(r, i, p_1, n) \cdot M(r, i, p_2, n) \cdot M(r, i, p_3, n), \\
+	\beta^{lin}(i, p_1,p_2,p_3) &= \sum_r \sum_{j \neq i} \sum_n \; M(r, j, p_1, n) \cdot M(r, j, p_2, n) \cdot M(r, i, p_3, n).
+\end{align}
+The order of indices are chosen such that later calculations have optimal memory layouts. Some integral weights and factors are absorbed into arrays for brevity.
+
+Note that the data arrays for different values of $r$ are completely independent to each other. This provides us a natural way to distribute tasks. We compute and save contributions to $\beta$'s for each $r$ separately. The summation over $r$ is performed in the end. Therefore, throughout the rest of this chapter, we assume that $r$ is fixed and drop the $r$ dependence in descriptions of our algorithms.
+
+The filtered map arrays $M(i,p,n)$ are obtained as follows. A given map $i$ is first transformed in to spherical harmonic coefficients $a^{(i)}(l,m)$s via SHT. We then compute $\tilde{q}_(p,l) * a(i,l,m) / C(l)$ from (\ref{def:filtered_maps}), which is fed into reverse SHT to synthesise the filtered maps.
+
+As a rough guide to the size of each summations, we typically have $N_{sim} \approx 150$ simulations, $p_{max} = 30$ modes, and $N_{pix} = 50,331,648$ pixels. \footnote{This value corresponds to $N_{side} = 2048$ in Healpix. $N_{pix} = 12 N_{side}^2$} Considering the fact that one double-precision array of size $\sim 50$ million pixels takes about 400MB of memory space, this is indeed a task for supercomputers.
+
+Our first and the most straightforward method of computing $\beta$s are outlined in Algorithm \ref{alg:beta_first_attempt}. Computational complexity of each innermost loop is denoted on the right hand side.
 
 \begin{algorithm}[htbp]
 	\caption{Computing $\beta$s: the na\"ive method}
 	\label{alg:beta_first_attempt}
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
 		\State Allocate $M(i,p,n)$
-		\Comment{Memory $\sim O(N_{sims} \cdot p_{max} \cdot N_{pix})$}
+		\Comment{Memory $\sim N_{sims} \cdot p_{max} \cdot N_{pix}$}
 
 		\\
 		\For{each map $i$}
@@ -133,14 +218,18 @@ Data used, programs used, etc.
 	\end{algorithmic}
 \end{algorithm}
 
-(Afterwards, subtract beta cubic from beta linear and divide it by Nsims-1) 
+Here, we first obtain the filtered maps $M(i,p,n)$ via SHT for each map and modes. The full results are stored in memory. Next, we iterate through each map and set of modes $(p_1, p_2, p_3)$ and sum over each of the map pixels to obtain $\beta^{cub}$ and $\beta^{lin}$. Symmetries in the indices are respected; we only loop over $(p_1,p_2,p_3)$ satisfying $p_1\ge p_2$ for the linear terms, and $p_1\ge p_2\ge p_3$ for the cubic ones.
+
+SHT typically scales as $\propto l_{max}^3$, where $l_{max}$ is the maximum degree of spherical harmonic functions used. The total number of pixels $N_{pix}$ grows $\propto l_{max}^2$ when chosen appropriately for resolution, hence the SHT costs $O(N_{sims}\cdot p_{max} \cdot N_{pix}^{3/2})$. The most expensive part of this algorithm is still the loop where we calculate the linear term, which scales as $O(N_{sims}^2 \cdot p_{max}^3 \cdot N_{pix})$.
+
+Our first major optimisation comes from the observation that we may swap the order of summations to reduce the computation. By precomputing $C(p_1, p_2, n) = \sum_j M(j,p_1,n) \cdot M(j,p_2,n)$, we require one fewer loop over maps for $\beta^{lin}$, leading to a factor of $N_{sims}\sim150$ improvement. Algorithm \ref{alg:beta_second_attempt} shows a pseudocode for this method.
 
 \begin{algorithm}[htbp]
 	\caption{Computing $\beta$s: optimised for computation}
 	\label{alg:beta_second_attempt}
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
-		\State Allocate $M(i,p,n)$ \Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix})$}
-		\State Allocate $C(p_1,p_2,n)$ \Comment{$O(p_{max} \cdot p_{max} \cdot N_{pix})$}
+		\State Allocate $M(i,p,n)$ \Comment{Memory $\sim N_{sims} \cdot p_{max} \cdot N_{pix}$}
+		\State Allocate $C(p_1,p_2,n)$ \Comment{Memory $\sim p_{max}^2 \cdot N_{pix}$}
 		\\
 		\For{each map $i$}
 			\For{each mode $p$}
@@ -170,13 +259,20 @@ Data used, programs used, etc.
 	\end{algorithmic}
 \end{algorithm}
 
+Note that the resulting sum fo $\beta^{lin}$ includes an unwanted contribution from the case where $j=i$, since $C(p_1,p_2,n)$ is obtained by summing over all maps. Thankfully, this extra contribution is exactly equal to the cubic term. We just have to subtract $\beta^{cub}$ from the total sum to get the correct value of $\beta^{lin}$.
+
+We shaved off a whole loop at the cost of extra memory usage. For our purposes $N_{sims} ~ 150 > \cdot p_{max} = 30$, so the additional space required for $C(p_1,p_2,n)$ is relatively small compared to $M(i,p,n)$. The symmetry in $p_1$ and $p_2$ also means that we only need to store $p_{max}(p_{max}+1)/2$ maps instead of $p_{max}^2$ for $C$.
+
+Our next challenge is the amount of memory required to save $M(i,p,n)$: $\sim 1.8$TB for the parameters mentioned above, which is quite significant. Though it is not impossible to find supercomputing systems which can accommodate such large arrays, reduction in memory usage would be highly beneficial. We seek to achieve it while keeping the overall computational complexity to be $O(N_{sims} \cdots p_{max}^3 \cdots N_{pix})$ as before.
+
+We observe that most summations are done for a single map $i$. The array $C(p_1,p_2,n)$ is required to be computed before the main loop for $\beta^{lin}$, but otherwise there are no `mixing' between the maps. We exploited this fact to develop Algorithm \ref{alg:beta_third_attempt}.
 
 \begin{algorithm}[htbp]
 	\caption{Computing $\beta$s: fast and memory efficient}
 	\label{alg:beta_third_attempt}
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
-		\State Allocate $m(p,n)$ \Comment{$O(p_{max} \cdot N_{pix})$}
-		\State Allocate $C(p_1,p_2,n)$ \Comment{$O(p_{max} \cdot p_{max} \cdot N_{pix})$}
+		\State Allocate $m(p,n)$ \Comment{Memory $\sim p_{max} \cdot N_{pix}$}
+		\State Allocate $C(p_1,p_2,n)$ \Comment{Memory $\sim p_{max} \cdot p_{max} \cdot N_{pix}$}
 		\\
 		\For{each map $i$}
 			\For{each mode $p$}
@@ -185,8 +281,8 @@ Data used, programs used, etc.
 			\EndFor
 			\\
 			\For{each pair of modes $(p_1,p_2)$}
-				\Comment{$O(N_{sims} \cdot p_{max}^2 \cdot N_{pix})$}
 				\For{each pixel $n$}
+				\Comment{$O(N_{sims} \cdot p_{max}^2 \cdot N_{pix})$}
 					\State $C(p_1,p_2,n) \pluseq m(p_1,n) \cdot m(p_2,n)$
 				\EndFor
 			\EndFor
@@ -210,26 +306,149 @@ Data used, programs used, etc.
 	\end{algorithmic}
 \end{algorithm}
 
+Algorithm \ref{alg:beta_third_attempt} dramatically reduces the amount of memory required, at the cost of doubling the SHTs for computing $M(i,p,n)$s. The first time through, SHT results from each map are used to find $C(p_1,p_2,n)$. After a full loop over maps we have $C(p_1,p_2,n)$ ready, another set of SHTs for each map allows us to obtain the $\beta$'s.
+
+SHTs have subdominant contribution to the total computation time even after becoming doubled in number. One of the main strengths of Algorithm \ref{alg:beta_third_attempt} is that both the memory and computation time scale linearly with the number of simulations used, $N_{sims}$. In the future when a larger number of Gaussian simulations are required to acquire a more accurate estimate of the linear term, it is straightforward to adapt our method accordingly.
+
+We choose Algorithm \ref{alg:beta_third_attempt} to be our main method of computing $\beta$'s for CMB-BEst.
+
 \subsection{Parallel computing}
-Table: 3 levels of parallelisation. How CMB-BEst exploits each level.
+
+
+
+\begin{table}[h]
+	\caption{Three levels of parallelism utilised in CMB-BEst. The levels and characteristics are chosen based on \cite{jeffers2016intel}.}
+	\centering
+	\label{table:three_levels_of_parallelism}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{tabular}{m{0.12\textwidth}   m{0.35\textwidth}   m{0.15\textwidth}   m{0.3\textwidth}} \toprule
+		 & Characteristics & Methods & Utilisation \\
+		
+		\toprule
+		Domain \newline Parallelism &
+		\begin{itemize}[leftmargin=*]
+			\item Limited data communication between domains
+			\item Heavy computation within the domain
+		\end{itemize} &
+		MPI &
+		\begin{itemize}[leftmargin=*]
+			\item Line of sight $r$ integration split into independent tasks
+		\end{itemize}  \\
+	
+		\midrule
+		Thread \newline Parallelism &
+		\begin{itemize}[leftmargin=*]
+			\item Data sharing between threads
+			\item High proportion of independent tasks
+		\end{itemize} &
+		OpenMP &
+		\begin{itemize}[leftmargin=*]
+			\item SHT
+			\item Map patches divided across threads
+		\end{itemize}  \\	
+	
+		\midrule
+		Data \newline Parallelism &
+		\begin{itemize}[leftmargin=*]
+			\item Same operation applied to multiple data items
+		\end{itemize} &
+		Advanced Vector Extensions (AVX) &
+		\begin{itemize}[leftmargin=*]
+			\item Map pixel integration vectorised using AVX-512
+			\item Data vectors explicitly aligned in memory for optimal performance 
+		\end{itemize} \\	
+	
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \subsection{Data locality}
 Cache blocking. Some Amplxe results screenshot to confirm?
 + Initialising parts of large arrays at processors that actually use them.
-
-\subsection{Cluster adaptation}
-Three different versions of the code. Balance between performance / memory.
 
 \subsection{Final specifications}
 Code, runtime, etc? 
 
 \section{Verification}
 \subsection{Internal consistency checks}
-Quick derivation of optimality of the bispectrum estimator?
-Sample versus Theory covariance checks.
-Expected chi-square distribution etc.
+%Quick derivation of optimality of the bispectrum estimator?
+Estimation part:
++ KSW vs Legendre for standard templates. Map-by-map
+- Slight scatter in local -> 
+- Sample vs theoretical variance.
+- Sample versus Theory covariance checks.
+- Expected chi-square distribution etc.
+Convergence part:
+- Convergence epsilon definition
+- Standard templates convergence epsilons
++ Legendre - pmax=29 vs 30 for trio
+- Legendre - constant feature models part. Correlation matrix
 
 \subsection{Consistency with Planck}
 
++ KSW vs Leg vs Modal table
++ Map-by-map plot for Leg vs Modal Trio
+- Plot for Leg vs Modal, fNL vs frequency plot
+- Frequency correlation plot
+- Epsilon vs frequency. Primordial convergence vs late-time...
+
 Consistency vs Modal for Planck results.
 Discussion on kmin and kmax range
+
+\subsection{Proof of concept}
+
+- DBI sound speed constraints
+- DBI resonance scan
+- tetrapyd decomp? 
+
+\subsection{Future work}
+
+
+
+\begin{table}[h]
+	\caption{Constraints for the standard templates for the KSW and Legendre basis from CMB-BEst, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. SMICA temperature map has been used, and the lensing bias has been subtracted.}
+	\centering
+	\label{table:trio_fNL_comparison_with_planck}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{tabular}{lcccc}
+		\toprule
+		& \multicolumn{2}{c}{CMB-BEst} & \multicolumn{2}{c}{Planck 2018} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+		Template & KSW &  Legendre &  KSW &  Modal \\
+		\midrule
+		
+		Local & $-2.2 \;\pm\; 5.5$ & $-2.0 \;\pm\; 5.9$ & $-0.5 \;\pm\; 5.6$ & $-0.6 \;\pm\; 6.4$ \\
+		Equilateral & $17 \;\pm\; 61$ & $15 \;\pm\; 62$ & $7 \;\pm\; 66$ & $34 \;\pm\; 67$ \\
+		Orthogonal & $-7 \;\pm\; 38$ & $-9 \;\pm\; 38$ & $-15 \;\pm\; 36$ & $-26 \;\pm\; 43$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+% Old table
+%\begin{table}[h]
+%	\caption{Constraints for the standard templates for the KSW and Legendre basis from CMB-BEst, in comparison with the `Modal' pipeline from Planck 2018 analysis \cite{PlanckCollaboration2018}}
+%	\centering
+%	\label{table:trio_fNL_comparison_with_planck}
+%	\renewcommand{\arraystretch}{1.5} 
+%	\begin{tabular}{llrrr}
+%		\toprule
+%		Template & Estimator &  $f_{NL}^T$ &  $\bar{\sigma}^T$ &  $\sigma^T$ \\
+%		\toprule
+%		
+%		Local & KSW &   -2.2 &      5.5 &      5.3 \\
+%		& Legendre &   -2.0 &      5.9 &      5.7 \\
+%		& Modal &   -0.6 &      6.4 &      6.1 \\
+%		
+%		\midrule
+%		Equilateral & KSW &   16.7 &     61.1 &     67.7 \\
+%		& Legendre &   15.2 &     61.7 &     67.7 \\
+%		& Modal &   33.8 &     66.5 &     72.4 \\
+%		
+%		\midrule
+%		Orthogonal & KSW &   -6.9 &     37.6 &     33.7 \\
+%		& Legendre &   -8.5 &     38.0 &     33.9 \\
+%		& Modal &  -26.5 &     42.8 &     39.3 \\
+%		\bottomrule
+%	\end{tabular}
+%\end{table}
