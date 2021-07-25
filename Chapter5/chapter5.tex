@@ -116,7 +116,7 @@ The Legendre basis has two main advantages over others. First of all, the mode f
 \end{align}
 as long as the modes are normalised appropriately. In practice, we may perform the three one-dimensional integrals one by one, which leads to an efficient and numerically stable algorithm.
 
-Secondly, the Legendre basis enables direct connection to some numerical codes for computing bispectra from various inflationary models, most notably \textit{Primodal} \cite{Clarke2021}.\textit{Primodal} is a code for evaluating primordial bispectra from general single-field models. As opposed to other public codes, its output is expressed in terms of the expansion coefficients with respect to the Legendre polynomials. Hence, the result can be directly plugged in to CMB-BEst, creating one fluid pipeline from model to estimation.
+Secondly, the Legendre basis enables direct connection to some numerical codes for computing bispectra from various inflationary models, most notably \textsc{Primodal} \cite{Clarke2021}. \textsc{Primodal} is a code for evaluating primordial bispectra from general single-field models. As opposed to other public codes, its output is expressed in terms of the expansion coefficients with respect to the Legendre polynomials. Hence, the result can be directly plugged in to CMB-BEst, creating one fluid pipeline from model to estimation.
 
 As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomials with one or more particular functions for better description of some bispectrum templates. One solid choice is to add a mode $q(k) = k^{n_s -2}$, orthogonalised with respect to the rest of the basis. This significantly boosts the performance of decomposing local-type bispectra.
 
@@ -128,7 +128,7 @@ Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ m
 
 The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still practically impossible due to its computational complexity unless thoroughly optimised. In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
 
-Throughout this section we will treat the functions of interest as discrete arrays. Our notations for indices and their limits are summarised in Table \ref{table:index_conventions}. We adopt simple trapezoidal rule for most numerical integrals, except for the $\mu$ integral in (\ref{def:gamma}) which uses Gauss-Legendre quadrature \cite{Hale2013}. Multi-dimensional arrays are stored in the row major order, equivalent to the \textsc{C} convention. We use the \textsc{libsharp} library \cite{Reinecke2013libsharp} for Spherical Harmonic Transforms (SHTs), and \textsc{Healpix} \cite{Gorski2005healpix} for pixelisation of the sky. Intel's Vtune amplifier served as a main profiling tool for our \textsc{C} code.
+Throughout this section we will treat the functions of interest as discrete arrays. Our notations for indices and their limits are summarised in Table \ref{table:index_conventions}. We adopt simple trapezoidal rule for most numerical integrals, except for the $\mu$ integral in (\ref{def:gamma}) which uses Gauss-Legendre quadrature \cite{Hale2013}. Multi-dimensional arrays are stored in the row major order, equivalent to the \textsc{C} convention. We use the \textsc{libsharp} library \cite{Reinecke2013libsharp} for Spherical Harmonic Transforms (SHTs), and \textsc{Healpix} \cite{Gorski2005healpix} for pixelisation of the sky.
 
 \begin{table}
 	\caption{Our index conventions for discretised arrays and their sizes.}
@@ -295,7 +295,7 @@ We observe that most summations are done for a single map $i$. The array $C(p_1,
 				\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
 			\EndFor
 			\\
-			\For{each set of modes $(p_1,p_2,p_3)$}			
+			\For{each set of modes $(p_1,p_2,p_3)$}		\label{alg:thrid_attempt_main_loop}	
 				\For{each pixel $n$}
 					\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}	
 					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
@@ -364,20 +364,114 @@ Table \ref{table:three_levels_of_parallelism} summarises discussions in this sec
 		\begin{itemize}[leftmargin=*]
 			\item Same operation applied to multiple data items
 		\end{itemize} &
-		Advanced Vector Extensions (AVX) &
+		SIMD &
 		\begin{itemize}[leftmargin=*]
 			\item Map pixel integration vectorised using AVX-512
 			\item Data vectors explicitly aligned in memory for optimal performance 
 		\end{itemize} \\	
-	
-		
+			
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \subsection{Data locality}
-Cache blocking. Some Amplxe results screenshot to confirm?
-+ Initialising parts of large arrays at processors that actually use them.
+
+We implemented Algorithm \ref{alg:beta_third_attempt} and profiled using the Intel VTune Amplifier. Our program was found to be memory-bound, which means that its speed is limited mainly by the amount of memory available and the speed of memory access. The CPU speed, rate of the file I/O, and MPI communication all have subdominant contributions in comparison. This is somewhat expected, since our method deals with large map arrays. The number of operations on each data element is small compared to the size of data, causing the CPUs to be `starved' for data to work on most of the time. Our final set of optimisation focusses on improving memory access patterns.
+
+CPUs of most modern computers contain a small amount of memory attached to them called \textit{cache}. Recently used data and instructions are stored in cache memory so that reusing them is more efficient; accessing cache is much faster than loading from the main, larger memory often shared with other CPUs. Cache is often divided into multiple levels. The smallest and fastest is L1 cache, which is the first level a CPU checks for data. When the required data is not stored in L1 cache, a \textit{cache miss} occurs. The system then has to look further down the cache levels to fetch the wanted data, incurring a large time loss. It is therefore crucial to reuse data as many times as possible before it is lost from cache.
+
+Furthermore, the cache `caches' memory locations in units of cache lines, or chunks of memory containing multiple data elements. Accessing memory locally therefore significantly increases the chance of cache hits, boosting overall performance. Array operations, for example, are optimised when they are stored in consecutive memory locations due to this fact.
+
+CMB-BEst has been modified in two ways to improve data locality and memory performance. The first one was simple yet effective; we made sure to initialise large arrays within the same OpenMP construct as the main computation loop. This guarantees the physical memory of array elements to be allocated near the cores where they are going to be used in. Memory access during the main computation loop is therefore much faster than otherwise. Systems with non-uniform memory access (NUMA) especially benefits from this method. For CMB-BEst, we gained 2 times speed-up compared to when a single master thread initialised the entire array.
+
+The second optimisation centres around \textit{cache blocking}, a technique used to maximise data reuse. Let us focus on the main computation loop in Algorithm \ref{alg:beta_third_attempt}:
+
+\begin{algorithmic}
+	\For{each set of modes $(p_1,p_2,p_3)$}
+		\For{each pixel $n$}
+			\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
+			\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot m( p_3, n)$
+		\EndFor
+	\EndFor
+\end{algorithmic}
+
+In every loop over the set of modes $(p_1, p_2, p_3)$, four large arrays are read from memory: $m(p_1,\cdot)$, $m(p_2,\cdot)$, $m(p_3,\cdot)$, and $C(p_1, p_2, \cdot)$. Each of them take up around 400MB of memory. Since their size is greater than the cache storage capacity, data in the front of them are gone from cache by the time a loop over $n$ completes. All four arrays will then have to be loaded from main memory again when the next iteration starts.
+
+Suppose that the map arrays had smaller size and all of them fit in one of the cache levels instead. After one loop iteration over $n$ for $(p_1, p_2, p_3)$, the arrays now remain in cache. Then the next loop on $(p_1, p_2, p_3+1)$ begins, and the arrays $m(p_1,\cdot)$, $m(p_2,\cdot)$, and $C(p_1,p_2,\cdot)$ are required again for computation. They can now be accessed from cache, which saves significant amount of time. We see that each data element is reused multiple times before discarded from cache in this case.
+
+Motivated by these facts, we divide the map array into equally sized blocks so that each patch can now fit inside the cache memory. We restructure the loop as follows.
+
+\begin{algorithmic}
+	\For{each block $b$}
+		\For{each set of modes $(p_1,p_2,p_3)$}
+			\For{each pixel $n'$ in block}
+				\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n') \cdot m(p_2,n') \cdot m(p_3,n')$
+				\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n') \cdot m( p_3, n')$
+			\EndFor
+		\EndFor
+	\EndFor
+\end{algorithmic}
+
+The new pixel numbers are calculated as $n' = B \cdot b + n$, where $B$ is the size of each block and $0 \le n < B$. We have not changed the total number of arithmetic operations required, so the computational complexity remains constant. Meanwhile, data locality within each block is greatly improved, as each of the blocked arrays are now small enough to fit in cache. Each data element is accessed in closer succession temporarily as well.
+
+One caveat here is that having too many blocks may degrade performance. There exist non-negligible overhead coming from an extra \textit{for} loop and the OpenMP construct used over $n'$. The block size divided by number of cores should not be smaller than the size of cache lines either. The optimal size of cache blocks depends on the memory architecture of the processor used. This often needs to be found empirically.
+
+Figure (INSERT REF HERE) shows how runtime of a small test code varies with the number of cache blocks used. The code was run on the Intel Gold 6154 processor, which is an 18-core high performance chip with total L1, L2, and L3 cache memory sizes of 1.125MiB, 18MiB, and 24.74MiB, respectively \cite{intel_data_sheet}. Even though some parameters such $N_{sims}$ are tuned down for faster testing, this is representative of the full computation.
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=0.7\textwidth]{cache_block_optimisation.pdf}
+	\caption[Cache block optimisation]{}
+	\label{fig:cache_block_optimisation}
+\end{figure}
+
+We observe that having 128 blocks are optimal in this case. Each block now contains about 400,000 elements and takes up 3MiB of memory. Six and eight such blocks may fit in L2 and L3 cache. Compared to the code without any cache blocking, we gain roughly three times speed-up.
+
+Algorithm \ref{alg:beta_final_algorithm} summarises our final implementation of $\beta$ computation code, now with cache blocking and OpenMP construct indicators.
+
+\begin{algorithm}[htbp]
+	\caption{Computing $\beta$s: our final implementation}
+	\label{alg:beta_final_algorithm}
+	\begin{algorithmic}[1] % The number tells where the line numbering should start	
+		\State Allocate $m(p,n)$ 
+		\State Allocate $C(p_1,p_2,n)$ 
+		\Comment{Initialised within OpenMP construct over $n$}
+
+		\For{each map $i$}
+		\For{each mode $p$}
+		\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
+		\Comment{OpenMP within SHT}
+		\EndFor
+		\\
+		\For{each block $b$}
+		\For{each pair of modes $(p_1,p_2)$}
+		\For{each pixel $n'$ in block}
+		\Comment{OpenMP \textit{for} construct}
+		\State $C(p_1,p_2,n') \pluseq m(p_1,n') \cdot m(p_2,n')$
+		\EndFor
+		\EndFor
+		\EndFor
+		\EndFor
+		\Comment{$C(p_1,p_2,n)$ ready}
+		\\
+		\For{each map $i$}
+		\For{each of mode $p$}
+		\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
+		\Comment{OpenMP within SHT}
+		\EndFor
+		\\
+		\For{each block $b$}
+		\For{each set of modes $(p_1,p_2,p_3)$}		
+		\For{each pixel $n'$ in block}
+		\Comment{OpenMP \textit{for} construct}
+		\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n') \cdot m(p_2,n') \cdot m(p_3,n')$
+		\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n') \cdot m( p_3, n')$
+		\EndFor
+		\EndFor
+		\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
 
 \subsection{Final specifications}
 Code, runtime, etc? 
