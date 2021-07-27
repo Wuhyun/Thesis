@@ -11,11 +11,9 @@
     \graphicspath{{Chapter5/Figs/Vector/}{Chapter5/Figs/}}
 \fi
 
-Intro: current methods for CMB bispectrum estimation.
+
 
 \section{Formalism}
-\subsection{Modal estimator?}
-Review of the Modal estimator formalism
 
 \subsection{CMB-BEst formalism}
 Recall that the CMB bispectrum estimator for a given template can be written as
@@ -77,11 +75,11 @@ where $P_l(\mu)$'s are the Legendre polynomials.
 
 In summary, CMB-BEst computes the main quantities: $\beta^{cub}$, $\beta^{lin}$, and $\Gamma$. The most computationally expensive part is the linear term $\beta^{lin}$ by a couple orders of magnitude in most cases. Considerable effort has been put to optimise corresponding part of the code, which will be detailed in the following sections.
 
-\subsection{Basis functions}
+\subsection{Basis functions} \label{section:basis_functions}
 
 One of the greatest strengths of CMB-BEst lies in its flexibility with the choice of basis functions. Adopting a specialised basis set provides optimised results to specific models of interest, while a more general construction of basis enable wider search of the model space.
 
-First, we observe that the KSW estimator \cite{Komatsu2005} is equivalent to a simple monomial basis in our method;
+First, we observe that the KSW estimator \cite{Komatsu2005} is derives from a simple monomial basis in our method;
 \begin{align}
 	q_p(k) = k^{p-1}, \;\;\; p = 0, 1, 2, 3.
 \end{align}
@@ -94,9 +92,9 @@ where $A$ is the primordial power spectrum amplitude. Decomposition coefficients
 
 We set the scalar spectral index $n_s = 1$ for simplicity above. In the presence of non-unit $n_s$, we modify the basis as follows;
 \begin{align}
-	q_p(k) = k^2 \left[ k_* \left( \frac{k}{k_*} \right)^{(4-n_s)/3} \right]^{p-4}, \;\; p=0,1,2,3.
+	q_p(k) = k^2 \left[ k_* \left( \frac{k}{k_*} \right)^{(4-n_s)/3} \right]^{p-4}, \;\; p=0,1,2,3. \label{eqn:KSW_basis}
 \end{align}
-The pivot scale $k_*$ is defined such that the power spectrum evaluates to $A$ at $k=k_*$. Including $k_*$ here ensures that the $q_p(k)$'s have the right units. Note that the prefactor $k^2$ comes from the definition of shape function and is therefore unaffected by $n_s$.
+The pivot scale $k_*$ is defined such that the power spectrum evaluates to $A$ at $k=k_*$. Including $k_*$ here ensures that the $q_p(k)$'s have the right units. Note that the prefactor $k^2$ comes from the definition of shape function and is therefore unaffected by $n_s$. We will refer to this choice of mode functions to be the `KSW' basis.
 
 For studying models with linearly spaced, high-frequency oscillation, a Fourier-like basis
 \begin{align}
@@ -106,7 +104,7 @@ for a fixed $\omega$ is an appropriate choice. This is in fact equivalent to the
 
 Lastly, we introduce a basis which consists of Legendre polynomials.
 \begin{align}
-	q_p(k) = P_p(\bar{k}), \;\;\text{where}\;\; \bar{k} = \frac{2k-k_{min}-k_{max}}{k_{max}-k_{min}}.
+	q_p(k) = P_p(\bar{k}), \;\;\text{where}\;\; \bar{k} = \frac{2k-k_{min}-k_{max}}{k_{max}-k_{min}}.  \label{eqn:Legendre_basis_no_inv_k}
 \end{align}
 Here we linearly map the range from $k \in [k_{min},k_{max}]$ to $\bar{k} \in [-1,1]$, which is the interval where Legendre polynomials are defined. The number of modes are not bounded; the larger the basis, the more complete coverage of theory space we get.
 
@@ -122,15 +120,15 @@ As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomia
 
 Ideally, we would like the $k$ range used in the definition (\ref{def:Legendre_basis}) to be as wide as possible, so that more information from different scales are incorporated in the estimation process. Wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_{max}/k_{min} = 1000$ is an overall sweet spot for analysing Planck data.
 
-Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $k_{max}/k_{min}=1000$, as \textit{the Legendre} basis. Any deviation from such will be explicitly mentioned.
+Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $k_{max}/k_{min}=1000$, as the `Legendre' basis. Any deviation from this set of parameters will be stated explicitly.
 
 \section{Implementation and optimisation}
 
 The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still practically impossible due to its computational complexity unless thoroughly optimised. In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
 
-Throughout this section we will treat the functions of interest as discrete arrays. Our notations for indices and their limits are summarised in Table \ref{table:index_conventions}. We adopt simple trapezoidal rule for most numerical integrals, except for the $\mu$ integral in (\ref{def:gamma}) which uses Gauss-Legendre quadrature \cite{Hale2013}. Multi-dimensional arrays are stored in the row major order, equivalent to the \textsc{C} convention. We use the \textsc{libsharp} library \cite{Reinecke2013libsharp} for Spherical Harmonic Transforms (SHTs), and \textsc{Healpix} \cite{Gorski2005healpix} for pixelisation of the sky.
+Throughout this section we will treat the functions of interest as discrete arrays. Our notations for indices and their limits are summarised in Table \ref{table:index_conventions}. We adopt simple trapezoidal rule for most numerical integrals, except for the $\mu$ integral in (\ref{def:gamma}) which uses Gauss-Legendre quadrature computed from the public code \textsc{Quadpts} \cite{Hale2013}. Multi-dimensional arrays are stored in the row major order following the \textsc{C} convention. We use the \textsc{libsharp} library \cite{Reinecke2013libsharp} for Spherical Harmonic Transforms (SHTs), and \textsc{Healpix} \cite{Gorski2005healpix} for pixelisation of the sky.
 
-\begin{table}
+\begin{table}[htbp]
 	\caption{Our index conventions for discretised arrays and their sizes.}
 	\centering
 	\label{table:index_conventions}
@@ -154,8 +152,6 @@ Throughout this section we will treat the functions of interest as discrete arra
 		\bottomrule
 	\end{tabular}
 \end{table}
-
-We mainly used Intel's Vtune amplifier as a performance profiling tool for our \textsc{C} code.
 
 \subsection{Algorithm}
 
@@ -416,12 +412,12 @@ The new pixel numbers are calculated as $n' = B \cdot b + n$, where $B$ is the s
 
 One caveat here is that having too many blocks may degrade performance. There exist non-negligible overhead coming from an extra \textit{for} loop and the OpenMP construct used over $n'$. The block size divided by number of cores should not be smaller than the size of cache lines either. The optimal size of cache blocks depends on the memory architecture of the processor used. This often needs to be found empirically.
 
-Figure (INSERT REF HERE) shows how runtime of a small test code varies with the number of cache blocks used. The code was run on the Intel Gold 6154 processor, which is an 18-core high performance chip with total L1, L2, and L3 cache memory sizes of 1.125MiB, 18MiB, and 24.74MiB, respectively \cite{intel_data_sheet}. Even though some parameters such $N_{sims}$ are tuned down for faster testing, this is representative of the full computation.
+Figure (\ref{fig:cache_block_optimisation}) shows how runtime of a small test code varies with the number of cache blocks used. The code was run on the Intel Gold 6154 processor, which is an 18-core high performance chip with total L1, L2, and L3 cache memory sizes of 1.125MiB, 18MiB, and 24.74MiB, respectively \cite{intel_data_sheet}. Even though some parameters such $N_{sims}$ are tuned down for faster testing, this is representative of the full computation.
 
 \begin{figure}[htbp!] 
 	\centering    
-	\includegraphics[width=0.7\textwidth]{cache_block_optimisation.pdf}
-	\caption[Cache block optimisation]{}
+	\includegraphics[width=0.8\textwidth]{cache_block_optimisation_annotated.pdf}
+	\caption[Cache block optimisation]{Cache block optimisation. Total wall time of a test code for computing $\beta$s was measured while varying the number of cache blocks used. Having 128 blocks is optimal for the 18-core Intel Gold 6154 processor.}
 	\label{fig:cache_block_optimisation}
 \end{figure}
 
@@ -435,7 +431,7 @@ Algorithm \ref{alg:beta_final_algorithm} summarises our final implementation of 
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
 		\State Allocate $m(p,n)$ 
 		\State Allocate $C(p_1,p_2,n)$ 
-		\Comment{Initialised within OpenMP construct over $n$}
+		\\\Comment{Both initialised within OpenMP construct over $n$}
 
 		\For{each map $i$}
 		\For{each mode $p$}
@@ -473,15 +469,30 @@ Algorithm \ref{alg:beta_final_algorithm} summarises our final implementation of 
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{Final specifications}
-Code, runtime, etc? 
+\section{Validation}
 
-\section{Verification}
-\subsection{Internal consistency checks}
+CMB bispectrum estimation is not only computationally challenging but also prone to numerical instabilities unless implemented carefully. We invested considerable amount of time after the development of CMB-BEst in validating various aspects of the code. We highlight some of our validation efforts in this section, checking consistency within the program itself (section \ref{section:internal_consistency}) and against existing codes such as Modal \cite{Fergusson2012} (section \ref{section:consistency_with_Planck}).
+
+\subsection{Internal consistency checks} \label{section:internal_consistency}
+
+CMB-BEst is a general code where one can freely choose a set of basis functions. Two of our main options are the `KSW' basis (\ref{eqn:KSW_basis}) and `Legendre' basis (\ref{eqn:Legendre_basis_no_inv_k}, augmented with $q(k)=k^{n_s-2}$), as discussed previously in Section \ref{section:basis_functions}. Both basis sets can cover the standard templates: local, equilateral, and orthogonal (see e.g., \cite{PlanckCollaboration2013} for definitions). The KSW basis provides an exact form to the three templates by choosing appropriate powers of $k$ as its basis elements. On the other hand, the templates are expanded in terms of separable Legendre polynomials up to some fixed degree $p_{max}$ for the Legendre basis. As long as $p_{max}$ is sufficiently large, most smooth bispectrum shapes can be represented accurately. 
+
+Our first consistency check is shown in Figure \ref{fig:map_by_map_Legendre_KSW}, where we compare the $f_{NL}$ estimates from the Planck 2018 CMB map and 140 full focal plane (FFP10) realistic Gaussian simulations \cite{PlanckCollaboration2015simulations}. We use CMB maps obtained through the SMICA component separation method \cite{Cardoso2008component, PlanckCollaboration2013ComponentSeparation}. On the left hand side are scatter plots of $f_{NL}$ values obtained using each of the two basis sets. In an ideal case where the two estimates are identical for every test maps, all the points would lie on a straight line given by $y=x$. Drawn in dashed red line is the best linear fit to the data. Its slope, intercept, and the $R$-squared value are annotated below. On the right is a more detailed plot of computed $f_{NL}$ for each map.
+
+\begin{figure}[htbp!] 
+	\centering 
+	\includegraphics[width=\textwidth]{map_by_map_Legendre_KSW.pdf}
+	\caption{Map-by-map comparison of $f_{NL}$ estimates for standard templates, evaluated using each of the KSW and Legendre basis sets. Planck 2018 CMB map and 140 FFP10 simulations have been used, each representing a single point on the scatter plot shown left. Details of the linear best-fit to data (red dashed) is annotated below. On the right hand side shows a plot of $f_{NL}$ values for each map. In the ideal case where the two basis sets yield identical results, we should see all the points on $y=x$ for the left plot, and exactly overlapping graphs for the right. For more information on  each of the three theoretical templates used, see e.g., \cite{PlanckCollaboration2013}.}
+	\label{fig:map_by_map_Legendre_KSW}
+\end{figure}
+
+We see that results from the two different sets of basis are in good agreement. The $R$-squared value of the linear fit is greater than $0.99$ for Local, and $0.999$ for Equilateral and Orthogonal shapes. The intercepts are also near zero, meaning that the lensing-ISW bias has been subtracted off consistently for both cases. A closer look at the  individual map estimates reveals no systematic discrepancies across the shapes.
+
+Validates: cubic/linear term working well, Gaussian dist checked, decomp routine for Legendre, different primordial modes gets projected and combines well!
+
 %Quick derivation of optimality of the bispectrum estimator?
 Estimation part:
-+ KSW vs Legendre for standard templates. Map-by-map
-- Slight scatter in local -> 
++ Slight scatter in local -> k ratio 2000 plot
 - Sample vs theoretical variance.
 - Sample versus Theory covariance checks.
 - Expected chi-square distribution etc.
@@ -491,7 +502,30 @@ Convergence part:
 + Legendre - pmax=29 vs 30 for trio
 - Legendre - constant feature models part. Correlation matrix
 
-\subsection{Consistency with Planck}
+
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{map_by_map_Legendre_KSW_k_ratio_2000.pdf}
+	\caption{KSW vs Legendre, k ratio 2000}
+	\label{fig:map_by_map_Legendre_KSW_k_ratio_2000}
+\end{figure}
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{map_by_map_Legendre_30_29.pdf}
+	\caption{Legendre 29 vs 30}
+	\label{fig:map_by_map_Legendre_30_29}
+\end{figure}
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{trio_r_dependence.pdf}
+	\caption{Trio r dependence}
+	\label{fig:trio_r_dependence}
+\end{figure}
+
+\subsection{Consistency with Planck} \label{section:consistency_with_Planck}
 
 + KSW vs Leg vs Modal table
 + Map-by-map plot for Leg vs Modal Trio
@@ -501,15 +535,6 @@ Convergence part:
 
 Consistency vs Modal for Planck results.
 Discussion on kmin and kmax range
-
-\subsection{Proof of concept}
-
-- DBI sound speed constraints
-- DBI resonance scan
-- tetrapyd decomp? 
-
-\subsection{Future work}
-
 
 
 \begin{table}[h]
@@ -529,6 +554,48 @@ Discussion on kmin and kmax range
 		\bottomrule
 	\end{tabular}
 \end{table}
+
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{map_by_map_Legendre_Modal.pdf}
+	\caption{Legendre vs Modal}
+	\label{fig:map_by_map_Legendre_Modal}
+\end{figure}
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{sine_template_frequency_Legendre_Modal.pdf}
+	\caption{Feature model, sine, Legendre vs Modal}
+	\label{fig:sine_template_frequency_Legendre_Modal}
+\end{figure}
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{sine_template_correlations_new.pdf}
+	\includegraphics[width=\textwidth]{cosine_template_correlations_new.pdf}
+	\caption{Feature model template correlations, sample and theoretical}
+	\label{fig:feature_template_correlations}
+\end{figure}
+
+\subsection{Proof of concept}
+
+- DBI sound speed constraints
+- DBI resonance scan
+- tetrapyd decomp? 
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=0.9\textwidth]{dbi_sound_speed_scan_annotated.pdf}
+	\caption{DBI sound speed scan}
+	\label{fig:dbi_sound_speed_scan}
+\end{figure}
+
+
+\subsection{Future work}
+
+
+
 
 
 % Old table

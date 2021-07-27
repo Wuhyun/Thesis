@@ -12,13 +12,11 @@
     \graphicspath{{Chapter4/Figs/Vector/}{Chapter4/Figs/}}
 \fi
 
-
-\section{Abstract}
 	
-	We present forecasts on the primordial non-Gaussianity parameter $f_\text{NL}$ of feature models for the future Cosmic Microwave Background Stage-4 (CMB-S4) experiments. The Fisher matrix of the bispectrum estimator was computed using noise covariances expected for preliminary CMB-S4 specifications including ones for the Simons Observatory. We introduce a novel method that improves the computation by orthonormalising the covariance matrix. The most sensitive CMB-S4 experiment with 1' beam and 1$\mu K$-arcmin noise would yield a factor of 1.7-2.2 times more stringent constraints compared to Planck. Under the Simons Observatory baseline conditions the improvement would be about 1.3-1.6 times to Planck. We also thoroughly studied the effects of various model and experimental parameters on the forecast. Detailed analysis on the constraints coming from temperature and E-mode polarisation, in particular, provided some insight into detecting oscillatory features in the CMB bispectrum.
+We present forecasts on the primordial non-Gaussianity parameter $f_\text{NL}$ of feature models for the future Cosmic Microwave Background Stage-4 (CMB-S4) experiments. The Fisher matrix of the bispectrum estimator was computed using noise covariances expected for preliminary CMB-S4 specifications including ones for the Simons Observatory. We introduce a novel method that improves the computation by orthonormalising the covariance matrix. The most sensitive CMB-S4 experiment with 1' beam and 1$\mu K$-arcmin noise would yield a factor of 1.7-2.2 times more stringent constraints compared to Planck. Under the Simons Observatory baseline conditions the improvement would be about 1.3-1.6 times to Planck. We also thoroughly studied the effects of various model and experimental parameters on the forecast. Detailed analysis on the constraints coming from temperature and E-mode polarisation, in particular, provided some insight into detecting oscillatory features in the CMB bispectrum.
 
 
-\section{Introduction}
+\section{Background}
 
 The Cosmic Microwave Background (CMB) radiation is one of our most valuable probes of the primordial universe. The temperature and polarisation of this ancient light contains rich statistical information both about the primordial perturbations created during inflation and also their subsequent evolution until now.  This allows us to test our inflationary theories and also the history of our universe. The recent Planck CMB experiments have provided stringent tests on various models of inflation through the estimation of cosmological parameters and via primordial non-Gaussianity \cite{PlanckCollaboration2015,PlanckCollaboration2018}.
 
@@ -288,6 +286,7 @@ Wider beams and noisier detectors provide less signal and thus larger error bars
 
 
 \begin{figure}[ht]
+	\centering
 	\includegraphics[width=0.45\textwidth]{beam_dependence.pdf}
 	\includegraphics[width=0.45\textwidth]{noise_dependence.pdf}
 	\caption{Beam (left) and noise (right) dependences of the forecast error $\sigma_{\sin}^{T+E}$ for $\omega=2000$ (top) and $\omega=20$ (bottom). The noise level was set as 1$\mu K \cdot$arcmin for the first plot, while the second plot had fixed beam FWHM of 1'. We obtain less information from using wider beam and noisier sensors, as expected.}
@@ -303,6 +302,7 @@ The most sensitive setup with 1' beam and 1$\mu K \cdot$arcmin noise would yield
 Forecast error bars from the SO baseline specification and the more ambitious one do not differ very much. Quoting in terms of the baseline values, $\sigma_{\sin}$ lies about 68-86\% of that of Planck or equivalently, 1.2-1.5 times smaller than Planck. Numbers change to 62-74\% when combined with Planck, so that the overall improvement ratio is about 1.3-1.6.
 
 \begin{figure}[ht]
+	\centering
 	\includegraphics[width=0.45\textwidth]{omega_dependence_pol.pdf}
 	\includegraphics[width=0.45\textwidth]{omega_dependence_combined_pol.pdf}
 	\caption{Frequency dependence of the forecast error in comparison to Planck (left). All CMB-S4 specifications would improve constraints on feature models. The most sensitive setup with 1' beam and 1$\mu K \cdot$arcmin noise is expected to yield error bars that are 1.6-2.1 times smaller than Planck. When the Planck results are combined with CMB-S4, we get even stronger constraints (right).}
@@ -312,6 +312,7 @@ Forecast error bars from the SO baseline specification and the more ambitious on
 Figure \ref{forecast omega dependence T} shows the results when only the CMB temperature data are used in the forecast. CMB-S4 would in fact be worse than Planck in terms of constraining $f_{NL}^\text{feat}$ for this case. The loss in information due to less sky coverage overwhelms the increased sensitivity. We see again that the real strength of CMB-S4 experiments lies in measuring CMB polarisation.
 
 \begin{figure}[ht]
+	\centering
 	\includegraphics[width=0.45\textwidth]{omega_dependence_T.pdf}
 	\includegraphics[width=0.45\textwidth]{omega_dependence_combined_T.pdf}
 	\caption{Frequency dependence of the forecast error from temperature data only, in comparison to Planck (left). The CMB-S4 experiments would perform worse than Planck when only the temperature map is concerned. After the addition of Planck data the error bars improve only marginally (right). This shows that polarisation data is crucial for constraining feature models.}
@@ -321,6 +322,7 @@ Figure \ref{forecast omega dependence T} shows the results when only the CMB tem
 Then how much information do we actually gain from adding E-mode polarisation? Figure \ref{forecast improvement ratio} shows the ratio of $\sigma_{\sin}$s between the temperature-only and polarisation-included analyses. The forecast error bars reduces up to 4.6 times smaller when polarisation information is added, which is much larger than the corresponding Planck value of 2.2. The ratio decreases overall when the joint statistics with Planck are considered. An intriguing feature of this plot is that the ratio is maximised around $\omega=200$ before it starts dropping again.
 
 \begin{figure}[ht]
+	\centering
 	\includegraphics[width=0.45\textwidth]{improvement_ratio.pdf}
 	\includegraphics[width=0.45\textwidth]{improvement_ratio_combined.pdf}
 	\caption{Improvements on the forecast error when including E-mode polarisation data. Constraints from the CMB-S4 experiments would improve significantly from addition of the polarisation data. The improvement is maximised around $\omega\approx200$ Mpc.}
@@ -355,8 +357,11 @@ Forecasts on $f_{NL}^\text{const}$ follow from our pipeline by simply setting th
 	\centering
 	\renewcommand{\arraystretch}{1.4}
 	\begin{tabular}{ccccc}
-		& Planck  & SO baseline + Planck & SO goal + Planck & 1' beam, 1$\mu K$ noise + Planck \\ \hline
-		$\sigma(f_\text{NL}^\text{const})$ & 23.4 & 14.9 & 14.0 & 10.4            \\ 
+		\toprule
+		& Planck  & SO baseline + Planck & SO goal + Planck & 1' beam, 1$\mu K$ noise + Planck \\
+		\midrule
+		$\sigma(f_\text{NL}^\text{const})$ & 23.4 & 14.9 & 14.0 & 10.4 \\
+		\bottomrule
 	\end{tabular}
 	\caption{Forecasts on the estimation errors of $f_{NL}$ for the constant model}
 	\label{forecast constant model}
@@ -368,8 +373,10 @@ The latest Planck constraints on $f_\text{NL}$ of some popular bispectrum templa
 	\centering
 	\renewcommand{\arraystretch}{1.4}
 	\begin{tabular}{cccccc}
-		& Local & Equilateral & Orthogonal & Constant & Feature ($\omega=200$) \\ \hline
-		$\sigma^\text{Planck}/\sigma^\text{CMB-S4}$ & 2.5   & 2.1         & 2.4        & 2.3      & 2.0                
+		\toprule
+		& Local & Equilateral & Orthogonal & Constant & Feature ($\omega=200$) \\ \midrule
+		$\sigma^\text{Planck}/\sigma^\text{CMB-S4}$ & 2.5   & 2.1         & 2.4        & 2.3      & 2.0                \\
+		\bottomrule
 	\end{tabular}
 	\caption{Expected improvement ratios of the $f_\text{NL}$ estimation errors for the CMB-S4 1'beam, 1$\mu K$arcmin setup, for various bispectrum templates. The local, equilateral and orthogonal results are quoted from \cite{Abazajian2016}.}
 	\label{forecast various models}
@@ -381,30 +388,48 @@ In order to investigate this lack of improvement, we performed a breakdown analy
 
 \begin{table}[ht]
 	\centering
-	\renewcommand{\arraystretch}{1.4}
-	\parbox{.45\linewidth}{
-		\begin{tabular}{cccc}
-			\multicolumn{2}{c}{\multirow{2}{*}{$\sigma(f_\text{NL}^\text{const})$ improvement}}  &  \multicolumn{2}{c}{E} \\ 
-			\multicolumn{2}{c}{} & Planck & CMB-S4 \\ \hline
-			\multirow{2}{*}{T} & Planck & 1.0 & 1.6 \\
-			& CMB-S4 & 1.1 & 2.2
-		\end{tabular}
-	}
-	\parbox{.45\linewidth}{
-		\begin{tabular}{cccc}
-			\multicolumn{2}{c}{\multirow{2}{*}{$\sigma(f_\text{NL}^\text{feat})$ improvement}} &  \multicolumn{2}{c}{E} \\ 	\multicolumn{2}{c}{} & Planck & CMB-S4 \\ \hline
-			\multirow{2}{*}{T} & Planck & 1.0 & 1.7 \\
-			& CMB-S4 & 0.9 & 1.9
-		\end{tabular}
-	}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{c c c c c c c c}
+		\toprule
+		\multicolumn{2}{c}{$\sigma(f_\text{NL}^\text{const})$}  &  \multicolumn{2}{c}{E}  & \multicolumn{2}{c}{$\sigma(f_\text{NL}^\text{feat})$}  &  \multicolumn{2}{c}{E}  \\
+		\cmidrule(lr){3-4} \cmidrule(lr){7-8} 
+		\multicolumn{2}{c}{improvements}  & Planck & CMB-S4 & \multicolumn{2}{c}{improvements}  & Planck & CMB-S4 \\
+		\cmidrule(lr){1-4} \cmidrule(lr){5-8}
+		\multirow{2}{*}{T} & Planck & 1.0 & 1.6 & \multirow{2}{*}{T} & Planck & 1.0 & 1.7 \\
+		& CMB-S4 & 1.1 & 2.2 & & CMB-S4 & 0.9 & 1.9 \\
+		\bottomrule
+	\end{tabular}
 	\caption{Expected improvements on the estimation errors of $f_\text{NL}$ for each combination of Planck / CMB-S4 temperature (T) and polarisation (E) data. Here the CMB-S4 assumes 1' beam and 1$\mu K$arcmin noise. For feature model the oscillation frequency $\omega=200$ and phase $\phi=0$. The sky fraction $f_{sky}=0.4$ for all cases except for Planck T + Planck E, for which $f_{sky}=0.76$.}
 	\label{forecast mixed}
 \end{table}
 
+% Old table
+%\begin{table}[ht]
+%	\centering
+%	\renewcommand{\arraystretch}{1.4}
+%	\parbox{.45\linewidth}{
+%		\begin{tabular}{cccc}
+%			\multicolumn{2}{c}{\multirow{2}{*}{$\sigma(f_\text{NL}^\text{const})$ improvement}}  &  \multicolumn{2}{c}{E} \\ 
+%			\multicolumn{2}{c}{} & Planck & CMB-S4 \\ \hline
+%			\multirow{2}{*}{T} & Planck & 1.0 & 1.6 \\
+%			& CMB-S4 & 1.1 & 2.2
+%		\end{tabular}
+%	}
+%	\parbox{.45\linewidth}{
+%		\begin{tabular}{cccc}
+%			\multicolumn{2}{c}{\multirow{2}{*}{$\sigma(f_\text{NL}^\text{feat})$ improvement}} &  \multicolumn{2}{c}{E} \\ 	\multicolumn{2}{c}{} & Planck & CMB-S4 \\ \hline
+%			\multirow{2}{*}{T} & Planck & 1.0 & 1.7 \\
+%			& CMB-S4 & 0.9 & 1.9
+%		\end{tabular}
+%	}
+%	\caption{Expected improvements on the estimation errors of $f_\text{NL}$ for each combination of Planck / CMB-S4 temperature (T) and polarisation (E) data. Here the CMB-S4 assumes 1' beam and 1$\mu K$arcmin noise. For feature model the oscillation frequency $\omega=200$ and phase $\phi=0$. The sky fraction $f_{sky}=0.4$ for all cases except for Planck T + Planck E, for which $f_{sky}=0.76$.}
+%	\label{forecast mixed}
+%\end{table}
+
 We see that the constraints on feature models improve by a factor of 1.7 when swapping Planck polarisation noises with the CMB-S4 ones. This factor is indeed larger than the one for constant model, which equals 1.6. The difference is however not significant. It seems that the amount of feature signals in polarisation data left unexplored by Planck is not tremendously large compared to the constant model. The feature model improves less than the constant model when the temperature measurements are enhanced. In fact, for feature models the signal loss from smaller sky fraction $f_{sky}$ eclipses the signal gain from more sensitive temperature measurements. This lack of improvements from temperature causes the full CMB-S4 constraints on the feature model not to improve as much as the constant model overall.
 
 
-\section{Conclusion} \label{section: conclusion}
+\section{Discussion} \label{section: conclusion}
 
 Upcoming CMB Stage-4 experiments will provide an opportunity to measure CMB temperature and polarisation with greater precision. The estimation of primordial non-Gaussianity parameters would greatly benefit from the improvement in measurement sensitivity. In this research we made forecasts on $f_\text{NL}$ for the feature models, which have not been done so far despite the growing interests on inflation models with primordial oscillations. For efficient forecasts we simplified the bispectrum estimator for $f_\text{NL}$ by orthonormalising the covariance matrix, further optimising the computation. When the most sensitive CMB Stage-4 experiment specification of 1' beam and 1$\mu K$arcmin noise is concerned, we expect a factor of 1.7-2.2 times more stringent constraints compared to Planck. Under realistic Simons Observatory conditions the improvement would be about 1.3-1.6 to Planck.
 
