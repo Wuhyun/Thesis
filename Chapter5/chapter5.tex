@@ -579,7 +579,48 @@ We do not find any statistically significant signal across the whole $r$ range o
 
 \subsection{Consistency with Planck} \label{section:consistency_with_Planck}
 
-Now that integrity of CMB-BEst is validated, we compare it against existing codes on CMB bispectrum estimation. 
+We have validated integrity of CMB-BEst in the last section. Next part of validation involves comparing it against existing codes for CMB bispectrum estimation using Planck data.
+
+First of all, we test primordial non-Gaussianity constraints on Local, Equilateral and Orthogonal templates against the Planck 2018 analysis \cite{PlanckCollaboration2018}. Two sets of basis functions, KSW and Legendre, have been used to compute $f_{NL}$ from SMICA component separated maps included in the final data release. Table \ref{table:trio_fNL_comparison_with_planck} shows the constraints obtained, together with quoted results from Planck team's own KSW estimator and Modal 2 pipeline.
+
+\begin{table}[h]
+	\caption{Constraints on $f_{NL}$ for the standard shapes from the KSW and Legendre basis of CMB-BEst, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. Only the temperature data from the SMICA foreground-cleaned map and FFP10 simulations were used for the analysis. Values shown are after the lensing bias subtraction, with uncertainties at 68\% CL.}
+	\centering
+	\label{table:trio_fNL_comparison_with_planck}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{tabular}{lcccc}
+		\toprule
+		& \multicolumn{2}{c}{CMB-BEst} & \multicolumn{2}{c}{Planck 2018} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+		Shape & KSW &  Legendre &  KSW &  Modal \\
+		\midrule
+		
+		Local & $-2.2 \;\pm\; 5.5$ & $-2.0 \;\pm\; 5.9$ & $-0.5 \;\pm\; 5.6$ & $-0.6 \;\pm\; 6.4$ \\
+		Equilateral & $17 \;\pm\; 61$ & $15 \;\pm\; 62$ & $7 \;\pm\; 66$ & $34 \;\pm\; 67$ \\
+		Orthogonal & $-7 \;\pm\; 38$ & $-9 \;\pm\; 38$ & $-15 \;\pm\; 36$ & $-26 \;\pm\; 43$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\caption{Bias to $f_{NL}$ of standard shapes originating from the lensing bispectrum. We compare CMB-BEst's two different basis sets and the Planck 2018 analysis \cite{PlanckCollaboration2018}, using SMICA map and FFP10 simulations. }
+	\centering
+	\label{table:trio_lensing_bias_comparison_with_planck}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{tabular}{lcccc}
+		\toprule
+		& \multicolumn{2}{c}{CMB-BEst} & \multicolumn{2}{c}{Planck 2018} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+		Shape & KSW &  Legendre &  KSW &  Modal \\
+		\midrule
+		
+		Local & $7.5$ & $8.2$ & $7.3$ & $6.9$ \\
+		Equilateral & $-0.7$ & $-0.6$ & $-0.7$ & $4.0$\\
+		Orthogonal & $-22$ & $-22$ & $-23$ & $-25$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The exact 
+
 
 + KSW vs Leg vs Modal table
 + Map-by-map plot for Leg vs Modal Trio
@@ -590,23 +631,6 @@ Now that integrity of CMB-BEst is validated, we compare it against existing code
 Consistency vs Modal for Planck results.
 Discussion on kmin and kmax range
 
-\begin{table}[h]
-	\caption{Constraints for the standard templates for the KSW and Legendre basis from CMB-BEst, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. SMICA temperature map has been used, and the lensing bias has been subtracted.}
-	\centering
-	\label{table:trio_fNL_comparison_with_planck}
-	\renewcommand{\arraystretch}{1.5} 
-	\begin{tabular}{lcccc}
-		\toprule
-		& \multicolumn{2}{c}{CMB-BEst} & \multicolumn{2}{c}{Planck 2018} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
-		Template & KSW &  Legendre &  KSW &  Modal \\
-		\midrule
-		
-		Local & $-2.2 \;\pm\; 5.5$ & $-2.0 \;\pm\; 5.9$ & $-0.5 \;\pm\; 5.6$ & $-0.6 \;\pm\; 6.4$ \\
-		Equilateral & $17 \;\pm\; 61$ & $15 \;\pm\; 62$ & $7 \;\pm\; 66$ & $34 \;\pm\; 67$ \\
-		Orthogonal & $-7 \;\pm\; 38$ & $-9 \;\pm\; 38$ & $-15 \;\pm\; 36$ & $-26 \;\pm\; 43$ \\
-		\bottomrule
-	\end{tabular}
-\end{table}
 
 
 \begin{figure}[htbp!] 
