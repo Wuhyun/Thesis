@@ -99,7 +99,7 @@ In summary, CMB-BEst computes the main quantities: $\beta^{cub}$, $\beta^{lin}$,
 
 \subsection{Basis functions} \label{section:basis_functions}
 
-One of the greatest strengths of CMB-BEst lies in its flexibility with the choice of basis functions. Adopting a specialised basis set provides optimised results to specific models of interest, while a more general construction of basis enable wider search of the model space.
+One of the greatest strengths of CMB-BEst lies in its flexibility with the choice of mode functions. We decompose given shape as a linear combination mode function in three-dimensional space. Hence, we shall refer to them as `basis' functions. Adopting a specialised basis set provides optimised results to specific models of interest, while a more general construction of basis allows us to simultaneously constrain a wide range of models.
 
 First, we observe that the KSW estimator \cite{Komatsu2005} is derived from a simple monomial basis in our notation;
 \begin{align}
@@ -130,11 +130,7 @@ Lastly, we introduce a basis which consists of Legendre polynomials.
 \end{align}
 Here we linearly map the range from $k \in [k_{min},k_{max}]$ to $\bar{k} \in [-1,1]$, which is the interval where Legendre polynomials are defined. The number of modes are not bounded; the larger the basis, the more complete coverage of theory $k$ space we get.
 
-The Legendre basis has two main advantages over others. First of all, the mode functions are inherently orthogonal, so that $\int_{-1}^{1} d\bar{k} P_{l}(\bar{k}) P_{l'}(\bar{k}) = 0$ whenever $l \neq l'$. This property allows us to greatly simplify the way of decomposing theoretical templates. Given a shape function $S^{(t)} (k_1, k_2, k_3)$, the decomposed coefficients can be found by
-\begin{align}
-	\alpha^{(t)}_{p_1 p_2 p_3} = \int dk_1 dk_2 dk_3 \; S^{(t)}(k_1, k_2, k_3) q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3), \label{eqn:basis_expansion}
-\end{align}
-as long as the modes are normalised appropriately. In practice, we may perform the three one-dimensional integrals one by one, which leads to an efficient and numerically stable algorithm.
+The Legendre basis has two main advantages over others. First of all, the mode functions are inherently orthogonal, so that $\int_{-1}^{1} d\bar{k} P_{l}(\bar{k}) P_{l'}(\bar{k}) = 0$ whenever $l \neq l'$. This property allows us to greatly simplify the way of decomposing theoretical templates. We elaborate on the decomposition algorithm in Section \ref{section:primordial_mode_expansion}. 
 
 Secondly, the Legendre basis enables direct connection to some numerical codes for computing bispectra from various inflationary models, most notably \textsc{Primodal} \cite{Clarke2021}. \textsc{Primodal} is a code for evaluating primordial bispectra from general single-field models. As opposed to other public codes, its output is expressed in terms of the expansion coefficients with respect to the Legendre polynomials. Hence, the result can be directly plugged in to CMB-BEst, creating one fluid pipeline from the model Lagrangian to estimation.
 
@@ -143,6 +139,77 @@ As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomia
 Ideally, we would like the $k$ range used in the definition (\ref{eqn:Legendre_basis_no_inv_k}) to be as wide as possible, so that more information from different scales are incorporated in the estimation process. Wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_{max}/k_{min} = 1000$ is an overall sweet spot for analysing Planck data.
 
 Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $(k_{min}, k_{max}) = (2.09 \times 10^{-4}, 2.09 \times 10^{-1})$, as the `Legendre' basis. Any deviation from this set of parameters will be stated explicitly. Note that this is for our convenience during testing only; the code may take any choice of basis.
+
+
+\subsection{Primordial basis expansion} \label{section:primordial_basis_expansion}
+
+Our formalism assumes that the bispectrum shape of interest can be accurately represented as a linear combination of chosen basis set; 
+\begin{align}
+	S(k_1,k_2,k_3) = \sum_{p_j} \alpha_{p_1,p_2,p_3} \; Q_{p_1 p_2 p_3}(k_1, k_2, k_3),
+\end{align}
+where the three-dimensional mode functions are defined as
+\begin{align}
+	Q_{p_1 p_2 p_3} (k_1, k_2, k_3) := q_{p_1}(k_1) \; q_{p_2}(k_2) \; q_{p_3}(k_3).
+\end{align}
+For some models the coefficients $\alpha_{p_1 p_2 p_3}$ are obtained analytically. Local shape function with respect to KSW basis is a simple example; $\alpha_{300}=\alpha_{030}=\alpha_{003}=2A^2$ and zero otherwise. For other models, the shape function needs to be expanded with respect to the chosen basis. 
+
+Shape functions are defined on the same domain as bispectra: $(k_1,k_2,k_3) \in \mathbb{R}^3$ where $k_1$, $k_2$, and $k_3$ form a triangle. We cannot observe scales smaller than a certain size in practice, which places an upper bound on $k$: $k < k_{max}$. The resulting domain in three dimensions is shown in Figure \ref{fig:tetrapyd}.
+
+\begin{figure}[htbp!] 
+	\centering    
+	\hspace{10pt}
+	\includegraphics[width=1.0\textwidth]{tetrapyd.pdf}
+	\caption{Tetrapyd domain in which the shape functions are defined. Left: the full region specified by triangle inequalities and an upper bound $k_{max}$. Right: one sixth slice of the tetrapyd from which shape functions can be uniquely determined using symmetry in the $k$'s. Edges representing the equilateral, flattened and squeezed configurations are annotated.}
+	\label{fig:tetrapyd}
+\end{figure}
+
+We follow \cite{Fergusson2010general} and denote this domain consisting of two tetrahedrons glued together as `tetrapyd'. Note that all shape functions of interest are symmetric in the $k$'s, so we may restrict our interest to a region where $k_1 \ge k_2 \ge k_3$ (right of Figure \ref{fig:tetrapyd}). We dub the resulting tetrahedron with one sixth the original volume `the sliced' tetrapyd, somewhat unoriginally. The three main types of triangle configurations correspond to three edges of the sliced tetrapyd: equilateral ($k_1=k_2=k_3$), flattened ($k_1 = k_2 + k_3$), and squeezed ($k_1 = k_2 \gg k_3$). \footnote{To be precise, the edges for flattened represent $k_1/2 = k_2 = k_3$, and the squeezed one is defined as $k_1=k_2$, $k_3=0$. The edges by themselves are unphysical, but points near these lines correspond to the limits described.} Figure \ref{fig:Legendre_basis_functions_3D} shows some of the Legendre basis functions plotted in three dimensions.
+
+\begin{figure}
+	\centering    
+	\includegraphics[width=1.0\textwidth]{legendre_modes_3D_final.pdf}
+	\caption{Examples of our Legendre basis functions, evaluated on the sliced tetrapyd domain shown in Figure \ref{fig:tetrapyd}. Functions are defined as $Q_{p_1 p_2 p_3}(k_1,k_2,k_3) := P_{p_1}(k_1) P_{p_2}(k_2) P_{p_3}(k_3)$, where $P_l(k)$ are Legendre polynomials. Here we plot $p_1 = p_2 = p_3 = p$, where $p$ equals (a) $0$, (b) $1$, (c) $2$, (d) $3$, (e) $4$, and (f) $5$. A single colour map is used across plots: red and blue for $+1$ and $-1$, respectively.}	
+	\label{fig:Legendre_basis_functions_3D}
+\end{figure}
+
+Let $V_{\vv{k}}$ be the subset of $\mathbb{R}^3$ representing the sliced tetrapyd. By choosing a natural inner product
+\begin{align}
+	\left< S_1, S_2 \right> = \int_{V_{\vv{k}}} d^3\vv{k} \;\; S_1(\vv{k}) S_2(\vv{k}), \label{eqn:tetrapyd_inner_product}
+\end{align}
+we restrict our attention to an $L^2$ space defined on $V_{\vv{k}}$: a vector space consisting of square-integrable functions.
+\footnote{Note that the local shape function $S(k_1,k_2,k_3) = (k_1^2 / k_2 k_3 + \text{2 cyc.})$ is not in fact square-integrable due to its divergence as $k_i \rightarrow 0$. We work around this problem by prescribing a lower bound $k \ge k_{min}$, which is also the case in numerical calculations.}
+A set of three-dimensional basis functions $Q_{\vv{p}}$ with size $N$ spans a subspace $U_{Q} \subset L^2(V_{\vv{k}})$ of dimension at most $N$.
+
+Using this notation, expanding a given shape function $S$ with respect to a basis set $Q$ is equivalent to finding its orthogonal projection into $U_{Q}$;
+\begin{align}
+	&S = S^{\parallel} + S^{\perp}, \;\;\;\text{where} \\
+	&S^{\parallel} \in U_Q \;\;\;\;\text{and} \;\;\; \left< S^{\perp}, Q' \right> = 0, \; \forall Q' \in U_Q.
+\end{align}
+As long as $\left\| S^\perp \right\| \ll \left\| S \right\|$, we may approximate
+\begin{align}
+	S \approx S^\parallel = \sum_{\vv{p}} \alpha_{\vv{p}} Q_{\vv{p}}.
+\end{align}
+The decomposition coefficients $\alpha$ are obtained by taking inner product with $Q_{\vv{p}}$ on both sides.
+\begin{align}
+	\left< S, Q_\vv{p} \right> = \left< Q_\vv{p}, Q_{\vv{p}'} \right> \alpha_{\vv{p}'}.
+\end{align}
+From above, we can compute $\alpha_\vv{p}$ by inverting the matrix $\Gamma_{\vv{p} \vv{p}'} = \left< Q_\vv{p}, Q_{\vv{p}'} \right>$. Alternatively, orthonormalising the basis with respect to the inner product $\left< , \right>$ turns $\Gamma$ to an identity matrix, trivialising the inversion process.
+
+We went on lengths here rewriting the formalism using linear analysis language to emphasize two aspects of our primordial basis expansion. First, even though we choose a simple inner product (\ref{eqn:tetrapyd_inner_product}) here, the method is completely general, and we may freely choose a different inner product. For example, non-unit weights $w(\vv{k})$ can be included in the integrand, and/or the domain of integration may be changed. Doing so alters how we decompose shape functions in terms of our basis.
+
+Second, we highlight the fact that basis expansion is essentially a minimisation problem. Orthogonal projection of $S$ to subspace $U_Q$ is a point in $U_Q$ which has minimal distance to $S$. Therefore, the result depends heavily on the distance measure used. However, our norm $\left\| \cdot \right\|$ induced by the inner product does not necessarily represent late-time physics accurately.
+
+(TO WRITE: why late-time convergence can be better than early-time. Tetrapyd vs cube)
+
+
+Given a shape function $S^{(t)} (k_1, k_2, k_3)$, the decomposed coefficients can be found by
+\begin{align}
+	\alpha^{(t)}_{p_1 p_2 p_3} = \int dk_1 dk_2 dk_3 \; S^{(t)}(k_1, k_2, k_3) q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3), \label{eqn:basis_expansion}
+\end{align}
+
+as long as the modes are normalised appropriately. In practice, we may perform the three one-dimensional integrals one by one, which leads to an efficient and numerically stable algorithm.
+
+
 
 \section{Implementation and optimisation} \label{section:implementation}
 
@@ -281,9 +348,9 @@ Our first major optimisation comes from the observation that we may swap the ord
 
 Note that the resulting sum fo $\beta^{lin}$ includes an unwanted contribution from the case where $j=i$, since $C(p_1,p_2,n)$ is obtained by summing over all maps. Thankfully, this extra contribution is exactly equal to the cubic term. We just have to subtract $\beta^{cub}$ from the total sum to get the correct value of $\beta^{lin}$.
 
-We shaved off a whole loop at the cost of extra memory usage. For our purposes $N_{sims} ~ 150 > \cdot p_{max} = 30$, so the additional space required for $C(p_1,p_2,n)$ is relatively small compared to $M(i,p,n)$. The symmetry in $p_1$ and $p_2$ also means that we only need to store $p_{max}(p_{max}+1)/2$ maps instead of $p_{max}^2$ for $C$.
+We shaved off a whole loop at the cost of extra memory usage. For our purposes $N_{sims} \sim 150 > p_{max} = 30$, so the additional space required for $C(p_1,p_2,n)$ is relatively small compared to $M(i,p,n)$. The symmetry in $p_1$ and $p_2$ also means that we only need to store $p_{max}(p_{max}+1)/2$ maps instead of $p_{max}^2$ for $C$.
 
-Our next challenge is the amount of memory required to save $M(i,p,n)$: $\sim 1.8$TB for the parameters mentioned above, which is quite significant. Though it is not impossible to find supercomputing systems which can accommodate such large arrays, reduction in memory usage would be highly beneficial. We seek to achieve it while keeping the overall computational complexity to be $O(N_{sims} \cdots p_{max}^3 \cdots N_{pix})$ as before.
+Our next challenge is the amount of memory required to save $M(i,p,n)$. For the parameters mentioned above, this is $\approx 1.8$TB, which is quite significant. Though it is not impossible to find supercomputing systems which can accommodate such large arrays, reduction in memory usage would be highly beneficial. We seek to achieve it while keeping the overall computational complexity to be $O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$ as before.
 
 We observe that most summations are done for a single map $i$. The array $C(p_1,p_2,n)$ is required to be computed before the main loop for $\beta^{lin}$, but otherwise there are no `mixing' between the maps. We exploited this fact to develop Algorithm \ref{alg:beta_third_attempt}.
 
@@ -445,7 +512,7 @@ Figure (\ref{fig:cache_block_optimisation}) shows how runtime of a small test co
 	\label{fig:cache_block_optimisation}
 \end{figure}
 
-We observe that having 128 blocks are optimal in this case. Each block now contains about 400,000 elements and takes up 3MiB of memory. Six and eight such blocks may fit in L2 and L3 cache. Compared to the code without any cache blocking, we gain roughly three times speed-up.
+We find a significant improvement in performance moving from 32 to 48 blocks when the block size drops from 12MiB to 8MiB. This is precisely when three blocks are allowed fit in L3 cache (24.7MiB) at the same time. Improved data locality dramatically reduces time spent on memory access as we expected. The optimal number of blocks was found to be 128; each segment contains about 400,000 elements and takes up 3MiB of memory, which is 1/6 and 1/8 of L2 and L3 cache size, respectively. We gain roughly three times speed-up compared to the original code without cache blocking.
 
 Algorithm \ref{alg:beta_final_algorithm} summarises our final implementation of $\beta$ computation code, now with cache blocking and OpenMP construct indicators.
 
@@ -704,7 +771,6 @@ Discussion on kmin and kmax range
 	\caption{Coslog template correlations, sample and theoretical}
 	\label{fig:coslog_template_correlations}
 \end{figure}
-
 
 
 
