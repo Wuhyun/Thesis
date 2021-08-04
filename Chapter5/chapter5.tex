@@ -130,13 +130,13 @@ Lastly, we introduce a basis which consists of Legendre polynomials.
 \end{align}
 Here we linearly map the range from $k \in [k_{min},k_{max}]$ to $\bar{k} \in [-1,1]$, which is the interval where Legendre polynomials are defined. The number of modes are not bounded; the larger the basis, the more complete coverage of theory $k$ space we get.
 
-The Legendre basis has two main advantages over others. First of all, the mode functions are inherently orthogonal, so that $\int_{-1}^{1} d\bar{k} P_{l}(\bar{k}) P_{l'}(\bar{k}) = 0$ whenever $l \neq l'$. This property allows us to greatly simplify the way of decomposing theoretical templates. We elaborate on the decomposition algorithm in Section \ref{section:primordial_mode_expansion}. 
+The Legendre basis has two main advantages over others. First of all, the mode functions are inherently orthogonal, so that $\int_{-1}^{1} d\bar{k} P_{l}(\bar{k}) P_{l'}(\bar{k}) = 0$ whenever $l \neq l'$. This property allows us to greatly simplify the way of decomposing theoretical templates. We elaborate on the decomposition method in Section \ref{section:primordial_basis_expansion}. 
 
 Secondly, the Legendre basis enables direct connection to some numerical codes for computing bispectra from various inflationary models, most notably \textsc{Primodal} \cite{Clarke2021}. \textsc{Primodal} is a code for evaluating primordial bispectra from general single-field models. As opposed to other public codes, its output is expressed in terms of the expansion coefficients with respect to the Legendre polynomials. Hence, the result can be directly plugged in to CMB-BEst, creating one fluid pipeline from the model Lagrangian to estimation.
 
-As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomials with one or more particular functions for better description of some bispectrum templates. One solid choice is to add a mode $q(k) = k^{n_s -2}$, orthogonalised with respect to the rest of the basis. This significantly boosts the performance of decomposing local-type bispectra.
+As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomials with one or more extra functions for better description of some bispectrum templates. One solid choice is to add a mode $q(k) = k^{n_s -2}$, orthogonalised with respect to the rest of the basis. This significantly boosts the performance of decomposing local-type bispectra.
 
-Ideally, we would like the $k$ range used in the definition (\ref{eqn:Legendre_basis_no_inv_k}) to be as wide as possible, so that more information from different scales are incorporated in the estimation process. Wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_{max}/k_{min} = 1000$ is an overall sweet spot for analysing Planck data.
+Ideally, we would like the $k$ range used in the definition (\ref{eqn:Legendre_basis_no_inv_k}) to be as wide as possible so that more information from different scales are incorporated in the estimation process. Wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_{max}/k_{min} = 1000$ is an overall sweet spot for analysing Planck data.
 
 Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $(k_{min}, k_{max}) = (2.09 \times 10^{-4}, 2.09 \times 10^{-1})$, as the `Legendre' basis. Any deviation from this set of parameters will be stated explicitly. Note that this is for our convenience during testing only; the code may take any choice of basis.
 
@@ -159,7 +159,7 @@ Shape functions are defined on the same domain as bispectra: $(k_1,k_2,k_3) \in 
 	\centering    
 	\hspace{10pt}
 	\includegraphics[width=1.0\textwidth]{tetrapyd.pdf}
-	\caption{Tetrapyd domain in which the shape functions are defined. Left: the full region specified by triangle inequalities and an upper bound $k_{max}$. Right: one sixth slice of the tetrapyd from which shape functions can be uniquely determined using symmetry in the $k$'s. Edges representing the equilateral, flattened and squeezed configurations are annotated.}
+	\caption{Tetrapyd domain in which the shape functions are defined. Left: the full region specified by triangle inequalities and an upper bound $k_{max}$. Right: one sixth slice of the tetrapyd from which shape functions are uniquely determined by symmetry in the $k$'s. Edges representing the equilateral, flattened and squeezed configurations are annotated.}
 	\label{fig:tetrapyd}
 \end{figure}
 
@@ -168,7 +168,7 @@ We follow \cite{Fergusson2010general} and denote this domain consisting of two t
 \begin{figure}
 	\centering    
 	\includegraphics[width=1.0\textwidth]{legendre_modes_3D_final.pdf}
-	\caption{Examples of our Legendre basis functions, evaluated on the sliced tetrapyd domain shown in Figure \ref{fig:tetrapyd}. Functions are defined as $Q_{p_1 p_2 p_3}(k_1,k_2,k_3) := P_{p_1}(k_1) P_{p_2}(k_2) P_{p_3}(k_3)$, where $P_l(k)$ are Legendre polynomials. Here we plot $p_1 = p_2 = p_3 = p$, where $p$ equals (a) $0$, (b) $1$, (c) $2$, (d) $3$, (e) $4$, and (f) $5$. A single colour map is used across plots: red and blue for $+1$ and $-1$, respectively.}	
+	\caption{Examples of our Legendre basis functions, evaluated on the sliced tetrapyd domain shown in Figure \ref{fig:tetrapyd}. Functions are defined as $Q_{p_1 p_2 p_3}(k_1,k_2,k_3) := P_{p_1}(k_1) P_{p_2}(k_2) P_{p_3}(k_3)$, where $P_l(k)$ are Legendre polynomials. Here we plot $p_1 = p_2 = p_3 = p$, where $p$ equals (a) $0$, (b) $1$, (c) $2$, (d) $3$, (e) $4$, and (f) $5$. A single colour map is used across plots: red and blue correspond to $+1$ and $-1$, respectively.}	
 	\label{fig:Legendre_basis_functions_3D}
 \end{figure}
 
@@ -191,31 +191,39 @@ As long as $\left\| S^\perp \right\| \ll \left\| S \right\|$, we may approximate
 \end{align}
 The decomposition coefficients $\alpha$ are obtained by taking inner product with $Q_{\vv{p}}$ on both sides.
 \begin{align}
-	\left< S, Q_\vv{p} \right> = \left< Q_\vv{p}, Q_{\vv{p}'} \right> \alpha_{\vv{p}'}.
+	\left< S, Q_\vv{p} \right> = \left< Q_\vv{p}, Q_{\vv{p}'} \right> \alpha_{\vv{p}'}. \label{eqn:primordial_basis_expansion_SQ_and_QQ}
 \end{align}
 From above, we can compute $\alpha_\vv{p}$ by inverting the matrix $\Gamma_{\vv{p} \vv{p}'} = \left< Q_\vv{p}, Q_{\vv{p}'} \right>$. Alternatively, orthonormalising the basis with respect to the inner product $\left< , \right>$ turns $\Gamma$ to an identity matrix, trivialising the inversion process.
 
-We went on lengths here rewriting the formalism using linear analysis language to emphasize two aspects of our primordial basis expansion. First, even though we choose a simple inner product (\ref{eqn:tetrapyd_inner_product}) here, the method is completely general, and we may freely choose a different inner product. For example, non-unit weights $w(\vv{k})$ can be included in the integrand, and/or the domain of integration may be changed. Doing so alters how we decompose shape functions in terms of our basis.
+We rewrote the formalism using linear analysis language here to emphasize two aspects of our primordial basis expansion. First, even though we choose a simple inner product (\ref{eqn:tetrapyd_inner_product}) for now, the method is completely general, and we may freely choose a different inner product. For example, non-unit weights $w(\vv{k})$ can be included in the integrand, and/or the domain of integration may be changed. Doing so alters how we decompose shape functions in terms of our basis.
 
-Second, we highlight the fact that basis expansion is essentially a minimisation problem. Orthogonal projection of $S$ to subspace $U_Q$ is a point in $U_Q$ which has minimal distance to $S$. Therefore, the result depends heavily on the distance measure used. However, our norm $\left\| \cdot \right\|$ induced by the inner product does not necessarily represent late-time physics accurately.
+Second, we highlight the fact that basis expansion is in essence a minimisation problem with respect to chosen inner product, which is often oblivious of late-time physics. Orthogonal projection of $S$ to subspace $U_Q$ is a point in $U_Q$ which has minimal distance to $S$: $\left\| S - S^\parallel \right\|$ is minimised. Obtained $S^\parallel$, however, is not necessarily the best description of $S$ when we consider their late-time counterparts in $l$ space. Some errors with small norm $\left\| \Delta S \right\|$ might get enhanced when convolved with transfer functions, yielding large reduced bispectrum $\Delta b_{l_1 l_2 l_3}$. Meanwhile, sometimes large differences in $S$ are completely unobservable late-time and provide mostly identical constraints on $f_{NL}$.
 
-(TO WRITE: why late-time convergence can be better than early-time. Tetrapyd vs cube)
-
-
-Given a shape function $S^{(t)} (k_1, k_2, k_3)$, the decomposed coefficients can be found by
+With these points in mind, we define metrics to compare shape functions in primordial space;
 \begin{align}
-	\alpha^{(t)}_{p_1 p_2 p_3} = \int dk_1 dk_2 dk_3 \; S^{(t)}(k_1, k_2, k_3) q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3), \label{eqn:basis_expansion}
+	\text{Corr}(S_1, S_2) &:= \frac{\left< S_1, S_2 \right>}{ \sqrt{ \left< S_1, S_1 \right> \left< S_2, S_2 \right> } }, \\
+	\epsilon^2(S_1, S_2) &:= \frac{\left< S_1 - S_2, S_1 - S_2 \right> }{\sqrt{\left< S_1, S_1 \right> \left< S_2, S_2 \right>}}.
 \end{align}
+Corr$(S_1,S_2)$ measures correlation between the two shapes and is independent of the normalisation. $\epsilon(S_1,S_2)$ is the distance between to shapes, which reduces to $\sqrt{2 - 2\;\text{Corr}(S_1,S_2)}$ when $S_1$ and $S_2$ have equal amplitude. We use both of these values to test if our primordial basis expansion has converged to target shape function. 
 
-as long as the modes are normalised appropriately. In practice, we may perform the three one-dimensional integrals one by one, which leads to an efficient and numerically stable algorithm.
+Inverting the matrix $\Gamma_{\vv{p} \vv{p}'} = \left< Q_\vv{p}, Q_{\vv{p}'} \right>$ in \ref{eqn:primordial_basis_expansion_SQ_and_QQ} can be tricky in practice. The $p_{max}^3 \times p_{max}^3$ matrix is not only large in size for high $p_{max}$, but also near singular. Some of the three-dimensional mode functions $Q_\vv{p}$ become linearly dependent within tetrapyd even if they are constructed from independent modes in one dimension. Presence of such degenerate modes induces severe numerical instability during inversion.
 
+For our Legendre basis, we use a small trick to get around this problem. Motivated by the fact that Legendre polynomials form an orthogonal basis in one dimension, we extend the domain of integral in the inner product \ref{eqn:tetrapyd_inner_product} to a cube containing the tetrapyd instead. Most template shape functions have an analytic form and can easily be extended in this region. As long as $\int dk \; q_p(k) q_{p'}(k) = \delta_{pp'}$, the decomposed coefficients for given $S$ can be found by
+\begin{align}
+	\alpha^{(t)}_{p_1 p_2 p_3} = \int dk_1 \int dk_2 \int dk_3 \; S^{(t)}(k_1, k_2, k_3) q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3). \label{eqn:basis_expansion}
+\end{align}
+Note that the three-dimensional integral can now be split into three separate one-dimensional integrals in range $[k_{min}, k_{max}]$. By performing the three integrals one by one, we obtain a numerically stable algorithm that is fast and memory efficient. Decomposing a shape evaluated on $1000^3$ $k$ grid points with respect to $30^3$ Legendre basis functions only takes a few seconds in our \textsc{C} code.
+
+After we obtain coefficients from (\ref{eqn:basis_expansion}), we evaluate accuracy of the expansion using the inner product defined in tetrapyd because it is the only physical region where our shape function matters. Since the cube includes tetrapyd, good convergence in cube guarantees small error within the tetrapyd in most cases. The only exception is when the target shape function blows up outside tetrapyd. We will see such examples in later sections.
 
 
 \section{Implementation and optimisation} \label{section:implementation}
 
-(J: Add a paragraph explaining how bispectrum analysis is computationally bound. Computing time is what limits us from exploring further!)
+CMB bispectrum estimation is a numerically challenging task. All existing approaches exploit the separability of multi-dimensional integrals to reduce computational complexity, because it is practically impossible otherwise. Planck analysis provided constraints to primordial non-Gaussianity from various bispectrum templates, but having limited computing resources was what stopped us from exploring further. Numerous shapes such as complex oscillatory models have been outside our reach despite their being theoretically well-motivated.
 
-The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still practically impossible, due to its computational complexity unless thoroughly optimised. In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
+The CMB-BEst formalism significantly reduces the amount of computation needed for the CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still prohibitively expensive unless thoroughly optimised. Performance is especially crucial here since it directly affects the breath of models we can cover; the faster the code, the higher number of modes we can have, and the more shapes we can expand in our basis accurately.
+
+In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
 
 Throughout this section we will treat the functions of interest as discrete arrays. Our notations for indices and their limits are summarised in Table \ref{table:index_conventions}. We adopt simple trapezoidal rule for most numerical integrals. For the $\mu$ integral in (\ref{def:gamma}), however, we use Gauss-Legendre quadrature computed from the public code \textsc{Quadpts} \cite{Hale2013} due to highly oscillatory and unstable nature of the integral. Multi-dimensional arrays are stored in the row major order following the \textsc{C} convention for efficiency. We use the \textsc{Healpix} library \cite{Gorski2005healpix} for pixelisation of the sky, which includes \textsc{libsharp} \cite{Reinecke2013libsharp} library for Spherical Harmonic Transforms (SHTs).
 
@@ -611,7 +619,7 @@ Lastly, we check that CMB-BEst accurately preserves optimality of the CMB bispec
 	\end{tabular}
 \end{table}
 
-Note that the numbers do not match up exactly between sample and theoretical variances. The estimator for sample variance $\hat{S}^2 = (\sum_i (f^{(i)}_{NL})^2 )/N_{sims}$ follows chi-squared distribution with $N_{sims}-1$ degrees of freedom under our assumptions. Standard deviation corresponding to the (normalised) distribution equals $\sqrt{2/(N_{sims}-1}$, which is $~0.12$ for $N_{sims}=140$. It is therefore not surprising to see our sample variances differ up to $12\%$ from theoretical ones.
+Note that the numbers do not match up exactly between sample and theoretical variances. The estimator for sample variance $\hat{S}^2 = (\sum_i (f^{(i)}_{NL})^2 )/N_{sims}$ follows chi-squared distribution with $N_{sims}-1$ degrees of freedom under our assumptions. Standard deviation corresponding to the (normalised) distribution equals $\sqrt{2/(N_{sims}-1)}$, which is $\approx 0.12$ for $N_{sims}=140$. It is therefore not surprising to see our sample variances differ up to $12\%$ from the theoretical ones.
 
 We performed further checks to ensure that this discrepancy is due to statistical fluctuations rather than systematic errors. The ratio between sample and theoretical variances remained nearly constant across the KSW and Legendre basis from CMB-BEst, as well as Planck's Modal pipeline on the same set of simulated maps. Meanwhile, sample variances evaluated from independent sets of simulations do fluctuate around the theoretical value. A closer check has been done for each of the mode sets $(p_1,p_2,p_3)$ in the Legendre basis. The decomposition coefficient $\alpha$ is set to be 1 at $(p_1,p_2,p_3)$ and its permutations, while vanishing everywhere else. Substituting into (\ref{eqn:fNL_from_betas} and (\ref{eqn:normlisation_from_gamma}), we get
 \begin{align}
@@ -633,7 +641,7 @@ While Figure \ref{fig:map_by_map_Legendre_KSW} shows excellent agreement between
 
 Our main focus of this figure lies on Local template results. Estimates from the KSW and Legendre basis sets match almost perfectly now. When altering the ratio $k_{max}/k_{min}$, we fixed the $k_{max}$ and lowered $k_{min}$. Including more small-$k$, or large scale modes provides extra information in the bispectrum. Local shape is especially affected by this, since squeezed configurations including one of these extra large scale modes have a more significant contribution to the total estimate. Also note that $k_{max} / k_{min} = 2000$ is comfortably larger than the equivalent ratio in harmonic space $l_{max} / l_{min} = 2500 / 2$.
 
-Despite the improvements in squeezed limit and local template, we may not simply set $k_{max} / k_{min} = 2000$ as default because it hurts convergence in other shapes of interest. As can be seen from the Equilateral and Orthogonal plots in Figure \ref{fig:map_by_map_Legendre_KSW_k_ratio_2000}, newer estimates of $f_{NL}$ are less accurate for shapes other than Local. The fact that $p_{max}=10$ here rather than $30$ is one of the main causes of the drop in precision, but having smaller $k$ values within Legendre polynomials' domain also has a negative impact. Shapes with inverse $k$ scaling varies more dramatically in small $k$ region and is therefore harder to expand in terms of Legendre polynomials.
+Despite the improvements in squeezed limit and local template, we may not simply set $k_{max} / k_{min} = 2000$ as default because it hurts convergence in other shapes of interest. As can be seen from the Equilateral and Orthogonal plots in Figure \ref{fig:map_by_map_Legendre_KSW_k_ratio_2000}, newer estimates of $f_{NL}$ are less accurate for shapes other than Local. The fact that $p_{max}=10$ here rather than $30$ is one of the main causes of the drop in precision, but having smaller $k$ values within Legendre polynomials' domain also has a negative impact. Shapes with inverse $k$ scaling vary more dramatically when $k$ is small and tends to be harder to expand in terms of Legendre polynomials.
 
 For the final check of internal consistency, we inspect how each point in the line of sight integral ($r$) contributes to $f_{NL}$ estimates. CMB-BEst's formalism makes it straightforward to plot the $r$ integrand since the integral is done at the very last. Figure \ref{fig:trio_r_dependence} shows plots of $f_{NL}$ contributions from different sources and for the three standard bispectrum templates. Shaded in light blue are the $1\sigma$ regions obtained from 140 simulations for each point in $r$.
 
@@ -658,9 +666,9 @@ We do not find any statistically significant signal across the whole $r$ range o
 
 \subsection{Consistency with Planck} \label{section:consistency_with_Planck}
 
-We have validated integrity of CMB-BEst in the last section. Next part of validation involves comparing it against existing codes for CMB bispectrum estimation using Planck data.
+In the last section, we demonstrated how the integrity of CMB-BEst was validated. The next set of validations involves comparing it against other existing codes for CMB bispectrum estimation.
 
-First of all, we test primordial non-Gaussianity constraints on Local, Equilateral and Orthogonal templates against the Planck 2018 analysis \cite{PlanckCollaboration2018}. Two sets of basis functions, KSW and Legendre, have been used to compute $f_{NL}$ from SMICA component separated maps included in the final data release. Table \ref{table:trio_fNL_comparison_with_planck} shows the constraints obtained, together with quoted results from Planck team's own KSW estimator and Modal 2 pipeline.
+We test primordial non-Gaussianity constraints on Local, Equilateral and Orthogonal templates against the Planck 2018 analysis \cite{PlanckCollaboration2018}. Two sets of basis functions, KSW and Legendre, have been used to compute $f_{NL}$ from the foreground-cleaned CMB map included in the final data release. We choose SMICA as the main component separation method since they were shown to be the most reliable and robust for Planck bispectrum analysis \cite{PlanckCollaboration2013ComponentSeparation, PlanckCollaboration2013,PlanckCollaboration2015,PlanckCollaboration2018}. Table \ref{table:trio_fNL_comparison_with_planck} summarises the constraints obtained, together with the quoted results from Planck team's own KSW estimator and Modal 2 pipeline.
 
 \begin{table}[h]
 	\caption{Constraints on $f_{NL}$ for the standard shapes from the KSW and Legendre basis of CMB-BEst, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. Only the temperature data from the SMICA foreground-cleaned map and FFP10 simulations were used for the analysis. Values shown are after the lensing bias subtraction, with uncertainties at 68\% CL.}
@@ -680,6 +688,14 @@ First of all, we test primordial non-Gaussianity constraints on Local, Equilater
 	\end{tabular}
 \end{table}
 
+Note that while the constraints from CMB-BEst are largely consistent with Planck 2018 results, there are up to $0.3\sigma$ discrepancies. However, there are variations around this level within the estimates from different pipelines of Planck as well. Equilateral constraints from Planck's own KSW and Modal estimators shown here, for example, differ by $\approx 0.4\sigma$. Similar amount of fluctuations can be found in the full result shown in \cite{PlanckCollaboration2018}. Even though in an ideal world they should match exactly across different approaches as long as same dataset is used, statistical significance of the individual $f_{NL}$'s is not largely affected by such variations.
+
+We invested significant proportion of our time investigating this error. Here we discuss three potential sources which might account for the discrepancies. First of all, human error during implementation and estimation process should not be neglected. Bispectrum analysis is complex and computationally expensive. Implementing it often involves writing a long and heavily optimised code. During development and testing stages, we found and fixed many mistakes in our $10,000+$ lines of \textsc{C} code. Various unit tests were performed in the process to test individual sections of the code: basis expansion, projection to the $l$ space, SHTs, parallelisation, and more. Internal consistency checks were then used to verify integrity of the combined pipeline. Planck team also went on lengths to validate and cross-check different methods \cite{PlanckCollaboration2013}. It therefore seems unlikely that simple mistakes are causing the gap in results.
+
+Next source of error we studied is the parameter set. Cosmological parameters we used for constraints in Table \ref{table:trio_fNL_comparison_with_planck} are identical to those of Planck Modal pipeline. Small changes in cosmological parameters are also shown to have little effect on $f_{NL}$ \cite{PlanckCollaboration2015,PlanckCollaboration2018}. One major difference however, is the number of Gaussian simulations used. We include 140 simulated maps while Modal has about 300. This number is mainly restricted by computational resources required for the large Legendre basis in CMB-BEst. While we found 140 to be sufficient for most cases, sample variance may cause some fluctuations in the linear term and error bar. A rough estimate for sampling error is $\sim \sqrt{2/N_{sims}} \approx 0.12$, as calculated in the previous section. Other than $N_{sims}$, more internal parameters such as the grid density of discretised arrays have also been checked to yield consistent results when varied. 
+
+We are left with systematic errors as potential causes for discrepancies. The most significant bias to $f_{NL}$ constraints is the lensing-ISW bias. Table \ref{table:trio_lensing_bias_comparison_with_planck} shows biases from the lensing bispectrum \cite{Lewis2011lensing} for both CMB-BEst and Planck 2018 analysis. The numbers vary but are consistent overall. Map-by-map comparison of constraints from the Legendre basis and Modal are shown in Figure \ref{fig:map_by_map_Legendre_Modal}. 
+
 \begin{table}[h]
 	\caption{Bias to $f_{NL}$ of standard shapes originating from the lensing bispectrum. We compare CMB-BEst's two different basis sets and the Planck 2018 analysis \cite{PlanckCollaboration2018}, using SMICA map and FFP10 simulations. }
 	\centering
@@ -698,6 +714,15 @@ First of all, we test primordial non-Gaussianity constraints on Local, Equilater
 	\end{tabular}
 \end{table}
 
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{map_by_map_Legendre_Modal.pdf}
+	\caption{Map-by-map comparison of the $f_{NL}$ estimates obtained from CMB-BEst's Legendre basis set against the Modal estimator results for Planck 2018 analysis \cite{PlanckCollaboration2018}. The first 140 FFP10 simulations are used. On the left hand side are scatter plots where each simulation is represented by a point according to $f_{NL}$ estimates of standard templates. Their linear best fit lines are shown in dashed red. Results from the two routines are shown map by map on the right hand side. Overall, CMB-BEst and Modal are in good agreement, without any significant systematic errors.}
+	\label{fig:map_by_map_Legendre_Modal}
+\end{figure}
+
+Out of the three templates, local shape shows the largest scatter between constraints. Comparing $f_{NL}$'s of simulated maps from CMB-BEst and Modal, we find correlation of 0.916. The intercept value of $0.78$ in the linear fit is mainly due to sample mean present in Modal. Legendre's sample mean is $0.069$ for Local, while Modal has $-0.698$. Otherwise, the difference between two pipelines are distributed such that its sample standard deviation equals $2.5$, skewness is $-0.14$, and kurtosis is $0.19$. Having small $<1$ skewness and kurtosis implies that the distribution is close to univariate normal, consistent with random fluctuations. Similarly, we do not find any significant systematic error from Equilateral and Orthogonal shapes either.
+
 The exact 
 
 
@@ -712,12 +737,7 @@ Discussion on kmin and kmax range
 
 
 
-\begin{figure}[htbp!] 
-	\centering    
-	\includegraphics[width=\textwidth]{map_by_map_Legendre_Modal.pdf}
-	\caption{Map-by-map comparison of the $f_{NL}$ estimates obtained from CMB-BEst's Legendre basis set against the Modal estimator results for Planck 2018 analysis \cite{PlanckCollaboration2018}. The first 140 FFP10 simulations are used. On the left hand side are scatter plots where each simulation is represented by a point according to $f_{NL}$ estimates of standard templates. Their linear best fit lines are shown in dashed red. Results from the two routines are shown map by map on the right hand side. Overall, CMB-BEst and Modal are in good agreement, without any significant systematic errors.}
-	\label{fig:map_by_map_Legendre_Modal}
-\end{figure}
+
 
 \begin{figure}[htbp!] 
 	\centering    
