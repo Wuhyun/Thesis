@@ -187,7 +187,7 @@ Using this notation, expanding a given shape function $S$ with respect to a basi
 \end{align}
 As long as $\left\| S^\perp \right\| \ll \left\| S \right\|$, we may approximate
 \begin{align}
-	S \approx S^\parallel = \sum_{\vv{p}} \alpha_{\vv{p}} Q_{\vv{p}}.
+	S \approx S^\parallel = \sum_{\vv{p}} \alpha_{\vv{p}} Q_{\vv{p}}.  \label{eqn:primordial_basis_projection}
 \end{align}
 The decomposition coefficients $\alpha$ are obtained by taking inner product with $Q_{\vv{p}}$ on both sides.
 \begin{align}
@@ -725,7 +725,7 @@ Out of the three templates, local shape shows the largest scatter between constr
 
 Having not found a clear source of error, we conclude that the small gaps between the $f_{NL}$ estimates in Table \ref{table:trio_fNL_comparison_with_planck} mainly come from differences in methodology and are consistent with random fluctuations.
 
-We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of form $S^{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. 
+We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of form $S^{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. We follow \cite{Fergusson2015a} and increase $\omega$ in steps of $10$, so that correlation between shapes with different $\omega$ is kept low.
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -734,37 +734,44 @@ We now move on to constraining models with oscillations. The simplest template f
 	\label{fig:sine_template_frequency_Legendre_Modal}
 \end{figure}
 
-The Legendre basis accurately expands the feature model template using Legendre polynomials via basis expansion outlined in (\ref{eqn:basis_expansion}). Estimates from the two methods, CMB-BEst's Legendre and Planck's Modal, are mostly compatible. The most notable difference is at $\omega=230$Mpc where $f_{NL}$ from Legendre is more than $1\sigma$ larger compared to Modal. Even though it is interesting that the new estimate now passes the $2\sigma$ threshold, having one such point out of 35 shown here can be considered random.
+The Legendre basis accurately expands the feature model template using Legendre polynomials via basis expansion outlined in (\ref{eqn:basis_expansion}). Estimates from the two methods, CMB-BEst's Legendre and Planck's Modal, are mostly compatible. The most notable difference is at $\omega=230$Mpc where $f_{NL}$ from Legendre is more than $1\sigma$ larger compared to Modal. Even though it is interesting that the new estimate now passes the $2\sigma$ threshold, having one such point out of 35 shown here has less statistical significance.
 
-
-+ KSW vs Leg vs Modal table
-+ Map-by-map plot for Leg vs Modal Trio
-- Plot for Leg vs Modal, fNL vs frequency plot
-- Frequency correlation plot
-- Epsilon vs frequency. Primordial convergence vs late-time...
-
-Consistency vs Modal for Planck results.
-Discussion on kmin and kmax range
-
-
-
-
-
+Both Legendre and Modal approaches involve expanding the shape function with respect to a polynomial basis. Polynomials are versatile but has limited resolution for oscillatory signals; it cannot resolve shape with number of oscillations greater than the maximum degree of polynomials ($p_{max}$ here). For the Legendre basis with $k$ range $[2.09\times 10^{-4}, 2.09\times 10^{-1}]\text{Mpc}^{-1}$ and $p_{max}=30$, frequencies greater than $\pi p_{max} / (k_{max} - k_{min}) \approx 436$Mpc are unresolvable. In reality, numerics start to break before this value. We do not have a reference analytic value for true $f_{NL}$s, but evaluating correlations between shapes is effective for checking our numerics.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sine_template_correlations_new.pdf}
 	\includegraphics[width=\textwidth]{cosine_template_correlations_new.pdf}
-	\caption{Feature model template correlations, sample and theoretical}
+	\caption{Correlations between feature model templates $S(k_1,k_2,k_3)=\sin(\omega (k_1 + k_2 + k_3) + \phi)$ with different $\omega$ values, for $\phi = 0$ (top two) and $\phi = \pi/2$ (bottom two). Results are from Legendre basis. `Sample' correlations are obtained from the $f_{NL}$ estimates from 140 Gaussian simulations, while `theory' correlations come from the inner product induced by $\Gamma_{p_1 p_2 p_3, p_1 p_2 p_3}$ matrix in (\ref{def:gamma}). Large non-diagonal correlations appear around $\omega \approx 300$, after which oscillations in the shape are no longer resolved by polynomials of degree up to $p_max$.}
 	\label{fig:feature_template_correlations}
 \end{figure}
+
+Figure \ref{fig:feature_template_correlations} shows correlations between $f_{NL}$s from feature models with different frequency $\omega$s. The plots show correlation between $f_{NL}$ estimates from 140 FFP10 Gaussian simulations (`sample'), together with the one evaluated using our `late-time' inner product ('theoretical') given by
+\begin{align}
+	\left< b^{(i)}, b^{(j)} \right> &= \sum_{l_j} \frac{h^2_{l_1 l_2 l_3} b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}}  \\
+	&= \sum_{p_j p'_j} \alpha^{(i)}_{p_1 p_2 p_3} \alpha^{(j)}_{p'_1 p'_2 p'_3} \sum_{l_j} \frac{h^2_{l_1 l_2 l_3} (b^{(i)}_{p_1 p_2 p_3})_{l_1 l_2 l_3} (b^{(j)}_{p'_1 p'_2 p'_3})_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \\
+	&= \sum_{p_j p'_j} \alpha^{(i)}_{p_1 p_2 p_3} \alpha^{(j)}_{p'_1 p'_2 p'_3} \Gamma_{p_1 p_2 p_3, p'_1 p'_2 p'_3} \\
+	&= \vv{\alpha^{(i)}} \; \Gamma \; \vv{\alpha^{(j)}},
+\end{align}
+where $\Gamma$ is defined in (\ref{def:gamma}). In the limit $N_{sims} \rightarrow \infty$, the sample correlation can be shown to approach the theoretical value in the weakly non-Gaussian limit. We see from Figure \ref{fig:feature_template_correlations} that they indeed display the same qualitative behaviour for $N_{sims}=140$.
+
+The templates with $\omega < 300$ are highly uncorrelated with each other, as can be seen from small non-diagonal elements. Noticeable correlations on lines $\omega_2 = \omega_1 \pm c$ for $c = 70, 140$ arise from resonance between oscillations and transfer functions at the Baryonic Acoustic Oscillation (BAO) scale, as we observed in Figure \ref{insight feature plot}. Faint lines can also be found near $\omega_2 = -\omega_1 + c, \;\; c = 70,140,210,\cdots$ for similar reasons.
+
+When $\omega > 300$, however, large non-diagonal correlations appear. This is about when the oscillation frequency surpasses the resolution set by the highest degree of polynomials. Our basis expansion becomes inaccurate after this point. There are interesting linear structures present, with slopes roughly equal to $2, 1/2$ and subsequently $4, 1/4$. These lines come from aliasing caused by subsampling rapid oscillations; our basis picks up $\omega' = \omega/2$ signal instead. $\omega_2/2 = -\omega_1 + 70$ and other pairs of $(\omega_1, \omega_2)$ resonate to give large non-diagonal correlations.
+
+We verify the claim that numerical inaccuracies at high $\omega$s are caused by lack of resolution due to limited number of polynomial modes. Figure \ref{fig:feature_template_correlations_compare_lmax} illustrates how having smaller $k$ range allows us to constrain faster oscillations accurately. Note that we also change $l_{max}$ correspondingly since smaller scales are neglected. Plot on the right hand side uses Legendre basis with $(k_{min}, k_{max})$ range rescaled by a factor of $3/4$. Fewer oscillations appear within the $k$ interval and therefore are easier to expand using fewer polynomials. As we expected, the scale at which non-diagonal correlations blow up is now shifted to a higher frequency, $\omega \approx (4/3) \cdot 300$. 
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sine_template_correlations_compare_lmax_new.pdf}
-	\caption{Feature model template correlations, sample and theoretical}
+	\caption{Theoretical correlations between feature model templates with different frequency $\omega$s, as described in Figure \ref{fig:feature_template_correlations}. The phase $\phi$ is set to zero in both cases, while the right plot is obtained from Legendre basis with a different $k$ range. The maximum $l$ value is reduced from $2500$ to $2000$, shifting $(k_{min},k_{max})$ by a factor of $2000/2500 = 0.75$. Having smaller $k$ range means fewer oscillations within the $k$ interval for same $\omega$, which provides better effective resolution. The right plot does indeed show smaller non-diagonal correlations at high frequencies.}
 	\label{fig:feature_template_correlations_compare_lmax}
 \end{figure}
+
+There is one subtlety about $f_{NL}$ estimates obtained from inaccurate primordial basis expansions. CMB-BEst computes $\beta$s and $\Gamma$s with respect to the fixed Legendre basis, which has been shown to be accurate even for the highest degree of polynomials. When the primordial basis is unable to resolve rapid modulations as we have seen, the $f_{NL}$ estimates we obtain are nevertheless meaningful; they are simply probing the wrong model. The constraints are not for the given shape function, but rather its projection to the vector subspace spanned by the basis functions as shown in (\ref{eqn:primordial_basis_projection}). Detecting non-zero $f_{NL}$ here is can still be worthwhile.
+
+
+TODO: SinLog constraints. Epsilon vs frequency. Primordial convergence vs late-time...
 
 
 \begin{figure}[htbp!] 
