@@ -723,7 +723,18 @@ We are left with systematic errors as potential causes for discrepancies. The mo
 
 Out of the three templates, local shape shows the largest scatter between constraints. Comparing $f_{NL}$'s of simulated maps from CMB-BEst and Modal, we find correlation of 0.916. The intercept value of $0.78$ in the linear fit is mainly due to sample mean present in Modal. Legendre's sample mean is $0.069$ for Local, while Modal has $-0.698$. Otherwise, the difference between two pipelines are distributed such that its sample standard deviation equals $2.5$, skewness is $-0.14$, and kurtosis is $0.19$. Having small $<1$ skewness and kurtosis implies that the distribution is close to univariate normal, consistent with random fluctuations. Similarly, we do not find any significant systematic error from Equilateral and Orthogonal shapes either.
 
-The exact 
+Having not found a clear source of error, we conclude that the small gaps between the $f_{NL}$ estimates in Table \ref{table:trio_fNL_comparison_with_planck} mainly come from differences in methodology and are consistent with random fluctuations.
+
+We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of form $S^{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. 
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{sine_template_frequency_Legendre_Modal.pdf}
+	\caption{Estimated $f_{NL}$'s for feature models with shape $S(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3)$, obtained using the Legendre basis with (blue) and Planck's Modal (black). Left: direct comparison of $f_{NL}$ for different values of $\omega$. Error bars indicate the expected standard deviation in the estimator, calculated using 140 Gaussian simulations. Right: measured signal-to-noise $f_{NL}/\sigma$, again for a range of $\omega$ values. Shaded in blue are the $1\sigma$ and $2\sigma$ levels. We see that the two approaches yield coherent estimates overall.}
+	\label{fig:sine_template_frequency_Legendre_Modal}
+\end{figure}
+
+The Legendre basis accurately expands the feature model template using Legendre polynomials via basis expansion outlined in (\ref{eqn:basis_expansion}). Estimates from the two methods, CMB-BEst's Legendre and Planck's Modal, are mostly compatible. The most notable difference is at $\omega=230$Mpc where $f_{NL}$ from Legendre is more than $1\sigma$ larger compared to Modal. Even though it is interesting that the new estimate now passes the $2\sigma$ threshold, having one such point out of 35 shown here can be considered random.
 
 
 + KSW vs Leg vs Modal table
@@ -739,12 +750,6 @@ Discussion on kmin and kmax range
 
 
 
-\begin{figure}[htbp!] 
-	\centering    
-	\includegraphics[width=\textwidth]{sine_template_frequency_Legendre_Modal.pdf}
-	\caption{Feature model, sine, Legendre vs Modal}
-	\label{fig:sine_template_frequency_Legendre_Modal}
-\end{figure}
 
 \begin{figure}[htbp!] 
 	\centering    
