@@ -6,9 +6,9 @@
 
 % **************************** Define Graphics Path **************************
 \ifpdf
-    \graphicspath{{Chapter5/Figs/Raster/}{Chapter5/Figs/PDF/}{Chapter5/Figs/}}
+    \graphicspath{{Chapter5/Figs/Raster}{Chapter5/Figs/PDF}{Chapter5/Figs}}
 \else
-    \graphicspath{{Chapter5/Figs/Vector/}{Chapter5/Figs/}}
+    \graphicspath{{Chapter5/Figs/Vector}{Chapter5/Figs}}
 \fi
 
 
@@ -751,7 +751,7 @@ Figure \ref{fig:feature_template_correlations} shows correlations between $f_{NL
 	\left< b^{(i)}, b^{(j)} \right> &= \sum_{l_j} \frac{h^2_{l_1 l_2 l_3} b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}}  \\
 	&= \sum_{p_j p'_j} \alpha^{(i)}_{p_1 p_2 p_3} \alpha^{(j)}_{p'_1 p'_2 p'_3} \sum_{l_j} \frac{h^2_{l_1 l_2 l_3} (b^{(i)}_{p_1 p_2 p_3})_{l_1 l_2 l_3} (b^{(j)}_{p'_1 p'_2 p'_3})_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \\
 	&= \sum_{p_j p'_j} \alpha^{(i)}_{p_1 p_2 p_3} \alpha^{(j)}_{p'_1 p'_2 p'_3} \Gamma_{p_1 p_2 p_3, p'_1 p'_2 p'_3} \\
-	&= \vv{\alpha^{(i)}} \; \Gamma \; \vv{\alpha^{(j)}},
+	&= \vv{\alpha^{(i)}} \; \Gamma \; \vv{\alpha^{(j)}}, \label{eqn:late_time_inner_product}
 \end{align}
 where $\Gamma$ is defined in (\ref{def:gamma}). In the limit $N_{sims} \rightarrow \infty$, the sample correlation can be shown to approach the theoretical value in the weakly non-Gaussian limit. We see from Figure \ref{fig:feature_template_correlations} that they indeed display the same qualitative behaviour for $N_{sims}=140$.
 
@@ -759,7 +759,7 @@ The templates with $\omega < 300$ are highly uncorrelated with each other, as ca
 
 When $\omega > 300$, however, large non-diagonal correlations appear. This is about when the oscillation frequency surpasses the resolution set by the highest degree of polynomials. Our basis expansion becomes inaccurate after this point. There are interesting linear structures present, with slopes roughly equal to $2, 1/2$ and subsequently $4, 1/4$. These lines come from aliasing caused by subsampling rapid oscillations; our basis picks up $\omega' = \omega/2$ signal instead. $\omega_2/2 = -\omega_1 + 70$ and other pairs of $(\omega_1, \omega_2)$ resonate to give large non-diagonal correlations.
 
-We verify the claim that numerical inaccuracies at high $\omega$s are caused by lack of resolution due to limited number of polynomial modes. Figure \ref{fig:feature_template_correlations_compare_lmax} illustrates how having smaller $k$ range allows us to constrain faster oscillations accurately. Note that we also change $l_{max}$ correspondingly since smaller scales are neglected. Plot on the right hand side uses Legendre basis with $(k_{min}, k_{max})$ range rescaled by a factor of $3/4$. Fewer oscillations appear within the $k$ interval and therefore are easier to expand using fewer polynomials. As we expected, the scale at which non-diagonal correlations blow up is now shifted to a higher frequency, $\omega \approx (4/3) \cdot 300$. 
+We verify our claim that numerical inaccuracies at high $\omega$s are caused by the lack of resolution due to limited number of polynomial modes. Figure \ref{fig:feature_template_correlations_compare_lmax} illustrates how having smaller $k$ range allows us to constrain faster oscillations more accurately. Note that we also change $l_{max}$ correspondingly since smaller scales are neglected. Plot on the right hand side uses Legendre basis with $(k_{min}, k_{max})$ range rescaled by a factor of $3/4$. Fewer oscillations appear within the $k$ interval and are therefore easier to expand using fewer polynomials. As we expected, the scale at which non-diagonal correlations blow up is now shifted to a higher frequency, $\omega \approx (4/3) \cdot 300$. 
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -768,42 +768,43 @@ We verify the claim that numerical inaccuracies at high $\omega$s are caused by 
 	\label{fig:feature_template_correlations_compare_lmax}
 \end{figure}
 
-There is one subtlety about $f_{NL}$ estimates obtained from inaccurate primordial basis expansions. CMB-BEst computes $\beta$s and $\Gamma$s with respect to the fixed Legendre basis, which has been shown to be accurate even for the highest degree of polynomials. When the primordial basis is unable to resolve rapid modulations as we have seen, the $f_{NL}$ estimates we obtain are nevertheless meaningful; they are simply probing the wrong model. The constraints are not for the given shape function, but rather its projection to the vector subspace spanned by the basis functions as shown in (\ref{eqn:primordial_basis_projection}). Detecting non-zero $f_{NL}$ here is can still be worthwhile.
+There is one subtlety about $f_{NL}$ estimates obtained from inaccurate primordial basis expansions. CMB-BEst computes $\beta$s and $\Gamma$s with respect to the fixed Legendre basis, which has been shown to be accurate even for the highest degree of polynomials. When the primordial basis is unable to resolve rapid modulations as we have seen, the $f_{NL}$ estimates we obtain are nevertheless meaningful; they are simply probing the wrong model. The constraints are not for the given shape function, but rather its projection to the vector subspace spanned by the basis functions as shown in (\ref{eqn:primordial_basis_projection}). Detecting non-zero $f_{NL}$ here is can still have significant implications.
 
+Another popular template for models with oscillations is the `resonance' shape parametrised as $S(k_1, k_2, k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$. Log-spaced modulations are numerically harder to deal with since the oscillation frequency diverges as $k \rightarrow 0$. Note also that any scaling factors to the $k$'s can be absorbed into the phase via $\log(c(k_1 + k_2 + k_3)) = \log(k_1 + k_2 + k_3) + \log(c)$. For our Legendre basis with $k_{max}/k_{min}$ fixed to $1000$, the full $k$ range includes $\approx 1.1\omega$ oscillations. Any frequency larger than $\approx 27$ therefore cannot be expanded using $p_{max}=30$ polynomials. We still explore shapes with higher $\omega$s however, since the basis can pick up slower oscillations in higher $k$ values. Corresponding constraints should be taken with a grain of salt; they probe bispectrum shapes \textit{similar} to the resonance template. Low-$k$ oscillations are especially likely to be wiped out from these shapes.
 
-TODO: SinLog constraints. Epsilon vs frequency. Primordial convergence vs late-time...
+Figure \ref{fig:sinlog_template_frequency_Legendre_Modal} compares $f_{NL}$ constraints for the resonance template over a range of $\omega$s. As can be seen from the top two plots, the signal-to-noise values obtained from Legendre basis and Modal are relatively consistent up until $\omega \approx 35$, after which the two results start diverging significantly. The threshold is about the same for `sinlog' ($\phi = 0$) and `coslog' ($\phi=\pi/2$) shapes.
 
+Recall that the sample $\sigma$ from $f_{NL}$ estimates of Gaussian simulations should converge to the theoretical value calculated from Fisher information as $N_{sims}\rightarrow\infty$, since the CMB bispectrum estimator is optimal. We have checked that the sample and theoretical variances are consistent for standard templates in Section \ref{section:internal_consistency}, using both KSW and Legendre basis sets. The bottom two plots in Figure \ref{fig:sine_template_frequency_Legendre_Modal} show the equivalent results for resonance template with varying $\omega$.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sinlog_template_frequency_Legendre_Modal.pdf}
-	\caption{SinLog template frequency scan}
+	\caption{Constraints for the resonance shape $S(k_1,k_2,k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$ with varying $\omega$s and $\phi$ set to $0$ (left) and $\pi/2$ (right). Results are obtained using CMB-BEst's Legendre basis (blue) and Planck's Modal estimator (black). Top: signal-to-noise significance of the estimated $f_{NL}$s with $1\sigma$ and $2\sigma$ levels shaded in blue. Bottom: standard deviations of the $f_{NL}$ estimates against frequency $\omega$, calculated from the $f_{NL}$s of 140 simulations (sample) and the $\Gamma$ matrix (theory).}
 	\label{fig:sinlog_template_frequency_Legendre_Modal}
 \end{figure}
 
+Similarly to the feature models studied in Chapter \ref{chapter:CMB_state-4_forecast}, uncertainty in the estimated $f_{NL}$s increases as we raise $\omega$, exploring more rapid oscillations in bispectrum. Both Modal and Legendre methods lose their ability to resolve shapes with $\omega$s larger than $35$. The constraints are then no longer for the precise resonance shape but rather an approximation to it. A notable difference between Modal and CMB-BEst's Legendre basis is their behaviour at high $\omega$. Modal's numerical accuracy is completely lost after $\omega\approx 50$, leading to disproportionately large bispectra and small $\sigma$. On the other hand, Legendre retains stability in its basis expansion, yielding constraints for approximate bispectrum shapes closest to the true, high-frequency ones.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sinlog_template_frequency_variances_Legendre.pdf}
-	\caption{SinLog template frequency scan variances}
+	\caption{Ratio between sample and theoretical variances obtained from Legendre basis for resonance shapes. Sampled variance is calculated from $f_{NL}$ estimates of $140$ Gaussian simulations. $1\sigma$ and $2\sigma$ intervals are chosen based on a $\chi^2$-distribution, which accurately describes sample variances as long as the $f_{NL}$s are normally distributed. Results are statistically consistent with random fluctuations except potentially one at $\omega=20$, discussed in the main text.}
 	\label{fig:sinlog_template_frequency_variances_Legendre}
 \end{figure}
 
+A detailed comparison between the sample and theoretical variances is depicted in Figure \ref{fig:sinlog_template_frequency_variances_Legendre}. This serves as a useful consistency check within the CMB-BEst pipeline. Sample variances are calculated from finite number of $f_{NL}$ samples from simulations. We test if these estimates are compatible with the underlying distribution: $\chi^2$ with $N_{sims}-1$ degrees of freedom in this case. We achieve the desired consistency for both $\phi=0$ and $\phi=\pi/2$. One potential meaningful outlier is at $\omega=20$ and $\phi=0$, where the sample estimate is below 60\% of the expected level. This feature is not likely to be a numerical error specific to CMB-BEst since a similar dip can be found in Modal from Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}. No significant irregularity is found for different phases at the same frequency. We classify this point as a random fluctuation for now, but a further investigation using an independent set of Gaussian simulations would be useful.
+
+As with the feature models before, we plot the correlation matrix between the templates with different $\omega$s in Figure \ref{fig:sinlog_template_correlations}. Shapes with similar $\omega$s are naturally correlated, but most off-diagonal terms of the matrix vanish. Even for $\omega > 35$ where the basis expansion become less accurate, cross-correlations tend to remain small until $\omega \approx 75$. We verify the stability of CMB-BEst's Legendre basis expansion; best approximations to the highly oscillatory template is found, allowing us to continue exploring independent bispectrum shapes with the characteristic log-spaced oscillations.
 
 \begin{figure}[htbp!] 
-	\centering    
+	\centering
+	(a) $ \phi=0 $
 	\includegraphics[width=\textwidth]{sinlog_template_correlations_new.pdf}
-	\caption{Sinlog template correlations, sample and theoretical}
+	(b) $ \phi=\pi/2 $
+	\includegraphics[width=\textwidth]{coslog_template_correlations_new.pdf}
+	\caption{Correlations between resonance model templates $S(k_1,k_2,k_3) = \sin(\omega\log(k_1+k_2+k_3)+\phi)$ with different $\omega$ values, for (a) $\phi = 0$ and (b) $\phi=\pi/2$. `Sample' correlations are obtained from the Legendre basis $f_{NL}$ estimates from 140 Gaussian simulations. `Theory' correlations come from the inner product induced by $\Gamma$ matrix as shown in (\ref{eqn:late_time_inner_product}).}
 	\label{fig:sinlog_template_correlations}
 \end{figure}
-
-\begin{figure}[htbp!] 
-	\centering    
-	\includegraphics[width=\textwidth]{coslog_template_correlations_new.pdf}
-	\caption{Coslog template correlations, sample and theoretical}
-	\label{fig:coslog_template_correlations}
-\end{figure}
-
 
 
 \subsection{Proof of concept} \label{section:proof_of_concept}
