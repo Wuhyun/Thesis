@@ -93,26 +93,82 @@ We make one last definition which will prove to be useful in the next section;
 By squaring the Gaunt integral and summing over $m$s, we get a simpler quantity $h^2_{l_1 l_2 l_3}$ which preserves important geometrical information. Here $l_1$, $l_2$ and $l_3$ must still form a triangle and add up to an even number. Otherwise, the integral over Legendre polynomials in (\ref{def:h2_using_legendre_integral}) vanishes.
 
 \subsection{CMB bispectrum estimation}
-Bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure.
+Bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure. In this section, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
 
-In this section, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
-
-Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as local, equilateral, and orthogonal shapes (TODO: define these earlier and reference them here). Let us express the `true' bispectrum in terms of chosen shapes;
+Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as local, equilateral, and orthogonal shapes (TODO: define these earlier and reference them here). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of shapes chosen;
 \begin{align}
 	B(k_1,k_2,k_3) = \sum_i f_{NL}^{(i)} \; B^{(i)}(k_1,k_2,k_3), \label{eqn:primordial_bispectrum_fNLs}
 \end{align}
-where the primordial non-Gaussianity (or non-linearity \footnote{This name originates from local non-Gaussianity, which was one of the first types of models studied. In a local model, the metric potential is expanded as a local function of a Gaussian field as $\Phi(\vv{x}) = \phi(\vv{x}) + f_{NL} \left(\phi^2(\vv{x}) - \left< \phi^2 \right> \right) + \cdots$. Here, $f_{NL}$ parametrises the amplitude of non-linear contribution to the field, hence the name `non-linearity' parameter.}) parameter $f^{(i)}_{NL}$ measures the magnitude of given bispectrum shape present in reality. Detection of non-zero $f_{NL}$ can serve as a strong evidence for the corresponding models. Non-detection of $f_{NL}$, on the other hand, allows us to place bounds on the number and hence constrain models which predict larger bispectra.
+where the primordial non-Gaussianity (or non-linearity \footnote{This name originates from local non-Gaussianity, which was one of the first types of models studied. In a local model, the metric potential is expanded as a local function of a Gaussian field as $\Phi(\vv{x}) = \phi(\vv{x}) + f_{NL} \left(\phi^2(\vv{x}) - \left< \phi^2 \right> \right) + \cdots$. Here, $f_{NL}$ parametrises the amplitude of non-linear contribution to the field, hence the name `non-linearity' parameter.}) parameter $f^{(i)}_{NL}$ measures the magnitude of given bispectrum shape present in reality. Detection of non-zero $f_{NL}$ can serve as a strong evidence for the corresponding models. Non-detection of $f_{NL}$, on the other hand, still allows us to place bounds on the number and hence constrain models which predict larger bispectra.
 
 Expressing (\ref{eqn:primordial_bispectrum_fNLs}) in terms of the late-time CMB anisotropies,
 \begin{align}
-	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> = \sum_i f^{(i)}_{NL} \; \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b^{X_1 X_2 X_3, (i)}_{l_1 l_2 l_3}.
+	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> = \sum_i f^{(i)}_{NL} \; \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b^{X_1 X_2 X_3, (i)}_{l_1 l_2 l_3}. \label{eqn:late_time_bispectrum_fNLs_theoretical}
 \end{align}
-We introduce some shorthand notations to prevent floods of indices;
+The goal of CMB bispectrum estimation is to compute $f^{(i)}_{NL}$s which best describes the observations. In reality, we can only observe one realisation of the universe and therefore a single set of $a_{lm}$s. Sample estimates replace the expectation values $\left< \cdot \right>$ on the left hand side of \eqref{eqn:late_time_bispectrum_fNLs_theoretical}, and we introduce the error term;
+\begin{align}
+	a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3} = \sum_i  f^{(i)}_{NL} \; \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b^{X_1 X_2 X_3, (i)}_{l_1 l_2 l_3} \;+\; \epsilon^{X_1 X_2 X_3}_{l_1 l_2 l_3, m_1 m_2 m_3}. \label{eqn:late_time_bispectrum_fNLs_sample}
+\end{align}
+For simplicity, we drop the $X_j$'s from now on. The following derivation of the bispectrum estimator should be easily extendable to include both temperature and E-mode polarisation. We also define some shorthand notations for indices to improve readability;
 \begin{align}
 	\vv{l}_j:=(l_j,m_j), \;\; L:=(l_1,l_2,l_3), \;\; \text{and} \;\; \vv{L}:=(\vv{l}_1, \vv{l}_2, \vv{l}_3).
 \end{align}
+The estimation problem is summarised as follows.
+\begin{align}
+	&B^{obs}_\vv{L} = \sum_i B^{(i)}_\vv{L} f^{(i)}_{NL}  \;+\; \epsilon_\vv{L}, \label{eqn:bispectrum_estimation_core}\\
+	\text{where} \;\; &B^{obs}_\vv{L} := a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} \;\; \text{and} \;\; B^{(i)}_\vv{L} := \mathcal{G}_\vv{L} b^{(i)}_L.
+\end{align}
+As can be seen from \eqref{eqn:bispectrum_estimation_core}, bispectrum estimation is linear regression in essence. Borrowing some language from statistics,
+\begin{itemize}
+	\item $\vv{B}^{obs}$ is the \textit{regressand}, in our case the noisy observed bispectrum samples $B^{obs}_\vv{L}$ obtained for each \textit{observation} $\vv{L}$.
+	\item $\vv{B}^{(i)}$s are the \textit{regressors}, theoretical bispectra $B^{(i)}_\vv{L}$ we would like to fit, each motivated by inflationary models.
+	\item $f^{(i)}_NL$s are the \textit{regression coefficients}, which parametrise how much of each regressor contributes to the regressand. Our goal is to estimate these.
+	\item $\vv{\epsilon}$ is the error variable, which represents the noise in bispectrum sample and the true underlying value. $\epsilon_\vv{L}$ can be sourced by sampling error (limited number of samples) or inaccuracies in the measurements. 
+\end{itemize}
+
+\begin{align}
+	\left< B^{obs}_\vv{L} B^{obs}_{\vv{L}'} \right> &= \left< a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} a_{\vv{l}'_1} a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \\
+	&= \left[ \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_2} \right> + \cdots \right]^\ddagger \nonumber \\
+	&\;\;\;\; + \left[ \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_1} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_1} \right> + \cdots \right]^{\ddagger\ddagger}
+\end{align}
+
+\begin{align}
+	{B'}^{obs}_\vv{L} := a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2}
+\end{align}
+
+\begin{align}
+	\left< {B'}^{obs}_\vv{L} {B'}^{obs}_{\vv{L}'} \right> = C_{l_1} C_{l_2} C_{l_3} \; \Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} \; \delta_{\vv{l}_1 \vv{l}'_1} \delta_{\vv{l}_2 \vv{l}'_2} \delta_{\vv{l}_3 \vv{l}'_3} 
+\end{align}
+
+\begin{align}
+	\tilde{B}^{obs}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right] \\
+	\tilde{B}^{(i)}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \; \mathcal{G}_{\vv{L}} b^{(i)}_{L}
+\end{align}
+
+\begin{align}
+	F_{ij} :=& \tilde{\vv{B}}^{(i)} \cdot \tilde{\vv{B}}^{(j)} \\
+	=& \sum_{\vv{l}_1 \le \vv{l}_2 \le \vv{l}_3}  \frac{\mathcal{G}_{\vv{L}}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} \; C_{l_1} C_{l_2} C_{l_3}} \\
+	=& \sum_{\vv{l}_1 , \vv{l}_2 , \vv{l}_3}  \frac{\mathcal{G}_{\vv{L}}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}}
+	=& \sum_{l_1,l_2,l_3}  \frac{\mathcal{h}_{L}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}}
+\end{align}
+
+\begin{align}
+	S_i &:= \tilde{\vv{B}}^{(i)} \cdot \tilde{\vv{B}}^{obs} \\
+	&= \sum_{\vv{l}_1 , \vv{l}_2 , \vv{l}_3} \frac{\mathcal{G}_{\vv{L}} b^{(i)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right] 
+\end{align}
+
+\begin{align}
+	\hat{f_{NL}}^{(i)} = \sum_j (F^{-1})_{ij} S_j
+\end{align}
+
+\begin{align}
+	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_{l_1 l_2 l_3} \frac{h^2_{l_1 l_2 l_3} b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \\
+	\text{Corr} \left( \vv{b}^{(i)}, \vv{b}^{(j)} \right) &:= \frac{ \left< \vv{b}^{(i)}, \vv{b}^{(j)} \right>}{\sqrt{ \left< \vv{b}^{(i)}, \vv{b}^{(i)} \right> \left< \vv{b}^{(j)}, \vv{b}^{(j)} \right> }}
+\end{align}
+
 
 Analogy to linear regression.
 
 Review of KSW, Modal and Binned estimators.
 
+Review lensing-ISW bias
