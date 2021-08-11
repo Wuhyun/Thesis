@@ -72,7 +72,7 @@ Value of the Gaunt integral is best represented using Wigner 3-j symbols as
 \begin{align}
 	\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} = \sqrt{\frac{(2l_1+1)(2l_2+1)(2l_3+1)}{4\pi}} \begin{pmatrix}	l_1 & l_2 & l_3 \\ m_1 & m_2 & m_3 \end{pmatrix} \begin{pmatrix}	l_1 & l_2 & l_3 \\ 0 & 0 & 0 \end{pmatrix}.
 \end{align}
-Wigner 3-j symbols, written here as a 2-by-3 matrix, arise from formal addition of angular momenta. They are real coefficients appearing in the expansion of zero total angular momentum state $|0 \; 0\rangle$;
+Wigner 3-j symbols, written here as a 2-by-3 matrix, are closely related to addition of angular momenta. They are real coefficients appearing in the expansion of zero total angular momentum state $|0 \; 0\rangle$;
 \begin{align}
 	| 0 \; 0 \rangle = \sum_{l_1,m_1} \sum_{l_2,m_2} \sum_{l_3,m_3} \begin{pmatrix}	l_1 & l_2 & l_3 \\ m_1 & m_2 & m_3 \end{pmatrix} | l_1 m_1 \rangle | l_2 m_2 \rangle | l_3 m_3 \rangle.
 \end{align}
@@ -81,26 +81,38 @@ For further details on Wigner 3-j symbols see, e.g., \cite{Olver2010nist}. We qu
 	\sum_{m_1,m_2,m_3} { \begin{pmatrix}	l_1 & l_2 & l_3 \\ m_1 & m_2 & m_3 \end{pmatrix} }^2 &= 1, \label{eqn:wigner_3j_normalisation} \\
 	{ \begin{pmatrix}	l_1 & l_2 & l_3 \\ 0 & 0 & 0 \end{pmatrix} }^2 &= \frac{1}{2} \int_{-1}^{1} d\mu \; P_{l_1}(\mu) P_{l_2}(\mu) P_{l_3}(\mu). \label{eqn:wigner_3j_legendre_integral} 
 \end{align}
-The normalisation condition (\ref{eqn:wigner_3j_normalisation}) can be easily derived by computing norm of the state $|0 \; 0 \rangle$ in definition. The second identity (\ref{eqn:wigner_3j_legendre_integral}) allows us to rewrite the given 3-j symbol to a separable integral.
+The normalisation condition (\ref{eqn:wigner_3j_normalisation}) can be easily derived by computing norm of the state $|0 \; 0 \rangle$ in the definition. The second identity (\ref{eqn:wigner_3j_legendre_integral}) allows us to replace a square of any given 3-j symbol satisfying $m_1=m_2=m_3=0$ with a separable integral.
 
 We make one last definition which will prove to be useful in the next section;
 \begin{align}
 	h^2_{l_1 l_2 l_3} :=& \sum_{m_1, m_2, m_3} \left( \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} \right)^2  \\
 	=& \frac{(2l_1+1)(2l_2+1)(2l_3+1)}{4\pi} { \begin{pmatrix}	l_1 & l_2 & l_3 \\ 0 & 0 & 0 \end{pmatrix} }^2 \\
-	=& \frac{(2l_1+1)(2l_2+1)(2l_3+1)}{8\pi} \int_{-1}^{1} d\mu \; P_{l_1}(\mu) P_{l_2}(\mu) P_{l_3}(\mu).
+	=& \frac{(2l_1+1)(2l_2+1)(2l_3+1)}{8\pi} \int_{-1}^{1} d\mu \; P_{l_1}(\mu) P_{l_2}(\mu) P_{l_3}(\mu). \label{def:h2_using_legendre_integral}
 \end{align}
 
+By squaring the Gaunt integral and summing over $m$s, we get a simpler quantity $h^2_{l_1 l_2 l_3}$ which preserves important geometrical information. Here $l_1$, $l_2$ and $l_3$ must still form a triangle and add up to an even number. Otherwise, the integral over Legendre polynomials in (\ref{def:h2_using_legendre_integral}) vanishes.
 
 \subsection{CMB bispectrum estimation}
+Bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure.
 
+In this section, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
+
+Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as local, equilateral, and orthogonal shapes (TODO: define these earlier and reference them here). Let us express the `true' bispectrum in terms of chosen shapes;
 \begin{align}
-	B(k_1,k_2,k_3) = \sum_i f_{NL}^{(i)} B^{(i)}(k_1,k_2,k_3)
+	B(k_1,k_2,k_3) = \sum_i f_{NL}^{(i)} \; B^{(i)}(k_1,k_2,k_3), \label{eqn:primordial_bispectrum_fNLs}
+\end{align}
+where the primordial non-Gaussianity (or non-linearity \footnote{This name originates from local non-Gaussianity, which was one of the first types of models studied. In a local model, the metric potential is expanded as a local function of a Gaussian field as $\Phi(\vv{x}) = \phi(\vv{x}) + f_{NL} \left(\phi^2(\vv{x}) - \left< \phi^2 \right> \right) + \cdots$. Here, $f_{NL}$ parametrises the amplitude of non-linear contribution to the field, hence the name `non-linearity' parameter.}) parameter $f^{(i)}_{NL}$ measures the magnitude of given bispectrum shape present in reality. Detection of non-zero $f_{NL}$ can serve as a strong evidence for the corresponding models. Non-detection of $f_{NL}$, on the other hand, allows us to place bounds on the number and hence constrain models which predict larger bispectra.
+
+Expressing (\ref{eqn:primordial_bispectrum_fNLs}) in terms of the late-time CMB anisotropies,
+\begin{align}
+	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> = \sum_i f^{(i)}_{NL} \; \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b^{X_1 X_2 X_3, (i)}_{l_1 l_2 l_3}.
+\end{align}
+We introduce some shorthand notations to prevent floods of indices;
+\begin{align}
+	\vv{l}_j:=(l_j,m_j), \;\; L:=(l_1,l_2,l_3), \;\; \text{and} \;\; \vv{L}:=(\vv{l}_1, \vv{l}_2, \vv{l}_3).
 \end{align}
 
-\begin{align}
-	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> 
-\end{align}
-
-fNL form, analogy to linear regression.
+Analogy to linear regression.
 
 Review of KSW, Modal and Binned estimators.
+

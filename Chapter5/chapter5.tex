@@ -792,7 +792,7 @@ Similarly to the feature models studied in Chapter \ref{chapter:CMB_state-4_fore
 	\label{fig:sinlog_template_frequency_variances_Legendre}
 \end{figure}
 
-A detailed comparison between the sample and theoretical variances is depicted in Figure \ref{fig:sinlog_template_frequency_variances_Legendre}. This serves as a useful consistency check within the CMB-BEst pipeline. Sample variances are calculated from finite number of $f_{NL}$ samples from simulations. We test if these estimates are compatible with the underlying distribution: $\chi^2$ with $N_{sims}-1$ degrees of freedom in this case. We achieve the desired consistency for both $\phi=0$ and $\phi=\pi/2$. One potential meaningful outlier is at $\omega=20$ and $\phi=0$, where the sample estimate is below 60\% of the expected level. This feature is not likely to be a numerical error specific to CMB-BEst since a similar dip can be found in Modal from Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}. No significant irregularity is found for different phases at the same frequency. We classify this point as a random fluctuation for now, but a further investigation using an independent set of Gaussian simulations would be useful.
+A detailed comparison between the sample and theoretical variances is depicted in Figure \ref{fig:sinlog_template_frequency_variances_Legendre}. This serves as a useful consistency check within the CMB-BEst pipeline. Sample variances are calculated from finite number of $f_{NL}$ samples from simulations. We test if these estimates are compatible with the underlying distribution: $\chi^2$ with $N_{sims}-1$ degrees of freedom in this case. We achieve the desired consistency for both $\phi=0$ and $\phi=\pi/2$. One potentially meaningful outlier is at $\omega=20$ and $\phi=0$, where the sample estimate is below 60\% of the expected level. This anomaly is not likely to be a numerical error specific to CMB-BEst since a similar dip can be found from Modal results in Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}. No significant irregularity is found for different phases at the same frequency. We classify this point as a random fluctuation for now, but a further investigation using an independent set of Gaussian simulations is required to be certain.
 
 As with the feature models before, we plot the correlation matrix between the templates with different $\omega$s in Figure \ref{fig:sinlog_template_correlations}. Shapes with similar $\omega$s are naturally correlated, but most off-diagonal terms of the matrix vanish. Even for $\omega > 35$ where the basis expansion become less accurate, cross-correlations tend to remain small until $\omega \approx 75$. We verify the stability of CMB-BEst's Legendre basis expansion; best approximations to the highly oscillatory template is found, allowing us to continue exploring independent bispectrum shapes with the characteristic log-spaced oscillations.
 
@@ -818,11 +818,24 @@ As with the feature models before, we plot the correlation matrix between the te
 
 \begin{figure}[htbp!] 
 	\centering    
-	\includegraphics[width=0.9\textwidth]{dbi_sound_speed_scan_annotated.pdf}
-	\caption{DBI sound speed scan}
+	\includegraphics[width=\textwidth]{dbi_sound_speed_scan_annotated_new.pdf}
+	\caption{Constraints on the DBI model with varying sound speed $c_s$. Primordial bispectrum computed from \textsc{Primodal} is fed directly into CMB-BEst as coefficients $\alpha_{p_1 p_2 p_3}$ appearing in the Legendre basis expansion. Constraints from the Legendre basis with $p_{max}=30$ (black) are shown in comparison with $p_{max}=29$ (blue). $1\sigma$ and $2\sigma$ confidence intervals around $0$ are shaded in blue and represent the uncertainty in estimated $f_{NL}$s. Bispectrum shapes are normalised so that $f_{NL}=1$ corresponds to the DBI model in consideration. Our constraints on DBI sound speed is $c_s > 0.056$ with $95\%$ confidence.}
 	\label{fig:dbi_sound_speed_scan}
 \end{figure}
 
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=0.8\textwidth]{dbi_reso_scan_fNLs_new.pdf}
+	\caption{Constraints on the DBI model with a feature in the inflationary potential, causing resonance-type oscillations approximately parametrised as $\sin(\omega \log(k_1+k_2+k_3) + \phi)$. Primordial bispectrum is computed from \textsc{Primodal} for various step sizes, and the results are fed directly to CMB-BEst.}
+	\label{fig:dbi_resonance_scan}
+\end{figure}
+
+\begin{figure}[htbp!] 
+	\centering    
+	\includegraphics[width=\textwidth]{sinlog_equil_template_correlations_compare_decomp.pdf}
+	\caption{Correlations between $f_{NL}$ constraints for the enveloped resonance shape $S(k_1,k_2,k_3) = S^{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$ with different $\omega$s. Since the given shape behaves badly in a region outside the tetrapyd but within the cubic domain of (\ref{eqn:basis_expansion}), we observe large off-diagonal correlations in the original Legendre basis expansion (Left). Manually setting the shape function to zero at these unphysical configurations therefore dramatically improves the numerical performance (Right). }
+	\label{fig:sinlog_equil_template_decomp_comparison}
+\end{figure}
 
 
 
