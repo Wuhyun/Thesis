@@ -85,14 +85,14 @@ The normalisation condition (\ref{eqn:wigner_3j_normalisation}) can be easily de
 
 We make one last definition which will prove to be useful in the next section;
 \begin{align}
-	h^2_{l_1 l_2 l_3} :=& \sum_{m_1, m_2, m_3} \left( \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} \right)^2  \\
+	h^2_{l_1 l_2 l_3} :=& \sum_{m_1, m_2, m_3} \left( \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} \right)^2  \label{def:h2_using_gaunt_integral}\\
 	=& \frac{(2l_1+1)(2l_2+1)(2l_3+1)}{4\pi} { \begin{pmatrix}	l_1 & l_2 & l_3 \\ 0 & 0 & 0 \end{pmatrix} }^2 \\
 	=& \frac{(2l_1+1)(2l_2+1)(2l_3+1)}{8\pi} \int_{-1}^{1} d\mu \; P_{l_1}(\mu) P_{l_2}(\mu) P_{l_3}(\mu). \label{def:h2_using_legendre_integral}
 \end{align}
 
 By squaring the Gaunt integral and summing over $m$s, we get a simpler quantity $h^2_{l_1 l_2 l_3}$ which preserves important geometrical information. Here $l_1$, $l_2$ and $l_3$ must still form a triangle and add up to an even number. Otherwise, the integral over Legendre polynomials in (\ref{def:h2_using_legendre_integral}) vanishes.
 
-\subsection{CMB bispectrum estimation}
+\subsection{Optimal estimator}
 Bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure. In this section, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
 
 Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as local, equilateral, and orthogonal shapes (TODO: define these earlier and reference them here). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of shapes chosen;
@@ -109,7 +109,7 @@ The goal of CMB bispectrum estimation is to compute $f^{(i)}_{NL}$s which best d
 \begin{align}
 	a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3} = \sum_i  f^{(i)}_{NL} \; \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b^{X_1 X_2 X_3, (i)}_{l_1 l_2 l_3} \;+\; \epsilon^{X_1 X_2 X_3}_{l_1 l_2 l_3, m_1 m_2 m_3}. \label{eqn:late_time_bispectrum_fNLs_sample}
 \end{align}
-For simplicity, we drop the $X_j$'s from now on. The following derivation of the bispectrum estimator should be easily extendable to include both temperature and E-mode polarisation. We also define some shorthand notations for indices to improve readability;
+For simplicity, we drop the $X_j$'s from now on. The following derivation of the bispectrum estimator can be easily generalised to include both temperature and E-mode polarisation. We also define some shorthand notations for harmonic indices to improve readability;
 \begin{align}
 	\vv{l}_j:=(l_j,m_j), \;\; L:=(l_1,l_2,l_3), \;\; \text{and} \;\; \vv{L}:=(\vv{l}_1, \vv{l}_2, \vv{l}_3).
 \end{align}
@@ -118,57 +118,85 @@ The estimation problem is summarised as follows.
 	&B^{obs}_\vv{L} = \sum_i B^{(i)}_\vv{L} f^{(i)}_{NL}  \;+\; \epsilon_\vv{L}, \label{eqn:bispectrum_estimation_core}\\
 	\text{where} \;\; &B^{obs}_\vv{L} := a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} \;\; \text{and} \;\; B^{(i)}_\vv{L} := \mathcal{G}_\vv{L} b^{(i)}_L.
 \end{align}
-As can be seen from \eqref{eqn:bispectrum_estimation_core}, bispectrum estimation is linear regression in essence. Borrowing some language from statistics,
+The form of \eqref{eqn:bispectrum_estimation_core} makes it clear that bispectrum estimation is linear regression in essence. Borrowing terms from statistics, we specify the components of our analysis below.
 \begin{itemize}
 	\item $\vv{B}^{obs}$ is the \textit{regressand}, in our case the noisy observed bispectrum samples $B^{obs}_\vv{L}$ obtained for each \textit{observation} $\vv{L}$.
-	\item $\vv{B}^{(i)}$s are the \textit{regressors}, theoretical bispectra $B^{(i)}_\vv{L}$ we would like to fit, each motivated by inflationary models.
-	\item $f^{(i)}_NL$s are the \textit{regression coefficients}, which parametrise how much of each regressor contributes to the regressand. Our goal is to estimate these.
-	\item $\vv{\epsilon}$ is the error variable, which represents the noise in bispectrum sample and the true underlying value. $\epsilon_\vv{L}$ can be sourced by sampling error (limited number of samples) or inaccuracies in the measurements. 
+	\item $\vv{B}^{(i)}$s are the \textit{regressors}, theoretical bispectra $B^{(i)}_\vv{L}$ motivated from inflationary models.
+	\item $f^{(i)}_{NL}$s are the \textit{regression coefficients} which parametrise how much each regressor contributes to the regressand. Our main objective is to estimate them.
+	\item $\vv{\epsilon}$ is the \textit{error term} which represents the noise in bispectrum sample and the true underlying value. $\epsilon_\vv{L}$ can be sourced by sampling error (from limited number of samples) or inaccuracies in the measurements. 
 \end{itemize}
 
+We adopt the least squares method to estimate $f_{NL}$s from given $\vv{B}^{obs}$ and $B^{(i)}_\vv{L}$. Before doing so, each element of the regressand and regressors needs to be normalised so that the expected variances in error are uniform across observations $\vv{L}$. We compute the theoretical variance in $B^{obs}_\vv{L}$ under two assumptions. First, we in the weak non-Gaussian limit where dominant contributions to correlation functions come from the Gaussian part of $a_\vv{l}$s . Wick's theorem then reduces the problem down to summing over all possible contractions. Second, we neglect the inaccuracies in measuring $a_{lm}$s, since their contributions to total error is much smaller compared to sampling errors.
+
+Under these assumptions, expected covariance of the observed bispectra is given by
 \begin{align}
-	\left< B^{obs}_\vv{L} B^{obs}_{\vv{L}'} \right> &= \left< a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} a_{\vv{l}'_1} a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \\
+	\left< B^{obs}_\vv{L} B^{obs}_{\vv{L}'} \right> &= \left< a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} a_{\vv{l}'_1} a_{\vv{l}'_2} a_{\vv{l}'_3} \right> 
+	\label{eqn:bispectrum_variance_contractions1} \\
 	&= \left[ \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_2} \right> + \cdots \right]^\ddagger \nonumber \\
-	&\;\;\;\; + \left[ \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_1} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_1} \right> + \cdots \right]^{\ddagger\ddagger}
+	&\;\;\;\; + \left[ \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_1} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_1} \right> + \cdots \right]^{\ddagger\ddagger} \label{eqn:bispectrum_variance_contractions2}.
 \end{align}
+\eqref{eqn:bispectrum_variance_contractions2} contains all possible contractions of the 6 $a_\vv{l}$s, 3 from each of $B^{obs}_\vv{L}$ and $B^{obs}_{\vv{L}'}$. There are 15 such contractions: 6 consisting only of terms between the two bispectra (in $\ddagger$) and 9 which also have internal contractions ($\ddagger\ddagger$). Our aim is to modify the regression variables so that the resulting covariance matrix reduces to identity. The error in each $\vv{L}$ is required to be independent and have unit variance.
 
+Terms in ($\ddagger$) originate from the symmetry present in the bispectrum. $B^{obs}_\vv{L} = a_{\vv{l}_1}  a_{\vv{l}_2}  a_{\vv{l}_3}$ is invariant under permutations of ${\vv{l}_1, \vv{l}_2, \vv{l}_3}$. In order to remove duplicate elements, we restrict our $\vv{L}$s to ones satisfying $\vv{l}_1 \le \vv{l}_2 \le \vv{l}_3$. \footnote{$(l_1,m_1) < (l_2,m_2)$ if and only if ($l_1 < l_2$) \textbf{or} ($l_1 = l_2$ and $m_1 < m_2$).}
+
+On the other hand, terms in ($\ddagger\ddagger$) reveal a more complex issue about our formulation. Observed anisotropies $a_\vv{l}$ are not necessarily independent, as various factors such as partial sky coverage and correlated noise can induce correlations between them. Even if they are independent, our construction of $B^{obs}_\vv{L}$ can yield non-zero terms in ($\ddagger\ddagger$) when at least two out of $\vv{l}_1, \vv{l}_2, \vv{l}_3$ are identical. This is similar in essence to incorrectly estimating variance of a random variable $X$ from samples $X_i$ by computing $\sum_i X_i^2$, instead of $\sum_i (X_i- \left< X \right>)^2$.
+
+We redefine the observed bispectra in terms of $a_\vv{l}$s by subtracting off the extra contributions.
 \begin{align}
-	{B'}^{obs}_\vv{L} := a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2}
+	{B'}^{obs}_\vv{L} := a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2}. \label{def:bispectrum_estimate_including_linear}
 \end{align}
+The newly introduced terms linear in $a_\vv{l}$s have mean contribution of zero, since $\left< a_\vv{l} \right> = 0$ except for the monopole $l=0$ which is excluded from CMB bispectrum analysis. Thus ${B'}^{obs}_\vv{L}$ is still an unbiased estimate of the underlying bispectra. Substituting into \eqref{eqn:bispectrum_variance_contractions1}, all terms previously in ($\ddagger\ddagger$) now vanish.
 
+In theory, we can compute \eqref{eqn:bispectrum_variance_contractions1} using the full covariance matrix $C_{\vv{l}_1 \vv{l}_2} = \left< a_{\vv{l}_1} a_{\vv{l}_2} \right>$ and invert it to get the least squares estimate for $f_{NL}$s. In practice, however, this is a costly and numerically demanding operation. We approximate the non-diagonal covariances in \eqref{def:bispectrum_estimate_including_linear} using Monte Carlo method: $\langle a_{\vv{l}_1}^{G} a_{\vv{l}_2}^{G} \rangle_{MC}$ from ensemble of realistic Gaussian simulations. Otherwise, we assume $C_{\vv{l}_1 \vv{l}_2} \approx C_{l_1} \delta_{\vv{l}_1 \vv{l}_2}$ to simplify our calculations.
+
+Each element of the regressand is now independent;
 \begin{align}
-	\left< {B'}^{obs}_\vv{L} {B'}^{obs}_{\vv{L}'} \right> = C_{l_1} C_{l_2} C_{l_3} \; \Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} \; \delta_{\vv{l}_1 \vv{l}'_1} \delta_{\vv{l}_2 \vv{l}'_2} \delta_{\vv{l}_3 \vv{l}'_3} 
+	\left< {B'}^{obs}_\vv{L} {B'}^{obs}_{\vv{L}'} \right> = C_{l_1} C_{l_2} C_{l_3} \; \Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} \; \delta_{\vv{l}_1 \vv{l}'_1} \delta_{\vv{l}_2 \vv{l}'_2} \delta_{\vv{l}_3 \vv{l}'_3},
 \end{align}
-
+where $\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3}$ is a symmetry factor equal to $6$ if $\vv{l}_1 = \vv{l}_2 = \vv{l}_3$, $2$ if exactly two of them are identical, and $1$ if all are distinct. The regressand and regressors are rescaled so that each element of the error term has unit variance.
 \begin{align}
 	\tilde{B}^{obs}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right] \\
 	\tilde{B}^{(i)}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \; \mathcal{G}_{\vv{L}} b^{(i)}_{L}
 \end{align}
 
+The ordinary least squares estimate for a linear model $\vv{y} = X\vv{\beta} + \vv{\epsilon}$ is given by $\hat{\beta} = (X^T X)^{-1} X^T \vv{y}$. We define the equivalent objects to $(X^T X)_{ij}$ and $(X^T \vv{y})_i$ in our linear model \eqref{eqn:bispectrum_estimation_core} as $F_{ij}$ and $S_i$, respectively. The matrix $F$ is given by
 \begin{align}
-	F_{ij} :=& \tilde{\vv{B}}^{(i)} \cdot \tilde{\vv{B}}^{(j)} \\
-	=& \sum_{\vv{l}_1 \le \vv{l}_2 \le \vv{l}_3}  \frac{\mathcal{G}_{\vv{L}}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} \; C_{l_1} C_{l_2} C_{l_3}} \\
-	=& \sum_{\vv{l}_1 , \vv{l}_2 , \vv{l}_3}  \frac{\mathcal{G}_{\vv{L}}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}}
-	=& \sum_{l_1,l_2,l_3}  \frac{\mathcal{h}_{L}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}}
+	F_{ij} &:= \tilde{\vv{B}}^{(i)} \cdot \tilde{\vv{B}}^{(j)} \\[0.5ex]
+	&= \sum_{\vv{l}_1 \le \vv{l}_2 \le \vv{l}_3}  \frac{\mathcal{G}_{\vv{L}}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} \; C_{l_1} C_{l_2} C_{l_3}}   
+	= \sum_{\vv{l}_1 , \vv{l}_2 , \vv{l}_3}  \frac{\mathcal{G}_{\vv{L}}^2 \; b^{(i)}_{L} b^{(j)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}}
+	= \sum_{l_1,l_2,l_3}  \frac{h^2_L \; b^{(i)}_{L} b^{(j)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}}. \label{eqn:bispectrum_estimation_fisher}
 \end{align}
+Note that in the symmetry factor in \eqref{eqn:bispectrum_estimation_fisher} was removed by reintroducing the sum over all possible $\vv{l}_j$s. For the last equality we used $h^2_{l_1 l_2 l_3}$ defined in \eqref{def:h2_using_gaunt_integral}.
 
+Similarly, the vector $S$ can be written as
 \begin{align}
 	S_i &:= \tilde{\vv{B}}^{(i)} \cdot \tilde{\vv{B}}^{obs} \\
-	&= \sum_{\vv{l}_1 , \vv{l}_2 , \vv{l}_3} \frac{\mathcal{G}_{\vv{L}} b^{(i)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right] 
+	&= \sum_{\vv{l}_1 , \vv{l}_2 , \vv{l}_3} \frac{\mathcal{G}_{\vv{L}} b^{(i)}_{L}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right].
+	\label{eqn:bispectrum_estimation_signal}
 \end{align}
-
+Finally, we have the least squares estimate of $f_{NL}$ in terms of $F$ and $S$;
 \begin{align}
-	\hat{f_{NL}}^{(i)} = \sum_j (F^{-1})_{ij} S_j
+	\hat{f}_{NL}^{(i)} = \sum_j (F^{-1})_{ij} S_j. \label{eqn:bispectrum_estimation_ols_estimate}.
 \end{align}
 
+One of the main strengths of the ordinary least squares estimator lies in its \textit{optimality}; it has the smallest possible variance, named the Cramer-Rao bound, among all unbiased estimators that are linear in data. Noting that $\left< S_i S_j \right> = F_{ij}$, we get $\text{Var}(\hat{f}_{NL}^{(i)}) = (F^{-1})_{ii}$. This value is indeed equal to the Cramer-Rao bound computed from the Fisher information matrix, which is $F$ here.
+
+Fisher matrix of the estimator naturally motivates the following definition of inner product on the space of reduced bispectra.
 \begin{align}
-	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_{l_1 l_2 l_3} \frac{h^2_{l_1 l_2 l_3} b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \\
-	\text{Corr} \left( \vv{b}^{(i)}, \vv{b}^{(j)} \right) &:= \frac{ \left< \vv{b}^{(i)}, \vv{b}^{(j)} \right>}{\sqrt{ \left< \vv{b}^{(i)}, \vv{b}^{(i)} \right> \left< \vv{b}^{(j)}, \vv{b}^{(j)} \right> }}
+	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_L \frac{h^2_L b^{(i)}_L b^{(j)}_L}{6 \; C_{l_1} C_{l_2} C_{l_3}}  = F_{ij}.	
 \end{align}
+In particular, correlation between two bispectrum shapes can be defined as
+\begin{align}
+	\text{Corr} \left( \vv{b}^{(i)}, \vv{b}^{(j)} \right) &:= \frac{ \left< \vv{b}^{(i)}, \vv{b}^{(j)} \right>}{\sqrt{ \left< \vv{b}^{(i)}, \vv{b}^{(i)} \right> \left< \vv{b}^{(j)} \vv{b}^{(j)} \right> }}.
+\end{align}
+If all bispectrum shapes under consideration are uncorrelated in this metric so that $| \text{Corr}(\vv{b}^{(i)}, \vv{b}^{(j)}) | \ll 1$ whenever $i \neq j$, then the Fisher matrix $F$ is approximately diagonal, and $(F^{-1})_{ii} \approx (F_{ii})^{-1}$. In this case, estimated $\hat{f}_{NL}^{(i)}$ in \eqref{eqn:bispectrum_estimation_ols_estimate} is identical to the value obtained using a single regressor $\vv{B}^{(i)}$. In other words, we may analyse individual bispectrum shapes independently.
 
 
-Analogy to linear regression.
+\subsection{CMB bispectrum estimators}
 
 Review of KSW, Modal and Binned estimators.
+
+
+\subsection{Lensing-ISW bias}
 
 Review lensing-ISW bias
