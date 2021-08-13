@@ -147,7 +147,7 @@ We redefine the observed bispectra in terms of $a_\vv{l}$s by subtracting off th
 \end{align}
 The newly introduced terms linear in $a_\vv{l}$s have mean contribution of zero, since $\left< a_\vv{l} \right> = 0$ except for the monopole $l=0$ which is excluded from CMB bispectrum analysis. Thus ${B'}^{obs}_\vv{L}$ is still an unbiased estimate of the underlying bispectra. Substituting into \eqref{eqn:bispectrum_variance_contractions1}, all terms previously in ($\ddagger\ddagger$) now vanish.
 
-In theory, we can compute \eqref{eqn:bispectrum_variance_contractions1} using the full covariance matrix $C_{\vv{l}_1 \vv{l}_2} = \left< a_{\vv{l}_1} a_{\vv{l}_2} \right>$ and invert it to get the least squares estimate for $f_{NL}$s. In practice, however, this is a costly and numerically demanding operation. We approximate the non-diagonal covariances in \eqref{def:bispectrum_estimate_including_linear} using Monte Carlo method: $\langle a_{\vv{l}_1}^{G} a_{\vv{l}_2}^{G} \rangle_{MC}$ from ensemble of realistic Gaussian simulations. Otherwise, we assume $C_{\vv{l}_1 \vv{l}_2} \approx C_{l_1} \delta_{\vv{l}_1 \vv{l}_2}$ to simplify our calculations.
+In theory, we can compute \eqref{eqn:bispectrum_variance_contractions1} using the full covariance matrix $C_{\vv{l}_1 \vv{l}_2} = \left< a_{\vv{l}_1} a_{\vv{l}_2} \right>$ and invert it to get the least squares estimate for $f_{NL}$s. In practice, however, this is a costly and numerically demanding operation. We approximate the non-diagonal covariances in \eqref{def:bispectrum_estimate_including_linear} using the Monte Carlo method: $\langle a_{\vv{l}_1}^{G} a_{\vv{l}_2}^{G} \rangle_{MC}$ from an ensemble of realistic Gaussian simulations. Otherwise, we assume $C_{\vv{l}_1 \vv{l}_2} \approx C_{l_1} \delta_{\vv{l}_1 \vv{l}_2}$ to simplify our calculations.
 
 Each element of the regressand is now independent;
 \begin{align}
@@ -179,11 +179,11 @@ Finally, we have the least squares estimate of $f_{NL}$ in terms of $F$ and $S$;
 	\hat{f}_{NL}^{(i)} = \sum_j (F^{-1})_{ij} S_j. \label{eqn:bispectrum_estimation_ols_estimate}.
 \end{align}
 
-One of the main strengths of the ordinary least squares estimator lies in its \textit{optimality}; it has the smallest possible variance, named the Cramer-Rao bound, among all unbiased estimators that are linear in data. Noting that $\left< S_i S_j \right> = F_{ij}$, we get $\text{Var}(\hat{f}_{NL}^{(i)}) = (F^{-1})_{ii}$. This value is indeed equal to the Cramer-Rao bound computed from the Fisher information matrix, which is $F$ here.
+One of the main strengths of the ordinary least squares estimator lies in its \textit{optimality}; it has the smallest possible variance, namely the Cramer-Rao bound, among all unbiased estimators that are linear in data. Noting that $\left< S_i S_j \right> = F_{ij}$, we get $\text{Var}(\hat{f}_{NL}^{(i)}) = (F^{-1})_{ii}$. This value is indeed equal to the Cramer-Rao bound computed from the Fisher information matrix $F$ here.
 
 Fisher matrix of the estimator naturally motivates the following definition of inner product on the space of reduced bispectra.
 \begin{align}
-	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_L \frac{h^2_L b^{(i)}_L b^{(j)}_L}{6 \; C_{l_1} C_{l_2} C_{l_3}}  = F_{ij}.	
+	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_L \frac{h^2_L b^{(i)}_L b^{(j)}_L}{6 \; C_{l_1} C_{l_2} C_{l_3}}  = F_{ij}.	\label{def:bispectrum_estimation_fisher_inner_product}
 \end{align}
 In particular, correlation between two bispectrum shapes can be defined as
 \begin{align}
@@ -191,11 +191,187 @@ In particular, correlation between two bispectrum shapes can be defined as
 \end{align}
 If all bispectrum shapes under consideration are uncorrelated in this metric so that $| \text{Corr}(\vv{b}^{(i)}, \vv{b}^{(j)}) | \ll 1$ whenever $i \neq j$, then the Fisher matrix $F$ is approximately diagonal, and $(F^{-1})_{ii} \approx (F_{ii})^{-1}$. In this case, estimated $\hat{f}_{NL}^{(i)}$ in \eqref{eqn:bispectrum_estimation_ols_estimate} is identical to the value obtained using a single regressor $\vv{B}^{(i)}$. In other words, we may analyse individual bispectrum shapes independently.
 
+We write down the estimator for single shape analysis and restore shortened indices.
+\begin{align}
+	\hat{f}_{NL} &= \frac{1}{N} \sum_{l_j,m_j} \frac{\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \left[ a_{l_1 m_1} a_{l_2 m_2} a_{l_3 m_3} - 3\left< a_{l_1 m_1} a_{l_2 m_2} \right> a_{l_3 m_3} \right], \label{eqn:bispectrum_estimator_single_shape} \\
+	N &:= 6F = \sum_{l_j,m_j} \frac{h^2_{l_1 l_2 l_3} b^2_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}}. \label{eqn:bispectrum_estimator_normalisation_single_shape}
+\end{align}
+The symmetry in indices was used to combine the linear terms into one. Normalisation factor $N$ was defined to follow common conventions. 
 
 \subsection{CMB bispectrum estimators}
+The estimator \eqref{eqn:bispectrum_estimator_single_shape} can be intimidating. The multipole moments $l$ go up to $2000$ for Planck survey, meaning that the sum over all possible $l_j, m_j$ contains $\approx 2.7\times 10^{15}$ terms.\footnote{This number was calculated considering the symmetry ($l_1 \ge l_2 \ge l_3$), triangle inequality ($l_2+l_3 \ge l_1$), and restrictions on $m_j$s from angular momentum conservation ($m_1+m_2+m_3=0$). } Direct evaluation of the Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3}$ involves calculating Wigner 3-j symbols, which are expensive to compute and store. Not to mention that the number of terms scales as $\propto l_{max}^5$.
 
-Review of KSW, Modal and Binned estimators.
+All known CMB bispectrum estimation methods therefore deploy some ingenious techniques to reduce the computational cost. In this section, we review the three conventional approaches: KSW \cite{Komatsu2005,Creminelli2006limits}, Modal \cite{Fergusson2010general,Fergusson2012}, and Binned \cite{Bucher2010}.
 
+\subsubsection*{KSW estimator}
+Komatsu-Spergel-Wandelt (KSW) estimator was first introduced in \cite{Komatsu2005} together with a construction of the bispectrum estimator and has been studied extensively since then \cite{Creminelli2006limits,Babich2005optimal,Creminelli2007estimators} (see e.g, \cite{Komatsu2010} for reviews). The core idea is to exploit the \textit{separability} of the bispectrum. Consider the local shape for example:
+\begin{align}
+	S^{loc}(k_1, k_2, k_3) = 2A^2 \left( \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} +  \frac{k_3^2}{k_1 k_2} \right),
+\end{align}
+where $A$ is amplitude of the power spectrum with scalar spectral index $n_s$ set to $1$. Note that each term can be expressed as a product of three individual functions that only depends on one of the variables: $k_1^2/(k2k3) = k_1^2 \cdot k_2^{-1} \cdot k_3^{-1}$. The reduced bispectrum then becomes an integral of separable terms;
+\begin{align}
+	b^{loc}_{l_1 l_2 l_3} = 2A^2 \int dr \; r^2 \left[ \alpha_{l_1}(r) \beta_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \alpha_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \beta_{l_2}(r) \alpha_{l_3}(r) \right], \label{eqn:local_reduced_bispectrum}
+\end{align}
+where
+\begin{align}
+	\alpha_l(r) &:= \frac{2}{\pi} \int dk \; k^2 \Delta_l(k) j_l(kr), \label{def:KSW_estimator_alpha}\\
+	\beta_l(r) &:= \frac{2}{\pi} \int dk \; k^{-1} \Delta_l(k) j_l(kr).
+\end{align}
+Substituting \eqref{eqn:local_reduced_bispectrum} into the bispectrum estimator \eqref{eqn:bispectrum_estimator_single_shape} gives
+\begin{align}
+	\hat{f}^{loc}_{NL} = \frac{6A^2}{N} \int dr \; r^2 \int d^2 \hat{\vv{n}} \; \left[ A(r,\hat{\vv{n}}) B(r,\hat{\vv{n}})^2 - 2 \left <A(r,\hat{\vv{n}}) B(r,\hat{\vv{n}}) \right> A(r,\hat{\vv{n}}) - \left< B(r,\hat{\vv{n}})^2 \right> A(r,\hat{\vv{n}})  \right], \label{eqn:KSW_estimator_local}
+\end{align}
+where we have defined the filtered maps
+\begin{align}
+	A(r,\hat{\vv{n}}) &:= \sum_{l,m} \frac{\alpha_l(r)}{C_l} a_{lm} Y_{lm}(\hat{\vv{n}}), \label{eqn:KSW_estimator_filtered_map_1}\\
+	B(r,\hat{\vv{n}}) &:= \sum_{l,m} \frac{\alpha_l(r)}{C_l} a_{lm} Y_{lm}(\hat{\vv{n}}). \label{eqn:KSW_estimator_filtered_map_2}
+\end{align}
+The estimator \eqref{eqn:KSW_estimator_local} has significantly less computational complexity compared to the original form. The integral over $\hat{\vv{n}}$ becomes a summation over map pixels, roughly 50 million in Planck-like settings. The filtered maps (\ref{eqn:KSW_estimator_filtered_map_1}-\ref{eqn:KSW_estimator_filtered_map_2}) are efficiently obtained using Spherical Harmonic Transforms (SHTs).
+
+We are only left with normalisation factor to compute. An integral representation of $h^2_{l_1 l_2 l_3}$ in \eqref{def:h2_using_legendre_integral} allows fast computation of $N$ \cite{Smith2011};
+\begin{align}
+	N = (2A^2)^2 \int d\mu \int dr \;r^2 \int dr' \; r'^2 \left[ 3R_{\alpha\alpha}^2 R_{\beta\beta} + 6R_{\alpha\beta} R_{\beta\alpha} R_{\alpha\alpha} \right],
+\end{align}
+where
+\begin{align}
+	R_{XY} (r,r',\mu) := \sum_l \frac{2l+1}{(8\pi)^{2/3}} \; X_l (r) Y_l (r') P_l(\mu)
+\end{align}
+for $X,Y=\alpha,\beta$.
+
+KSW formalism can be used to constrain various separable shapes by replacing $\alpha_l$ and $\beta_l$ with appropriate functions, or `modes'. Equilateral and Orthogonal shapes, for example, call for four such functions which have $k^{-1}, 1, k, k^2$ instead of $k^2$ in the integral \eqref{def:KSW_estimator_alpha}. Constant feature models with shape $S(k_1,k_2,k_3) = \sin(\omega(k_1+k_2+k_3)+\phi)$ can be written in terms of the two modes $\sin(\omega k)$ and $\cos(\omega k)$ via trigonometric identities \cite{Munchmeyer2014}.
+
+In some cases, a seemingly non-separable function can be expanded using an analytic formula. For instance, the Schwinger parametrisation
+\begin{align}
+	\frac{1}{(k_1+k_2+k_3)^n} = \frac{1}{(n-1)!} \int_0^{\infty} du \; u^{n-1} e^{-u(k_1+k_2+k_3)}
+\end{align}
+allows us to approximate the left hand side with a sum over separable terms parametrised by $u$ \cite{Smith2011}. Such numerical trick, however, is restricted to cases where the integrand is relatively well-behaved. Otherwise, a large number of terms are needed for accurate expansion, which hurts the total computation time.
+
+\subsubsection*{Modal estimator}
+KSW estimator is fast and numerically stable but restrictive in the type of bispectra it can tackle. Modal estimator, first developed in \cite{Fergusson2010general} and expanded much further through \cite{Fergusson2012,Fergusson2014,Shiraishi2014parityodd,Shiraishi2019cross} (TODO: ask J for refs here?), builds on a simple but crucial idea to address this issue; when the bispectrum shape cannot be factorised, we may instead \textit{expand} it using a basis constructed from separable modes.
+
+The essence of Modal estimator is captured in the following `modal' expansion.
+\begin{align}
+	\frac{\nu_{l_1} \nu_{l_2} \nu_{l_3}}{\sqrt{C_{l_1} C_{l_2} C_{l_3}}} \; b_{l_1 l_2 l_3} = \sum_{n \leftrightarrow (p_1,p_2,p_3)} \alpha_n^Q Q_{n l_1 l_2 l_3}. \label{eqn:modal_estimator_late_expansion}
+\end{align}
+The left hand side is the reduced bispectrum, scaled using $C_l$s and $\nu_l := (2l+1)^{1/6}$ for later convenience. On the right side is the mode expansion, where $n$ parametrising each term is associated with a triplet $(p_1,p_2,p_3)$. $\alpha_n^Q$ are the expansion coefficients with respect to the basis function $Q$, which is defined as
+\begin{align}
+	Q_{n \; l_1 l_2 l_3} := \frac{1}{6} \left[ q_{p_1}(l_1) q_{p_2}(l_2) q_{p_3}(l_3) + q_{p_1}(l_1) q_{p_2}(l_3) q_{p_3}(l_2) + \cdots \right],
+\end{align}
+with appropriate mode functions $q_p(l)$. Polynomials and Fourier modes are common choices, but the formalism is completely general. All we need is that the modal expansion \eqref{eqn:modal_estimator_late_expansion} accurately describes the given bispectrum.
+
+As seen from KSW estimator, the separability greatly simplifies \eqref{eqn:bispectrum_estimator_single_shape}. We define the filtered maps analogous to the KSW ones up to scale factors;
+\begin{align}
+	M_p (\hat{\vv{n}}) = \sum_{l,m} \frac{q_p(l)}{\nu_l \sqrt{C_l}} a_{lm} Y_{lm}(\hat{\vv{n}}), \label{eqn:modal_estimator_filtered_map}
+\end{align}
+Note that we do not have the line of sight integral $r$ as opposed to KSW since the mode expansion was performed in late-time $l$ space, instead of primordial $k$ space.
+
+The estimator \eqref{eqn:bispectrum_estimator_single_shape} now becomes
+\begin{align}
+	\hat{f}_{NL} = \frac{1}{N} \sum_{n \newline \leftrightarrow (p_1,p_2,p_3)} \alpha_n^Q \int d^2 \vv{n} \left[ M_{p_1}(\hat{\vv{n}}) M_{p_2}(\hat{\vv{n}}) M_{p_3}(\hat{\vv{n}}) - 3 \left< M_{p_1}(\hat{\vv{n}}) M_{p_2}(\hat{\vv{n}}) \right> M_{p_3}(\hat{\vv{n}})  \right].
+\end{align}
+One of the Modal pipeline's key objectives is to compute
+\begin{align}
+	\beta^Q_n := \int d^2 \vv{n} \left[ M_{p_1}(\hat{\vv{n}}) M_{p_2}(\hat{\vv{n}}) M_{p_3}(\hat{\vv{n}}) - 3 \left< M_{p_1}(\hat{\vv{n}}) M_{p_2}(\hat{\vv{n}}) \right> M_{p_3}(\hat{\vv{n}})  \right], \label{def:modal_estimator_beta}
+\end{align}
+so that the estimator is simply a dot product of $\alpha$ and $\beta$: $\hat{f}_{NL} = \frac{1}{N} \sum_n \alpha^Q_n \beta^Q_n$.
+
+Note that $\beta_n^Q$ depends on the observed data and choice of basis functions, but is independent of theoretical model in consideration. This is an important characteristic of Modal estimator; the time-consuming integral of \eqref{def:modal_estimator_beta} only needs to be performed once per dataset. We can then constrain a wide range of models simultaneously by computing $\alpha^Q_n$ for each bispectrum shape. Modal decomposition costs much less than $f_{NL}$ estimation in general.
+
+Before moving on to the normalisation factor, we first alter the inner product defined in \eqref{def:bispectrum_estimation_fisher_inner_product}.
+\begin{align}
+	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_{l_j,m_j} \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}.
+\end{align}
+Weights appearing in the inner product are now nearly uniform across allowed $l$ configurations \cite{Fergusson2010general}. This serves as a natural inner product for basis functions $\vv{Q}_n$, especially for polynomial modes.
+
+Expanding bispectrum in \eqref{eqn:bispectrum_estimator_normalisation_single_shape} gives
+\begin{align}
+	N &= \sum_{n_1} \sum_{n_2} \alpha^Q_{n_1} \alpha^Q_{n_2} \left( \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; Q_{n_1 \; l_1 l_2 l_3} Q_{n_2 \; l_1 l_2 l_3} \right) \\
+	&= \sum_{n_1} \sum_{n_2} \alpha^Q_{n_1} \alpha^Q_{n_2} \left< \vv{Q}_{n_1}, \vv{Q}_{n_2} \right>. \label{eqn:modal_estimator_normalisation_Q}
+\end{align}
+Another key quantity to be computed from Modal estimator is the matrix
+\begin{align}
+	\gamma_{n_1 n_2} :=  \left< \vv{Q}_{n_1} , \vv{Q}_{n_2} \right>.
+\end{align}
+Even if the mode functions $q_p(l)$ are chosen to be orthogonal, the three-dimensional basis functions $\vv{Q}_n$ are not necessarily orthogonal with respect to the inner product.
+
+Once $\gamma$ is computed, however, we may transform our basis functions to become orthonormal. By definition $\gamma$ is symmetric and positive semi-definite. As long as we choose the basis $\vv{Q}_n$s to be linearly independent, $\gamma$ is non-degenerate and hence invertible. Since $\gamma^{-1}$ is also symmetric and positive-definite, we may perform Cholesky decomposition;
+\begin{align}
+	\gamma^{-1} = \lambda \lambda^T,
+\end{align}
+where $\lambda$ is lower triangular. We now define a new set of basis
+\begin{align}
+	\vv{R}_t := \sum_n \lambda_{nt} \; \vv{Q}_{n}.
+\end{align}
+The new basis functions are now orthonormal with respect to the inner product $\langle \cdot,\cdot \rangle$;
+\begin{align}
+	\left< \vv{R}_{t_1} , \vv{R}_{t_2} \right> = \sum_{n_1,n_2} \lambda_{n_1 t_1} \left< \vv{Q}_{n_1} , \vv{Q}_{n_2} \right> \lambda_{n_2 t_2} = (\lambda^T \gamma \lambda)_{t_1 t_2} = \delta_{t_1 t_2}.
+\end{align}
+Orthonormality of the basis is especially useful for modal decomposition. Taking the inner product with $\vv{R}_t$ in the modal expansion \eqref{eqn:modal_estimator_late_expansion} for $R$,
+\begin{align}
+	\alpha^R_t = \left< \frac{\nu_{l_1} \nu_{l_2} \nu_{l_3}}{\sqrt{C_{l_1} C_{l_2} C_{l_3}}} \; b_{l_1 l_2 l_3} \;,\; \vv{R}_t \right>.
+\end{align}
+After we obtain $\alpha^R_t$, the expansion coefficients for $\vv{Q}_n$ can be found by
+\begin{align}
+	\alpha^Q_n = \sum_t \lambda_{nt} \alpha^R_t,
+\end{align}
+from which it is straightforward to check $\sum_n \alpha^Q_n \vv{Q}_n = \sum_t \alpha^R_t \vv{R}_t$.
+
+The normalisation factor in \eqref{eqn:modal_estimator_normalisation_Q} further simplifies using $R$;
+\begin{align}
+	N = \sum_{t_1} \sum_{t_2} \alpha^R_{t_1} \alpha^R_{t_2} \left< \vv{R}_{t_1}, \vv{R}_{t_2} \right> = \sum_t \left| \alpha^R_{t} \right|^2 \label{eqn:modal_estimator_normalisation_R}
+\end{align}
+
+\hspace{10pt}
+
+So far, we have been working on the late-time harmonic space directly related to CMB observations. Theoretical bispectrum $B(k_1,k_2,k_3)$ predicted by inflation models, however, lies within the primordial Fourier space. The remaining work is about how to bridge this gap. In particular, we would like to obtain $\alpha^R$ from a given shape function $S(k_1,k_2,k_3) = (k_1 k_2 k_3)^2 B(k_1, k_2, k_3)$.
+
+Primordial and late-time spaces are treated symmetrically in the Modal formalism. We expand the shape function
+\begin{align}
+	S(k_1,k_2,k_3) = \sum_n \bar{\alpha}^{\bar{Q}}_n \bar{Q}_n (k_1, k_2, k_3)
+\end{align}
+using an independent set of \textit{primordial} basis functions;
+\begin{align}
+	\bar{Q}_{n} (k_1, k_2, k_3) := \frac{1}{6} \left[ \bar{q}_{p_1}(k_1) \bar{q}_{p_2}(k_2) \bar{q}_{p_3}(k_3) + \bar{q}_{p_1}(k_1) \bar{q}_{p_2}(k_3) \bar{q}_{p_3}(k_2) + \cdots \right].
+\end{align}
+A bar is placed above each variable to denote they are primordial quantities. The inner product is defined as \cite{Fergusson2010general}
+\begin{align}
+	\left< S^{(i)}, S^{(j)} \right> &:= \int_{V_\vv{k}} dk_1 dk_2 dk_3 \; \frac{1}{k_1+k_2+k_3} \; B^{(i)}(k_1, k_2, k_3) B^{(j)}(k_1, k_2, k_3).
+\end{align}
+Mathematical formulation from here on is identical to the late-time case. We therefore simply write down the primordial counterparts;
+\begin{align}
+	\bar{\gamma}_{n_1 n_2} &:=  \left< \bar{\vv{Q}}_{n_1} , \bar{\vv{Q}}_{n_2} \right> \\
+	\bar{\gamma}^{-1} &= \bar{\lambda} \bar{\lambda}^T \\
+	\bar{\vv{R}}_t &:= \sum_n \bar{\lambda}_{nt} \; \bar{\vv{Q}}_{n} \\
+	\bar{\alpha}^{\bar{R}}_t &= \left< S(k_1,k_2,k_3) \;,\; \bar{\vv{R}}_t \right> \\
+	\bar{\alpha}^{\bar{Q}}_n &= \sum_t \bar{\lambda}_{nt} \bar{\alpha}^{\bar{R}}_t.
+\end{align}
+
+A key step in connecting primordial results to late-time is the projection via transfer functions \eqref{def:reduced_bispectrum}. Projecting $\bar{Q}_n(k_1,k_2,k_3)$ yields
+\begin{align}
+	\tilde{Q}_{n \; l_1 l_2 l_3} := \left( \frac{2}{\pi} \right)^3 \int dr dk_1 dk_2 dk_3 \left(r k_1 k_2 k_3 \right)^2 \bar{Q}_n (k_1, k_2, k_3) \prod_{j=1}^{3} \left[ j_{l_j} (k_j r) \Delta_{l_j} (k_j) \right],
+\end{align}
+where tilde indicates that it is a projected quantity.
+
+The bridge between objects defined in early and late universe we have all been waiting for is the following inner product:
+\begin{align}
+	\Gamma_{tn} = \left< \vv{R}_{t}, \tilde{\vv{Q}}_n \right>.
+\end{align}
+By the virtue of the projected bispectrum's dual representation,
+\begin{align}
+	\sum_t \alpha^R_t R_{n \; l_1 l_2 l_3} = \frac{\nu_{l_1} \nu_{l_2} \nu_{l_3}}{\sqrt{C_{l_1} C_{l_2} C_{l_3}}} \; b_{l_1 l_2 l_3} = \sum_n \bar{\alpha}^{\bar{Q}}_n \tilde{Q}_{n \; l_1 l_2 l_3}.
+\end{align}
+Taking an inner product with $\vv{R}_t$ on both size gives, at last,
+\begin{align}
+	\alpha^R_t = \sum_n \Gamma_{tn} \bar{\alpha}^{\bar{Q}}_n.
+\end{align}
+
+\hspace{10pt}
+
+We discussed inner workings of Modal estimator in great detail. Despite the long list of formulae here, the core idea of it is captured in the modal decomposition \eqref{eqn:modal_estimator_late_expansion}. The main computational challenge in the Modal approach is precomputing $\vv{\beta}^Q$, which contains complete information about the fit between basis and observed bispectrum. Afterwards, the bispectrum estimation problem reduces down to a matter of finding modal coefficients $\vv{\alpha}$. This decomposition is done fast and efficiently using the orthonormal basis functions $\vv{R}$ and $\bar{\vv{R}}$.
+
+\subsubsection*{Binned estimator}
+
+wavelets?
 
 \subsection{Lensing-ISW bias}
 
