@@ -412,11 +412,11 @@ can then shown to be small. Therefore the slow roll parameters from (\ref{def:sl
 \end{align}
 We see that as long as the potential $V(\phi)$ is chosen such that $\epsilon_V, \eta_V \ll 1$, the field $\phi$ can drive a period of accelerated expansion. Here, $\bar{\phi}(t)$ acts as a clock; it measures the progress of inflation, until $\epsilon$ eventually grows comparable to 1 and inflation ends.
 
-\subsection{Quantum fluctuations}
+\subsection{Quantum fluctuations} \label{section:quantum_fluctuations}
 
 So far our considerations on the inflation field $\phi$ has been entirely classical. Moving on to quantum theory, field values are no longer fixed at each point in spacetime. The goal of this section is to quantify statistical properties of these quantum fluctuations.
 
-For simplicity, we assume that the metric remains unperturbed. In reality, gravity is coupled with perturbations of the inflation field, but this approximation still allows us to derive most of the crucial results. We further neglect any terms suppressed by slow-roll parameters.
+We assume that the metric remains unperturbed for simplicity. Gravity is coupled with perturbations of the inflation field in reality, but this approximation will still allow us to derive most of the crucial results. We further neglect any terms suppressed by slow-roll parameters.
 
 We write the inflation field as a sum of the classical solution and perturbation;
 \begin{align}
@@ -470,7 +470,7 @@ As long as we normalise the mode functions $v_k(\tau)$ so that its Wronskian $W 
 \end{align}
 Constructed $\hat{a}$ and $\hat{a}^\dagger$ are analogous to the creation and annihilation operators of quantum harmonic oscillator. Our next step is to compute the Hamiltonian operator;
 \begin{align}
-	\hat{H} =& \int d^3 \vv{x} \left[ \frac{1}{2} \hat{\pi}^2 + \frac{1}{2} \left( \nabla \hat{v} \right)^2 - \frac{1}{2}\frac{a''}{a} \hat{v}^2 \right] \\
+	\hat{H} =& \int d^3 \vv{x} \left[ \frac{1}{2} \hat{\pi}^2 + \frac{1}{2} \left( \nabla \hat{v} \right)^2 - \frac{1}{2}\frac{a''}{a} \hat{v}^2 \right] \label{eqn:single_field_inflation_simple_hammiltonian}\\
 	=& \int d^3 \vv{x} \frac{d^3 \vv{k}_1}{(2\pi)^3} \frac{d^3 \vv{k}_2}{(2\pi)^3} \frac{1}{2} e^{i(\vv{k}_1 + \vv{k}_2) \cdot \vv{x}}  \left[ \hat{\pi}_{\vv{k}_1} \hat{\pi}_{\vv{k}_2} - (\vv{k_1} \cdot \vv{k_2}) \hat{v}_{\vv{k}_1} \hat{v}_{\vv{k}_2} - \frac{a''}{a} \hat{v}_{\vv{k}_1} \hat{v}_{\vv{k}_2} \right] \\
 	=& \int \frac{d^3 \vv{k}}{(2\pi)^3}  \frac{1}{2} \left[ \hat{\pi}_{\vv{k}} \hat{\pi}_{-\vv{k}} + k^2 \hat{v}_{\vv{k}} \hat{v}_{-\vv{k}} - \frac{a''}{a} \hat{v}_{\vv{k}} \hat{v}_{-\vv{k}} \right] \\
 	=&  \int \frac{d^3 \vv{k}}{(2\pi)^3} \left[ E_k \left( \hat{a}_\vv{k} \hat{a}^\dagger_\vv{k} + \hat{a}^\dagger_{-\vv{k}} \hat{a}_{-\vv{k}} \right) + F_k \hat{a}_{\vv{k}} \hat{a}_{-\vv{k}} + F_k^* \hat{a}^\dagger_{\vv{k}} \hat{a}^\dagger_{-\vv{k}}  \right],
@@ -479,7 +479,6 @@ where
 \begin{align}
 	\omega_k^2 := k^2 - \frac{a''}{a}, \;\;\; E_k := \frac{1}{2}(|v'_k|^2 + \omega_k^2 |v_k|^2), \;\;\; F_k := \frac{1}{2}(v'^2_k + \omega_k^2 v^2_k).
 \end{align}
-Defining the vacuum state 
 
 Note that we are currently in Heisenberg picture where the operators depend on time. Our mode functions have two degrees of freedom: $c_+$ and $c_-$. One of them has been fixed by the normalisation condition $W=2ik(|c_+|^2-|c_-|^2)=i$. The other degree of freedom remains, availing us one-parameter family of possible initial mode functions. Note that $\hat{a}^\dagger_\vv{k}$ are defined in terms of $\hat{v}_\vv{k}$ and $\hat{\pi}_\vv{k}$. Fixing $\hat{a}_\vv{k}$ is thus equivalent to choosing $\hat{v}_\vv{k}$.
 
@@ -492,7 +491,7 @@ where the divergence $\delta^{(3)}(0)$ arises only because we are integrating ov
 
 We now ask the vacuum state to be a ground state of the Hamiltonian. Minimising the energy density $E_k$ while keeping normalisation condition $W=i$, we obtain the \textit{Bunch-Davies} mode function;
 \begin{align}
-	v_\vv{k}(\tau) = \frac{1}{\sqrt{2k}} \left( 1 - \frac{i}{k\tau} \right) e^{-ik\tau}.
+	v_\vv{k}(\tau) = \frac{1}{\sqrt{2k}} \left( 1 - \frac{i}{k\tau} \right) e^{-ik\tau}. \label{eqn:bunch_davis_mode_function}
 \end{align}
 For this choice of mode function and vacuum, $E_k \rightarrow \hslash\omega_k/2$ as $\tau \rightarrow -\infty$. \footnote{$\hslash$ has been reinstated here for clarity.} This is analogous to the case of quantum harmonic oscillator.
 
