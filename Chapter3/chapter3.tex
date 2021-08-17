@@ -583,8 +583,58 @@ We discussed inner workings of Modal estimator in great detail. Despite the long
 
 \subsubsection*{Binned estimator}
 
-Quickly review binned estimator
+The binned bispectrum estimator, introduced in \cite{Bucher2010} and used for Planck analysis \cite{PlanckCollaboration2013,PlanckCollaboration2015,PlanckCollaboration2018,Bucher2016}, uses carefully chosen bins to reduce computational complexity. In this section we highlight the main concepts while rephrasing some notations in the original literature \cite{Bucher2010} in order to keep consistency with our earlier discussions.
 
-\subsection{Lensing-ISW bias}
+The estimator \eqref{eqn:bispectrum_estimation_signal} can be rewritten as 
+\begin{align}
+	S_i &= \sum_{l_1 l_2 l_3}  \frac{b^{(i)}_{l_1 l_2 l_3}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \sum_{m_1 m_2 m_3} \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} \left[ a_{l_1 m_1} a_{l_2 m_2} a_{l_3 m_3} - \left( \left< a_{l_1 m_1} a_{l_2 m_2} \right> a_{l_3 m_3} + \text{2 cyc.} \right) \right] \\
+	&= \sum_{l_1 l_2 l_3}  \frac{b^{(i)}_{l_1 l_2 l_3}}{6 \; C_{l_1} C_{l_2} C_{l_3}} \int d^2 \hat{\vv{n}} \; \left[ M_{l_1} (\hat{\vv{n}}) M_{l_2} (\hat{\vv{n}}) M_{l_3} (\hat{\vv{n}}) - \left( \left< M_{l_1} (\hat{\vv{n}}) M_{l_2} (\hat{\vv{n}}) \right> M_{l_3} (\hat{\vv{n}}) + \text{2 cyc.}\right)  \right], \label{eqn:binned_estimator_formulation_1}
+\end{align}
+where, analogous to the filtered maps from KSW and Modal estimators, $M_l$s are defined as
+\begin{align}
+	M_l(\hat{\vv{n}}) := \sum_{m=-l}^{l} a_{lm} Y_{lm}(\hat{\vv{n}}).
+\end{align}
+They correspond to the $l$ harmonic component of the original map. We define the observed bispectrum $B^{obs}_{l_1 l_2 l_3}$ to be the integrand of \eqref{eqn:binned_estimator_formulation_1}.\footnote{This is the convention from the original literature \cite{Bucher2010}, which is different to some conventions elsewhere by a factor of $h_{l_1 l_2 l_3}$. In terms of the theoretical reduced bispectrum $b_{l_1 l_2 l_3}$, we have $\langle B^{obs}_{l_1 l_2 l_3} \rangle = h^2_{l_1 l_2 l_3} b^{th}_{l_1 l_2 l_3}$.}
 
-Review lensing-ISW bias
+The core idea of this formulation is based on the fact that $a_{lm}$s with similar $l$s are distributed in a comparable fashion, and can be binned without big loss of information. Multipole moments $l$ in range $[l_{min},l_{max}]$ are divided into intervals: $\Delta_i := [l_i,l_{i+1}-1]$ where $i=0,1,\cdots,N_{bins}-1$.  The filtered map corresponding to the $i$th bin is given by
+\begin{align}
+		M_i(\hat{\vv{n}}) := \sum_{l\in\Delta_i}\sum_{m=-l}^{l} a_{lm} Y_{lm}(\hat{\vv{n}}).
+\end{align}
+The binned bispectrum take the form
+\begin{align}
+	B^{obs}_{i_1 i_2 i_3} = \frac{1}{\Xi_{i_1 i_2 i_3}} \int d^2 \hat{\vv{n}} \; \left[ M_{i_1} (\hat{\vv{n}}) M_{i_2} (\hat{\vv{n}}) M_{i_3} (\hat{\vv{n}}) - \left( \left< M_{i_1} (\hat{\vv{n}}) M_{i_2} (\hat{\vv{n}}) \right> M_{i_3} (\hat{\vv{n}}) + \text{2 cyc.}\right)  \right],
+\end{align}
+where $\Xi_{i_1 i_2 i_3}$ counts the number of allowed $(l_1,l_2,l_3)$ triplets satisfying the triangle inequality and parity condition $l_1+l_2+l_3 \in 2\mathbb{Z}$. We further impose that $i_1,i_2,i_3$ are ordered such that $i_1 \le i_2 \le i_3$.
+
+We now compute the expected variance of the binned bispectrum. Assuming that the covariance matrix for $a_{lm}$s are diagonal, calculations similar to \eqref{eqn:bispectrum_variance_contractions1} yield
+\begin{align}
+	\langle B^{obs}_{i_1 i_2 i_3} B^{obs}_{i'_1,i'_2,i'_3} \rangle &=  \delta_{i_1 i'_1} \delta_{i_2 i'_2} \delta_{i_3 i'_3} \; \frac{g_{i_1 i_2 i_3}}{(\Xi_{i_1 i_2 i_3})^2} \sum_{l_1 \in \Delta_{i_1}} \sum_{l_2 \in \Delta_{i_2}} \sum_{l_3 \in \Delta_{i_3}} h^2_{l_1 l_2 l_3} C_{l_1} C_{l_2} C_{l_3} \\
+	&=: \delta_{i_1 i'_1} \delta_{i_2 i'_2} \delta_{i_3 i'_3} \; V_{i_1 i_2 i_3},
+\end{align}
+for some $V_{i_1,i_2,i_3}$. The symmetry factor $g_{i_1 i_2 i_3}=6,2,$, and $1$ for 3, 2, and no identical numbers within $i_1,i_2,i_3$, respectively.
+
+Writing the binned theoretical bispectrum as
+\begin{align}
+	B^{th}_{i_1 i_2 i_3} =  \frac{1}{\Xi_{i_1 i_2 i_3}} \sum_{l_1 \in \Delta_{i_1}} \sum_{l_2 \in \Delta_{i_2}} \sum_{l_3 \in \Delta_{i_3}} h^2_{l_1 l_2 l_3} h^2_{l_1 l_2 l_3} b^{th}_{l_1 l_2 l_3}, \label{eqn:binned_estimator_theoretical_bispectra}
+\end{align}
+where $b^{th}$ is the usual reduced bispectrum, the binned estimator can be written as
+\begin{align}
+	&\hat{f}_{NL} = \frac{\langle \vv{B}^{obs}, \vv{B}^{th} \rangle}{\langle \vv{B}^{th}, \vv{B}^{th} \rangle}, \;\;\;\;\text{where} \\
+	&\langle \vv{B}^{(1)}, \vv{B}^{(2)} \rangle = \sum_{i_1 \le i_2 \le i_3} \frac{B^{(1)}_{i_1 i_2 i_3} B^{(2)}_{i_1 i_2 i_3}}{V_{i_1 i_2 i_3}}. \label{eqn:binned_estimator_inner_product}
+\end{align}
+The ordering $i_1 \le i_2 \le i_3$ can be removed similarly as before by replacing $g_{i_1 i_2 i_3}$ in the denominator of \eqref{eqn:binned_estimator_inner_product} by $6$.
+
+Information loss, or increase in variance of the binned estimate is quantified by the ratio
+\begin{align}
+	R := \frac{\text{Var}(\hat{f}^\text{ideal}_{NL})}{\text{Var}(\hat{f}^\text{binned}_{NL})} = \frac{\langle \vv{B}^{th}, \vv{B}^{th} \rangle^\text{binned}}{\langle \vv{B}^{th}, \vv{B}^{th} \rangle^\text{no binning}}, 
+\end{align}
+which always lies between $0$ and $1$. As long as $R$ is close to $1$, the binned estimator performs just as well as the full bispectrum estimator.
+
+The main advantage of the binned estimator is in significant reduction of the computational complexity. Using optimised binning strategy outlined in \cite{Bucher2016}, this can be done with minimal loss of information. Binning approach works particularly well for theoretical models with smooth bispectra or localised features. The full binned bispectrum can also be used for non-parametric studies of non-Gaussianity from observations, after suitable smoothing operations. It is also worth noting that the most computationally expensive part of the estimation process (obtaining $B^{obs}_{i_1 i_2 i_3}$) only needs to be done once per dataset. The result can then be used to constrain various models by computing their theoretical bispectra.
+
+Meanwhile, the binned estimator is not as effective for constraining models with features or oscillations. This is not only because binning smooths out small modulations in the bispectrum, but also since evaluating the theoretical bispectra \eqref{eqn:binned_estimator_theoretical_bispectra} becomes numerically challenging. 
+
+
+%\subsection{Lensing-ISW bias}
+
+%Review lensing-ISW bias
