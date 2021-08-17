@@ -40,6 +40,54 @@
 \end{itemize}
 
 \subsection{CMB anisotropy}
+
+TODO: organise the following into sections
+
+We have seen how to evolve perturbations in the photon distribution function $\Theta_l(k,\eta)$ from given initial conditions. In particular, the radiation transfer function $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about CMB photons' time evolution, from early times $\eta=\eta_i$ until now $\eta=\eta_0$. In this section, we derive the relation between perturbations $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
+
+We observe the CMB at a fixed point in spacetime: here ($\vv{x}=\vv{x}_0$) and now ($\eta=\eta_0$). Small variations in time and location have completely negligible effects given the Hubble scale today. Anisotropy in the CMB temperature we observe hence takes the form
+\begin{align}
+	\left( \frac{\Delta T}{T} \right) (\hat{\vv{p}}) = \Theta(\vv{x}_0, \hat{\vv{p}}, \eta_0).
+\end{align}
+The vector $\hat{\vv{p}}$ relates to which direction in the sky we point our telescopes. Observed data lie on a two-dimensional sphere. A Fourier series equivalent for such function is the spherical harmonic expansion;
+\begin{align}
+	\Theta(\vv{x}, \hat{\vv{p}}, \eta) = \sum_{l,m} a_{lm}(\vv{x},\eta) Y_{lm}(\hat{\vv{p}}). 
+\end{align} 
+In physical terms, the spherical harmonics $Y_{lm}(\hat{\vv{p})}$ are joint eigenstate of angular momentum operators $\hat{L}^2$ and $\hat{L}_3$, with associated qunatum numbers $l$ and $m$, respecitvely. In mathematical terms, they form a basis of harmonic (vanishing Laplacian) polynomials of degree $l$ in three dimensions, restricted to a sphere. For each $l$, $m$ may take one of the $2l+1$ values in ${-l,-l+1,\cdots,l}$. Note that $Y_{lm}$s are orthonormal by construction:
+\begin{align}
+	\int d^2\hat{\vv{p}} \; Y^*_{lm} (\hat{\vv{p}}) Y_{l'm'} (\hat{\vv{p}}) = \delta_{ll'} \delta_{mm'}. \label{eqn:spherical_harmonic_orthonormality}
+\end{align}
+Another useful identity is the addition theorem for spherical harmonics given by
+\begin{align}
+	P_l (\hat{\vv{k}} \cdot \hat{\vv{p}}) = \frac{4\pi}{2l+1} \sum_{m=-l}^{l} Y^*_{lm} (\hat{\vv{k}}) Y_{lm} (\hat{\vv{p}}), \label{eqn:harmonic_addition_theorem}
+\end{align}
+where $P_l(\mu)$ are Legendre polynomials.
+	
+As long as sufficiently many multipoles $l$ are included, spherical harmonic coefficients $a_{lm}$ contain full information of the original function. Thanks to orthonormality, the harmonic coefficients can be computed using
+\begin{align}
+	a_{lm} (\vv{x},\eta) &= \int d^2\hat{\vv{p}} \; \Theta(\vv{x}, \hat{\vv{p}},\eta) Y^*_{lm} (\hat{\vv{p}}). \\
+	&= \int \frac{d^3 k}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \int d^2\hat{\vv{p}} \; \Theta(\vv{k},\hat{\vv{p}},\eta) Y^*_{lm}(\hat{\vv{p}}). \label{eqn:alm_derivation_alm_using_theta}
+\end{align}
+
+Note that the evolution equation for perturbations (TODO: add refs to equations here) $\Theta(\vv{k},\hat{\vv{p}},\eta)$ here only depends on $k=\|\vv{k}\|$, the angle $\mu = \hat{\vv{k}} \cdot \hat{\vv{p}}$, and time $\eta$. The rest are determined from initial conditions. The following ratio therefore only depends on $k$, $\mu$ and $\eta$ as well;
+\begin{align}
+	\frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(k,\eta_i)} &= f(k, \mu, \eta) \\
+	&= \sum_l (-i)^l (2l+1) P_l(\mu) \frac{\Theta_l(k,\eta)}{\Phi(k,\eta_i)} \label{eqn:alm_derivation_legendre_expansion}\\ 
+	&= \sum_l (-i)^l (2l+1) P_l(\mu) \Delta_l(k,\eta),
+\end{align}
+where we expanded using Legendre polynomials in \eqref{eqn:alm_derivation_legendre_expansion} and used the definition of transfer functions. Substituting this into \eqref{eqn:alm_derivation_alm_using_theta},
+\begin{align}
+	a_{lm}(\vv{x},\eta) &= \int \frac{d^3\vv{k}}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \Phi(k, \eta_i) \int d^2\hat{\vv{p}} \; \frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(k, \eta_i)} Y^*_{lm}(\hat{\vv{p}}) \\
+	&= \int \frac{d^3\vv{k}}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \Phi(k, \eta_i) \int d^2\hat{\vv{p}} \; \sum_{l'} \left[ (-i)^{l'} (2l'+1) P_{l'}(\hat{\vv{k}}\cdot\hat{\vv{p}}) \Delta_{l'}(k,\eta) Y^*_{lm}(\hat{\vv{p}}) \right] \\
+	&= \int \frac{d^3\vv{k}}{(2\pi)^3} \left[ e^{i\vv{k}\cdot\vv{x}} \Phi(k, \eta_i) (-i)^{l} (2l+1) \Delta_{l}(k,\eta) Y^*_{lm}(\hat{\vv{k}}) \right].
+\end{align}
+For the last line, we expanded $P_{l'}$ using the addition theorem \eqref{eqn:harmonic_addition_theorem} and performed the $\int d\hat{\vv{p}}$ integral. Orthonormality \eqref{eqn:spherical_harmonic_orthonormality} forces $l'=l$ and simplifies the summation over $l'$.
+
+Setting $\vv{x}=\vv{x_0}$ to be $\vv{0}$ and choosing $\eta=\eta_0$, we obtain a formula for the observed temperature anisotropy:
+\begin{align}
+	a_{lm} = 4\pi (-i)^l \int frac{d^3\vv{k}}{(2\pi)^3} \Phi(k) \Delta_{l}(k) Y^*_{lm}(\hat{\vv{k}}).
+\end{align} 
+
 \begin{itemize}
 	\item Late time $a_{lm}$s. Derive expression using transfer functions. (Written)
 	\item Derive form for $C_l$'s. (Written)
