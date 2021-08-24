@@ -26,12 +26,11 @@ Cosmic Microwave Background is like a trove full of precious cosmological inform
 \section{The inhomogeneous universe}
 
 \subsection{Metric perturbations}
-
 Recall that the FLRW metric is given using conformal time by
 \begin{align}
-	ds^2 \bar{a}(t)^2 (-d\tau^2 + d\vv{x}^2),
+	ds^2 = \bar{a}(t)^2 (-d\tau^2 + d\vv{x}^2),
 \end{align}
-where a bar is used to denote quantities computed from the homogeneous background universe in Chapter \ref{chapter:introduction}. We write perturbations around this background metric as follows.
+where a bar is used to denote quantities computed from the homogeneous universe. We write perturbations around this background metric as follows.
 \begin{align}
 	ds^2 = \bar{a}(t)^2 \left[ -(1+2A) dt^2 + 2B_i \; d\tau dx^i + (\delta_{ij} + h_{ij}) dx^i dx^j \right].
 \end{align}
@@ -40,22 +39,111 @@ The spatial indices $i,j,\cdots$ are lowered and raised using $\delta_{ij}$ here
 We further extract the divergence part from $B_i$ and $h_{ij}$, as well as the trace of $h_{ij}$. Writing $V$ and $T$ to denote vector and tensor quantities, 
 \begin{align}
 	B_i &= \partial_i B + B_i^V \\
-	h_{ij} &= 2C \delta_{ij} + 2(\partial_i \partial_j - \frac{1}{3} \nabla^2 ) E + (\partial_i E_j^V + \partial_j E_i^V). + 2E^T_{ij}.
+	h_{ij} &= 2C \delta_{ij} + 2\partial_{\langle i}\partial_{j \rangle} E + (\partial_i E_j^V + \partial_j E_i^V). + 2E^T_{ij},
 \end{align}
+where $\partial_{\langle i}\partial_{j \rangle} := \partial_i \partial_j - \frac{1}{3} \delta_{ij} \nabla^2$.
 The variables are chosen such that $B_i^V$ has vanishing divergence, and $h_{ij}^T$ is traceless and transverse.
 
 The Scalar-Vector-Tensor (SVT) theorem states that to linear order in the perturbations, these modes decouple and evolve in three independent groups: scalars ($A,B,C,E$), vectors ($B_i^V,E_i^V$), and tensors ($E_{ij}^T$). Each of these contain 4, 4, and 2 degrees of freedom, respectively, again totalling to 10 as required. In this section, we are only interested in scalar perturbations which generates temperature anisotropy and E-mode polarisation in the CMB.
 
 Keeping only the scalar modes, the perturbed metric becomes
 \begin{align}
-	ds^2 = \bar{a}(\tau)^2 \left[ -(1+2A) dt^2 + 2 \partial_i B \; d\tau dx^i + \left( (1+2C)\delta_{ij} + 2(\partial_i \partial_j - \frac{1}{3} \delta_{ij} \nabla^2 ) E \right) dx^i dx^j \right].
+	ds^2 = \bar{a}(\tau)^2 \left[ -(1+2A) dt^2 + 2 \partial_i B \; d\tau dx^i + \left( (1+2C)\delta_{ij} + 2\partial_{\langle i}\partial_{j \rangle} E \right) dx^i dx^j \right]. \label{eqn:perturbed_metric_scalar}
 \end{align}
 
 Coordinate transformation are \textit{gauge} symmetries in General Relativity; they correspond to redundancies in our mathematical representation of the system. Redefining the coordinate variables may change how the theory looks like, but all physical results derived the new set are equivalent to the original theory and are just a coordinate transformation away.
 
-In the perturbation theory under consideration, we are free to make gauge transformations $x^\mu \rightarrow \tilde{x}^\mu = x^\mu + \xi^\mu$.
+Consider gauge transformations $x^\mu \rightarrow \tilde{x}^\mu = x^\mu + \xi^\mu$ for some small $\xi$. As long as $\xi$ is of the same order as other perturbative variables, the background metric remains to be FLRW. Scalar perturbations are affected by transformations generated from two arbitrary functions: $\xi^0 = T(\tau,\vv{x})$ and $\xi^i = \partial_i L(\tau,\vv{x})$. The transformation matrices take the form
+\begin{align}
+	\frac{d\tilde{x}^\alpha}{dx^\mu} = \begin{pmatrix}
+		1 + T' & \partial_i T \\ \partial_i L' & \delta_{ij} + \partial_i \partial_j L
+	\end{pmatrix},
+	\hspace{0.05\linewidth}
+	\frac{dx^\mu}{d\tilde{x}^\alpha} = \begin{pmatrix}
+		1 - T' & -\partial_i T \\ -\partial_i L' & \delta_{ij} - \partial_i \partial_j L
+	\end{pmatrix}.
+\end{align}
+Metric tensor in the new set of coordinates can be found using the tensor transformation rule
+\begin{align}
+	g_{\mu\nu} \rightarrow \tilde{g}_{\alpha\beta} = \frac{dx^\mu}{d\tilde{x}^\alpha} \frac{dx^\nu}{d\tilde{x}^\beta} g_{\mu\nu}.
+\end{align}
+Note also that the scale factor also changes 
+metric transforms due to variations in its argument;  $\bar{a}(\tau)^2 \rightarrow \bar{a}(\tilde{\tau})^2 = \bar{a}(t)^2 (1 + 2 \mathcal{H} T)$. After some calculations we see that each perturbation variables in the metric \eqref{eqn:perturbed_metric_scalar} becomes
+\begin{alignat}{2}
+	\tilde{A} &= A - T' - \mathcal{H}T, \qquad &&\tilde{B} = B + T - L', \label{eqn:gauge_transform_perturbations_1}\\
+	\tilde{C} &= C - \mathcal{H}T - \frac{1}{3}\nabla^2 L, \qquad &&\tilde{E} = E - L. \label{eqn:gauge_transform_perturbations_2}
+\end{alignat}
+Hence, the two free functions $T$ and $E$ can be chosen in a way that the metric perturbations satisfy some desirable properties. Doing so \textit{fixes} the gauge and no further redundancies remain in our formulation. Popular choices include the \textit{spatially flat} gauge, where $C=E=0$ and spatial perturbations vanish as $h_{ij}=0$, and the \textit{synchronous} gauge, for which $A=B=0$, leaving time unperturbed.
 
-metric transforms.
+Meanwhile, it is possible to construct quantities from perturbative variables such that they remain invariant under the transformations \eqref{eqn:gauge_transform_perturbations_1}-\eqref{eqn:gauge_transform_perturbations_2}. The Bardeen potentials are two such examples;
+\begin{align}
+	\Psi_B &:= A + \mathcal{H}(B-E') + B' - E'', \\
+	\Phi_B &:= -C - \mathcal{H}(B-E') + \frac{1}{3}\nabla^2 E.
+\end{align}
+The gauge we will be using for the rest of this chapter is \textit{Newtonian} gauge with $B=E=0$. The metric is then rewritten in terms of the Bardeen potentials (dropping the subscript):
+\begin{align}
+	ds^2 = a(\tau)^2 \left[ -(1 + 2\Psi) d\tau^2 + (1-2\Phi) d\vv{x}^2  \right]. \label{eqn:perturbed_metric_newtonian_gauge}
+\end{align}
+Perturbations $\Psi(\tau,\vv{x})$ and $\Phi(\tau,\vv{x})$ are equivalent to the classical gravitational potential in the Newtonian limit.
+
+
+\subsection{Matter perturbations}
+
+In order to complete the Einstein field equation, we need the energy-momentum tensor as well as the metric written to first order in perturbations. Recall that a perfect fluid in homogeneous universe has $\bar{T}_{\mu\nu} = (\bar{\rho} + \bar{P}) \bar{U}_\mu \bar{U}_\nu + \bar{P} \bar{g}_{\mu\nu}$. Not only the perturbations in energy density and pressure, but also variations in the metric and comoving observer's four-velocity affects $T_{\mu\nu}$. We consider the local inertial frame to separate these two effects. Let
+\begin{align}
+	(E_0)^\mu := a^{-1} (1 - \Psi) \delta^\mu_0, \quad (E_i)^\mu := a^{-1} (1 + \Phi) \delta^\mu_i.
+\end{align}
+The four vectors form an orthonormal frame where $g_{\mu\nu}(E_\alpha)^\mu (E_\beta)^\nu = \eta_{\alpha\beta}$. In this locally Minkowski frame, each component of the tensor $\tilde{T}^{\alpha\beta}$ corresponds to physical quantities. We write
+\begin{align}
+	&\tilde{T}^{00} = \rho = \bar{\rho} + \delta\rho, \qquad \tilde{T}^{0i} = q^i = (\bar{\rho}+\bar{P})v^i, \\
+	&\tilde{T}^{ij} = P \delta^{ij} - \Pi^{ij} = (\bar{P} + \delta P) \delta^{ij} - \Pi^{ij}.
+\end{align}
+The momentum density $\vv{q}$ and mean velocity $\vv{v}$ are first-order quantities which vanish in the homogeneous universe. Symmetric and traceless matrix $\Pi^{ij}$ represent anisotropic stress. This quantity vanishes for non-relativistic fluid such as dark matter, while it remains small but non-zero for relativistic particles including photons.
+
+Transforming back to the original coordinates by $T^{\mu\nu}=(E_\alpha)^\mu (E_\beta)^\nu \tilde{T}^{\alpha\beta}$,
+\begin{alignat}{2}
+	T^{00} &= a^{-2} \bar{\rho} &&\;\;+ a^{-2}\left( \delta\rho - 2\Psi\bar{\rho} \right) \\
+	T^{0i} &= 0 &&\;\;+ a^{-2} q^i \\
+	T^{ij} &= a^{-2} \bar{P} \delta^{ij} &&\;\;+ a^{-2} \left[ (\delta P + 2\Phi\bar{P})\delta^{ij} - \Pi^{ij} \right]
+\end{alignat}
+to first order in perturbations. Note that when only scalar modes are considered, we may write $v^i = \partial_i v$ and $\Pi^{ij} = \partial_{\langle i} \partial_{j \rangle} \Pi$ for some $v$, $\Pi$. If multiple fluids contribute, then the total energy-momentum tensor is obtained from summing over all individual values; $\delta\rho = \sum_I \delta\rho_I$, $\delta P = \sum_I \delta P_I$, and $\delta \vv{q} = \sum_I \vv{q}_I$.
+
+
+\subsection{Initial perturbations}
+
+With metric and matter perturbations written down, we only need one more ingredient to be able to solve linearised Einstein's equations: initial conditions. In inflationary $\Lambda CDM$, modulations about the background solution originate from quantum fluctuations of the inflation field as we discussed in Section \ref{section:quantum_fluctuations}. Statistical properties of the perturbations depend on the inflationary scenario.
+
+In models where a single field drives inflation, such as slow-roll inflation, the field can be thought of as a local \textit{clock}. Classical equations of motions dictate the trajectory followed by the field which regulates the expansion of the universe. Any spatial fluctuations of the inflation field can therefore be considered as differences in how far it has moved down the trajectory at each point. Resulting perturbations are then determined solely by variations in the local `clock' time $\delta\tau(\tau,\vv{x})$;
+\begin{align}
+	\delta f \;=\; \bar{f}(\tau + \delta\tau, \vv{x}) - \bar{f}(\tau,\vv{x}) \;=\; \frac{\partial\bar{f}}{\partial\tau} \delta\tau,
+\end{align}
+for any $f$. By substituting $f=\rho_I$ and $P_I$ we find that $\delta\rho_I/\bar{\rho}'_I = \delta P_I / \bar{P}'_I = \delta\tau$, which is locally constant for each constituent $I$. Combined with the background continuity equation \ref{eqn:continuity},
+\begin{align}
+	\frac{\delta_I}{1+w_I} = \frac{\delta_J}{1+w_J}, \label{eqn:adabatic_modes_density_contrast}
+\end{align}
+where we have defined the density contrast $\delta_I := \delta\rho_I / \bar{\rho}_I$. In particular, $\delta_r = (4/3) \delta_m$ at each point in space.
+
+Perturbations satisfying the strong constraint of \eqref{eqn:adabatic_modes_density_contrast} are called \textit{adiabatic} modes. They affect every component equally so that the ratio between density contrasts remain constant. 
+
+Orthogonal to adiabatic modes are \textit{isocurvature} modes where the total density contrast vanishes everywhere; $\delta_r = -\delta_m$. Some multi-field inflation models are expected to seed isocurvature perturbations. However, all observations so far are consistent with purely adiabatic initial conditions. (TODO: add references here)
+
+\section{Linearised equations}
+
+In this section, we derive equations governing time evolution of the perturbations defined in the previous section. The equations are linear in the perturbative variables up to first order. Although all calculations are done in Newtonian gauge, the methodology illustrated here is general and applies to any choice of gauge. 
+
+\subsection{Kinematics}
+
+\subsection{Dynamics}
+
+\subsection{Curvature perturbations}
+
+
+\section{Boltzmann equations}
+
+\subsection{Photons}
+
+\subsection{Scattering term}
+
 
 There is a freedom to impose extra conditions.
 
@@ -99,7 +187,7 @@ Another useful identity is the addition theorem for spherical harmonics given by
 \end{align}
 where $P_l(\mu)$ are Legendre polynomials.
 	
-As long as sufficiently many multipoles $l$ are included, spherical harmonic coefficients $a_{lm}$ contain full information of the original function. Thanks to orthonormality, the harmonic coefficients can be computed using
+As long as sufficiently many multipoles $l$ are included, spherical harmonic coefficients $a_{lm}$ contain full information of the original function. Thanks to orthonormality, the spherical multipole coefficients can be computed using
 \begin{align}
 	a_{lm} (\vv{x},\eta) &= \int d^2\hat{\vv{p}} \; \Theta(\vv{x}, \hat{\vv{p}},\eta) Y^*_{lm} (\hat{\vv{p}}). \\
 	&= \int \frac{d^3 k}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \int d^2\hat{\vv{p}} \; \Theta(\vv{k},\hat{\vv{p}},\eta) Y^*_{lm}(\hat{\vv{p}}). \label{eqn:alm_derivation_alm_using_theta}
@@ -127,13 +215,13 @@ Setting $\vv{x}=\vv{x_0}$ to be $\vv{0}$ and choosing $\eta=\eta_0$, we obtain a
 \subsection{CMB power spectrum}
 
 \begin{align}
-	\langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle = (2\pi)^3 \delta^{(3)} (\vv{k} - \vv{k}') P_\phi (k)
+	\langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle = (2\pi)^3 \delta^{(3)} (\vv{k} - \vv{k}') P_\Phi (k)
 \end{align}
 
 
 \begin{align}
 	\langle a^*_{lm} a_{l'm'} \rangle &= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \frac{d^3\vv{k'}}{(2\pi)^3} \langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle (\vv{k}') \Delta_l (\vv{k}) \Delta_{l'} (\vv{k'}) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}'})  \\
-	&= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \Delta_l (\vv{k}) \Delta_{l'} (\vv{k}) P(k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}}) \\
+	&= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \Delta_l (\vv{k}) \Delta_{l'} (\vv{k}) P_\Phi(k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}}) \\
 	&= \frac{2}{\pi} i^{l-l'} \int dk \; k^2  \Delta_l (\vv{k}) \Delta_{l'} (\vv{k}) P(k) \delta_{ll'} \delta_{mm'} \\
 	&= \frac{2}{\pi} \int dk \; k^2 |\Delta_l(k)|^2 P_\Phi (k)
 \end{align}
