@@ -133,9 +133,9 @@ This is known as the FLRW metric, named after independent researchers who worked
 
 Levi-Civita connection corresponding to the FLRW metric can be computed using the definition (\ref{def:Levi_Civita}). Its non-zero components are given as follows.
 \begin{align}
-	\Gamma^0_{ij} =& \frac{\dot{a}}{a} \gamma_{ij}, \\
-	\Gamma^i_{j0} =& \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j, \\
-	\Gamma^i_{jk} =& \frac{1}{2a^2} \gamma^{il} \left( \partial_k \gamma_{jl} + \partial_j \gamma_{kl} - \partial_l \gamma_{jk} \right). 
+	\Gamma^0_{ij} =& \frac{\dot{a}}{a} \gamma_{ij}, \label{eqn:homogenous_christoffel_1}\\
+	\Gamma^i_{j0} =& \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j, \label{eqn:homogenous_christoffel_2}\\
+	\Gamma^i_{jk} =& \frac{1}{2a^2} \gamma^{il} \left( \partial_k \gamma_{jl} + \partial_j \gamma_{kl} - \partial_l \gamma_{jk} \right).  \label{eqn:homogenous_christoffel_3}
 \end{align}
 Overdot denotes time derivative $(\,\, \dot{} \,\,) := \partial/\partial t$ here and for the rest of this thesis. Indices for $\gamma$ are raised and lowered using $\gamma$, not $g$.
 
@@ -343,7 +343,7 @@ To resolve this issue, we need the particle horizon at recombination to be large
 	\label{fig:horizon_solution}
 \end{figure}
 
-Inflation can alternatively be characterised using the comoving hubble radius defined as
+Inflation can alternatively be characterised using the comoving Hubble radius defined as
 \begin{align}
 	\mathcal{H}^{-1} := \frac{1}{aH}.
 \end{align}
