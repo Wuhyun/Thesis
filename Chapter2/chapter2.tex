@@ -226,27 +226,180 @@ The second term vanishes for adiabatic modes sourced by single field inflation, 
 
 Now consider scales much larger than the comoving Hubble radius $\mathcal{H}^{-1}$, namely the `super-horizon' scales. The Fourier space equivalent of this condition is $k \ll \mathcal{H}$. The Fourier transform of $\nabla^2 v$, $-k^2 \tilde{v}$, is thus much smaller than the typical time scale $\mathcal{H}$ in this limit. It follows that $\zeta'\approx 0$; curvature perturbations are conserved in the super-horizon scales.
 
-For this reason, the curvature perturbations play a major role in connecting inflation with initial conditions. The comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation. Regions of space previously in causal contact then disconnects, providing large enough particle horizon later at recombination which resolves the horizon problem discussed in Section \ref{section:the_horizon_problem}. After the end of inflation, $\mathcal{H}^{-1}$ starts growing again so that physical scales we observe today are back within the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links quantum fluctuations during inflation to initial perturbations after inflation.
+For this reason, the curvature perturbations play a major role in connecting inflation with initial conditions. The comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation. Regions of space previously in causal contact then disconnects, providing large enough particle horizon later at recombination and resolving the horizon problem discussed in Section \ref{section:the_horizon_problem}. After the end of inflation, $\mathcal{H}^{-1}$ starts growing again so that physical scales we observe today move back within the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links quantum fluctuations during inflation to initial perturbations after inflation.
 
 
+\section{CMB anisotropy}
 
-\section{Boltzmann equations}
+\begin{align}
+	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i
+\end{align}
 
-\subsection{Photons}
+\begin{align}
+	\frac{dx^i}{d\eta} =  \frac{dx^i}{d\lambda} \frac{d\lambda}{d\eta} = \frac{P^i}{P^0} = (1+\Psi+\Phi)\hat{p}^i
+\end{align}
 
-\subsection{Scattering term}
+\begin{align}
+	\frac{dP^\mu}{d\lambda} + \Gamma^\mu_{\nu\rho} P^\nu P^\rho = 0
+\end{align}
+
+\begin{align}
+	P^0 \left( \frac{dP^0}{d\eta} \right) + \Gamma^0_{\nu\rho} P^\nu P^\rho = 0
+\end{align}
+
+\begin{align}
+	\frac{dP^0}{d\eta} = \frac{1-\Psi}{a} \left( \frac{dp}{d\eta} - \mathcal{H}p \right) - \frac{p}{a} \left( \frac{\partial\Psi}{\partial\eta} + \frac{dx^i}{d\eta} \frac{\partial\Psi}{\partial x^i}  \right) 
+\end{align}
+
+\begin{align}
+	\frac{1}{p} \left( \frac{dp}{d\eta} \right) = - \mathcal{H} + \Phi' - \hat{p}^i \partial_i \Psi 
+\end{align}
+
+\begin{align}
+	\bar{f}(\eta, p) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)} \right\} - 1 \right]^{-1}
+\end{align}
+
+\begin{align}
+	f(\eta, \vv{x}, p, \hat{\vv{p}}) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)\left[1 + \Theta (\eta,\vv{x},\hat{\vv{p}}) \right]} \right\} - 1 \right]^{-1}
+\end{align}
+
+$p(1-\Theta)$ instead of $p$.
+\begin{align}
+	f = \bar{f} - \frac{\partial \bar{f}}{\partial (\ln p)} \; \Theta
+\end{align}
+
+\begin{align}
+	\frac{df}{d\eta} &= \frac{\partial f}{\partial \eta} + \frac{\partial f}{\partial x^i}\frac{dx^i}{d\eta} + \frac{\partial f}{\partial(\ln  p)}\frac{d(\ln p)}{d\eta} + \frac{\partial f}{\partial \hat{p}^i}\frac{d\hat{p}^i}{d\eta} \\
+	&= \left. \frac{df}{d\eta} \right|_\text{scattering}
+\end{align}
+
+\begin{align}
+	\frac{d\bar{f}}{d\eta} = \frac{\partial \bar{f}}{\partial\eta} - \frac{d(\ln\bar{p})}{d\eta} \frac{\partial \bar{f}}{\partial(\ln p)} = 0
+\end{align}
+hence $\bar{T}\propto a^{-1}$
+
+L.H.S. of Boltzmann equation to first order in perturbations. The lensing contribution is second order and therefore vanishes.
+\begin{align}
+	\frac{df}{d\eta} = - \frac{\partial}{d\eta} \left( \frac{\partial \bar{f}}{\partial(\ln p)} \Theta \right) - \frac{\partial \bar{f}}{\partial (\ln p)} \hat{p}^i \frac{\partial \Theta}{\partial x^i} +  \frac{\partial^2 \bar{f}}{\partial(\ln p)^2} \mathcal{H}\Theta + \frac{\partial \bar{f}}{\partial (\ln p)} \left( \frac{\partial \Phi}{\partial \eta} - \hat{p}^i \frac{\partial \Psi}{\partial x^i} \right)
+\end{align}
+
+\begin{align}
+	 \frac{df}{d\eta} = - \frac{\partial \bar{f}}{\partial (\ln p)} \biggl[ \Theta' + \hat{p}^i \partial_i \Theta - \Phi' + \hat{p}^i \partial_i \Psi \biggr] 
+\end{align}
+
+$e^- + \gamma \leftrightarrow e^- + \gamma$
+
+$E_e (\vv{q}) = m_e + \frac{1}{2m_e} q^2$
+
+Proper time of electrons $\eta_e$ (suppressing $\eta$ and $\vv{x}$ dependence for now)
+\begin{align}
+	\left. \frac{df}{d\eta_e} \right|_\text{scattering} = \bar{n}_e \int d^2 \hat{\vv{p}}_{in} \; \frac{d\sigma}{d\Omega} \left[ f(p,\hat{\vv{p}}_{in}) - f(p,\hat{\vv{p}})\right]
+\end{align}
+First - 'in' , second - 'out'.
+
+\begin{align}
+	\frac{d\sigma}{d\Omega} = \frac{3\sigma_T}{16\pi} (1 + \cos^2 \theta)
+\end{align}
+where $\cos\theta = \hat{\vv{p}} \cdot \hat{\vv{p}}_{in}$.
+
+Account for bulk velocity $\vv{v}_b$ of baryons. Out modes integrates easily. $f = \bar{f} - (\partial\bar{f})/(\partial\ln p) \Theta$.
+\begin{align}
+	\left. \frac{df}{d\eta} \right|_\text{scattering} = a \bar{n}_e \sigma_T \frac{d\bar{f}}{d(\ln p)}  \left[ \Theta(\hat{\vv{p}}) - \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] - \hat{\vv{p}} \cdot \vv{v}_b \right]
+\end{align}
+
+Full Photon Boltzmann equation.
+\begin{align}
+	\Theta' + (\hat{\vv{p}} \cdot \nabla) \Theta &- \Phi' +(\hat{\vv{p}} \cdot \nabla) \Psi  \nonumber \\	
+	&= a \bar{n}_e \sigma_T \left[ -\Theta + \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right] 
+\end{align}
+
+Optical depth
+\begin{align}
+	\tau(\eta) := \int_\eta^{\eta_0} d\eta'\; \left[ a(\eta') \bar{n}_e (\eta') \sigma_T \right]
+\end{align}
+
+$\tau' = -a \bar{n}_e \sigma_T$, visibility function $g:=-\tau'e^{-\tau}$
+
+\begin{align}
+	\frac{d}{d\eta} \left[ e^{-\tau} (\Theta + \Psi) \right] &= e^{-\tau}(\Psi' + \Phi') + g \left[ \frac{3}{16\pi} \int d^2\hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) (1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right] \\
+	&=: S(\eta, \vv{x}, \hat{\vv{p}})
+\end{align}
+
+Line of sight solution
+\begin{align}
+	\Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}) + \Psi(\eta_0, \vv{x}_0) = \int_0^{\eta_0} d\eta' \; S(\eta', \vv{x}_0 - (\eta_0 -\eta') \hat{\vv{p}}, \hat{\vv{p}})
+\end{align}
+since $\tau(\eta_0)=0$, $\tau(0) = \infty$.
+
+From line of sight solution, assume $g(\eta)\approx g(\eta_*)\delta(\eta-\eta_*)$ and no reionisation, so $e^{-\tau}$ is 0 before recombination $\eta=\eta_*$ and 1 afterwards. Also assume no anisotropic stress. Then the integral term becomes monopole $\Theta_0 = (1/4\pi)\int d^2\hat{\vv{n}} \;\Theta(\hat{\vv{n}})$ (will see later). In such case,
+
+\begin{align}
+	&\Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}) + \Psi(\eta_0, \vv{x}_0) \nonumber \\
+	&\qquad \approx \Theta_0(\eta_*, \vv{x}_*) + \Psi(\eta_*, \vv{x}_*) + \hat{\vv{p}}\cdot \vv{v}_b (\eta_*, \vv{x}_*) + \int_{\eta_*}^{\eta_0} d\eta' \; (\Psi' + \Phi')(\eta', \vv{x}_0-(\eta_0-\eta')\hat{\vv{p}}) 
+\end{align}
+where $\vv{x}_* = \vv{x}_0-(\eta_0-\eta_*)\hat{\vv{p}}$ is the location of LSS. Contributions: monopole, gravitational well to move out of, doppler effect from electrons at scattering, and ISW effect. Sum of monopole + psi term: the Sachs-Wolfe contribution.
 
 
-There is a freedom to impose extra conditions.
+Work in Fourier space. Define $\mu := \hat{\vv{p}}\cdot\hat{\vv{k}}$. Scalar perturbation -> axisymmetric $\Theta$ to first order. $\Theta(\eta,\vv{k},\hat{\vv{p}}) = \Theta(\eta,\vv{k},\mu)$. Define $l$ space quantities
+\begin{align}
+	\Theta_l (\eta,\vv{k}) :=& i^l \int \frac{d^2 \hat{\vv{p}}}{4\pi} \; P_l (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta(\eta, \vv{k}, \hat{\vv{p}}) \\
+	&= i^l \int^1_{-1} \frac{d\mu}{2} \; P_l (\mu) \Theta(\eta, \vv{k}, \mu)
+\end{align}
+
+Legendre polynomials orthogonality
+\begin{align}
+	\int_{-1}^{1} \frac{d\mu}{2} \; P_{l_1}(\mu) P_{l_2}(\mu) = \frac{1}{2l_1 + 1} \delta_{l_1 l_2}
+\end{align}
+
+\begin{align}
+	\Theta(\eta,\vv{k},\mu) = \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \Theta_l (\eta, \vv{k})
+\end{align}
+(Note that some literature defines theta as $(2l+1)\Theta_l$ in our convention)
+
+Monopole is a simple angle average $\Theta_0 = (1/4\pi) \int d^2\hat{\vv{n}} \; \Theta(\hat{\vv{p}})$. Dipole $\Theta_1 = (i/4\pi) \int d^2\hat{\vv{n}} \; (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta(\hat{\vv{p}})$
+
+Using $P_2(\mu) \ (1/2)(3\mu^2 -1)$ and after some calculations
+\begin{align}
+	\frac{3}{16\pi} \int d^2\hat{\vv{n}} \; \left[ \Theta(\eta,\vv{k},\hat{\vv{n}}) (1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2) \right] = \Theta_0 (\eta,\vv{k}) + \frac{1}{2} P_2 (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta_2(\eta, \vv{k}) 
+\end{align}
+
+Boltzmann equation becomes (dropping $\eta$ and $\vv{k}$ dependence)
+\begin{align}
+	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right]
+\end{align}
+where $\vv{v}_b = \nabla v_b$.
+
+Noting $P_0(\mu) = 1$ and $P_1(\mu)=\mu$,
+\begin{align}
+	&\sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \Theta'_l + ik\mu \Theta_l \right] \nonumber\\
+	&\quad= \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \tau' \Theta_l + \delta_{l0} (\Phi' - \tau'\Theta_0) + \delta_{l1} (\frac{1}{3}k\Psi + \frac{1}{3}k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2) \right]
+\end{align}
+The $\mu$ term on the left hand side is troublesome. Use the recursion relation for Legendre polynomials
+\begin{align}
+	(2l+1)\mu P_l(\mu) = (l+1) P_{l+1} (\mu) + l P_{l-1} (\mu)
+\end{align}
+Now the equation splits to each $l$ thanks to the orthogonality of Legendre polynomials.
+\begin{align}
+	&\Theta'_l - \frac{l}{2l+1} k\Theta_{l-1} + \frac{l+1}{2l+1} k\Theta_{l+1}  \nonumber\\
+	&\qquad= \tau' \Theta_l + \delta_{l0} (\Phi' - \tau' \Theta_0) + \delta_{l1} (\frac{1}{3} k\Psi + \frac{1}{3} k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2)
+\end{align}
+
+\begin{align}
+	\Theta'_0 + k\Theta_1 &= \Phi' \\
+	\Theta'_1 - \frac{1}{3} k\Theta_0 +\frac{2}{3} k\Theta_2 &= \frac{1}{3} k \Psi + \tau'(\Theta_1 + \frac{1}{3} k v_b)
+\end{align}
 
 
-\begin{itemize}
-	\item Gauge problem. use Newtonian gauge
-	\item Perturbed Einstein equations
-	\item Definition of $\zeta$ and its conservation in superhorizon scales
-\end{itemize}
+Note the energy-momentum tensor
+\begin{align}
+	T^{\mu\nu} = \int \frac{d^3 \vv{p}}{E(\vv{p})} f(\vv{p}) p^i p^j
+\end{align}
+in the rest frame. Note the integration measure is Lorentz invariant. Have $\delta_\gamma = 4\Theta_0$, $v_\gamma = (-3i/k) \Theta_1$, and $\Pi_\gamma = -3\Theta_2$.
+
 
 \subsection{Boltzmann Equations}
+
+
 \begin{itemize}
 	\item Define photon anisotropy using its distribution function
 	\item Boltzmann equation and Thompson scattering cross-section (quote)
@@ -255,11 +408,13 @@ There is a freedom to impose extra conditions.
 	\item Mention that numerical solutions gives us transfer functions, defined as $\Delta_l (k) = \Theta_l(k,\eta_0) / \Phi(k,\eta_i)$
 \end{itemize}
 
-\subsection{CMB anisotropy}
+
+
+\subsection{Late-time anisotropy}
 
 TODO: organise the following into sections
 
-We have seen how to evolve perturbations in the photon distribution function $\Theta_l(k,\eta)$ from given initial conditions. In particular, the radiation transfer function $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about CMB photons' time evolution, from early times $\eta=\eta_i$ until now $\eta=\eta_0$. In this section, we derive the relation between perturbations $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
+We have seen how to evolve perturbations in the photon distribution function $\Theta_l(k,\eta)$ from given initial conditions. In particular, the radiation transfer function defined as $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about CMB photons' time evolution, from early times $\eta=\eta_i$ until now $\eta=\eta_0$. In this section, we derive the relation between perturbations $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
 
 We observe the CMB at a fixed point in spacetime: here ($\vv{x}=\vv{x}_0$) and now ($\eta=\eta_0$). Small variations in time and location have completely negligible effects given the Hubble scale today. Anisotropy in the CMB temperature we observe hence takes the form
 \begin{align}
@@ -319,11 +474,4 @@ Setting $\vv{x}=\vv{x_0}$ to be $\vv{0}$ and choosing $\eta=\eta_0$, we obtain a
 \end{align}
 
 
-
-
-
-
-\begin{itemize}
-	\item Derive form for $C_l$'s. (Written)
-	\item Borrow Planck 2018 analysis picture. 
-\end{itemize}
+Borrow Planck 2018 analysis picture. 
