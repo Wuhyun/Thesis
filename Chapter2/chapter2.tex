@@ -196,7 +196,7 @@ The $00$, $i0$, and $ij$ trace parts of Einstein's equations then take the form
 	\Phi' + \mathcal{H} \Phi &= -4\pi G \; a^2 q \label{eqn:perturbed_einstein_equations_2}\\
 	\Phi'' + 3\mathcal{H} \Phi' + (2\mathcal{H}' + \mathcal{H}^2) \Phi &= 4\pi G \; a^2 \delta P. \label{eqn:perturbed_einstein_equations_3}
 \end{align}
-We used the background equations to remove terms of zeroth order in perturbations. The $i0$ part generally gives a vector identity but has only one scalar degrees of freedom since $\vv{q}=(\bar{\rho}+\bar{P})\vv{v} = \nabla q$ for some $q := (\bar{\rho}+\bar{P}) v$.
+We used the background equations to remove terms of zeroth order in perturbations. The $i0$ part generally gives a vector identity but it only has one scalar degree of freedom since $\vv{q}=(\bar{\rho}+\bar{P})\vv{v} = \nabla q$ for some $q := (\bar{\rho}+\bar{P}) v$.
 
 Time derivatives of $\Phi$ on the left hand side can be removed by putting \eqref{eqn:perturbed_einstein_equations_1} and \eqref{eqn:perturbed_einstein_equations_2} together. The result is Poisson's equation;
 \begin{align}
@@ -226,10 +226,41 @@ The second term vanishes for adiabatic modes sourced by single field inflation, 
 
 Now consider scales much larger than the comoving Hubble radius $\mathcal{H}^{-1}$, namely the `super-horizon' scales. The Fourier space equivalent of this condition is $k \ll \mathcal{H}$. The Fourier transform of $\nabla^2 v$, $-k^2 \tilde{v}$, is thus much smaller than the typical time scale $\mathcal{H}$ in this limit. It follows that $\zeta'\approx 0$; curvature perturbations are conserved in the super-horizon scales.
 
-For this reason, the curvature perturbations play a major role in connecting inflation with initial conditions. The comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation. Regions of space previously in causal contact then disconnects, providing large enough particle horizon later at recombination and resolving the horizon problem discussed in Section \ref{section:the_horizon_problem}. After the end of inflation, $\mathcal{H}^{-1}$ starts growing again so that physical scales we observe today move back within the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links quantum fluctuations during inflation to initial perturbations after inflation.
+For this reason, the curvature perturbations play a major role in connecting inflation with initial conditions. Recall that the comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation. Regions of space previously in causal contact then disconnects, letting the particle horizon later at recombination to be large enough, and resolving the horizon problem discussed earlier in Section \ref{section:the_horizon_problem}. After the end of inflation, $\mathcal{H}^{-1}$ starts growing again so that physical scales we observe today move back within the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links quantum fluctuations during inflation to initial perturbations after inflation.
 
 
 \section{CMB anisotropy}
+
+The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} dictates the time evolution of gravitational perturbations given the total energy, momentum, and pressure of the universe's components. Contributions to these characteristics from cold dark matter can be solved using the perturbed continuity equation \eqref{eqn:perturbed_continuity_equation} and Euler equations \eqref{eqn:perturbed_Euler_equation}. This section covers how perturbations in the photon temperature evolve and translates to the measured CMB anisotropy, the main observable of this thesis.
+
+Studying photons has two major complications compared to cold dark matter. First, photons are relativistic particles. While the perturbations in cold dark matter are completely characterised by the two parameters $\delta\rho_m$ and $\vv{v}_m$,
+
+ Our next target is to study perturbations in photon distributions and outline 
+
+We now draw our attention to photons. In particular, we would like to study how perturbations in the photon temperature evolve in time during 
+
+The 
+
+\section{Photons}
+
+
+\subsection{Boltzmann Equations} \label{section:boltzmann_equations}
+\subsubsection*{Distribution function} \label{section:distribution_function}
+\subsubsection*{Collisionless equation} \label{section:collisionless_equation}
+\subsubsection*{Thomson scattering} \label{section:thompson_scattering}
+
+\subsection{Line of sight solution} \label{section:line_of_sight_solution}
+\subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
+
+
+\begin{itemize}
+	\item Define photon anisotropy using its distribution function
+	\item Boltzmann equation and Thompson scattering cross-section (quote)
+	\item Decomposition using multipole moments
+	\item Quote CAMB papers etc for detailed computation. Don't derive Boltzmann hierarchy!
+	\item Mention that numerical solutions gives us transfer functions, defined as $\Delta_l (k) = \Theta_l(k,\eta_0) / \Phi(k,\eta_i)$
+\end{itemize}
+
 
 \begin{align}
 	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i
@@ -395,19 +426,6 @@ Note the energy-momentum tensor
 	T^{\mu\nu} = \int \frac{d^3 \vv{p}}{E(\vv{p})} f(\vv{p}) p^i p^j
 \end{align}
 in the rest frame. Note the integration measure is Lorentz invariant. Have $\delta_\gamma = 4\Theta_0$, $v_\gamma = (-3i/k) \Theta_1$, and $\Pi_\gamma = -3\Theta_2$.
-
-
-\subsection{Boltzmann Equations}
-
-
-\begin{itemize}
-	\item Define photon anisotropy using its distribution function
-	\item Boltzmann equation and Thompson scattering cross-section (quote)
-	\item Decomposition using multipole moments
-	\item Quote CAMB papers etc for detailed computation. Don't derive Boltzmann hierarchy!
-	\item Mention that numerical solutions gives us transfer functions, defined as $\Delta_l (k) = \Theta_l(k,\eta_0) / \Phi(k,\eta_i)$
-\end{itemize}
-
 
 
 \subsection{Late-time anisotropy}
