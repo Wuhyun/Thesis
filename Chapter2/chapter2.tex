@@ -91,7 +91,7 @@ Perturbations $\Psi(\tau,\vv{x})$ and $\Phi(\tau,\vv{x})$ are equivalent to the 
 
 In order to complete the Einstein field equation, we need the energy-momentum tensor as well as the metric written to first order in perturbations. Recall that a perfect fluid in homogeneous universe has $\bar{T}_{\mu\nu} = (\bar{\rho} + \bar{P}) \bar{U}_\mu \bar{U}_\nu + \bar{P} \bar{g}_{\mu\nu}$. Not only the perturbations in energy density and pressure, but also variations in the metric and comoving observer's four-velocity affects $T_{\mu\nu}$. We consider the local inertial frame to separate these two effects. Let
 \begin{align}
-	(E_0)^\mu := a^{-1} (1 - \Psi) \delta^\mu_0, \quad (E_i)^\mu := a^{-1} (1 + \Phi) \delta^\mu_i.
+	(E_0)^\mu := a^{-1} (1 - \Psi) \delta^\mu_0, \quad (E_i)^\mu := a^{-1} (1 + \Phi) \delta^\mu_i. \label{eqn:newtonian_gauge_tetrad}
 \end{align}
 The four vectors form an orthonormal frame where $g_{\mu\nu}(E_\alpha)^\mu (E_\beta)^\nu = \eta_{\alpha\beta}$. In this locally Minkowski frame, each component of the tensor $\tilde{T}^{\alpha\beta}$ corresponds to physical quantities. We write
 \begin{align}
@@ -233,90 +233,83 @@ For this reason, the curvature perturbations play a major role in connecting inf
 
 The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} dictate the time evolution of gravitational perturbations given the total energy, momentum, and pressure of the universe's components. Contributions to these characteristics from cold dark matter can be solved using the perturbed continuity equation \eqref{eqn:perturbed_continuity_equation} and Euler equations \eqref{eqn:perturbed_Euler_equation}. This section covers how perturbations in the photon temperature evolve and translate into the observed CMB anisotropy, the main cosmological dataset in this thesis.
 
-Studying photons has two major complications compared to cold dark matter. First, unlike cold dark matter whose perturbations are well characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, photon distribution function has an extra dimension 
-
- Our next target is to study perturbations in photon distributions and outline 
-
-We now draw our attention to photons. In particular, we would like to study how perturbations in the photon temperature evolve in time during 
-
-The 
-
-\section{Photons}
+Studying photon perturbations involves two major complications compared to cold dark matter. First, photons directly interact with baryons through Compton scattering. Their perturbations hence stay tightly coupled until recombination, when baryons form neutral hydrogen and photons start free-streaming instead. We outline in Section \ref{section:boltzmann_equations} how Boltzmann equations are used to find the time evolution of photon perturbations while accounting for scattering. Second, unlike cold dark matter whose perturbations are characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, we require a whole hierarchy of functions to accurately describe photons. This is because photons do not necessarily travel parallel to the wavevector when perturbed; $\vv{p} \nparallel \vv{k}$. We discuss the details in Section \ref{section:boltzmann_hierarchy}.
 
 
 \subsection{Boltzmann Equations} \label{section:boltzmann_equations}
+\subsubsection*{Photons}
+
+We start by calculating the path a photon takes while free-streaming within the perturbed metric \eqref{eqn:perturbed_metric_newtonian_gauge}. The 4-momentum of a photon in local coordinates satisfies $\eta_{\alpha\beta}\tilde{P}^\alpha \tilde{P}^\beta = 0$ since photons are massless. We may hence write its components as
+\begin{align}
+	\tilde{P}^0 =: p, \qquad \tilde{P}^i =: p \hat{p}^i,
+\end{align}
+where $\hat{\vv{p}}$ is a unit vector indicating the direction of propagation. We can revert back to the perturbed metric using the tetrad in \eqref{eqn:newtonian_gauge_tetrad}; since $P^\mu = (E_\alpha)^\mu \tilde{P}^\alpha$,
+\begin{align}
+	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i  \label{eqn:perturbed_photon_four_momentum}
+\end{align}
+Recall that the 4-momentum is defined as $P^\mu = dx^\mu/\lambda$ for some affine parameter $\lambda$. Using our definition above,
+\begin{align}
+	\frac{dx^i}{d\eta} =  \frac{dx^i}{d\lambda} \frac{d\lambda}{d\eta} = \frac{P^i}{P^0} = (1+\Psi+\Phi)\hat{p}^i	\label{eqn:perturbed_photon_position_total_derivative}
+\end{align}
+to first order in perturbations. Photons seem to travel more slowly in overdense regions where the gravitational potentials $\Psi,\Phi<0$.
+
+The geodesic equation \eqref{eqn:geodesic} take the form
+\begin{align}
+	\frac{dP^\mu}{d\lambda} + \Gamma^\mu_{\nu\rho} P^\nu P^\rho = P^0 \left( \frac{dP^0}{d\eta} \right) + \Gamma^0_{\nu\rho} P^\nu P^\rho = 0.  \label{eqn:geodesic_equation_four_momentum}
+\end{align}
+Meanwhile, differentiating \eqref{eqn:perturbed_photon_four_momentum} gives
+\begin{align}
+	\frac{dP^0}{d\eta} = \frac{1-\Psi}{a} \left( \frac{dp}{d\eta} - \mathcal{H}p \right) - \frac{p}{a} \left( \frac{\partial\Psi}{\partial\eta} + \frac{dx^i}{d\eta} \frac{\partial\Psi}{\partial x^i}  \right). \label{eqn:perturbed_energy_total_derivative}
+\end{align}
+Note the distinction between total and partial derivatives; $d/d\eta$ here is taken along the trajectory $x^\mu = x^\mu(\eta)$ of a photon. We may combine \eqref{eqn:geodesic_equation_four_momentum} and \eqref{eqn:perturbed_photon_four_momentum} to obtain an expression for the total derivative of $p$;
+\begin{align}
+	\frac{1}{p} \left( \frac{dp}{d\eta} \right) = - \mathcal{H} + \Phi' - \hat{p}^i \partial_i \Psi. \label{eqn:perturbed_p_total_derivative}
+\end{align}
+Only the first term on the right hand side remains in the zeroth order to give $p\propto a^{-1}$. We confirm that photons get redshifted as the universe expands, justifying the definition of $z$ in \eqref{def:redshift}. The other two terms quantify the effect of gravitational perturbations on photon's energy. Photons in a deepening potential well has to spend some of its energy to come out of it, hence the term $\Phi'$. On the other hand, moving into a region with deeper potential provides energy equal to $-({\vv{p}}\cdot\nabla)\Psi$. Dividing by $p$ gives the last term in \eqref{eqn:perturbed_p_total_derivative}.
+
+
 \subsubsection*{Distribution function} \label{section:distribution_function}
-\subsubsection*{Collisionless equation} \label{section:collisionless_equation}
+In order to fully understand physical properties of perturbations in photons, we need to study their distribution function $f(\eta,\vv{x},\vv{p})$ which measures the number of particles in a unit phase space volume. Photons in thermal equilibrium with the homogenous universe follow Bose-Einstein distribution where   
+\begin{align}
+	\bar{f}(\eta, p) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)} \right\} - 1 \right]^{-1}, \label{eqn:photon_distribution_function}
+\end{align}
+up to a factor and the Boltzmann constant, both of which we set to one for convenience. This is blackbody radiation with temperature $\bar{T}(\eta)$.
+
+We define the fractional temperature anisotropy $\Theta$ through the perturbed photon distribution function as follows;
+\begin{align}
+	f(\eta, \vv{x}, p, \hat{\vv{p}}) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)\left[1 + \Theta (\eta,\vv{x},\hat{\vv{p}}) \right]} \right\} - 1 \right]^{-1}. \label{eqn:perturbed_photon_distribution_function}
+\end{align}
+We made an implicit assumption here that $\Theta(\eta,\vv{x},\hat{\vv{p}})$ does not depend on $p$, the photon energy. This claim will be justified later as we show that the Thomson scattering leaves photon energy virtually unchanged.
+
+The distribution function \eqref{eqn:perturbed_photon_distribution_function} can be expanded to linear order in perturbations as
+\begin{align}
+	f = \bar{f} - \frac{\partial \bar{f}}{\partial (\ln p)} \; \Theta,  \label{eqn:perturbed_photon_distribution_function_expansion}
+\end{align}
+by replacing $p$ with $p(1-\Theta)$ in \eqref{eqn:photon_distribution_function}. The temperature anisotropy $\Theta$ therefore closely relates to the perturbed distribution function.
+
+\subsubsection*{Collisionless equations} \label{section:collisionless_equation}
+
+Liouville's theorem states that the phase space distribution function remains constant along the system's trajectories. A generalisation of this to systems with collisions is the Boltzmann equation. For our photon distribution function, it reads
+\begin{align}
+	\frac{df}{d\eta} &= \frac{\partial f}{\partial \eta} + \frac{\partial f}{\partial x^i}\frac{dx^i}{d\eta} + \frac{\partial f}{\partial(\ln  p)}\frac{d(\ln p)}{d\eta} + \frac{\partial f}{\partial \hat{p}^i}\frac{d\hat{p}^i}{d\eta} \label{eqn:boltzmann_equation_base}\\
+	&= \left. \frac{df}{d\eta} \right|_\text{scattering} . \label{eqn:boltzmann_equation_base_scattering}
+\end{align}
+In \eqref{eqn:boltzmann_equation_base} we used chain rule to expand out the total derivative again. Note that the last term only appears at the second order in perturbations since both $(\partial f/\partial \hat{p}^i)$ and $(d\hat{p}^i/d\eta)$ appear at the first order. This term corresponding to gravitational lensing opens up a whole subject of its own but will be neglected for our purposes in this thesis.
+
+Without scattering, the term in \eqref{eqn:boltzmann_equation_base_scattering} vanishes and the distribution function is conserved on each trajectory. The zeroth order part of the equation yields
+\begin{align}
+	\frac{d\bar{f}}{d\eta} = \frac{\partial \bar{f}}{\partial\eta} - \frac{\partial \bar{f}}{\partial(\ln p)}\frac{d(\ln\bar{p})}{d\eta} = 0. \label{eqn:boltzmann_equation_collisionless_zeroth}
+\end{align}
+Substituting the form of $\bar{f}$ we see that the background temperature scales as $\bar{T}\propto a^{-1}$, consistent with the redshift caused by expansion of the universe.
+
+We can write down the first order part of \eqref{eqn:boltzmann_equation_base} in terms of the temperature anisotropy using our previous results \eqref{eqn:perturbed_photon_position_total_derivative}, \eqref{eqn:perturbed_p_total_derivative}, and \eqref{eqn:perturbed_photon_distribution_function_expansion};
+\begin{align}
+	\frac{df}{d\eta} &= - \frac{\partial}{\partial\eta} \left( \frac{\partial \bar{f}}{\partial(\ln p)} \Theta \right) - \frac{\partial \bar{f}}{\partial (\ln p)} \hat{p}^i \frac{\partial \Theta}{\partial x^i} +  \frac{\partial^2 \bar{f}}{\partial(\ln p)^2} \mathcal{H}\Theta + \frac{\partial \bar{f}}{\partial (\ln p)} \left( \frac{\partial \Phi}{\partial \eta} - \hat{p}^i \frac{\partial \Psi}{\partial x^i} \right) \\
+	&= - \frac{\partial \bar{f}}{\partial (\ln p)} \biggl[ \Theta' + \hat{p}^i \partial_i \Theta - \Phi' + \hat{p}^i \partial_i \Psi \biggr], \label{eqn:boltzmann_equation_collisionless_first}
+\end{align}
+after some algebra. There are four terms in \eqref{eqn:boltzmann_equation_collisionless_first}. The first two naturally arise from the free-streaming of temperature anisotropies. The other two in brackets account for the changes in photon energy caused by gravitational perturbations. They are equal to $-p^{-1}(d \ln(ap)/d\eta)$, where the \textit{comoving} energy $ap$ is constant in the background metric.
+
 \subsubsection*{Thomson scattering} \label{section:thompson_scattering}
-
-\subsection{Line of sight solution} \label{section:line_of_sight_solution}
-\subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
-
-
-\begin{itemize}
-	\item Define photon anisotropy using its distribution function
-	\item Boltzmann equation and Thompson scattering cross-section (quote)
-	\item Decomposition using multipole moments
-	\item Quote CAMB papers etc for detailed computation. Don't derive Boltzmann hierarchy!
-	\item Mention that numerical solutions gives us transfer functions, defined as $\Delta_l (k) = \Theta_l(k,\eta_0) / \Phi(k,\eta_i)$
-\end{itemize}
-
-
-\begin{align}
-	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i
-\end{align}
-
-\begin{align}
-	\frac{dx^i}{d\eta} =  \frac{dx^i}{d\lambda} \frac{d\lambda}{d\eta} = \frac{P^i}{P^0} = (1+\Psi+\Phi)\hat{p}^i
-\end{align}
-
-\begin{align}
-	\frac{dP^\mu}{d\lambda} + \Gamma^\mu_{\nu\rho} P^\nu P^\rho = 0
-\end{align}
-
-\begin{align}
-	P^0 \left( \frac{dP^0}{d\eta} \right) + \Gamma^0_{\nu\rho} P^\nu P^\rho = 0
-\end{align}
-
-\begin{align}
-	\frac{dP^0}{d\eta} = \frac{1-\Psi}{a} \left( \frac{dp}{d\eta} - \mathcal{H}p \right) - \frac{p}{a} \left( \frac{\partial\Psi}{\partial\eta} + \frac{dx^i}{d\eta} \frac{\partial\Psi}{\partial x^i}  \right) 
-\end{align}
-
-\begin{align}
-	\frac{1}{p} \left( \frac{dp}{d\eta} \right) = - \mathcal{H} + \Phi' - \hat{p}^i \partial_i \Psi 
-\end{align}
-
-\begin{align}
-	\bar{f}(\eta, p) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)} \right\} - 1 \right]^{-1}
-\end{align}
-
-\begin{align}
-	f(\eta, \vv{x}, p, \hat{\vv{p}}) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)\left[1 + \Theta (\eta,\vv{x},\hat{\vv{p}}) \right]} \right\} - 1 \right]^{-1}
-\end{align}
-
-$p(1-\Theta)$ instead of $p$.
-\begin{align}
-	f = \bar{f} - \frac{\partial \bar{f}}{\partial (\ln p)} \; \Theta
-\end{align}
-
-\begin{align}
-	\frac{df}{d\eta} &= \frac{\partial f}{\partial \eta} + \frac{\partial f}{\partial x^i}\frac{dx^i}{d\eta} + \frac{\partial f}{\partial(\ln  p)}\frac{d(\ln p)}{d\eta} + \frac{\partial f}{\partial \hat{p}^i}\frac{d\hat{p}^i}{d\eta} \\
-	&= \left. \frac{df}{d\eta} \right|_\text{scattering}
-\end{align}
-
-\begin{align}
-	\frac{d\bar{f}}{d\eta} = \frac{\partial \bar{f}}{\partial\eta} - \frac{d(\ln\bar{p})}{d\eta} \frac{\partial \bar{f}}{\partial(\ln p)} = 0
-\end{align}
-hence $\bar{T}\propto a^{-1}$
-
-L.H.S. of Boltzmann equation to first order in perturbations. The lensing contribution is second order and therefore vanishes.
-\begin{align}
-	\frac{df}{d\eta} = - \frac{\partial}{d\eta} \left( \frac{\partial \bar{f}}{\partial(\ln p)} \Theta \right) - \frac{\partial \bar{f}}{\partial (\ln p)} \hat{p}^i \frac{\partial \Theta}{\partial x^i} +  \frac{\partial^2 \bar{f}}{\partial(\ln p)^2} \mathcal{H}\Theta + \frac{\partial \bar{f}}{\partial (\ln p)} \left( \frac{\partial \Phi}{\partial \eta} - \hat{p}^i \frac{\partial \Psi}{\partial x^i} \right)
-\end{align}
-
-\begin{align}
-	 \frac{df}{d\eta} = - \frac{\partial \bar{f}}{\partial (\ln p)} \biggl[ \Theta' + \hat{p}^i \partial_i \Theta - \Phi' + \hat{p}^i \partial_i \Psi \biggr] 
-\end{align}
 
 $e^- + \gamma \leftrightarrow e^- + \gamma$
 
@@ -426,6 +419,20 @@ Note the energy-momentum tensor
 	T^{\mu\nu} = \int \frac{d^3 \vv{p}}{E(\vv{p})} f(\vv{p}) p^i p^j
 \end{align}
 in the rest frame. Note the integration measure is Lorentz invariant. Have $\delta_\gamma = 4\Theta_0$, $v_\gamma = (-3i/k) \Theta_1$, and $\Pi_\gamma = -3\Theta_2$.
+
+
+
+\subsubsection*{Line of sight solution} \label{section:line_of_sight_solution}
+\subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
+
+
+\begin{itemize}
+	\item Define photon anisotropy using its distribution function
+	\item Boltzmann equation and Thompson scattering cross-section (quote)
+	\item Decomposition using multipole moments
+	\item Quote CAMB papers etc for detailed computation. Don't derive Boltzmann hierarchy!
+	\item Mention that numerical solutions gives us transfer functions, defined as $\Delta_l (k) = \Theta_l(k,\eta_0) / \Phi(k,\eta_i)$
+\end{itemize}
 
 
 \subsection{Late-time anisotropy}
