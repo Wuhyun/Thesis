@@ -101,23 +101,23 @@ In order to study the perturbed metric in presence of the inflation field, it is
 \begin{align}
 	ds^2 = -N dt^2 + h_{ij}(dx^i + N^i dt) (dx^j N^j dt),
 \end{align}
-where the lapse and shift functions $N$ and $N^i$, respectively, are non-dynamical variables in the action. They act as Lagrange multipliers to give constraint equations. We focus on scalar perturbations here and ignore vector and tensor modes, owing to the SVT theorem. The spatial metric $h_{ij}$ contains two of them. When inflation driven by a single scalar field, there is one extra mode from perturbations of the field. Out of the three dynamical scalar degrees of freedom, two can be fixed by a gauge choice. (TODO: add reference to section 2 here) We choose a gauge so that the inflation field is uniform, and the spatial metric takes the form
+where the lapse and shift functions $N$ and $N^i$, respectively, are non-dynamical variables in the action. They act as Lagrange multipliers to give constraint equations. We focus on scalar perturbations here and ignore vector and tensor modes, owing to the SVT theorem. The spatial metric $h_{ij}$ contains two of them. When inflation driven by a single scalar field, there is one extra mode from perturbations of the field. Out of the three dynamical scalar degrees of freedom, two can be fixed by a gauge choice as we saw in \ref{section:metric_perturbations}. Here we choose a gauge so that the inflation field is uniform, and the spatial metric takes the form
 \begin{align}
 	h_{ij} = a(t)^2 \;e^{2\zeta} \; \delta_{ij},  \label{eqn:spatial_metric_curvature_perturbation}
 \end{align}
 where $\zeta(\vv{x},t)$ is equivalent to the curvature perturbation we defined earlier (TODO: add reference to section 2 here). Note that, if we define $N(t) = \int^{t}_{t_0} H dt' = \ln a(t) - \ln a(t_0)$ (not to be confused with the lapse function $N$) to represent the number of $e$-folds of expansion between time $t$ and $t_0$, then $\zeta = \delta N$. 
 	
-We now write down the action. Compared to \eqref{eqn:real_scalar_field_action}, the Einstein-Hilbert term is added since the metric is no longer fixed. We consider a generalised form of the field Lagrangian;
+We now write down the action. Compared to \eqref{eqn:real_scalar_field_action}, the Einstein-Hilbert term is added since the metric is no longer fixed. We consider a generalised form of the field Lagrangian with the action given by
 \begin{align}
 	S = \int dt d^3 \vv{x} \; \sqrt{-g} \left[ \frac{M_p}{2} R + P(X,\phi) \right],  \label{eqn:general_single_field_action}
 \end{align}
-where $M_p := (8\pi G)^{-1/2}$ is the reduced Planck mass, and $X:=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ denote the canonical kinetic term. We set $M_p=1$ for convenience. $P(X,\phi)$ is an arbitrary function which generalises $X-V(\phi)$. (TODO: add references to P(X,phi) models).
+where $M_p := (8\pi G)^{-1/2}$ is the reduced Planck mass, and $X:=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ denote the canonical kinetic term. We set $M_p=1$ for convenience. $P(X,\phi)$ is an arbitrary function which generalises $X-V(\phi)$ of the standard slow-roll inflation. (TODO: add references to P(X,phi) models).
 
-One notable consequence of non-trivial kinetic term $P$ is that fluctuations in the inflation field no longer necessarily propagate with speed of light. The sound speed is defined as
+One notable consequence of non-trivial kinetic term $P$ is that fluctuations in the inflation field no longer necessarily propagate with speed of light. The sound speed, defined as the ratio $\delta P / \delta \rho$, is given by
 \begin{align}
 	c_s^2 = \frac{P_{,X}}{P_{,X} + 2 X P_{,XX}},
 \end{align}
-where the subscript $,X$ represents taking partial derivative with respect to $X$.
+where the subscript `$,X$' represents taking partial derivative with respect to $X$.
 
 In the ADM formalism, \eqref{eqn:general_single_field_action} becomes
 \begin{align}
@@ -227,7 +227,7 @@ The shape function
 \end{align}
 which is maximised in the equilateral limit and vanishes at the squeezed limit.
 
-The full bispectrum can be computed following the general methodology shown in this section. We quote one of the most important results; For canonical inflation with $P(X,\phi) = X - V(\phi)$, the bispectrum is suppressed by slow-roll parameters $\epsilon$ and $\eta$ \cite{Maldacena2013}. However, relaxing any of the assumptions\textemdash canonical kinetic term, slow-roll, single-field, and Bunch-Davis vacuum \textemdash may yield significant and observable signatures in the bispectrum (e.g., \cite{Chen2010,Komatsu2010} for reviews. TODO: add more references).
+The full bispectrum can be computed following the general methodology shown in this section. We quote one of the most important results; for the canonical slow-roll inflation with $P(X,\phi) = X - V(\phi)$, the bispectrum is suppressed by slow-roll parameters $\epsilon$ and $\eta$ \cite{Maldacena2013}. However, relaxing any of the assumptions\textemdash canonical kinetic term, slow-roll, single-field, and Bunch-Davis vacuum \textemdash may yield significant and observable signatures in the bispectrum (e.g., \cite{Chen2010,Komatsu2010} for reviews. TODO: add more references).
 
 \section{CMB bispectrum estimation} \label{section:CMB_bispectrum_estimation}
 
@@ -635,7 +635,7 @@ The main advantage of the binned estimator is in significant reduction of the co
 Meanwhile, the binned estimator is not as effective for constraining models with features or oscillations. This is not only because binning smooths out small modulations in the bispectrum, but also since evaluating the theoretical bispectra in $l$ space through \eqref{eqn:binned_estimator_theoretical_bispectra} becomes numerically challenging. Reduced bispectrum needs to be computed for every $(l_1,l_2,l_3)$ triplets and then summed over within each bin. Such computation is often practically intractable unless the given shape is separable. For the same reason, the binned estimator struggles to constrain non-separable shapes, even though the formalism itself applies to any shape.
 
 
-\subsection{Other sources of non-Gaussianity.}
+\subsection{Other sources of non-Gaussianity.} \label{section:other_sources_of_non_gaussianity}
 
 CMB is one of the cleanest probes of the primordial bispectrum. CMB anisotropy remains linear in initial perturbations to a very good approximation so that its bispectrum contains little contribution from non-linear evolution. Regardless, there are non-primordial sources of non-Gaussianity that needs close attention. In this section, we discuss both physical and experimental complications to the CMB bispectrum estimation.
 

@@ -693,7 +693,7 @@ We invested significant proportion of our time investigating this error. Here we
 
 Next source of error we studied is the parameter set. Cosmological parameters we used for constraints in Table \ref{table:trio_fNL_comparison_with_planck} are identical to those of Planck Modal pipeline. Small changes in cosmological parameters are also shown to have little effect on $f_{NL}$ \cite{PlanckCollaboration2015,PlanckCollaboration2018}. One major difference however, is the number of Gaussian simulations used. We include 140 simulated maps while Modal has about 300. This number is mainly restricted by computational resources required for the large Legendre basis in CMB-BEst. While we found 140 to be sufficient for most cases, sample variance may cause some fluctuations in the linear term and error bar. A rough estimate for sampling error is $\sim \sqrt{2/N_{sims}} \approx 0.12$, as calculated in the previous section. Other than $N_{sims}$, more internal parameters such as the grid density of discretised arrays have also been checked to yield consistent results when varied. 
 
-We are left with systematic errors as potential causes for discrepancies. The most significant bias to $f_{NL}$ constraints is the lensing-ISW bias. Table \ref{table:trio_lensing_bias_comparison_with_planck} shows biases from the lensing bispectrum \cite{Lewis2011lensing} for both CMB-BEst and Planck 2018 analysis. The numbers vary but are consistent overall. Map-by-map comparison of constraints from the Legendre basis and Modal are shown in Figure \ref{fig:map_by_map_Legendre_Modal}. 
+We are left with systematic errors as potential causes for discrepancies. The most significant bias to $f_{NL}$ constraints is the lensing-ISW bias discussed in Section \ref{section:other_sources_of_non_gaussianity}. Table \ref{table:trio_lensing_bias_comparison_with_planck} shows biases from the lensing bispectrum \cite{Lewis2011lensing} for both CMB-BEst and Planck 2018 analysis. The numbers vary but are consistent overall. Map-by-map comparison of constraints from the Legendre basis and Modal are shown in Figure \ref{fig:map_by_map_Legendre_Modal}. 
 
 \begin{table}[h]
 	\caption{Bias to $f_{NL}$ of standard shapes originating from the lensing bispectrum. We compare CMB-BEst's two different basis sets and the Planck 2018 analysis \cite{PlanckCollaboration2018}, using SMICA map and FFP10 simulations. }
@@ -720,11 +720,11 @@ We are left with systematic errors as potential causes for discrepancies. The mo
 	\label{fig:map_by_map_Legendre_Modal}
 \end{figure}
 
-Out of the three templates, local shape shows the largest scatter between constraints. Comparing $f_{NL}$'s of simulated maps from CMB-BEst and Modal, we find correlation of 0.916. The intercept value of $0.78$ in the linear fit is mainly due to sample mean present in Modal. Legendre's sample mean is $0.069$ for Local, while Modal has $-0.698$. Otherwise, the difference between two pipelines are distributed such that its sample standard deviation equals $2.5$, skewness is $-0.14$, and kurtosis is $0.19$. Having small $<1$ skewness and kurtosis implies that the distribution is close to univariate normal, consistent with random fluctuations. Similarly, we do not find any significant systematic error from Equilateral and Orthogonal shapes either.
+Out of the three templates, local shape shows the largest scatter between constraints. Comparing $f_{NL}$'s of simulated maps from CMB-BEst and Modal, we find correlation of 0.916. The intercept value of $0.78$ in the linear fit is mainly due to sample mean present in Modal. Legendre's sample mean is $0.069$ for Local, while Modal has $-0.698$. Otherwise, the difference between two pipelines are distributed such that its sample standard deviation equals $2.5$, skewness is $-0.14$, and kurtosis is $0.19$. Having small skewness and kurtosis less than $1$ implies that the distribution is close to univariate normal, consistent with random fluctuations. Similarly, we do not find any significant systematic error from Equilateral and Orthogonal shapes either.
 
 Having not found a clear source of error, we conclude that the small gaps between the $f_{NL}$ estimates in Table \ref{table:trio_fNL_comparison_with_planck} mainly come from differences in methodology and are consistent with random fluctuations.
 
-We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of form $S^{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. We follow \cite{Fergusson2015a} and increase $\omega$ in steps of $10$, so that correlation between shapes with different $\omega$ is kept low.
+We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of form $S^\text{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. We follow \cite{Fergusson2015a} and increase $\omega$ in steps of $10$, so that correlation between shapes with different $\omega$ is kept low.
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -809,7 +809,18 @@ As with the feature models before, we plot the correlation matrix between the te
 \subsection{Proof of concept} \label{section:proof_of_concept}
 
 
-\textit{Primodal} is an efficient numerical code for computing bispectra of primordial perturbations using the in-in formalism \cite{Clarke2021}. Unlike many in-in codes, the computed bispectrum is expressed as coefficients of a separable basis expansion as opposed to a grid of discrete points. Choosing an equivalent basis set for \textit{CMB-BEst} therefore allows a direct link between the two codes. The combined pipeline is capable of constraining specific inflation models directly. Template-free bispectrum analysis will also enable fast and extensive scan of theory parameters. 
+\textsc{Primodal} is an efficient numerical code for computing bispectra of primordial perturbations using the in-in formalism \cite{Clarke2021}. Unlike many in-in codes, the computed bispectrum is expressed as coefficients of a separable basis expansion as opposed to a grid of discrete points. Choosing an equivalent basis set for \textit{CMB-BEst} therefore allows a direct link between the two codes. The combined pipeline is capable of constraining specific inflation models directly without the use of approximate templates. Such template-free bispectrum analysis also enables a fast and extensive scan of theory parameters.
+
+Collaborating closely with the main author of \textsc{Primodal}, Philip Clarke, we verified the integrity of the combined \textsc{Primodal} + CMB-BEst routine. We thoroughly tested the consistency of basis functions, their orthogonalisation, and convergence. Both \textsc{Primodal} and \textsc{CMB-BEst} are now in the exploitation phase. We present a working example of the combined pipeline as a proof of concept.
+
+DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi} (TODO: add more DBI paper references) is a well-studied single-field inflation model inspired by string theory. Its action follows the general form \eqref{eqn:general_single_field_action}, with a non-canonical kinetic term given by
+\begin{align}
+	P(X,\phi) = - \frac{1}{f(\phi)} \left[ \sqrt{1 - 2f(\phi)X} - 1 \right] - V(\phi),
+\end{align}
+where $X=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ as before. $f(\phi)$ is an arbitrary function called the warp factor. We choose
+\begin{align}
+	f(\phi) = \frac{\lambda_{DBI}}{\phi^4}, \qquad V(\phi) = V_0 - \frac{1}{2}m^2\phi^2, \qquad m = \sqrt{\beta_{IR}} \; H
+\end{align}
 
 - DBI sound speed constraints
 - DBI resonance scan
