@@ -641,21 +641,27 @@ CMB is one of the cleanest probes of the primordial bispectrum. CMB anisotropy r
 
 \subsubsection*{Lensing bispectrum}
 
-After its departure from the last scattering surface, CMB photons travel through the perturbed universe until they reach us. The overdense regions on the way act as gravitational lenses and alter the trajectories, leaving observable imprints to the CMB map. Overdensities magnify the CMB around them and thus shift the power spectrum towards larger scales. The deflection $\hat{\vv{\alpha}}$ away from observation angle $\hat{\vv{n}}$ can be computed from the line-of-sight integral given by 
+After its departure from the last scattering surface, CMB photons travel through the perturbed universe until they reach us. The overdense regions on the way act as gravitational lenses and alter the trajectories, leaving observable imprints to the CMB map. Overdensities magnify the CMB around them and thus shift the power spectrum towards larger scales. The deflection $\vv{\alpha}$ away from observation angle $\hat{\vv{n}}$ can be computed from the line-of-sight integral given by 
 \begin{align}
-	\vv{\alpha} = - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi} \nabla_{\hat{\vv{n}}} \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi),
+	\vv{\alpha} = - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi} \nabla_{\hat{\vv{n}}} \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi), 
 \end{align}
-where the Weyl potential $\Psi_W = (\Psi + \Phi)/2$ is defined as the average of two Newtonian potentials. The integral is performed along the unperturbed path, an assumption known as the Born approximation. This is valid as long as the deflection angle $\alpha$ remains small. The angular derivate $\nabla_{\hat{\vv{n}}}$ is taken orthogonal to $\hat{\vv{n}}$ and within the tangent plane on the sphere. The integration weight quantifies how earlier deflections cause greater displacements in the sky today. Most of the contributions come from late-time universe with redshift $z\lessapprox2$. We define the \textit{lensing potential} as
+where the Weyl potential $\Psi_W = (\Psi + \Phi)/2$ is defined as the average of two Newtonian potentials. The integral is performed along the unperturbed path, an assumption known as the Born approximation. This is valid as long as the deflection angle $\vv{\alpha}$ remains small. The angular derivate $\nabla_{\hat{\vv{n}}}$ is taken orthogonal to $\hat{\vv{n}}$ and within the tangent plane on the sphere. The integration weight quantifies how earlier deflections cause greater displacements in the sky today. Most of the contributions come from late-time universe with redshift $z\lessapprox2$. We define the \textit{lensing potential} as
 \begin{align}
-	\psi = - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi}  \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi),
+	\psi := - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi}  \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi), \label{def:lensing_potential}
 \end{align}
 so that $\vv{\alpha}(\hat{\vv{n}}) = \nabla_{\hat{\vv{n}}} \psi$ in our regime. $\psi$ is a secondary observable of CMB which opens up a whole field by itself. We refer to \cite{Bartelmann2001weaklensing,Lewis2006weaklensing,Hanson2010weaklensing} for detailed reviews on CMB lensing including derivations of the equations above. (TODO: add references for recent lensing results)
 
-Another significant late-time contribution to CMB anisotropy is from the Integrated Sachs-Wolfe (ISW) effect. This is the last term in \eqref{eqn:line_of_sight_solution_approximated} with a simple change of variable:
+Another significant late-time contribution to CMB anisotropy comes from the Integrated Sachs-Wolfe (ISW) effect. This is the last term in \eqref{eqn:line_of_sight_solution_approximated} with a simple relabelling of variables:
 \begin{align}
-	\Theta_{ISW}(\eta_0,\vv{x}_0, \hat{\vv{n}}) = 2\int_0^{\chi_*} d\chi \; \Psi'_W (\chi\hat{\vv{n}}; \eta_0-\chi).
+	\Theta_{ISW}(\eta_0,\vv{x}_0, \hat{\vv{n}}) = 2\int_0^{\chi_*} d\chi \; \Psi'_W (\chi\hat{\vv{n}}; \eta_0-\chi). \label{eqn:ISW_effect}
 \end{align}
+The integrand is small except during the accelerated expansion in low redshift, again $z\lessapprox2$. The two integrals \eqref{def:lensing_potential} and \eqref{eqn:ISW_effect} are highly correlated through $\Psi_W$ and thus generate non-trivial bispectrum mainly in the squeezed limit. The resulting lensing-ISW (LISW) bispectrum is well approximated by the template given by \cite{Lewis2011lensing}
+\begin{align}
+	b^{LISW}_{l_1 l_2 l_3} = \frac{1}{2}\left[ l_1 (l_1 + 1) - l_2 (l_2 + 1) + l_3 (l_3 + 1) \right] \tilde{C}_{l_1}^{TT} C_{l_3}^{T\phi} + \text{5 perms.},
+\end{align}
+where $\tilde{C}^{TT}_l$ is the \textit{lensed} angular power spectrum and $C^{T\psi}_l$ is the cross power spectrum between temperature and $\psi$. Assuming standard $\Lambda$CDM cosmology we expect to find the bispectrum above in the CMB without any additional scale factors. We can measure its amplitude through the usual bispectrum estimator; $\hat{f}^{LISW}_{NL} = \langle \vv{b}^{LISW}, \; \vv{b}^{obs} \rangle / \langle \vv{b}^{LISW}, \; \vv{b}^{LISW} \rangle$ using the inner product from \eqref{def:bispectrum_estimation_fisher_inner_product}. This value was first detected using Planck 2013 CMB maps to a $2.5\sigma$ level \cite{PlanckCollaboration2013ISW}. The most recent Planck analysis estimates $f^{LISW}_{NL} = 0.73 \pm 0.27$ using SMICA foreground-cleaned CMB temperature maps \cite{PlanckCollaboration2018}.
 
+The lensing-ISW bispectrum is a physically meaningful secondary observable from 
 
 
 Component separation, foreground.
