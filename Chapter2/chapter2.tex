@@ -312,60 +312,62 @@ after some algebra. There are four terms in \eqref{eqn:boltzmann_equation_collis
 
 \subsubsection*{Thomson scattering} \label{section:thompson_scattering}
 
+The early universe contains hot plasma in which photons bounce off charged particles via Compton scattering. In particular, photons and electrons interact through Thomson scattering $e^- + \gamma \leftrightarrow e^- + \gamma$. The interaction provides a dominant contribution to the Boltzmann equation for photon temperature anisotropies until recombination, when electrons and protons combine to form hydrogen atom, letting photons travel freely.
 
-
-$e^- + \gamma \leftrightarrow e^- + \gamma$
-
-$E_e (\vv{q}) = m_e + \frac{1}{2m_e} q^2$
-
-Proper time of electrons $\eta_e$ (suppressing $\eta$ and $\vv{x}$ dependence for now)
+Thomson scattering involves a photon and a non-relativistic electron with energy $E_e (\vv{q}) = m_e + \frac{1}{2m_e} q^2$, where $m_e$ is the electron rest mass. In the electron's rest frame, the scattering term \eqref{eqn:boltzmann_equation_base_scattering} takes the form
 \begin{align}
-	\left. \frac{df}{d\eta_e} \right|_\text{scattering} = \bar{n}_e \int d^2 \hat{\vv{p}}_{in} \; \frac{d\sigma}{d\Omega} \left[ f(p,\hat{\vv{p}}_{in}) - f(p,\hat{\vv{p}})\right]
+	\left. \frac{df}{d\eta_e} \right|_\text{scattering} = \bar{n}_e \int d^2 \hat{\vv{p}}_{in} \; \frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) \; \left[ f(p,\hat{\vv{p}}_{in}) - f(p,\hat{\vv{p}})\right], \label{eqn:thomson_scattering_electron_rest_frame}
 \end{align}
-First - 'in' , second - 'out'.
-
+where $\eta_e$ and $\bar{n}_e$ denote the proper time and (background) mean number density of the electrons, respectively. We have suppressed the $\eta$ and $\vv{x}$ dependencies from the photon distribution function $f(\eta,\vv{x},p,\hat{\vv{p}})$ for now. The integrand of \eqref{eqn:thomson_scattering_electron_rest_frame} comprises two parts. The former corresponds to photons originally travelling along the direction $\hat{\vv{p}}_{in}$, but then scatters \textit{into} $\hat{\vv{p}}$. The latter is the opposite; it accounts for photons scattering \textit{out of} $\hat{\vv{p}}$ to some other direction, say $\hat{\vv{p}}_{in}$. Both \textit{in} and \textit{out} scatters are equally effective since the Thomson scattering is a reversible process. The rate of interaction depends on the number densities, $\bar{n}_e$ and $f$, as well as an angle dependent function given by
 \begin{align}
-	\frac{d\sigma}{d\Omega} = \frac{3\sigma_T}{16\pi} (1 + \cos^2 \theta)
+	\frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) = \frac{3\sigma_T}{16\pi} \left[ 1 + (\hat{\vv{p}} \cdot \hat{\vv{p}}_{in})^2 \right] \label{eqn:thomson_scattering_cross_section}
 \end{align}
-where $\cos\theta = \hat{\vv{p}} \cdot \hat{\vv{p}}_{in}$.
+for Thomson scattering. (TODO: add refs here?) The Thomson differential cross section $\sigma_T$ is a fixed constant equal to $8\pi\hslash^2 \alpha^2 / 3c^2 m_e^2$. Note from \eqref{eqn:thomson_scattering_electron_rest_frame} and \eqref{eqn:thomson_scattering_cross_section} that the Thomson scattering leaves the photon energy $p$ unchanged. This justifies our previous assumption to drop the $p$ dependence from $\Theta$; the photon energy remains unperturbed by scattering in first order perturbation theory.
 
-Account for bulk velocity $\vv{v}_b$ of baryons. Out modes integrates easily. $f = \bar{f} - (\partial\bar{f})/(\partial\ln p) \Theta$.
+We now account for bulk velocity $\vv{v}_b$ of the electrons (baryons). In the non-relativistic limit where $\|\vv{v}_b \| \ll 1$, the Doppler effect alters the distribution function proportional to $\bar{n}_e (\hat{\vv{p}} \cdot \vv{v}_e)$. We also rewrite $f = \bar{f} - (\partial\bar{f}/\partial\ln p) \; \Theta$ and substitute \eqref{eqn:thomson_scattering_cross_section} into \eqref{eqn:thomson_scattering_electron_rest_frame} to obtain
 \begin{align}
-	\left. \frac{df}{d\eta} \right|_\text{scattering} = a \bar{n}_e \sigma_T \frac{d\bar{f}}{d(\ln p)}  \left[ \Theta(\hat{\vv{p}}) - \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] - \hat{\vv{p}} \cdot \vv{v}_b \right]
+	\left. \frac{df}{d\eta} \right|_\text{scattering} = a \bar{n}_e \sigma_T \frac{d\bar{f}}{d(\ln p)}  \left[ \Theta(\hat{\vv{p}}) - \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] - \hat{\vv{p}} \cdot \vv{v}_b \right], \label{eqn:thomson_scattering}
 \end{align}
+where we relabelled $\hat{\vv{p}}_{in}$ as $\hat{\vv{n}}$ and performed the $\int d^2\hat{\vv{n}}$ integral for the \textit{out} term, which cancels out the factor $3/16\pi$.
 
-Full Photon Boltzmann equation.
+
+\subsubsection*{Line of sight solution} \label{section:line_of_sight_solution}
+
+We obtain the full photon Boltzmann equation by combining \eqref{eqn:boltzmann_equation_collisionless_first} and \eqref{eqn:thomson_scattering}.
 \begin{align}
-	\Theta' + (\hat{\vv{p}} \cdot \nabla) \Theta &- \Phi' +(\hat{\vv{p}} \cdot \nabla) \Psi  \nonumber \\	
-	&= a \bar{n}_e \sigma_T \left[ -\Theta + \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right] 
+	\Theta' + (\hat{\vv{p}} \cdot \nabla) &\Theta - \Phi' +(\hat{\vv{p}} \cdot \nabla) \Psi  \nonumber \\	
+	&= a \bar{n}_e \sigma_T \left[ -\Theta + \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right]. \label{eqn:boltzmann_equation_1}
 \end{align}
-
-Optical depth
+Note that every term on the right hand side has a factor of $a\bar{n}_e \sigma_T$ from scattering, which motivates us to define \textit{optical depth};
 \begin{align}
-	\tau(\eta) := \int_\eta^{\eta_0} d\eta'\; \left[ a(\eta') \bar{n}_e (\eta') \sigma_T \right]
+	\tau(\eta) := \int_\eta^{\eta_0} d\eta'\; \left[ a(\eta') \bar{n}_e (\eta') \sigma_T \right],
 \end{align}
+where $\tau$ is not to be confused with conformal time, also denoted $\tau$ elsewhere in this section.\footnote{Unfortunately, we could not have avoided the clash in notation by naming conformal time as $\eta$ to begin with, since $\eta$ is also used as one of the slow-roll parameters in inflation.} Here, $-\delta\tau = a\bar{n}_e \sigma_T \delta\eta$ corresponds to the probability of scattering to occur between some small time interval $\delta\eta$. The optical depth hence measures how \textit{opaque} the universe has been for photons to travel without running into something until today. The probability of a scatter between some time $\eta$ and today $\eta_0$ is in fact equal to $e^{-\tau(\eta)}$: $1$ for $\tau=0$ and $0$ as $\tau\rightarrow\infty$. Taking time derivative yields the \textit{visibility function} $g(\eta):=-\tau'(\eta) e^{-\tau(\eta)}$, or the probability of having last scattered at $\eta$.
 
-$\tau' = -a \bar{n}_e \sigma_T$, visibility function $g:=-\tau'e^{-\tau}$
-
+Using $\tau$ and $\eta$ we may rewrite \eqref{eqn:boltzmann_equation_1} as follows.
 \begin{align}
-	\frac{d}{d\eta} \left[ e^{-\tau} (\Theta + \Psi) \right] &= e^{-\tau}(\Psi' + \Phi') + g \left[ \frac{3}{16\pi} \int d^2\hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) (1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right] \\
-	&=: S(\eta, \vv{x}, \hat{\vv{p}})
+	\frac{d}{d\eta} \left[ e^{-\tau} (\Theta + \Psi) \right] &= e^{-\tau}(\Psi' + \Phi') + g \left[ \frac{3}{16\pi} \int d^2\hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) (1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right] \label{eqn:boltzmann_equation_2} \\
+	&=: S(\eta, \vv{x}, \hat{\vv{p}}), \label{def:boltzmann_source_term}
 \end{align}
-
-Line of sight solution
+where we defined the source term $S(\eta,\vv{x},\hat{\vv{p}})$ as the right hand side of \eqref{eqn:boltzmann_equation_2}. Integrating along the line of sight yields a formal solution to the Boltzmann equation of form
 \begin{align}
-	\Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}) + \Psi(\eta_0, \vv{x}_0) = \int_0^{\eta_0} d\eta' \; S(\eta', \vv{x}_0 - (\eta_0 -\eta') \hat{\vv{p}}, \hat{\vv{p}})
+	\Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}) + \Psi(\eta_0, \vv{x}_0) = \int_0^{\eta_0} d\eta' \; S(\eta', \vv{x}_0 - (\eta_0 -\eta') \hat{\vv{p}}, \hat{\vv{p}}), 
 \end{align}
-since $\tau(\eta_0)=0$, $\tau(0) = \infty$.
+since $\tau(\eta_0)=0$ and $\tau(0) = \infty$.
 
-From line of sight solution, assume $g(\eta)\approx g(\eta_*)\delta(\eta-\eta_*)$ and no reionisation, so $e^{-\tau}$ is 0 before recombination $\eta=\eta_*$ and 1 afterwards. Also assume no anisotropic stress. Then the integral term becomes monopole $\Theta_0 = (1/4\pi)\int d^2\hat{\vv{n}} \;\Theta(\hat{\vv{n}})$ (will see later). In such case,
+We can simplify the problem further by assuming that all photons started free-streaming since their last scattering at fixed $\eta=\eta_*$. The visibility function is then equal to $g(\eta)\approx g(\eta_*)\delta(\eta-\eta_*)$, and $e^{-\tau}$ switches immediately from $0$ to $1$ at recombination $\eta=\eta_*$. The integral term in \eqref{eqn:boltzmann_equation_2} reduces to the \textit{monopole} $\Theta_0 := (1/4\pi)\int d^2\hat{\vv{n}} \;\Theta(\hat{\vv{n}})$ as long as we neglect the anisotropic stress, which we will detail in the next section. 
 
+With these approximations,
 \begin{align}
 	&\Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}) + \Psi(\eta_0, \vv{x}_0) \nonumber \\
-	&\qquad \approx \Theta_0(\eta_*, \vv{x}_*) + \Psi(\eta_*, \vv{x}_*) + \hat{\vv{p}}\cdot \vv{v}_b (\eta_*, \vv{x}_*) + \int_{\eta_*}^{\eta_0} d\eta' \; (\Psi' + \Phi')(\eta', \vv{x}_0-(\eta_0-\eta')\hat{\vv{p}}) \label{eqn:line_of_sight_solution_approximated}
+	&\qquad \approx \Theta_0(\eta_*, \vv{x}_*) + \Psi(\eta_*, \vv{x}_*) + \hat{\vv{p}}\cdot \vv{v}_b (\eta_*, \vv{x}_*) + \int_{\eta_*}^{\eta_0} d\eta' \; (\Psi' + \Phi')(\eta', \vv{x}_0-(\eta_0-\eta')\hat{\vv{p}}), \label{eqn:line_of_sight_solution_approximated}
 \end{align}
-where $\vv{x}_* = \vv{x}_0-(\eta_0-\eta_*)\hat{\vv{p}}$ is the location of LSS. Contributions: monopole, gravitational well to move out of, doppler effect from electrons at scattering, and ISW effect. Sum of monopole + psi term: the Sachs-Wolfe contribution.
+where $\vv{x}_* = \vv{x}_0-(\eta_0-\eta_*)\hat{\vv{p}}$ is the comoving coordinate of the point at last scattering surface the given photon comes from.
 
+There are several different contributions to $\Theta$ in \eqref{eqn:line_of_sight_solution_approximated}. Firstly, the difference in $\Psi$ at last scattering $(\eta_*,\vv{x}_*)$ and today $(\eta_0, \vv{x}_0)$ induces gravitational redshift for any photons climbing out of the potential well. Next, the monopole $\Theta_0$ at recombination is closely related to the photon energy density contrast, as we will see shortly. Sum of the $\Psi$ and monopole terms is often called the Sachs-Wolfe (SW) contribution and is dominant at large scales. The third term $\hat{\vv{p}}\cdot\vv{v}_b$ measures the Doppler effect caused by the electron's peculiar velocity at the last scattering. Lastly, the last integral accounts for the Integrated Sachs-Wolfe (ISW) effect, where time variations in the potentials affect observed temperature anisotropy. Accelerated late-time expansion due to dark energy contributes the most to the integral.
+
+
+\subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
 
 Work in Fourier space. Define $\mu := \hat{\vv{p}}\cdot\hat{\vv{k}}$. Scalar perturbation -> axisymmetric $\Theta$ to first order. $\Theta(\eta,\vv{k},\hat{\vv{p}}) = \Theta(\eta,\vv{k},\mu)$. Define $l$ space quantities
 \begin{align}
@@ -424,9 +426,6 @@ Note the energy-momentum tensor
 in the rest frame. Note the integration measure is Lorentz invariant. Have $\delta_\gamma = 4\Theta_0$, $v_\gamma = (-3i/k) \Theta_1$, and $\Pi_\gamma = -3\Theta_2$.
 
 
-
-\subsubsection*{Line of sight solution} \label{section:line_of_sight_solution}
-\subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
 
 
 \begin{itemize}
