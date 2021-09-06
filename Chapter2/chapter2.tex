@@ -269,17 +269,17 @@ Only the first term on the right hand side remains in the zeroth order to give $
 
 
 \subsubsection*{Distribution function} \label{section:distribution_function}
-In order to fully understand physical properties of perturbations in photons, we need to study their distribution function $f(\eta,\vv{x},\vv{p})$ which measures the number of particles in a unit phase space volume. Photons in thermal equilibrium with the homogenous universe follow Bose-Einstein distribution where   
+In order to fully understand physical properties of perturbations in photons, we need to study their distribution function $f(\eta,\vv{x},\vv{p})$ which measures number of particles in a unit phase space volume. Photons in a thermal equilibrium with the homogenous universe follow the Bose-Einstein distribution where   
 \begin{align}
 	\bar{f}(\eta, p) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)} \right\} - 1 \right]^{-1}, \label{eqn:photon_distribution_function}
 \end{align}
-up to a factor and the Boltzmann constant, both of which we set to one for convenience. This is blackbody radiation with temperature $\bar{T}(\eta)$.
+up to a factor and the Boltzmann constant, both of which we set to one for convenience. This is equivalent to the blackbody radiation with temperature $\bar{T}(\eta)$.
 
-We define the fractional temperature anisotropy $\Theta$ through the perturbed photon distribution function as follows;
+We define fractional temperature anisotropy $\Theta$ by perturbing the photon distribution function as follows;
 \begin{align}
 	f(\eta, \vv{x}, p, \hat{\vv{p}}) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)\left[1 + \Theta (\eta,\vv{x},\hat{\vv{p}}) \right]} \right\} - 1 \right]^{-1}. \label{eqn:perturbed_photon_distribution_function}
 \end{align}
-We made an implicit assumption here that $\Theta(\eta,\vv{x},\hat{\vv{p}})$ does not depend on $p$, the photon energy. This claim will be justified later as we show that the Thomson scattering leaves photon energy virtually unchanged.
+We made an implicit assumption here that $\Theta(\eta,\vv{x},\hat{\vv{p}})$ does not depend on $p$, the photon energy. This claim will be justified later as we show that the Thomson scattering leaves energy of photons virtually unchanged.
 
 The distribution function \eqref{eqn:perturbed_photon_distribution_function} can be expanded to linear order in perturbations as
 \begin{align}
@@ -294,9 +294,9 @@ Liouville's theorem states that the phase space distribution function remains co
 	\frac{df}{d\eta} &= \frac{\partial f}{\partial \eta} + \frac{\partial f}{\partial x^i}\frac{dx^i}{d\eta} + \frac{\partial f}{\partial(\ln  p)}\frac{d(\ln p)}{d\eta} + \frac{\partial f}{\partial \hat{p}^i}\frac{d\hat{p}^i}{d\eta} \label{eqn:boltzmann_equation_base}\\
 	&= \left. \frac{df}{d\eta} \right|_\text{scattering} . \label{eqn:boltzmann_equation_base_scattering}
 \end{align}
-In \eqref{eqn:boltzmann_equation_base} we used chain rule to expand out the total derivative again. Note that the last term only appears at the second order in perturbations since both $(\partial f/\partial \hat{p}^i)$ and $(d\hat{p}^i/d\eta)$ appear at the first order. This term corresponding to gravitational lensing opens up a whole subject of its own but will be neglected for our purposes in this thesis.
+In \eqref{eqn:boltzmann_equation_base} we used chain rule to expand out the total derivative again. Note that the last term only appears at the second order in perturbations since both $(\partial f/\partial \hat{p}^i)$ and $(d\hat{p}^i/d\eta)$ appear at the first order. This term corresponding to gravitational lensing opens up a whole subject of its own, but it will be neglected for our purposes in this thesis.
 
-Without scattering, the term in \eqref{eqn:boltzmann_equation_base_scattering} vanishes and the distribution function is conserved on each trajectory. The zeroth order part of the equation yields
+Without scattering, the term in \eqref{eqn:boltzmann_equation_base_scattering} vanishes and the distribution function is conserved along each trajectory. The zeroth order part of the equation yields
 \begin{align}
 	\frac{d\bar{f}}{d\eta} = \frac{\partial \bar{f}}{\partial\eta} - \frac{\partial \bar{f}}{\partial(\ln p)}\frac{d(\ln\bar{p})}{d\eta} = 0. \label{eqn:boltzmann_equation_collisionless_zeroth}
 \end{align}
@@ -307,9 +307,12 @@ We can write down the first order part of \eqref{eqn:boltzmann_equation_base} in
 	\frac{df}{d\eta} &= - \frac{\partial}{\partial\eta} \left( \frac{\partial \bar{f}}{\partial(\ln p)} \Theta \right) - \frac{\partial \bar{f}}{\partial (\ln p)} \hat{p}^i \frac{\partial \Theta}{\partial x^i} +  \frac{\partial^2 \bar{f}}{\partial(\ln p)^2} \mathcal{H}\Theta + \frac{\partial \bar{f}}{\partial (\ln p)} \left( \frac{\partial \Phi}{\partial \eta} - \hat{p}^i \frac{\partial \Psi}{\partial x^i} \right) \\
 	&= - \frac{\partial \bar{f}}{\partial (\ln p)} \biggl[ \Theta' + \hat{p}^i \partial_i \Theta - \Phi' + \hat{p}^i \partial_i \Psi \biggr], \label{eqn:boltzmann_equation_collisionless_first}
 \end{align}
-after some algebra. There are four terms in \eqref{eqn:boltzmann_equation_collisionless_first}. The first two naturally arise from the free-streaming of temperature anisotropies. The other two in brackets account for the changes in photon energy caused by gravitational perturbations. They are equal to $-p^{-1}(d \ln(ap)/d\eta)$, where the \textit{comoving} energy $ap$ is constant in the background metric.
+after some algebra. There are four terms in \eqref{eqn:boltzmann_equation_collisionless_first}. The first two naturally arise from the free-streaming of temperature anisotropies, corresponding to temporal and spatial changes in $\Theta$. The other two in brackets account for changes in photon energy caused by the metric perturbations $\Phi$ and $\Psi$. The sum of them are in fact equal to $-p^{-1}(d \ln(ap)/d\eta)$. The \textit{comoving} energy $ap$ of a photon remains constant in the homogeneous universe.
+
 
 \subsubsection*{Thomson scattering} \label{section:thompson_scattering}
+
+
 
 $e^- + \gamma \leftrightarrow e^- + \gamma$
 

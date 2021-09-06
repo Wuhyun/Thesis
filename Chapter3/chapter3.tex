@@ -655,21 +655,23 @@ Another significant late-time contribution to CMB anisotropy comes from the Inte
 \begin{align}
 	\Theta_{ISW}(\eta_0,\vv{x}_0, \hat{\vv{n}}) = 2\int_0^{\chi_*} d\chi \; \Psi'_W (\chi\hat{\vv{n}}; \eta_0-\chi). \label{eqn:ISW_effect}
 \end{align}
-The integrand is small except during the accelerated expansion in low redshift, again $z\lessapprox2$. The two integrals \eqref{def:lensing_potential} and \eqref{eqn:ISW_effect} are highly correlated through $\Psi_W$ and thus generate non-trivial bispectrum mainly in the squeezed limit. The resulting lensing-ISW (LISW) bispectrum is well approximated by the template given by \cite{Lewis2011lensing}
+The integrand is small except during the accelerated expansion in low redshift, again $z\lessapprox2$. The two integrals \eqref{def:lensing_potential} and \eqref{eqn:ISW_effect} are highly correlated through $\Psi_W$ and thus generate non-trivial bispectrum mainly in the squeezed limit. The resulting lensing-ISW bispectrum is well approximated by the template given by \cite{Lewis2011lensing}
 \begin{align}
-	b^{LISW}_{l_1 l_2 l_3} = \frac{1}{2}\left[ l_1 (l_1 + 1) - l_2 (l_2 + 1) + l_3 (l_3 + 1) \right] \tilde{C}_{l_1}^{TT} C_{l_3}^{T\phi} + \text{5 perms.},
+	b^{lens}_{l_1 l_2 l_3} = \frac{1}{2}\left[ l_1 (l_1 + 1) - l_2 (l_2 + 1) + l_3 (l_3 + 1) \right] \tilde{C}_{l_1}^{TT} C_{l_3}^{T\psi} + \text{5 perms.}, \label{eqn:lensing_bispectrum_template}
 \end{align}
-where $\tilde{C}^{TT}_l$ is the \textit{lensed} angular power spectrum and $C^{T\psi}_l$ is the cross power spectrum between temperature and $\psi$. Assuming standard $\Lambda$CDM cosmology we expect to find the bispectrum above in the CMB without any additional scale factors. We can measure its amplitude through the usual bispectrum estimator; $\hat{f}^{LISW}_{NL} = \langle \vv{b}^{LISW}, \; \vv{b}^{obs} \rangle / \langle \vv{b}^{LISW}, \; \vv{b}^{LISW} \rangle$ using the inner product from \eqref{def:bispectrum_estimation_fisher_inner_product}. This value was first detected using Planck 2013 CMB maps to a $2.5\sigma$ level \cite{PlanckCollaboration2013ISW}. The most recent Planck analysis estimates $f^{LISW}_{NL} = 0.73 \pm 0.27$ using SMICA foreground-cleaned CMB temperature maps \cite{PlanckCollaboration2018}.
+where $\tilde{C}^{TT}_l$ is the \textit{lensed} angular power spectrum and $C^{T\psi}_l$ is the cross power spectrum between temperature ($T$) and $\psi$. Assuming standard $\Lambda$CDM cosmology we expect to find the bispectrum above in the CMB without any additional scale factors. We can measure its amplitude in the CMB data through the usual bispectrum estimator \eqref{eqn:bispectrum_estimator_single_shape}-\eqref{eqn:bispectrum_estimator_normalisation_single_shape} by setting $\vv{b} = \vv{b}^{lens}$, so that $\hat{f}^{lens}_{NL} = \langle \vv{b}^{lens}, \; \vv{b}^{obs} \rangle / \langle \vv{b}^{lens}, \; \vv{b}^{lens} \rangle$ using the inner product $\langle \cdot,\cdot \rangle$ from \eqref{def:bispectrum_estimation_fisher_inner_product}. This value has been first detected in the Planck 2013 analysis to a $2.5\sigma$ level \cite{PlanckCollaboration2013ISW}. The most recent Planck analysis estimates $f^{lens}_{NL} = 0.73 \pm 0.27$ (68\% CL) using SMICA foreground-cleaned CMB temperature maps \cite{PlanckCollaboration2018}.
 
-The lensing-ISW bispectrum is a physically meaningful secondary observable from 
-
-
-Component separation, foreground.
-SMICA-type cleaning.
-Point sources.
-
-Mask -> inpainting.
-ISW-lensing bias.
+The lensing-ISW bispectrum is an observable measuring non-linear evolution of the CMB. When studying primordial contributions to the observed bispectrum, however, such late-time effects need to be subtracted. The lensing-ISW \textit{bias} is given by
+\begin{align}
+	\Delta f_{NL}^{(t)} = \frac{ \langle \vv{b}^{(t)}, \; \vv{b}^{lens} \rangle }{ \langle \vv{b}^{(t)}, \; \vv{b}^{(t)} \rangle}
+\end{align}
+for some bispectrum template $\vv{b}^{(t)}$ of interest. This bias can be significant for templates with large squeezed limit, such as the local template, since they are highly correlated with the lensing-ISW bispectrum \eqref{eqn:lensing_bispectrum_template}.
 
 
-%Review lensing-ISW bias
+\subsubsection*{Sky mask and inpainting}
+
+CMB measurements are affected by various foreground contaminants. A number of component separation methods such as the Spectral Matching Independent Component Analysis (SMICA) (TODO: add references for smica etc) can be used to clean unwanted signals, but in regions with an overwhelming amount of contaminations need to be \textit{masked} away. The corresponding parts of the sky are simply removed from any analysis. Even in a full-sky survey like Planck, only $\approx 78\%$ of the sky can be used for science \cite{PlanckCollaboration2018component}.
+
+Partial sky coverage due to masks cause multiple complications. For CMB bispectrum analysis there are two main issues to manage. First, statistical isotropy is broken due to irregular shape of the mask. The covariance matrix $C_{l_1 m_1, l_2, m_2} = \langle a^*_{l_1 m_1} a_{l_2 m_2} \rangle$ is no longer diagonal. The linear part of the bispectrum estimator introduced in \eqref{def:bispectrum_estimate_including_linear} is essential for handling biases caused by the off-diagonal covariances.
+
+Second, the sky mask generates non-vanishing bispectrum by itself. Sharp cuts around edges of the mask induce some high-frequency signals. A low-frequency mode from the overall mask shape then correlates with them to produce bispectrum in squeezed configurations. We follow \cite{Gruetjen2017inpainting} and utilise a simple inpainting method to reduce the effect. In this approach, a linear diffusive method is used to interpolate and hence smoothen the mask edges; at each iteration, every pixel within previously masked regions takes the average value of its neighbouring pixels. The resulting inpainted map after a sufficient number of iterations is shown to contain little bispectrum from the mask.
