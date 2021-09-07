@@ -74,18 +74,18 @@ Due to this fact, it is common in literature (e.g. \cite{Burrage2011large}) to d
 
 In this thesis we follow the latter convention and associate $f_{NL}$s with each distinct bispectrum shape of interest. For example, $f_{NL}$ in \eqref{eqn:local_bispectrum_using_power_spectrum} is denoted $f_{NL}^{local}$, tied to the local shape. Connection between theoretical predictions and observations is often fulfilled through analytic templates which approximate the bispectrum.
 
-We write $P_zeta(k) = A_\zeta k^{n_s-4}$ using power spectrum amplitude $A_\zeta$ and scalar spectral index $n_s$. The local template is then given by
+We write $P_\zeta(k) = A_\zeta k^{n_s-4}$ using power spectrum amplitude $A_\zeta$ and scalar spectral index $n_s$. The local template is then given by
 \begin{align}
-	B_\zeta^{local} (k_1, k_2, k_3) := 2A_\zeta^2 \left[ \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{\;2 cyc.} \right].
+	B_\zeta^{local} (k_1, k_2, k_3) := 2A_\zeta^2 \left[ \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{\;2 cyc.} \right]. \label{def:local_template} 
 \end{align}
 Note that we do not include $f_{NL}^{local}$ in our definition of the template either; it is set to $1$.
 
 The bispectrum for multi-field models typically fall into this category (reviewed in e.g., \cite{Byrnes2010review}). The local shape peaks in the squeezed limit where $k_1 \approx k_2 \gg k_3$, diverging as $k_3\rightarrow0$. General single field models, on the other hand, is better described by the equilateral and orthogonal templates \cite{Creminelli2006limits,Senatore2010orthogonal} .
 \begin{align}
 	B_\zeta^{equil} (k_1, k_2, k_3) &:= 6A_\zeta^2 \left[ -\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{2 cyc.} \right) -\frac{2}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
-	&\hspace{0.2\textwidth} + \left. \left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right], \\
+	&\hspace{0.2\textwidth} + \left. \left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right], \label{def:equilateral_template} \\
 	B_\zeta^{ortho} (k_1, k_2, k_3) &:= 6A_\zeta^2 \left[ -3\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{ 2 cyc.} \right) -\frac{8}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
-	&\hspace{0.2\textwidth} + \left. 3\left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right].
+	&\hspace{0.2\textwidth} + \left. 3\left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right]. \label{def:orthogonal_template} 
 \end{align}
 The equilateral and orthogonal shapes are peaked at the equilateral and flattened limit shown in Figure \ref{fig:triangle_configurations}, respectively. The latter was constructed explicitly to probe bispectrum shapes perpendicular to the local and equilateral ones.
 
@@ -115,7 +115,7 @@ where $M_p := (8\pi G)^{-1/2}$ is the reduced Planck mass, and $X:=-\frac{1}{2} 
 
 One notable consequence of non-trivial kinetic term $P$ is that fluctuations in the inflation field no longer necessarily propagate with speed of light. The sound speed, defined as the ratio $\delta P / \delta \rho$, is given by
 \begin{align}
-	c_s^2 = \frac{P_{,X}}{P_{,X} + 2 X P_{,XX}},
+	c_s^2 = \frac{P_{,X}}{P_{,X} + 2 X P_{,XX}}, \label{eqn:general_single_field_sound_speed}
 \end{align}
 where the subscript `$,X$' represents taking partial derivative with respect to $X$.
 

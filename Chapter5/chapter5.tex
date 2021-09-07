@@ -506,7 +506,7 @@ Motivated by these facts, we divide the map array into equally sized blocks so t
 	\EndFor
 \end{algorithmic}
 
-The new pixel numbers are calculated as $n' = B \cdot b + n$, where $B$ is the size of each block and $0 \le n < B$. We have not changed the total number of arithmetic operations required, so the computational complexity remains constant. Meanwhile, data locality within each block is greatly improved, as each of the blocked arrays are now small enough to fit in cache. Each data element is accessed in closer succession temporarily as well.
+New pixel numbers are calculated as $n' = B \cdot b + n$, where $B$ is the size of each block and $0 \le n < B$. We have not changed the total number of arithmetic operations required, so the computational complexity remains constant. Meanwhile, data locality within each block is greatly improved, as each of the blocked arrays are now small enough to fit in cache. Each data element is accessed in closer succession temporarily as well.
 
 One caveat here is that having too many blocks may degrade performance. There exist non-negligible overhead coming from an extra \textit{for} loop and the OpenMP construct used over $n'$. The block size divided by number of cores should not be smaller than the size of cache lines either. The optimal size of cache blocks depends on the memory architecture of the processor used. This often needs to be found empirically.
 
@@ -809,20 +809,29 @@ As with the feature models before, we plot the correlation matrix between the te
 \subsection{Proof of concept} \label{section:proof_of_concept}
 
 
-\textsc{Primodal} is an efficient numerical code for computing bispectra of primordial perturbations using the in-in formalism \cite{Clarke2021}. Unlike many in-in codes, the computed bispectrum is expressed as coefficients of a separable basis expansion as opposed to a grid of discrete points. Choosing an equivalent basis set for \textit{CMB-BEst} therefore allows a direct link between the two codes. The combined pipeline is capable of constraining specific inflation models directly without the use of approximate templates. Such template-free bispectrum analysis also enables a fast and extensive scan of theory parameters.
+\textsc{Primodal} is a fast and efficient numerical code for computing bispectra of primordial perturbations given a single field inflation Lagrangian using in-in formalism \cite{Clarke2021}. The computed bispectrum is expressed as coefficients of a separable basis expansion in \textsc{Primodal}, as opposed to a grid of discrete points like other in-in codes. Choosing an equivalent basis set for \textit{CMB-BEst} therefore creates a direct link between the two codes. The combined pipeline is capable of constraining specific inflation models directly without the use of approximate templates. Such template-free bispectrum analysis also enables a fast and extensive scan of theory parameters.
 
 Collaborating closely with the main author of \textsc{Primodal}, Philip Clarke, we verified the integrity of the combined \textsc{Primodal} + CMB-BEst routine. We thoroughly tested the consistency of basis functions, their orthogonalisation, and convergence. Both \textsc{Primodal} and \textsc{CMB-BEst} are now in the exploitation phase. We present a working example of the combined pipeline as a proof of concept.
 
-DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi} (TODO: add more DBI paper references) is a well-studied single-field inflation model inspired by string theory. Its action follows the general form \eqref{eqn:general_single_field_action}, with a non-canonical kinetic term given by
+DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi,Chen2005runningdbi,Bean2008comparingdbi} (TODO: add more DBI paper references) is a well-studied single-field inflation model inspired by string theory. Its action follows the general form \eqref{eqn:general_single_field_action}, with a non-canonical kinetic term given by
 \begin{align}
 	P(X,\phi) = - \frac{1}{f(\phi)} \left[ \sqrt{1 - 2f(\phi)X} - 1 \right] - V(\phi),
 \end{align}
 where $X=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ as before. $f(\phi)$ is an arbitrary function called the warp factor. We choose
 \begin{align}
-	f(\phi) = \frac{\lambda_{DBI}}{\phi^4}, \qquad V(\phi) = V_0 - \frac{1}{2}m^2\phi^2, \qquad m = \sqrt{\beta_{IR}} \; H
+	f(\phi) = \frac{\lambda_{DBI}}{\phi^4}, \qquad V(\phi) = V_0 - \frac{1}{2}m^2\phi^2, \qquad m = \sqrt{\beta_{IR}} \; H,
 \end{align}
+for some theory parameters $\lambda_{DBI}$, $V_0$, and $\beta_{IR}$. The sound speed can be obtained from \eqref{eqn:general_single_field_sound_speed}, which evaluates to $c^{DBI}_s \approx 3/\beta_{IR} N_e$ under slow-roll approximations \cite{Chen2005runningdbi}. Here $N_e$ denotes the number of e-folds until the end of inflation.
 
-- DBI sound speed constraints
+DBI inflation generates non-Gaussianity with its shape similar to the equilateral template \eqref{def:equilateral_template}. The latest constraints on the model comes from the Planck CMB bispectrum analysis using an approximate template 
+\begin{align}
+	B_\Phi^{DBI}(k_1,k_2,k_3) = \frac{6A_\Phi^2}{(k_1 k_2 k_3)^3} \frac{-3}{7(k_1 + k_2 + k_3)^2} \left[ \sum_i k_i^5 + \sum_{i\neq j} (2k_i^4 k_j - 3k_i^3 k_j^2) + \sum_{i\neq j\neq l} (k_i^3 k_j k_l - 4k_i^2 k_j^2 k_l) \right]. 
+\end{align}
+The primordial potential $\Phi$ 
+
+
+
+- DBI sound speed constraints approx relation $f_{NL}^{equil} = -(35/108)c_s^{-2}$ for $c_s \ll 1$. 
 - DBI resonance scan
 - tetrapyd decomp? 
 

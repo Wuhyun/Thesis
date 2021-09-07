@@ -369,72 +369,65 @@ There are several different contributions to $\Theta$ in \eqref{eqn:line_of_sigh
 
 \subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
 
-Work in Fourier space. Define $\mu := \hat{\vv{p}}\cdot\hat{\vv{k}}$. Scalar perturbation -> axisymmetric $\Theta$ to first order. $\Theta(\eta,\vv{k},\hat{\vv{p}}) = \Theta(\eta,\vv{k},\mu)$. Define $l$ space quantities
+The full Boltzmann equation \eqref{eqn:boltzmann_equation_1} is not in an ideal structure for us to solve numerically. It is not only in an integro-differential form, but also a function of three quantities $\eta$, $\vv{x}$ and $\hat{\vv{p}}$, totalling 6 dimensions. In this section, we outline the formulation that Boltzmann solvers today such as CAMB \cite{Lewis2000} use to find time evolution of photon temperature anisotropy.
+
+We work in the Fourier space of $\vv{x}$ so that $\tilde{\Theta} = \tilde{\Theta}(\eta,\vv{k},\hat{\vv{p}})$. The term $(\hat{\vv{p}}\cdot\nabla)\Theta$ then simplifies to $(\hat{\vv{p}}\cdot i\;\vv{k})\tilde{\Theta} = ik\mu\tilde{\Theta}$, where $\mu := \hat{\vv{p}} \cdot \hat{\vv{k}}$ measures the angle between wavevector $\vv{k}$ and direction of propagation $\hat{\vv{p}}$.
+
+The next major simplification comes from that even though $\Theta(\eta,\vv{k},\hat{\vv{p}})$ depends on $\hat{\vv{p}}$, it is axisymmetric with respect to $\vv{k}$ for the scalar perturbations we are studying. The scattering term in \eqref{eqn:thomson_scattering} also preserves axisymmetry. Thus, $\tilde{\Theta}(\eta,\vv{k},\hat{\vv{p}}) = \tilde{\Theta}(\eta,\vv{k},\mu)$. This motivates us to define the $l$th \textit{multipole} as \footnote{Note that some literature adopt a different convention where a factor of $2l+1$ is included in the definition of $\Theta_l$.}
 \begin{align}
-	\Theta_l (\eta,\vv{k}) :=& i^l \int \frac{d^2 \hat{\vv{p}}}{4\pi} \; P_l (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta(\eta, \vv{k}, \hat{\vv{p}}) \\
-	&= i^l \int^1_{-1} \frac{d\mu}{2} \; P_l (\mu) \Theta(\eta, \vv{k}, \mu)
+	\Theta_l (\eta,\vv{k}) :=& \; i^l \int \frac{d^2 \hat{\vv{p}}}{4\pi} \; P_l (\hat{\vv{k}} \cdot \hat{\vv{p}}) \; \Theta(\eta, \vv{k}, \hat{\vv{p}}) \\
+	=& \; i^l \int^1_{-1} \frac{d\mu}{2} \; P_l (\mu) \; \Theta(\eta, \vv{k}, \mu), \label{eqn:temperature_perturbation_multipole} 
+\end{align}
+where we dropped the tildes on $\Theta$ for brevity. $P_l(\mu)$ denote the $l$th order Legendre polynomial, constructed to satisfy the orthogonality condition
+\begin{align}
+	\int_{-1}^{1} \frac{d\mu}{2} \; P_{l_1}(\mu) P_{l_2}(\mu) = \frac{1}{2l_1 + 1} \delta_{l_1 l_2}. \label{eqn:legendre_polynomial_orthogonality}
+\end{align}
+Legendre polynomials form a complete basis for functions defined on interval $[-1,1]$. Hence, we may expand $\Theta$ in $\mu$ using these polynomials for each $(\eta,\vv{k})$. After substituting into \eqref{eqn:temperature_perturbation_multipole}, \eqref{eqn:legendre_polynomial_orthogonality} yields
+\begin{align}
+	\Theta(\eta,\vv{k},\mu) = \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \Theta_l (\eta, \vv{k}) \label{eqn:temperature_perturbation_legendre_expansion}
 \end{align}
 
-Legendre polynomials orthogonality
+The lowest multipole at $l=0$ corresponds to the monopole we discussed earlier; $\Theta_0 = (1/4\pi) \int d^2\hat{\vv{n}} \; \Theta(\hat{\vv{p}})$, which is a simple angle average. Next is the dipole at $l=1$ given by $\Theta_1 = (i/4\pi) \int d^2\hat{\vv{n}} \; (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta(\hat{\vv{p}})$, then the quadrupole at $l=2$, and so on. The integrated term in \eqref{eqn:boltzmann_equation_1} now takes a simpler form
 \begin{align}
-	\int_{-1}^{1} \frac{d\mu}{2} \; P_{l_1}(\mu) P_{l_2}(\mu) = \frac{1}{2l_1 + 1} \delta_{l_1 l_2}
+	\frac{3}{16\pi} \int d^2\hat{\vv{n}} \; \left[ \Theta(\eta,\vv{k},\hat{\vv{n}}) (1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2) \right] = \Theta_0 (\eta,\vv{k}) + \frac{1}{2} P_2 (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta_2(\eta, \vv{k}), 
 \end{align}
+after some calculations and noting that $P_2(\mu) = (1/2)(3\mu^2 -1)$.
 
-\begin{align}
-	\Theta(\eta,\vv{k},\mu) = \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \Theta_l (\eta, \vv{k})
-\end{align}
-(Note that some literature defines theta as $(2l+1)\Theta_l$ in our convention)
-
-Monopole is a simple angle average $\Theta_0 = (1/4\pi) \int d^2\hat{\vv{n}} \; \Theta(\hat{\vv{p}})$. Dipole $\Theta_1 = (i/4\pi) \int d^2\hat{\vv{n}} \; (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta(\hat{\vv{p}})$
-
-Using $P_2(\mu) \ (1/2)(3\mu^2 -1)$ and after some calculations
-\begin{align}
-	\frac{3}{16\pi} \int d^2\hat{\vv{n}} \; \left[ \Theta(\eta,\vv{k},\hat{\vv{n}}) (1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2) \right] = \Theta_0 (\eta,\vv{k}) + \frac{1}{2} P_2 (\hat{\vv{k}} \cdot \hat{\vv{p}}) \Theta_2(\eta, \vv{k}) 
-\end{align}
-
-Boltzmann equation becomes (dropping $\eta$ and $\vv{k}$ dependence)
+Incorporating the results so far, the Boltzmann equation becomes 
 \begin{align}
 	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right]
 \end{align}
-where $\vv{v}_b = \nabla v_b$.
-
-Noting $P_0(\mu) = 1$ and $P_1(\mu)=\mu$,
+where $\vv{v}_b = \nabla v_b$, and the $\eta$ and $\vv{k}$ dependences are omitted for clarity. We combine the above with the Legendre basis expansion \eqref{eqn:temperature_perturbation_legendre_expansion}, 
 \begin{align}
 	&\sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \Theta'_l + ik\mu \Theta_l \right] \nonumber\\
-	&\quad= \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \tau' \Theta_l + \delta_{l0} (\Phi' - \tau'\Theta_0) + \delta_{l1} (\frac{1}{3}k\Psi + \frac{1}{3}k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2) \right]
+	&\quad= \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \tau' \Theta_l + \delta_{l0} (\Phi' - \tau'\Theta_0) + \delta_{l1} (\frac{1}{3}k\Psi + \frac{1}{3}k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2) \right],
 \end{align}
-The $\mu$ term on the left hand side is troublesome. Use the recursion relation for Legendre polynomials
+since $P_0(\mu) = 1$ and $P_1(\mu)=\mu$. Note that the term $ik\mu \Theta_l$ related to free-streaming of photons has an extra factor of $\mu$, which can be removed using the recursion relation for Legendre polynomials given by
 \begin{align}
-	(2l+1)\mu P_l(\mu) = (l+1) P_{l+1} (\mu) + l P_{l-1} (\mu)
+	(2l+1)\mu P_l(\mu) = (l+1) P_{l+1} (\mu) + l P_{l-1} (\mu).
 \end{align}
-Now the equation splits to each $l$ thanks to the orthogonality of Legendre polynomials.
+We can then equate the coefficients of $P_l(\mu)$ from both sides for each $l$, since the Legendre polynomials are orthogonal when $l\neq l'$. The result is a \textit{hierarchy} of differential equations for the multipoles:
 \begin{align}
 	&\Theta'_l - \frac{l}{2l+1} k\Theta_{l-1} + \frac{l+1}{2l+1} k\Theta_{l+1}  \nonumber\\
-	&\qquad= \tau' \Theta_l + \delta_{l0} (\Phi' - \tau' \Theta_0) + \delta_{l1} (\frac{1}{3} k\Psi + \frac{1}{3} k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2)
+	&\qquad= \tau' \Theta_l + \delta_{l0} (\Phi' - \tau' \Theta_0) + \delta_{l1} (\frac{1}{3} k\Psi + \frac{1}{3} k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2),
 \end{align}
+for $l=0,1,2,.\cdots$ and $\Theta_{-1}$ set to $0$. Finally, the first-order differential equations from each $l$ can be solved in conjunction with other linearised equations \eqref{eqn:perturbed_continuity_equation}, \eqref{eqn:perturbed_Euler_equation}, and \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} derived from perturbation theory. 
 
+
+\iffalse
+% How the first two Boltzmann equations relate to continuity and Euler equations...
+We note that it is the free-streaming of photons that causes adjacent $l$ multipoles of the temperature perturbations to mix. The first two equations of the Boltzmann hierarchy are 
 \begin{align}
 	\Theta'_0 + k\Theta_1 &= \Phi' \\
 	\Theta'_1 - \frac{1}{3} k\Theta_0 +\frac{2}{3} k\Theta_2 &= \frac{1}{3} k \Psi + \tau'(\Theta_1 + \frac{1}{3} k v_b)
 \end{align}
-
 
 Note the energy-momentum tensor
 \begin{align}
 	T^{\mu\nu} = \int \frac{d^3 \vv{p}}{E(\vv{p})} f(\vv{p}) p^i p^j
 \end{align}
 in the rest frame. Note the integration measure is Lorentz invariant. Have $\delta_\gamma = 4\Theta_0$, $v_\gamma = (-3i/k) \Theta_1$, and $\Pi_\gamma = -3\Theta_2$.
-
-
-
-
-\begin{itemize}
-	\item Define photon anisotropy using its distribution function
-	\item Boltzmann equation and Thompson scattering cross-section (quote)
-	\item Decomposition using multipole moments
-	\item Quote CAMB papers etc for detailed computation. Don't derive Boltzmann hierarchy!
-	\item Mention that numerical solutions gives us transfer functions, defined as $\Delta_l (k) = \Theta_l(k,\eta_0) / \Phi(k,\eta_i)$
-\end{itemize}
+\fi
 
 
 \subsection{Late-time anisotropy}
