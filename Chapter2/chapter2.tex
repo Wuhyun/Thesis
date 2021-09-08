@@ -411,8 +411,9 @@ We can then equate the coefficients of $P_l(\mu)$ from both sides for each $l$, 
 	&\Theta'_l - \frac{l}{2l+1} k\Theta_{l-1} + \frac{l+1}{2l+1} k\Theta_{l+1}  \nonumber\\
 	&\qquad= \tau' \Theta_l + \delta_{l0} (\Phi' - \tau' \Theta_0) + \delta_{l1} (\frac{1}{3} k\Psi + \frac{1}{3} k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2),
 \end{align}
-for $l=0,1,2,.\cdots$ and $\Theta_{-1}$ set to $0$. Finally, the first-order differential equations from each $l$ can be solved in conjunction with other linearised equations \eqref{eqn:perturbed_continuity_equation}, \eqref{eqn:perturbed_Euler_equation}, and \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} derived from perturbation theory. 
+for $l=0,1,2,.\cdots$ and $\Theta_{-1}$ set to $0$. Finally, the first-order differential equations from each $l$ can be solved in conjunction with other linearised equations \eqref{eqn:perturbed_continuity_equation}, \eqref{eqn:perturbed_Euler_equation}, and \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} derived from perturbation theory.
 
+We note two key properties of the full set of differential equations which dictates how perturbations in the metric, matter, and radiation vary as the universe expands. First, the Fourier modes evolve independently from each other. The perturbative variables evaluated at different $\vv{k}$s do not affect each other to leading order and hence can be studied separately. Second, the time evolution of each Fourier mode only depends on $k=\|\vv{k}\|$ instead of $\vv{k}$ for scalar perturbations. The Euler equation \eqref{eqn:perturbed_Euler_equation} may seem to depend on the full vector $\vv{k}$ at first, but they go away after rewriting $\vv{v}=\nabla v$ for some $v$. The same is true for the $i0$ component of the linearised Einstein's equations \eqref{eqn:perturbed_einstein_equations_2}. 
 
 \iffalse
 % How the first two Boltzmann equations relate to continuity and Euler equations...
@@ -432,15 +433,13 @@ in the rest frame. Note the integration measure is Lorentz invariant. Have $\del
 
 \subsection{Late-time anisotropy}
 
-TODO: organise the following into sections
+We have derived the set of differential equations governing time evolution of photon temperature perturbations. Adiabatic initial conditions mean that there is only one degree of freedom for scalar perturbations at the end of inflation. Hence, $\Phi(\eta_i,\vv{k})$, for example, fully specifies initial values needed for the evolution equations, which themselves depend only on the value of $k=\|\vv{k}\|$ as discussed earlier. It follows that the radiation transfer function defined as $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about the photons' time evolution, from the early times, $\eta=\eta_i$, to present, $\eta=\eta_0$. In this section, we derive relations between the photon temperature perturbation $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
 
-We have seen how to evolve perturbations in the photon distribution function $\Theta_l(k,\eta)$ from given initial conditions. In particular, the radiation transfer function defined as $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about CMB photons' time evolution, from early times $\eta=\eta_i$ until now $\eta=\eta_0$. In this section, we derive the relation between perturbations $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
-
-We observe the CMB at a fixed point in spacetime: here ($\vv{x}=\vv{x}_0$) and now ($\eta=\eta_0$). Small variations in time and location have completely negligible effects given the Hubble scale today. Anisotropy in the CMB temperature we observe hence takes the form
+We measure the CMB while sitting at a fixed point in spacetime: here ($\vv{x}=\vv{x}_0$) and now ($\eta=\eta_0$). Small variations in our time and location have effects that are completely negligible considering the Hubble scale today. Anisotropy in the CMB temperature we observe hence takes the simple form
 \begin{align}
-	\left( \frac{\Delta T}{T} \right) (\hat{\vv{p}}) = \Theta(\vv{x}_0, \hat{\vv{p}}, \eta_0).
+	\left( \frac{\Delta T}{T} \right) (\hat{\vv{p}}) = \Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}, \eta_0).
 \end{align}
-The vector $\hat{\vv{p}}$ relates to which direction in the sky we point our telescopes. Observed data lie on a two-dimensional sphere. A Fourier series equivalent for such function is the spherical harmonic expansion;
+The vector $\hat{\vv{p}}$ relates to which direction in the sky we point our telescopes. Observed data hence lie on a unit two-dimensional sphere containing $\hat{\vv{p}}$. The equivalent of Fourier transform for functions defined on a sphere is the spherical harmonic transform;
 \begin{align}
 	\Theta(\vv{x}, \hat{\vv{p}}, \eta) = \sum_{l,m} a_{lm}(\vv{x},\eta) Y_{lm}(\hat{\vv{p}}). 
 \end{align} 
@@ -462,21 +461,21 @@ As long as sufficiently many multipoles $l$ are included, spherical harmonic coe
 
 Note that the evolution equation for perturbations (TODO: add refs to equations here) $\Theta(\vv{k},\hat{\vv{p}},\eta)$ here only depends on $k=\|\vv{k}\|$, the angle $\mu = \hat{\vv{k}} \cdot \hat{\vv{p}}$, and time $\eta$. The rest are determined from initial conditions. The following ratio therefore only depends on $k$, $\mu$ and $\eta$ as well;
 \begin{align}
-	\frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(k,\eta_i)} &= f(k, \mu, \eta) \\
-	&= \sum_l (-i)^l (2l+1) P_l(\mu) \frac{\Theta_l(k,\eta)}{\Phi(k,\eta_i)} \label{eqn:alm_derivation_legendre_expansion}\\ 
-	&= \sum_l (-i)^l (2l+1) P_l(\mu) \Delta_l(k,\eta),
+	\frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(\vv{k},\eta_i)} &= f(k, \mu, \eta) \\
+	&= \sum_l (-i)^l (2l+1) P_l(\mu) \frac{\Theta_l(k,\eta)}{\Phi(\vv{k},\eta_i)} \label{eqn:alm_derivation_legendre_expansion}\\ 
+	&= \sum_l (-i)^l (2l+1) P_l(\mu) \Delta_l(\vv{k},\eta),
 \end{align}
 where we expanded using Legendre polynomials in \eqref{eqn:alm_derivation_legendre_expansion} and used the definition of transfer functions. Substituting this into \eqref{eqn:alm_derivation_alm_using_theta},
 \begin{align}
-	a_{lm}(\vv{x},\eta) &= \int \frac{d^3\vv{k}}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \Phi(k, \eta_i) \int d^2\hat{\vv{p}} \; \frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(k, \eta_i)} Y^*_{lm}(\hat{\vv{p}}) \\
-	&= \int \frac{d^3\vv{k}}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \Phi(k, \eta_i) \int d^2\hat{\vv{p}} \; \sum_{l'} \left[ (-i)^{l'} (2l'+1) P_{l'}(\hat{\vv{k}}\cdot\hat{\vv{p}}) \Delta_{l'}(k,\eta) Y^*_{lm}(\hat{\vv{p}}) \right] \\
-	&= \int \frac{d^3\vv{k}}{(2\pi)^3} \left[ e^{i\vv{k}\cdot\vv{x}} \Phi(k, \eta_i) (-i)^{l} (2l+1) \Delta_{l}(k,\eta) Y^*_{lm}(\hat{\vv{k}}) \right].
+	a_{lm}(\vv{x},\eta) &= \int \frac{d^3\vv{k}}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \Phi(\vv{k}, \eta_i) \int d^2\hat{\vv{p}} \; \frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(\vv{k}, \eta_i)} Y^*_{lm}(\hat{\vv{p}}) \\
+	&= \int \frac{d^3\vv{k}}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \Phi(\vv{k}, \eta_i) \int d^2\hat{\vv{p}} \; \sum_{l'} \left[ (-i)^{l'} (2l'+1) P_{l'}(\hat{\vv{k}}\cdot\hat{\vv{p}}) \Delta_{l'}(k,\eta) Y^*_{lm}(\hat{\vv{p}}) \right] \\
+	&= \int \frac{d^3\vv{k}}{(2\pi)^3} \left[ e^{i\vv{k}\cdot\vv{x}} \Phi(\vv{k}, \eta_i) (-i)^{l} (2l+1) \Delta_{l}(k,\eta) Y^*_{lm}(\hat{\vv{k}}) \right].
 \end{align}
 For the last line, we expanded $P_{l'}$ using the addition theorem \eqref{eqn:harmonic_addition_theorem} and performed the $\int d\hat{\vv{p}}$ integral. Orthonormality \eqref{eqn:spherical_harmonic_orthonormality} forces $l'=l$ and simplifies the summation over $l'$.
 
 Setting $\vv{x}=\vv{x_0}$ to be $\vv{0}$ and choosing $\eta=\eta_0$, we obtain a formula for the observed temperature anisotropy:
 \begin{align}
-	a_{lm} = 4\pi (-i)^l \int \frac{d^3\vv{k}}{(2\pi)^3} \Phi(k) \Delta_{l}(k) Y^*_{lm}(\hat{\vv{k}}).
+	a_{lm} = 4\pi (-i)^l \int \frac{d^3\vv{k}}{(2\pi)^3} \Phi(\vv{k}) \Delta_{l}(k) Y^*_{lm}(\hat{\vv{k}}). \label{eqn:alm_from_phi}
 \end{align}
 
 \subsection{CMB power spectrum}

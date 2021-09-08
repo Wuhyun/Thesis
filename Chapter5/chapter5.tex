@@ -809,9 +809,9 @@ As with the feature models before, we plot the correlation matrix between the te
 \subsection{Proof of concept} \label{section:proof_of_concept}
 
 
-\textsc{Primodal} is a fast and efficient numerical code for computing bispectra of primordial perturbations given a single field inflation Lagrangian using in-in formalism \cite{Clarke2021}. The computed bispectrum is expressed as coefficients of a separable basis expansion in \textsc{Primodal}, as opposed to a grid of discrete points like other in-in codes. Choosing an equivalent basis set for \textit{CMB-BEst} therefore creates a direct link between the two codes. The combined pipeline is capable of constraining specific inflation models directly without the use of approximate templates. Such template-free bispectrum analysis also enables a fast and extensive scan of theory parameters.
+\textsc{Primodal} is a fast and efficient numerical code for computing bispectra of primordial perturbations given a single field inflation Lagrangian using in-in formalism \cite{Clarke2021}. The computed bispectrum is expressed as coefficients of a separable basis expansion in \textsc{Primodal}, as opposed to a grid of discrete points like other in-in codes. Choosing an equivalent basis set for \textsc{CMB-BEst} therefore creates a direct link between the two codes. The combined pipeline is capable of constraining specific inflation models directly without the use of approximate templates. Such template-free bispectrum analysis also enables a fast and extensive scan of theory parameters.
 
-Collaborating closely with the main author of \textsc{Primodal}, Philip Clarke, we verified the integrity of the combined \textsc{Primodal} + CMB-BEst routine. We thoroughly tested the consistency of basis functions, their orthogonalisation, and convergence. Both \textsc{Primodal} and \textsc{CMB-BEst} are now in the exploitation phase. We present a working example of the combined pipeline as a proof of concept.
+Collaborating closely with the main author of \textsc{Primodal}, Philip Clarke, we verified the integrity of the combined \textsc{Primodal} + \textsc{CMB-BEst} routine. We thoroughly tested the consistency of basis functions, their orthogonalisation, and convergence. Both \textsc{Primodal} and \textsc{CMB-BEst} are now in the exploitation phase. We present a working example of the combined pipeline as a proof of concept.
 
 DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi,Chen2005runningdbi,Bean2008comparingdbi} (TODO: add more DBI paper references) is a well-studied single-field inflation model inspired by string theory. Its action follows the general form \eqref{eqn:general_single_field_action}, with a non-canonical kinetic term given by
 \begin{align}
@@ -821,26 +821,27 @@ where $X=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ as before.
 \begin{align}
 	f(\phi) = \frac{\lambda_{DBI}}{\phi^4}, \qquad V(\phi) = V_0 - \frac{1}{2}m^2\phi^2, \qquad m = \sqrt{\beta_{IR}} \; H,
 \end{align}
-for some theory parameters $\lambda_{DBI}$, $V_0$, and $\beta_{IR}$. The sound speed can be obtained from \eqref{eqn:general_single_field_sound_speed}, which evaluates to $c^{DBI}_s \approx 3/\beta_{IR} N_e$ under slow-roll approximations \cite{Chen2005runningdbi}. Here $N_e$ denotes the number of e-folds until the end of inflation.
+for some theory parameters $\lambda_{DBI}$, $V_0$, and $\beta_{IR}$. The sound speed can then be obtained from \eqref{eqn:general_single_field_sound_speed}, which evaluates to $c^{DBI}_s \approx 3/\beta_{IR} N_e$ under some slow-roll approximations \cite{Chen2005runningdbi}. Here, $N_e$ denotes the number of e-folds until the end of inflation.
 
 DBI inflation generates non-Gaussianity with its shape similar to the equilateral template \eqref{def:equilateral_template}. The latest constraints on the model comes from the Planck CMB bispectrum analysis using an approximate template 
 \begin{align}
-	B_\Phi^{DBI}(k_1,k_2,k_3) = \frac{6A_\Phi^2}{(k_1 k_2 k_3)^3} \frac{-3}{7(k_1 + k_2 + k_3)^2} \left[ \sum_i k_i^5 + \sum_{i\neq j} (2k_i^4 k_j - 3k_i^3 k_j^2) + \sum_{i\neq j\neq l} (k_i^3 k_j k_l - 4k_i^2 k_j^2 k_l) \right]. 
+	B_\Phi^{DBI}(k_1,k_2,k_3) = \frac{6A_\Phi^2}{(k_1 k_2 k_3)^3} \frac{-3/7}{(k_1 + k_2 + k_3)^2} \bigg[ \sum_i k_i^5 &+ \sum_{i\neq j} (2k_i^4 k_j - 3k_i^3 k_j^2)  \nonumber \\
+	&+ \sum_{i\neq j\neq l} (k_i^3 k_j k_l - 4k_i^2 k_j^2 k_l) \bigg]. \label{eqn:dbi_bispectrum_template}
 \end{align}
-The primordial potential $\Phi$ 
+We switched to a convention where the potential $\Phi$ is used instead of $\zeta$. On superhorizon scales at the end of inflation they differ by a constant factor: $\Phi = (3/5)\zeta$. With respect to this template, the theoretical bispectrum from DBI inflation has amplitude $f_{NL}^{DBI} \approx - (35/108)((c^{DBI}_s)^{-2}-1)$, an approximation accurate as long as the DBI sound speed $c^{DBI}_s \ll 1$. Constraints on $f_{NL}^{DBI}$ therefore place limits on $c_s$. Planck 2018 analysis \cite{PlanckCollaboration2018} found $f_{NL}^{DBI} = 46 \;\pm\; 58$ with 68\% confidence level from CMB temperature data. Corresponding bound on the speed of sound is $c^{DBI}_s \ge 0.079$.
 
+We reproduce the DBI sound speed constraint with the Planck 2018 data using the \textsc{Primodal}$+$\textsc{CMB-BEst} routine. Unlike the Planck analysis, our method does not require templates to connect inflationary predictions to CMB data. Instead of using a single estimate from an approximate template, we scan over DBI theory parameters and constrain the individual primordial bispectrum directly. A given parameter set can be ruled out if the corresponding constraint on $f_{NL}$ excludes $f_{NL}=1$ with high confidence.
 
-
-- DBI sound speed constraints approx relation $f_{NL}^{equil} = -(35/108)c_s^{-2}$ for $c_s \ll 1$. 
-- DBI resonance scan
-- tetrapyd decomp? 
+The parameter $\beta_{IR}$ is varied within interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details are included in \cite{Sohn2021inprep}. Results of the scan are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{dbi_sound_speed_scan_annotated_new.pdf}
-	\caption{Constraints on the DBI model with varying sound speed $c_s$. Primordial bispectrum computed from \textsc{Primodal} is fed directly into CMB-BEst as coefficients $\alpha_{p_1 p_2 p_3}$ appearing in the Legendre basis expansion. Constraints from the Legendre basis with $p_{max}=30$ (black) are shown in comparison with $p_{max}=29$ (blue). $1\sigma$ and $2\sigma$ confidence intervals around $0$ are shaded in blue and represent the uncertainty in estimated $f_{NL}$s. Bispectrum shapes are normalised so that $f_{NL}=1$ corresponds to the DBI model in consideration. Our constraints on DBI sound speed is $c_s > 0.056$ with $95\%$ confidence.}
+	\caption{Constraints on the DBI model with varying sound speed $c_s$. Primordial bispectrum computed from \textsc{Primodal} is fed directly into CMB-BEst in the form of coefficients $\alpha_{p_1 p_2 p_3}$ appearing in Legendre basis expansion. Constraints from the Legendre basis with $p_{max}=30$ (black $+$) are shown in comparison with $p_{max}=29$ (black $\times$). $1\sigma$ and $2\sigma$ confidence intervals around $0$ are shaded in blue and represent the uncertainty in the estimated $f_{NL}$s. Bispectrum shapes are normalised so that $f_{NL}=1$ corresponds to the DBI model under consideration. Our constraints on DBI sound speed is $c^{DBI}_s > 0.056$ with $95\%$ confidence level. Equivalent results from an approximate DBI bispectrum template \eqref{eqn:dbi_bispectrum_template} (blue dashed) give the $c^{DBI}_s$ bound identical up to two significant figures.}
 	\label{fig:dbi_sound_speed_scan}
 \end{figure}
+
+First of all, we check that our Legendre basis with $p_{max}=30$ has converged and accurately represents the primordial bispectrum from DBI inflation.
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -857,9 +858,6 @@ The primordial potential $\Phi$
 \end{figure}
 
 
-
-
-\subsection{Future work}
 
 
 
