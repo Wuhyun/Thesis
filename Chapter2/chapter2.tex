@@ -11,19 +11,14 @@
     \graphicspath{{Chapter2/Figs/Vector/}{Chapter2/Figs/}}
 \fi
 
-Cosmic Microwave Background is like a trove full of precious cosmological information.
-(TODO: discovery led to confirmation of big bang. Anisotropy constrains cosmological parameters, almost by itself. success of LCDM. Bispectrum. Lensing map and secondaries like tSZ, kSZ...)
+The early universe was quite hot. It was too hot for neutral hydrogens to form, and even when the temperature of the universe dropped below the binding energy $13.6$eV ($\approx 158,000$K), overwhelming photon number density meant that any hydrogen atoms produced are ionised instantly. The universe then consisted of opaque plasma where photons are tightly coupled to electrons via Compton scattering. Only when the temperature dropped down to $\approx 3000$K roughly 370,000 years after the Big Bang, at \textit{recombination}, it was finally cold enough for electrons to combine with protons and form hydrogen atom, rendering the universe transparent all of a sudden. Photons began streaming freely away from the surface they last scattered at redshift $\approx 1100$ until observed by us today as the Cosmic Microwave Background (CMB).
+
+The CMB follows a blackbody spectrum with temperature $T_{CMB}=2.725$K, a fit so exquisite that the error bars are completely hidden within the theoretical curve in most plots. Looking closer into the map of CMB temperature there are fluctuations of order $10^{-5}$ which closely relates to the primordial perturbations and subsequent evolution history. Satellite surveys such as COBE, WMAP and Planck, as well as ground-based experiments including ACT, SPT, and BICEP produced precise measurements of the CMB which have been thoroughly studied since. (TODO: add references) The CMB anisotropy is a gold standard dataset for precision cosmology.
+
+This chapter provides mathematical background and some physical intuitions for studying CMB anisotropy. We start by making a step forward from the homogeneous universe discussed in the previous chapter and formulate cosmological perturbation theory in Section \ref{section:the_inhomogeneous_universe}. Focussing on scalar perturbations, we derive the linearised equations governing time evolution of the perturbative variables in Section \ref{section:linearised_equations}. The third, Section \ref{section:CMB_anisotropy}, introduces Boltzmann equation for photon and outlines how they are solved numerically. We connect the primordial power spectrum to angular power spectrum of the CMB anisotropy measured today.
 
 
-
-\begin{itemize}
-	\item Explain recombination and CMB, without talking about detailed thermal history 
-	\item CMB perfectly follows blackbody spectrum. Borrow a figure of intensity vs wavelength from Planck
-	\item Existence of temperature anisotropy. Maps from COBE, WMAP and Planck
-	\item Explain goal: obtain theoretical derivations for CMB anisotropy and introduce statistical formulation for comparing with measurements.	
-\end{itemize}
-
-\section{The inhomogeneous universe}
+\section{The inhomogeneous universe} \label{section:the_inhomogeneous_universe}
 
 \subsection{Metric perturbations} \label{section:metric_perturbations}
 Recall that the FLRW metric is given using conformal time by
@@ -129,7 +124,7 @@ Hence, the perturbed energy density and pressure also satisfy $P_I = w_I \rho_I$
 
 Perturbations satisfying the strong constraint of \eqref{eqn:adiabatic_modes_density_contrast} are called \textit{adiabatic} modes. They affect every component equally so that the ratio between density contrasts is uniform in space. Orthogonal to adiabatic modes are \textit{isocurvature} modes where the total density contrast vanishes everywhere; $\delta_r = -\delta_m$. Some multi-field inflation models are expected to seed isocurvature perturbations. However, all observations so far are consistent with purely adiabatic initial conditions. (TODO: add references here)
 
-\section{Linearised equations}
+\section{Linearised equations} \label{section:linearised_equations}
 
 In this section, we derive equations governing time evolution of the perturbations defined in the previous section. The equations are linear in the perturbative variables to first order. Although all calculations are done in Newtonian gauge, the methodology illustrated here is general and applies to any choice of gauge. For reasons that will become clear, we use $\eta$ instead of $\tau$ for conformal time in this section.
 
@@ -229,7 +224,7 @@ Now consider scales much larger than the comoving Hubble radius $\mathcal{H}^{-1
 For this reason, the curvature perturbations play a major role in connecting inflation with initial conditions. Recall that the comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation. Regions of space previously in causal contact then disconnects, letting the particle horizon later at recombination to be large enough, and resolving the horizon problem discussed earlier in Section \ref{section:the_horizon_problem}. After the end of inflation, $\mathcal{H}^{-1}$ starts growing again so that physical scales we observe today move back within the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links quantum fluctuations during inflation to initial perturbations after inflation.
 
 
-\section{CMB anisotropy}
+\section{CMB anisotropy} \label{section:CMB_anisotropy}
 
 The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} dictate the time evolution of gravitational perturbations given the total energy, momentum, and pressure of the universe's components. Contributions to these characteristics from cold dark matter can be solved using the perturbed continuity equation \eqref{eqn:perturbed_continuity_equation} and Euler equations \eqref{eqn:perturbed_Euler_equation}. This section covers how perturbations in the photon temperature evolve and translate into the observed CMB anisotropy, the main cosmological dataset in this thesis.
 
@@ -498,7 +493,7 @@ where the \textit{angular power spectrum} is defined as
 		C_l := \frac{2}{\pi} \int dk \; k^2 |\Delta_l(k)|^2 P_\Phi (k) = 4\pi \int d(\ln k) \; |\Delta_l(k)|^2 \mathcal{P}_\Phi (k).
 \end{align}
 
-Gaussianity of primordial perturbations for slow-roll inflation means that the $a_{lm}$s, evolved linearly from the initial fluctuations, are also Gaussian distributed. CMB measurements show that the $a_{lm}$s indeed follow multivariate Gaussian distribution. The form of \eqref{eqn:alm_from_phi} shows that the multipoles $a_{lm}$ are uncorrelated with each other, and since they are Gaussian distributed, vanishing correlation implies independence. In particular, $a_{lm}$s with same $l$ but distinct $m$s are independent and identically distributed. We can therefore combine them to get a more precise estimate for $C_l$;
+Gaussianity of primordial perturbations for slow-roll inflation means that the $a_{lm}$s, evolved linearly from the initial fluctuations, are also Gaussian. CMB measurements show that the $a_{lm}$s indeed follow multivariate Gaussian distribution. The form of \eqref{eqn:alm_from_phi} shows that the multipoles $a_{lm}$ are uncorrelated with each other, and since they are Gaussian distributed, vanishing correlation implies independence. In particular, $a_{lm}$s with same $l$ but distinct $m$s are independent and identically distributed. We can therefore combine them to get a more precise estimate for $C_l$;
 \begin{align}
 	\hat{C}_l = \frac{1}{2l+1} \sum_{m=-l}^{m=l} a^*_{lm} a_{lm}.
 \end{align}
