@@ -466,7 +466,7 @@ Defining operators $\hat{a}_\vv{k}$ and $\hat{a}_\vv{k}^\dagger$ appropriately, 
 As long as we normalise the mode functions $v_k(\tau)$ so that its Wronskian $W := v_k v'^*_k - v_k^* v'_k = i$ (purely imaginary since $v_k$ is real), we obtain
 \begin{align}
 	\left[ \hat{v}_{\vv{k}_1}(\tau), \hat{\pi}_{\vv{k}_2}(\tau) \right] =& i \left[ \hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{\vv{k}_2} \right], \\
-	\left[ \hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{\vv{k}_2} \right] =& (2\pi)^3 \delta^{(3)}(\vv{k}_1 - \vv{k}_2).	
+	\left[ \hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{\vv{k}_2} \right] =& (2\pi)^3 \delta^{(3)}(\vv{k}_1 - \vv{k}_2).	\label{eqn:canonical_quantisation_commutation_relation_a}
 \end{align}
 Constructed $\hat{a}$ and $\hat{a}^\dagger$ are analogous to the creation and annihilation operators of quantum harmonic oscillator. Our next step is to compute the Hamiltonian operator;
 \begin{align}
@@ -495,23 +495,28 @@ We now ask the vacuum state to be a ground state of the Hamiltonian. Minimising 
 \end{align}
 For this choice of mode function and vacuum, $E_k \rightarrow \hslash\omega_k/2$ as $\tau \rightarrow -\infty$. \footnote{$\hslash$ has been reinstated here for clarity.} This is analogous to the case of quantum harmonic oscillator.
 
-Lastly, we compute the zero-point fluctuation of the inflation field. By definition,
+Lastly, we compute zero-point fluctuation of the inflation field with respect to the vacuum. The two-point function follows from the commutation relation \eqref{eqn:canonical_quantisation_commutation_relation_a};
+\begin{align}
+	\langle \hat{v}_{\vv{k}_1} (\tau) \hat{v}_{\vv{k}_2} (\tau) \rangle &= \langle 0| [\hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{-\vv{k}_2}] |0 \rangle \; v_{k_1}(\tau) v^*_{k_2}(\tau) \\
+	&= (2\pi)^3 \delta^{(3)} (\vv{k}_1 + \vv{k}_2 ) \; P_{v}(k_1,\tau),   \label{eqn:single_field_inflation_power_spectrum}
+\end{align}
+where we defined the \textit{power spectrum} of $v$ as $P_v(k,\tau) := |v_k(\tau)|^2$. Fourier transforming back using
 \begin{align}
 	\hat{v}(\vv{x}, \tau) = \int \frac{d^3\vv{k}}{(2\pi)^3} \left[ v_k \hat{a}_\vv{k} + v^*_k \hat{a}^\dagger_\vv{k} \right] e^{i\vv{k} \cdot \vv{x}},
 \end{align}
-and we have
+we compute the local variation in $v$;
 \begin{align}
 	\langle | \hat{v}(\vv{x}, \tau) |^2 \rangle =& \int \frac{d^3\vv{k}_1}{(2\pi)^3} \frac{d^3\vv{k}_2}{(2\pi)^3} \langle \vv{0} | v_{k_1} \hat{a}_{\vv{k}_1} v^*_{k_2} \hat{a}^\dagger_{\vv{k}_2} | \vv{0} \rangle 	\\
 	=& \int \frac{d^3\vv{k}_1}{(2\pi)^3} \frac{d^3\vv{k}_2}{(2\pi)^3} v_{k_1} v^*_{k_2} \langle \vv{0} | \left[ \hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{\vv{k}_2} \right] | \vv{0} \rangle	 \\
 	=& \int \frac{d^3\vv{k}}{(2\pi)^3} |v_k|^2	\\
-	=& \int d(\ln k) P_v (k,\tau).
+	=& \int d(\ln k) \mathcal{P}_v (k,\tau).
 \end{align}
 The dimensionless power spectrum is defined as
 \begin{align}
-	P_v (k,\tau) := \frac{k^3}{2\pi^2} |v_k(\tau)|^2.
+	\mathcal{P}_v (k,\tau) := \frac{k^3}{2\pi^2} P_v(k,\tau).
 \end{align}
 Recall that perturbations in $\phi$ is given by $\delta\phi = v/a$ from (\ref{eqn:inflation_perturbation_definition}). The \textit{dimensionless power spectrum} for fluctuations in $\phi$ is therefore
 \begin{align}
-	P_{\delta\phi} (k,\tau) = \frac{P_v (k,\tau)}{a(\tau)^2} = \left( \frac{H}{2\pi} \right)^2 \left(1 + (k\tau)^2 \right),
+	\mathcal{P}_{\delta\phi} (k,\tau) = \frac{\mathcal{P}_v (k,\tau)}{a(\tau)^2} = \left( \frac{H}{2\pi} \right)^2 \left(1 + (k\tau)^2 \right),
 \end{align}
-where we used the fact that $a(\tau) = -1/H\tau$ during slow-roll inflation. For scales larger than the comoving Hubble radius we have $k\tau \ll 1$. In this limit, $P_{\delta\phi} \rightarrow (H/2\pi)^2$ which is nearly constant. This is a key prediction from our simplistic model of inflation; we expect a near scale-invariant power spectrum of perturbations.
+where we used the fact that $a(\tau) = -1/H\tau$ during slow-roll inflation. For scales larger than the comoving Hubble radius we have $k\tau \ll 1$. In this limit, $\mathcal{P}_{\delta\phi} \rightarrow (H/2\pi)^2$ which is nearly constant. This is a key prediction from our simplistic model of inflation; we expect a near scale-invariant power spectrum of primordial, or end-of-inflation, perturbations.

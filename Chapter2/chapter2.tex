@@ -480,17 +480,29 @@ Setting $\vv{x}=\vv{x_0}$ to be $\vv{0}$ and choosing $\eta=\eta_0$, we obtain a
 
 \subsection{CMB power spectrum}
 
+Slow-roll inflation generates quantum fluctuations which are mostly Gaussian. In Section \ref{section:quantum_fluctuations} we derived the dimensionless power spectrum for $\delta\phi$ \eqref{eqn:single_field_inflation_power_spectrum}, the fluctuations in the inflationary field, by evaluating the vacuum expectation value $\langle \delta\phi(\vv{k}_1,\tau) \delta\phi(\vv{k}_2,\tau) \rangle$ through canonical quantisation of $\delta\phi$. The equivalent expression for the potential $\Phi$ evaluated at the end of inflation is
 \begin{align}
-	\langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle = (2\pi)^3 \delta^{(3)} (\vv{k} - \vv{k}') P_\Phi (k)
+	\langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle = (2\pi)^3 \delta^{(3)} (\vv{k} + \vv{k}') P_\Phi (k), \label{eqn:bardeen_potential_power_spectrum}
+\end{align}
+where $P_\Phi (k)$ is the power spectrum for $\Phi$. The Dirac delta function above enforces momentum conservation, a manifestation of statistical homogeneity. This can be seen by considering a spatial translation $\vv{x} \rightarrow \vv{x}+\vv{c}$ under which the field transforms as $\Phi(\vv{k}) \rightarrow \exp(i\vv{k}\cdot\vv{c}) \Phi(\vv{k})$. The correlation function on the left hand side of \eqref{eqn:bardeen_potential_power_spectrum} then gains a factor of $\exp(i(\vv{k}+\vv{k}')\cdot\vv{c})$. For this to be equal to $1$ for arbitrary $\vv{c}$, we require $\vv{k}+\vv{k}'=\vv{0}$ as above.
+
+We can now compute the power spectrum of late-time CMB temperature anisotropy from given $P_\Phi(k)$. Using \eqref{eqn:alm_from_phi},
+\begin{align}
+	\langle a^*_{lm} a_{l'm'} \rangle &= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \frac{d^3\vv{k'}}{(2\pi)^3} \langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle (\vv{k}') \Delta_l (k) \Delta_{l'} (k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}'})  \\
+	&= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \Delta_l (k) \Delta_{l'} (k) P_\Phi(k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}}) \\
+	&= \frac{2}{\pi} i^{l-l'} \int dk \; k^2  \Delta_l (k) \Delta_{l'} (k) P_\Phi (k) \delta_{ll'} \delta_{mm'} \\
+	&= C_{l} \delta_{ll'} \delta_{mm'}, \label{eqn:angular_power_spectrum_form}
+\end{align}
+where the \textit{angular power spectrum} is defined as
+\begin{align}
+		C_l := \frac{2}{\pi} \int dk \; k^2 |\Delta_l(k)|^2 P_\Phi (k) = 4\pi \int d(\ln k) \; |\Delta_l(k)|^2 \mathcal{P}_\Phi (k).
 \end{align}
 
-
+Gaussianity of primordial perturbations for slow-roll inflation means that the $a_{lm}$s, evolved linearly from the initial fluctuations, are also Gaussian distributed. CMB measurements show that the $a_{lm}$s indeed follow multivariate Gaussian distribution. The form of \eqref{eqn:alm_from_phi} shows that the multipoles $a_{lm}$ are uncorrelated with each other, and since they are Gaussian distributed, vanishing correlation implies independence. In particular, $a_{lm}$s with same $l$ but distinct $m$s are independent and identically distributed. We can therefore combine them to get a more precise estimate for $C_l$;
 \begin{align}
-	\langle a^*_{lm} a_{l'm'} \rangle &= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \frac{d^3\vv{k'}}{(2\pi)^3} \langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle (\vv{k}') \Delta_l (\vv{k}) \Delta_{l'} (\vv{k'}) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}'})  \\
-	&= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \Delta_l (\vv{k}) \Delta_{l'} (\vv{k}) P_\Phi(k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}}) \\
-	&= \frac{2}{\pi} i^{l-l'} \int dk \; k^2  \Delta_l (\vv{k}) \Delta_{l'} (\vv{k}) P(k) \delta_{ll'} \delta_{mm'} \\
-	&= \frac{2}{\pi} \int dk \; k^2 |\Delta_l(k)|^2 P_\Phi (k)
+	\hat{C}_l = \frac{1}{2l+1} \sum_{m=-l}^{m=l} a^*_{lm} a_{lm}.
 \end{align}
+This allows us to do precision cosmology with the CMB data.
 
 
-Borrow Planck 2018 analysis picture. 
+%Borrow Planck 2018 analysis picture maybe?
