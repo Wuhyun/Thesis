@@ -198,10 +198,10 @@ We rewrote the formalism using linear analysis language here to emphasize two as
 
 Second, we highlight the fact that basis expansion is in essence a minimisation problem with respect to chosen inner product, which is often oblivious of late-time physics. Orthogonal projection of $S$ to subspace $U_Q$ is a point in $U_Q$ which has minimal distance to $S$: $\left\| S - S^\parallel \right\|$ is minimised. Obtained $S^\parallel$, however, is not necessarily the best description of $S$ when we consider their late-time counterparts in $l$ space. Some errors with small norm $\left\| \Delta S \right\|$ might get enhanced when convolved with transfer functions, yielding large reduced bispectrum $\Delta b_{l_1 l_2 l_3}$. Meanwhile, sometimes large differences in $S$ are completely unobservable late-time and provide mostly identical constraints on $f_{NL}$.
 
-With these points in mind, we define metrics to compare shape functions in primordial space;
+With these points in mind, we define the following metrics to compare shape functions in primordial space;
 \begin{align}
 	\text{Corr}(S_1, S_2) &:= \frac{\left< S_1, S_2 \right>}{ \sqrt{ \left< S_1, S_1 \right> \left< S_2, S_2 \right> } }, \\
-	\epsilon^2(S_1, S_2) &:= \frac{\left< S_1 - S_2, S_1 - S_2 \right> }{\sqrt{\left< S_1, S_1 \right> \left< S_2, S_2 \right>}}.
+	\epsilon^2(S_1, S_2) &:= \frac{\left< S_1 - S_2, S_1 - S_2 \right> }{\sqrt{\left< S_1, S_1 \right> \left< S_2, S_2 \right>}}. \label{def:primordial_shape_epsilon}
 \end{align}
 Corr$(S_1,S_2)$ measures correlation between the two shapes and is independent of the normalisation. $\epsilon(S_1,S_2)$ is the distance between two shapes, which reduces to $\sqrt{2 - 2\;\text{Corr}(S_1,S_2)}$ when $S_1$ and $S_2$ have equal amplitude. We use both of these values to test if our primordial basis expansion has converged to target shape function. 
 
@@ -832,7 +832,7 @@ We switched to a convention where the potential $\Phi$ is used instead of $\zeta
 
 We reproduce the DBI sound speed constraint with the Planck 2018 data using the \textsc{Primodal}$+$\textsc{CMB-BEst} routine. Unlike the Planck analysis, our method does not require templates to connect inflationary predictions to CMB data. Instead of using a single estimate from an approximate template, we scan over DBI theory parameters and constrain the individual primordial bispectrum directly. A given parameter set can be ruled out if the corresponding constraint on $f_{NL}$ excludes $f_{NL}=1$ with high confidence.
 
-The parameter $\beta_{IR}$ is varied within interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details are included in \cite{Sohn2021inprep}. Results of the scan are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
+The parameter $\beta_{IR}$ is varied within interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. Results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -841,7 +841,15 @@ The parameter $\beta_{IR}$ is varied within interval $[0.1885,0.58]$ while fixin
 	\label{fig:dbi_sound_speed_scan}
 \end{figure}
 
-First of all, we check that our Legendre basis with $p_{max}=30$ has converged and accurately represents the primordial bispectrum from DBI inflation.
+First of all, we check that our Legendre basis with $p_{max}=30$ has converged and accurately represents the primordial bispectrum from DBI inflation. Values of the $f_{NL}$ estimates obtained from $p_{max}=30$ were tested against the equivalent result with $p_{max}=29$ and shown to differ less than $0.01\%$, as can be seen in Figure \ref{fig:dbi_sound_speed_scan}. In order to thoroughly investigate the degree of convergence, we studied a late-time equivalent of $\epsilon$ in  \eqref{def:primordial_shape_epsilon} used to compare primordial bispectrum shapes;
+\begin{align}
+	\epsilon^2 (\vv{f}_1, \vv{f}_2) = \frac{1}{N_{sim}}  \sum_{i=1}^{N_{sim}} \left( \frac{f^{(i)}_1}{\sigma_1} - \frac{f^{(i)}_2}{\sigma_2} \right)^2,
+\end{align}
+where $f^{(i)}_1$ and $f^{(i)}_2$ denote $f_{NL}$ estimate for the $i$th Gaussian simulated map from the two routines. $\epsilon^2$ measures the mean squared error in the two sets of $f_{NL}$ signal-to-noises for $N_{sim}$ simulations. Comparing results from the Legendre basis with $p_{max} = 30$ and $25$ across the scan, we confirmed that $\epsilon < 0.01$ in the full range and $\epsilon \approx 0.002$ for the majority. A plot with the full result will be provided in \cite{Sohn2021inprep}.
+
+Secondly, we constrain the DBI sound speed as $c_s \gtrapprox 0.056$ with $95\%$ confidence using CMB temperature data from Planck. Each of the points in Figure \ref{fig:dbi_sound_speed_scan} are normallised such that $f_{NL}=1$ corresponds to the bispectrum predicted by the model. Estimates from the Planck 2018 map take negative values, with error bars small enough to exclude $f_{NL}=1$ with $2\sigma$ confidence level when $c_s < 0.056$. TODO:  a) why does bispectrum amplitude increase with decreasing sound speed? b) explain the discrepancy with Planck Modal result. c) caveat: using gaussian sims to approximate true variance
+
+Lastly, we verify that the DBI template \eqref{eqn:dbi_bispectrum_template} accurately approximates the full bispectrum. 
 
 \begin{figure}[htbp!] 
 	\centering    
