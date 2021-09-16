@@ -200,13 +200,13 @@ Time derivatives of $\Phi$ on the left hand side can be removed by putting \eqre
 This very much resembles the Poisson's equation for Newtonian gravity: $\nabla^2 \phi_{newt} = 4\pi G \; \rho$. We confirm our previous claim that $\Phi$ corresponds to perturbations in the Newtonian gravitational potential. \eqref{eqn:perturbed_poisson_eqution} is best solved in Fourier space where $\nabla^2\Phi(\eta,\vv{x})$ reduces to $-k^2 \tilde{\Phi}(\eta,\vv{k})$.
 
 
-\subsection{Curvature perturbations}
+\subsection{Curvature perturbations} \label{section:curvature_perturbations}
 
 The Bardeen potential $\Phi_B$ is an extremely useful quantity for cosmological perturbation theory. It is not only gauge-invariant, but it also represents a physically meaningful quantity\textemdash gravitational potential\textemdash in Newtonian gauge which can be solved using the Poisson's equation \eqref{eqn:perturbed_poisson_eqution}. Gauge-invariant quantities also let us connect results from different gauge choices in a consistent manner.
 
 Another gauge-invariant variable with crucial role in cosmology is the constant density curvature perturbation, or simply \textit{curvature perturbation}, defined as
 \begin{align}
-	\zeta := - C + \frac{1}{3} \nabla^2 E + \mathcal{H} \frac{\delta\rho}{\bar{\rho}'}.
+	\zeta := - C + \frac{1}{3} \nabla^2 E + \mathcal{H} \frac{\delta\rho}{\bar{\rho}'}. \label{def:curvature_perturbation}
 \end{align}
 The name originates from the fact that it closely relates to the spatial curvature $R^{(3)}$ in the uniform density gauge $B=\delta\rho=0$. In the Newtonian gauge,
 \begin{align}
@@ -438,7 +438,7 @@ The vector $\hat{\vv{p}}$ relates to which direction in the sky we point our tel
 \begin{align}
 	\Theta(\vv{x}, \hat{\vv{p}}, \eta) = \sum_{l,m} a_{lm}(\vv{x},\eta) Y_{lm}(\hat{\vv{p}}). 
 \end{align} 
-In physical terms, the spherical harmonics $Y_{lm}(\hat{\vv{p})}$ are joint eigenstate of angular momentum operators $\hat{L}^2$ and $\hat{L}_3$, with associated qunatum numbers $l$ and $m$, respecitvely. In mathematical terms, they form a basis of harmonic (vanishing Laplacian) polynomials of degree $l$ in three dimensions, restricted to a sphere. For each $l$, $m$ may take one of the $2l+1$ values in ${-l,-l+1,\cdots,l}$. Note that $Y_{lm}$s are orthonormal by construction:
+In physical terms, the spherical harmonics $Y_{lm}(\hat{\vv{p})}$ are joint eigenstate of angular momentum operators $\hat{L}^2$ and $\hat{L}_3$, with associated quantum numbers $l$ and $m$, respectively. In mathematical terms, they form a basis of harmonic (vanishing Laplacian) polynomials of degree $l$ in three dimensions, restricted to a sphere. For each $l$, $m$ may take one of the $2l+1$ values in ${-l,-l+1,\cdots,l}$. Note that $Y_{lm}$s are orthonormal by construction:
 \begin{align}
 	\int d^2\hat{\vv{p}} \; Y^*_{lm} (\hat{\vv{p}}) Y_{l'm'} (\hat{\vv{p}}) = \delta_{ll'} \delta_{mm'}. \label{eqn:spherical_harmonic_orthonormality}
 \end{align}
