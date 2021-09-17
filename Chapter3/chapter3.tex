@@ -232,7 +232,12 @@ The full bispectrum can be computed following the general methodology shown in t
 
 \section{CMB bispectrum estimation} \label{section:CMB_bispectrum_estimation}
 
-The existence of non-vanishing bispectrum at the end of inflation due to primordial non-Gaussianity leaves imprints on the statistics of CMB anisotropy.
+The presence of non-vanishing bispectrum at the end of inflation due to primordial non-Gaussianity leaves imprints on the CMB. Bispectrum of the observed CMB anisotropy directly relates to the primordial counterpart thanks to the linear nature of the evolution, and hence is a key statistic for constraining primordial non-Gaussianity.
+
+Near-Gaussianity of the CMB means that its bispectrum has small signal-to-noise. In contrast to the power spectrum analysis where we treat each $C_l$ (after binning) as an independent data point, the noise-dominated $b_{l_1 l_2 l_3}$s are not so significant individually. Instead, we fit the whole bispectrum data to the theoretical prediction from a given model in order to estimate a single parameter measuring the amplitude: $f_{NL}$.
+
+In this section, we formulate the theory of CMB bispectrum estimation. Estimating $f_{NL}$ is an extremely challenging task due to large computational complexity and oscillatory integrals involved. We review several conventional approaches to handle these challenges and summarise their respective strengths and weaknesses. Lastly, we discuss some significant non-primordial sources of non-Gaussianity that needs to be carefully accounted for during the estimation process.
+
 
 \subsection{CMB bispectrum}
 
@@ -252,11 +257,11 @@ where an integral expression is substituted for the Dirac $\delta$-function in t
 	e^{-i \vv{k} \cdot \vv{r}} &= \sum_{l=0}^{\infty} (2l+1) (-i)^l j_l(kr) P_l(\hat{\vv{k}} \cdot \hat{\vv{r}})  \\	
 	&= \sum_{l=0}^{\infty} \sum_{m=-l}^{l} 4\pi (-i)^l j_l(kr) Y_{lm}(\hat{\vv{k}}) Y^*_{lm}(\hat{\vv{r}}). \label{eqn:bispectrum_derivation_rayleigh}
 \end{align}
-Legendre polynomial $P_l(\hat{\vv{k}} \cdot \hat{\vv{r}})$ has been expanded using the spherical harmonic addition theorem on the last line. Now $\vv{k}$ and $\vv{r}$ mix only through their amplitudes within spherical bessel functions $j_l(kr)$. Once substituted into (\ref{eqn:bispectrum_derivation_base_form}), we can perform the angular integral $d^2 \hat{\vv{k}_j}$ separately for each $j=1,2,3$, since $d^3\vv{k}_j = dk_j k_j^2 d^2 \hat{\vv{k}_j}$. Note also that the spherical harmonic orthogonality relation is given by
+The Legendre polynomial $P_l(\hat{\vv{k}} \cdot \hat{\vv{r}})$ has been expanded using the spherical harmonic addition theorem on the last line. Now $\vv{k}$ and $\vv{r}$ mix only through their amplitudes within spherical bessel functions $j_l(kr)$. Once substituted into (\ref{eqn:bispectrum_derivation_base_form}), we can perform the angular integral $d^2 \hat{\vv{k}_j}$ separately for each $j=1,2,3$, since $d^3\vv{k}_j = dk_j k_j^2 d^2 \hat{\vv{k}_j}$. Note also that the spherical harmonic orthogonality relation is given by
 \begin{align}
 	\int d^2 \hat{\vv{n}} \; Y_{lm}(\hat{\vv{n}}) Y^*_{l'm'}(\hat{\vv{n}}) = \delta_{l l'} \delta_{m m'}.
 \end{align}
-Incorporating (\ref{eqn:bispectrum_derivation_base_form}), (\ref{eqn:bispectrum_derivation_delta_function}, and (\ref{eqn:bispectrum_derivation_rayleigh}), we obtain
+Incorporating \eqref{eqn:bispectrum_derivation_base_form}, \eqref{eqn:bispectrum_derivation_delta_function}, and \eqref{eqn:bispectrum_derivation_rayleigh}, we obtain
 \begin{align}
 	&\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> \nonumber \\
 	&\hspace{0.05\textwidth}= \frac{(4\pi)^3}{(2\pi)^9} (-1)^{l_1 + l_2 + l_3} \int d^3 \vv{r} \; d^3 \vv{k}_1 d^3 \vv{k}_2 d^3 \vv{k}_3 \; B(k_1,k_2,k_3) \nonumber \\
@@ -279,9 +284,9 @@ The late-time bispectrum can now be written in a concise form;
 	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> = \mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b^{X_1 X_2 X_3}_{l_1 l_2 l_3}. \label{eqn:late_time_bispectrum_form}
 \end{align}
 
-Recall that the three point function in (\ref{eqn:primordial_bispectrum}) is given by a product of delta function enforcing $\vv{k}_1 + \vv{k}_2 + \vv{k}_3 = \vv{0}$ and the primordial bispectrum $B(k_1,k_2,k_3)$. Its spherical harmonic counterpart (\ref{eqn:late_time_bispectrum_form}) has an analogous form. The Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3}$ contains all the geometrical information, enforcing triangle condition on $l_1$, $l_2$, $l_3$ and angular momentum conservation $m_1+m_2+m_3=0$. Meanwhile, reduced bispectrum encodes statistical information about the underlying three point functions, just like $B(k_1,k_2,k_3)$.
+Recall that the three point function in (\ref{eqn:primordial_bispectrum}) is given by a product of delta function enforcing $\vv{k}_1 + \vv{k}_2 + \vv{k}_3 = \vv{0}$ and the primordial bispectrum $B(k_1,k_2,k_3)$. Its spherical harmonic counterpart (\ref{eqn:late_time_bispectrum_form}) has an analogous form. The Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3}$ contains all the geometrical information, enforcing triangle condition on $l_1$, $l_2$, $l_3$ and angular momentum conservation $m_1+m_2+m_3=0$. Meanwhile, the reduced bispectrum encodes statistical information about the underlying three point functions, just like $B(k_1,k_2,k_3)$.
 
-Value of the Gaunt integral is best represented using Wigner 3-j symbols as
+The value of the Gaunt integral is best represented using Wigner 3-j symbols as
 \begin{align}
 	\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} = \sqrt{\frac{(2l_1+1)(2l_2+1)(2l_3+1)}{4\pi}} \begin{pmatrix}	l_1 & l_2 & l_3 \\ m_1 & m_2 & m_3 \end{pmatrix} \begin{pmatrix}	l_1 & l_2 & l_3 \\ 0 & 0 & 0 \end{pmatrix}.
 \end{align}
@@ -306,7 +311,7 @@ We make one last definition which will prove to be useful in the next section;
 By squaring the Gaunt integral and summing over $m$s, we get a simpler quantity $h^2_{l_1 l_2 l_3}$ which preserves important geometrical information. Here $l_1$, $l_2$ and $l_3$ must still form a triangle and add up to an even number. Otherwise, the integral over Legendre polynomials in (\ref{def:h2_using_legendre_integral}) vanishes.
 
 \subsection{Optimal estimator}
-Bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure. In this section, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
+The bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure. Here, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
 
 Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as local, equilateral, and orthogonal shapes (TODO: define these earlier and reference them here). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of shapes chosen;
 \begin{align}
@@ -336,7 +341,7 @@ The form of \eqref{eqn:bispectrum_estimation_core} makes it clear that bispectru
 	\item $\vv{B}^{obs}$ is the \textit{regressand}, in our case the noisy observed bispectrum samples $B^{obs}_\vv{L}$ obtained for each \textit{observation} $\vv{L}$.
 	\item $\vv{B}^{(i)}$s are the \textit{regressors}, theoretical bispectra $B^{(i)}_\vv{L}$ motivated from inflationary models.
 	\item $f^{(i)}_{NL}$s are the \textit{regression coefficients} which parametrise how much each regressor contributes to the regressand. Our main objective is to estimate them.
-	\item $\vv{\epsilon}$ is the \textit{error term} which represents the noise in bispectrum sample and the true underlying value. $\epsilon_\vv{L}$ can be sourced by sampling error (from limited number of samples) or inaccuracies in the measurements. 
+	\item $\vv{\epsilon}$ is the \textit{error term} which represents the noise in bispectrum sample compared to the true underlying value. $\epsilon_\vv{L}$ can be sourced by sampling error (from having limited number of samples) or inaccuracies in the measurements. 
 \end{itemize}
 
 We adopt the least squares method to estimate $f_{NL}$s from given $\vv{B}^{obs}$ and $B^{(i)}_\vv{L}$. Before doing so, each element of the regressand and regressors needs to be normalised so that the expected variances in error are uniform across observations $\vv{L}$. We compute the theoretical variance in $B^{obs}_\vv{L}$ under two assumptions. First, we in the weak non-Gaussian limit where dominant contributions to correlation functions come from the Gaussian part of $a_\vv{l}$s . Wick's theorem then reduces the problem down to summing over all possible contractions. Second, we neglect the inaccuracies in measuring $a_{lm}$s, since their contributions to total error is much smaller compared to sampling errors.
@@ -392,7 +397,7 @@ Finally, we have the least squares estimate of $f_{NL}$ in terms of $F$ and $S$;
 	\hat{f}_{NL}^{(i)} = \sum_j (F^{-1})_{ij} S_j. \label{eqn:bispectrum_estimation_ols_estimate}.
 \end{align}
 
-One of the main strengths of the ordinary least squares estimator lies in its \textit{optimality}; it has the smallest possible variance, namely the Cramer-Rao bound, among all unbiased estimators that are linear in data. Noting that $\left< S_i S_j \right> = F_{ij}$, we get $\text{Var}(\hat{f}_{NL}^{(i)}) = (F^{-1})_{ii}$. This value is indeed equal to the Cramer-Rao bound computed from the Fisher information matrix $F$ here.
+One of the main strengths of the ordinary least squares estimator lies in its \textit{optimality}; it has the smallest possible variance among all unbiased estimators that are linear in data. That is to say, it saturates the Cramer-Rao bound. Since $\left< S_i S_j \right> = F_{ij}$, we have $\text{Var}(\hat{f}_{NL}^{(i)}) = (F^{-1})_{ii}$. This value is indeed equal to the Cramer-Rao bound computed from the Fisher information matrix $F$ here.
 
 Fisher matrix of the estimator naturally motivates the following definition of inner product on the space of reduced bispectra.
 \begin{align}
@@ -402,14 +407,14 @@ In particular, correlation between two bispectrum shapes can be defined as
 \begin{align}
 	\text{Corr} \left( \vv{b}^{(i)}, \vv{b}^{(j)} \right) &:= \frac{ \left< \vv{b}^{(i)}, \vv{b}^{(j)} \right>}{\sqrt{ \left< \vv{b}^{(i)}, \vv{b}^{(i)} \right> \left< \vv{b}^{(j)} \vv{b}^{(j)} \right> }}.
 \end{align}
-If all bispectrum shapes under consideration are uncorrelated in this metric so that $| \text{Corr}(\vv{b}^{(i)}, \vv{b}^{(j)}) | \ll 1$ whenever $i \neq j$, then the Fisher matrix $F$ is approximately diagonal, and $(F^{-1})_{ii} \approx (F_{ii})^{-1}$. In this case, estimated $\hat{f}_{NL}^{(i)}$ in \eqref{eqn:bispectrum_estimation_ols_estimate} is identical to the value obtained using a single regressor $\vv{B}^{(i)}$. In other words, we may analyse individual bispectrum shapes independently.
+If all bispectrum shapes under consideration are uncorrelated with respect to this metric, so that $| \text{Corr}(\vv{b}^{(i)}, \vv{b}^{(j)}) | \ll 1$ whenever $i \neq j$, then the Fisher matrix $F$ is approximately diagonal, and $(F^{-1})_{ii} \approx (F_{ii})^{-1}$. In this case, the estimated $\hat{f}_{NL}^{(i)}$s in \eqref{eqn:bispectrum_estimation_ols_estimate} are identical to the values obtained using a single regressor $\vv{B}^{(i)}$. In other words, we may analyse individual bispectrum shapes independently.
 
 We write down the estimator for single shape analysis and restore shortened indices.
 \begin{align}
 	\hat{f}_{NL} &= \frac{1}{N} \sum_{l_j,m_j} \frac{\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \left[ a_{l_1 m_1} a_{l_2 m_2} a_{l_3 m_3} - 3\left< a_{l_1 m_1} a_{l_2 m_2} \right> a_{l_3 m_3} \right], \label{eqn:bispectrum_estimator_single_shape} \\
 	N &:= 6F = \sum_{l_j,m_j} \frac{h^2_{l_1 l_2 l_3} b^2_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}}. \label{eqn:bispectrum_estimator_normalisation_single_shape}
 \end{align}
-The symmetry in indices was used to combine the linear terms into one. Normalisation factor $N$ was defined to follow common conventions. 
+The symmetry in indices was used to combine the linear terms into one. The normalisation factor $N$ was defined to follow common conventions. 
 
 \subsection{CMB bispectrum estimators}
 The estimator \eqref{eqn:bispectrum_estimator_single_shape} can be intimidating. The multipole moments $l$ go up to $2000$ for Planck survey, meaning that the sum over all possible $l_j, m_j$ contains $\approx 2.7\times 10^{15}$ terms.\footnote{This number was calculated considering the symmetry ($l_1 \ge l_2 \ge l_3$), triangle inequality ($l_2+l_3 \ge l_1$), and restrictions on $m_j$s from angular momentum conservation ($m_1+m_2+m_3=0$). } Direct evaluation of the Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3}$ involves calculating Wigner 3-j symbols, which are expensive to compute and store. Not to mention that the number of terms scales as $\propto l_{max}^5$.
@@ -421,7 +426,7 @@ Komatsu-Spergel-Wandelt (KSW) estimator was first introduced in \cite{Komatsu200
 \begin{align}
 	S^{loc}(k_1, k_2, k_3) = 2A^2 \left( \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} +  \frac{k_3^2}{k_1 k_2} \right),
 \end{align}
-where $A$ is amplitude of the power spectrum with scalar spectral index $n_s$ set to $1$. Note that each term can be expressed as a product of three individual functions that only depends on one of the variables: $k_1^2/(k2k3) = k_1^2 \cdot k_2^{-1} \cdot k_3^{-1}$. The reduced bispectrum then becomes an integral of separable terms;
+where $A$ is amplitude of the power spectrum with scalar spectral index $n_s$ set to $1$. Note that each term can be expressed as a product of three individual functions that only depends on one of the variables: $k_1^2/(k_2 k_3) = k_1^2 \cdot k_2^{-1} \cdot k_3^{-1}$. The reduced bispectrum then becomes an integral of separable terms;
 \begin{align}
 	b^{loc}_{l_1 l_2 l_3} = 2A^2 \int dr \; r^2 \left[ \alpha_{l_1}(r) \beta_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \alpha_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \beta_{l_2}(r) \alpha_{l_3}(r) \right], \label{eqn:local_reduced_bispectrum}
 \end{align}
@@ -441,7 +446,7 @@ where we have defined the filtered maps
 \end{align}
 The estimator \eqref{eqn:KSW_estimator_local} has significantly less computational complexity compared to the original form. The integral over $\hat{\vv{n}}$ becomes a summation over map pixels, roughly 50 million in Planck-like settings. The filtered maps (\ref{eqn:KSW_estimator_filtered_map_1}-\ref{eqn:KSW_estimator_filtered_map_2}) are efficiently obtained using Spherical Harmonic Transforms (SHTs).
 
-We are only left with normalisation factor to compute. An integral representation of $h^2_{l_1 l_2 l_3}$ in \eqref{def:h2_using_legendre_integral} allows fast computation of $N$ \cite{Smith2011};
+We are only left with the normalisation factor to compute. An integral representation of $h^2_{l_1 l_2 l_3}$ in \eqref{def:h2_using_legendre_integral} allows fast computation of $N$ \cite{Smith2011};
 \begin{align}
 	N = (2A^2)^2 \int d\mu \int dr \;r^2 \int dr' \; r'^2 \left[ 3R_{\alpha\alpha}^2 R_{\beta\beta} + 6R_{\alpha\beta} R_{\beta\alpha} R_{\alpha\alpha} \right],
 \end{align}
@@ -451,7 +456,7 @@ where
 \end{align}
 for $X,Y=\alpha,\beta$.
 
-KSW formalism can be used to constrain various separable shapes by replacing $\alpha_l$ and $\beta_l$ with appropriate functions, or `modes'. Equilateral and Orthogonal shapes, for example, call for four such functions which have $k^{-1}, 1, k, k^2$ instead of $k^2$ in the integral \eqref{def:KSW_estimator_alpha}. Constant feature models with shape $S(k_1,k_2,k_3) = \sin(\omega(k_1+k_2+k_3)+\phi)$ can be written in terms of the two modes $\sin(\omega k)$ and $\cos(\omega k)$ via trigonometric identities \cite{Munchmeyer2014}.
+KSW formalism can be used to constrain various separable shapes by replacing $\alpha_l$ and $\beta_l$ with appropriate functions, or `modes'. Equilateral and Orthogonal shapes, for example, call for four such functions which have $k^{-1}, 1, k, k^2$ in place of $k^2$ in the integral \eqref{def:KSW_estimator_alpha}. Constant feature models with shape function $S(k_1,k_2,k_3) = \sin(\omega(k_1+k_2+k_3)+\phi)$ can be written in terms of the two modes $\sin(\omega k)$ and $\cos(\omega k)$ via trigonometric identities \cite{Munchmeyer2014}.
 
 In some cases, a seemingly non-separable function can be expanded using an analytic formula. For instance, the Schwinger parametrisation
 \begin{align}
@@ -494,7 +499,7 @@ Before moving on to the normalisation factor, we first alter the inner product d
 \begin{align}
 	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_{l_j,m_j} \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}.
 \end{align}
-Weights appearing in the inner product are now nearly uniform across allowed $l$ configurations \cite{Fergusson2010general}. This serves as a natural inner product for basis functions $\vv{Q}_n$, especially for polynomial modes.
+The weights appearing in the inner product above, $(h_{l_1 l_2 l_3}/v_{l_1} v_{l_2} v_{l_3})^2\approx const.$, are now nearly uniform across the allowed $l$ configurations \cite{Fergusson2010general}. This serves as a natural inner product for basis functions $\vv{Q}_n$, especially for polynomial modes.
 
 Expanding bispectrum in \eqref{eqn:bispectrum_estimator_normalisation_single_shape} gives
 \begin{align}
@@ -633,7 +638,7 @@ which always lies between $0$ and $1$. As long as $R$ is close to $1$, the binne
 
 The main advantage of the binned estimator is in significant reduction of the computational complexity. Using optimised binning strategy outlined in \cite{Bucher2016}, this can be done with minimal loss of information. Binning approach works particularly well for theoretical models with smooth bispectra or localised features. The full binned bispectrum can also be used for non-parametric studies of non-Gaussianity from observations, after suitable smoothing operations. It is also worth noting that the most computationally expensive part of the estimation process (obtaining $B^{obs}_{i_1 i_2 i_3}$) only needs to be done once per dataset. The result can then be used to constrain various models by computing their theoretical bispectra.
 
-Meanwhile, the binned estimator is not as effective for constraining models with features or oscillations. This is not only because binning smooths out small modulations in the bispectrum, but also since evaluating the theoretical bispectra in $l$ space through \eqref{eqn:binned_estimator_theoretical_bispectra} becomes numerically challenging. Reduced bispectrum needs to be computed for every $(l_1,l_2,l_3)$ triplets and then summed over within each bin. Such computation is often practically intractable unless the given shape is separable. For the same reason, the binned estimator struggles to constrain non-separable shapes, even though the formalism itself applies to any shape.
+Meanwhile, the binned estimator is not as effective for constraining models with features or oscillations. This is not only because binning smooths out small modulations in the bispectrum, but also since evaluating the theoretical bispectra in $l$ space through \eqref{eqn:binned_estimator_theoretical_bispectra} becomes numerically challenging. The reduced bispectrum needs to be computed for every $(l_1,l_2,l_3)$ triplet and then summed over within each bin. Such computation of the bispectrum is often practically intractable unless the given shape is separable. For the same reason, the binned estimator struggles to constrain non-separable shapes, even though the formalism itself applies to any shape.
 
 
 \subsection{Other sources of non-Gaussianity.} \label{section:other_sources_of_non_gaussianity}
@@ -675,4 +680,12 @@ CMB measurements are affected by various foreground contaminants. A number of co
 
 Partial sky coverage due to masks cause multiple complications. For CMB bispectrum analysis there are two main issues to manage. First, statistical isotropy is broken due to irregular shape of the mask. The covariance matrix $C_{l_1 m_1, l_2, m_2} = \langle a^*_{l_1 m_1} a_{l_2 m_2} \rangle$ is no longer diagonal. The linear part of the bispectrum estimator introduced in \eqref{def:bispectrum_estimate_including_linear} is essential for handling biases caused by the off-diagonal covariances.
 
-Second, the sky mask generates non-vanishing bispectrum by itself. Sharp cuts around edges of the mask induce some high-frequency signals. A low-frequency mode from the overall mask shape then correlates with them to produce bispectrum in squeezed configurations. We follow \cite{Gruetjen2017inpainting} and utilise a simple inpainting method to reduce the effect. In this approach, a linear diffusive method is used to interpolate and hence smoothen the mask edges; at each iteration, every pixel within previously masked regions takes the average value of its neighbouring pixels. The resulting inpainted map after a sufficient number of iterations is shown to contain little bispectrum from the mask.
+Second, the sky mask generates non-vanishing bispectrum by itself. Sharp cuts around edges of the mask induce some high-frequency signals. A low-frequency mode from the overall mask shape then correlates with them to produce bispectrum in squeezed configurations. We follow \cite{Gruetjen2017inpainting} and utilise a simple inpainting method to reduce the effect. In this approach, a linear diffusive method is used to interpolate and hence smoothen the mask edges; at each iteration, every pixel within previously masked regions takes the average value of its neighbouring pixels. The resulting inpainted map after a sufficient number of iterations is shown to contain little excess contamination from the mask. 
+
+TODO: Point sources, sky masks: dust synchrotron free-free emission
+
+
+\section{Summary}
+TODO!
+
+J comments: should say - Modal is general but low frequency, KSW is narrow but hight frequency, so general + high frequency currently unconstrained.
