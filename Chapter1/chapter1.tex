@@ -53,11 +53,11 @@ New outline:
 
 Radio astronomers Arno Penzias and Robert Wilson were calibrating their 50-foot-long horn antenna when they found a mysterious background noise. The measurements were independent of time and location in the sky and persisted after the removal of various potential contaminants. After the theoretical work of Robert Dicke, Jim Peebles, and David Wilkinson was brought forward \cite{Dicke1965}, Penzias and Wilson identified the noise as cosmic microwave background radiation (CMB): ancient light from the early universe reaching us after billions of years \cite{Penzias1965}. The discovery provided us with one of the most valuable probes of the physical universe, leading to major developments in observational cosmology.
 
-On the theoretical side, our modern mathematical formulation of cosmology is built on Einstein's work on general relativity in 1915. Using his framework, Friedmann, Lemaître, Robertson, and Walker contributed to writing down the unique metric for spatially homogeneous and isotropic universe. The FLRW metric dictates growth of the universe from the Big Bang to present day. This expansion of the universe was supported by Edwin Hubble's measurements of Cepheid variables and redshift (add year), as well as the aforementioned discovery of CMB. What is widely accepted to be the standard model of modern cosmology, the $\Lambda$CDM model, appeared only in the late 1990s. The six-parameter model assumes presence of cold dark matter and dark energy, in addition to baryons and radiation, as main contributors to the total energy density of the universe.
+On the theoretical side, our modern mathematical formulation of cosmology is built on Einstein's work on general relativity in 1915. Using his framework, Friedmann, Lemaître, Robertson, and Walker contributed to writing down the unique metric for spatially homogeneous and isotropic universe. The FLRW metric dictates growth of the universe from the Big Bang to present day. This expansion of the universe was supported by Edwin Hubble's measurements of Cepheid variables and redshift (TODO: add year), as well as the aforementioned discovery of the CMB. What is widely accepted to be the standard model of modern cosmology, the $\Lambda$CDM model, appeared only in the late 1990s. The six-parameter model assumes presence of cold dark matter and dark energy, in addition to baryons and radiation, as main contributors to the total energy density of the universe.
 
 The $\Lambda$CDM model has been extremely successful in explaining modern cosmological observations. CMB measurements from \textit{Planck} satellite, in particular, show exceptional agreement with the model. Planck was a space observatory developed by the European Space Agency. The Planck satellite observed the CMB in nine frequency bands from 2009 to 2013, with resolution and sensitivity substantially improved compared to its predecessor - the Wilkinson Microwave Anisotropy Probe (WMAP). It was able to resolve CMB anisotropy to much smaller scales and has placed the most stringent bounds on the theoretical parameters of $\Lambda$CDM so far.
 
-How does CMB contain so much information about the universe? The answer is twofold. First is due to the fact that CMB anisotropy is linearly related to the primordial perturbations from inflation. Statistical properties of the initial fluctuations can be deduced from analysing correlation functions of the CMB, letting us constrain the early universe physics. Second reason is that CMB tracks the expansion history of the universe as it travels from the last scattering surface to us today. CMB photons scatter with baryons before free-streaming all the way to us, which then experience both the growth of the universe and the gravitational potential of matter perturbations. These signatures are engraved in CMB anisotropy spectrum and weak lensing.
+How does the CMB contain so much information about the universe? The answer is twofold. First is due to the fact that CMB anisotropy is linearly related to the primordial perturbations from inflation. Statistical properties of the initial fluctuations can be deduced from analysing correlation functions of the CMB, letting us constrain the early universe physics. Second reason is that the CMB tracks the expansion history of the universe as it travels from the last scattering surface to us today. CMB photons scatter with baryons before free-streaming all the way to us, which then experience both the growth of the universe and the gravitational potential of matter perturbations. These signatures are engraved in the CMB anisotropy spectrum and weak lensing.
 
 The CMB anisotropy is observed to be nearly Gaussian distributed. Statistical characteristics of a Gaussian random field can be summarised entirely using two-point correlation functions, or their Fourier counterpart: power spectrum. The CMB power spectra have been thoroughly studied to constrain various cosmological parameters. Meanwhile, higher-order statistics such as three-point correlation functions (bispectrum in Fourier space) allow us to test validity of the Gaussian assumption. They probe the non-Gaussian statistics of the CMB which can arise from either primordial dynamics or late-time effects.
 
@@ -65,7 +65,7 @@ Primordial non-Gaussianity is a key statistic for studying physics of the early 
 
 In the near future, we expect several new major CMB experiments. Simons Observatory (SO) is a ground-based experiment currently under construction in the Atacama Desert of Chile. SO is expected to measure both CMB temperature and polarisation to unprecedented precision, largely improved compared to Planck. The first light from SO is planned to be observed in early 2022. Many more CMB Stage-4 (CMB-S4) experiments are proposed, brightening future prospects for CMB. In particular, the upcoming measurements will allow us to constrain primordial non-Gaussianity further, providing discovery potential.
 
-This thesis is organised as follows. In Chapter 1, we review the standard formulation of cosmology, deriving the form of the scale factor for a homogeneous and isotropic universe. The motivation and formalism for slow-roll inflation is also presented here. Chapter 2 details cosmological perturbation theory, with a focus on the CMB anisotropy. We summarise methods for computing the transfer function of CMB. Next, in Chapter 3 we define bispectrum and discuss how it can be used to probe primordial non-Gaussianity. An example of single-field inflation with non-canonical kinetic term will be provided to demonstrate computation of non-Gaussianity using the in-in formalism.
+This thesis is organised as follows. In Chapter 1, we review the standard formulation of cosmology, deriving the form of the scale factor for a homogeneous and isotropic universe. The motivation and formalism for slow-roll inflation is also presented here. Chapter 2 details the cosmological perturbation theory with a focus on CMB anisotropy. We summarise how to compute the CMB power spectrum from primordial perturbations. Next in Chapter 3, we discuss how the bispectrum can be used to probe primordial non-Gaussianity. An example of single-field inflation with non-canonical kinetic term will be provided to demonstrate computation of non-Gaussianity using the in-in formalism.
 
 Chapters 4 and 5 contain my original work, based on research conducted in collaboration. with my supervisor James Fergusson. Chapter 4 contains the forecast for future CMB-S4 surveys on the primordial non-Gaussianity parameter $f_{NL}$ which was published in \cite{Sohn2019}. SO experiment specifications and expected CMB-S4 setup were used to predict their improved constraints via Fisher information analysis. We focussed on models with oscillatory features, where the significant enhancement in polarisation sensitivity greatly benefits constraining power.
 
@@ -194,20 +194,21 @@ Table \ref{table:cosmic_inventory} summarises the species of the universe and th
 	\centering
 	\label{table:cosmic_inventory}
 	\renewcommand{\arraystretch}{1.5} 
-	\begin{tabular}{c | c | c | c | c}
-		& Examples & Equation of State & Density Growth & Fractional Density Today \\ 
+	\begin{tabular}{m{0.2\textwidth} m{0.15\textwidth} m{0.15\textwidth}<{\centering} m{0.15\textwidth}<{\centering} m{0.2\textwidth}<{\centering} }
+		\toprule
+		& Examples & Equation \newline of state & Density growth & Fractional density today \\ 
 		
-		\hline
+		\midrule
 		\multirow{2}{*}{Radiation $(r)$} & Photon $(\gamma)$ & \multirow{2}{*}{$w = 1/3$} & \multirow{2}{*}{$\rho \propto a^{-4}$} & $\Omega_{\gamma} \approx 1 \times 10^{-4}$ \\
 		& Neutrino $(\nu)$ & & & $\Omega_{\nu} < 2 \times 10^{-2}$ \\
 		
-		\hline		
-		\multirow{2}{*}{Matter $(m)$} & Cold dark matter $(c)$ & \multirow{2}{*}{$w = 0$} & \multirow{2}{*}{$\rho \propto a^{-3}$} & $\Omega_{c} \approx 0.27$ \\
+		\midrule	
+		\multirow{2}{*}{Matter $(m)$} & Cold dark \newline matter $(c)$ & \multirow{2}{*}{$w = 0$} & \multirow{2}{*}{$\rho \propto a^{-3}$} & $\Omega_{c} \approx 0.27$ \\
 		& Baryon $(b)$ & & & $\Omega_{b} \approx 0.05$ \\
 		
-		\hline
+		\midrule
 		Dark Energy $(\Lambda)$ & & $w=-1$ & $\rho=\text{const}$  & $\Omega_\Lambda \approx 0.68$\\
-		\hline 
+		\bottomrule
 	\end{tabular}
 \end{table}
 
@@ -277,8 +278,9 @@ Calculations in this section are summarised in Table \ref{table:evolution_of_the
 	\caption{Evolution of the universe. Ranges for the scale factor are computed from the cosmological parameters estimated in \cite{PlanckCollaboration2018Parameters}.}
 	\centering
 	\label{table:evolution_of_the_universe}
-	\renewcommand{\arraystretch}{1.5} 
-	\begin{tabular}{c  c  c  c  c} \toprule
+	\renewcommand{\arraystretch}{2} 
+	\begin{tabular}{m{0.28\textwidth} m{0.28\textwidth}<{\centering} m{0.15\textwidth}<{\centering} m{0.15\textwidth}<{\centering} }
+		\toprule
 		Era & Scale Factor & Growth (comoving) & Growth (conformal) \\ 
 		
 		\toprule
@@ -329,7 +331,7 @@ As shown in Figure \ref{fig:horizon_problem}, CMB photons at two different oppos
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.7\textwidth]{horizon_problem.png}
-	\caption[Horizon problem]{The horizon problem. According to the conventional big bang cosmology, different regions of the CMB we observe today have had no overlap in their particle horizon. Yet, the CMB is measured close to uniform everywhere.}
+	\caption{The horizon problem. According to the conventional big bang cosmology, different regions of the CMB we observe today have had no overlap in their particle horizon. Yet, the CMB is measured close to uniform everywhere.}
 	\label{fig:horizon_problem}
 \end{figure}
 
@@ -337,7 +339,7 @@ To resolve this issue, we need the particle horizon at recombination to be large
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.6\textwidth]{horizon_solution.png}
-	\caption[Horizon problem]{Solution to the horizon problem. Inflation allows more conformal time for different regions to have been in causal contact before recombination.}
+	\caption{Solution to the horizon problem. Inflation allows more conformal time for different regions to have been in causal contact before recombination.}
 	\label{fig:horizon_solution}
 \end{figure}
 

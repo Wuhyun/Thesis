@@ -13,7 +13,7 @@
 
 The early universe consisted of hot plasma. Photons were tightly coupled to baryons through Compton scattering and remained in thermal equilibrium with the rest. Since the photon energy density dropped more rapidly with the universe's expansion compared to that of matter, the universe eventually transitioned from being radiation-dominated to matter-dominated. Its temperature also continued to drop until it was low enough for the electrons and protons to combine and form neutral hydrogen. Following this rather abrupt event at redshift $\approx1100$, called \textit{recombination}, the photons no longer had electrons to scatter off from and instead started streaming freely through space. These photons are now observed by us today as the Cosmic Microwave Background (CMB).
 
-The CMB follows a blackbody spectrum since the radiation was in thermal equilibrium before it decoupled at recombination. Its temperature has been redshifted from approximately $3000$K to $T_{CMB}=2.725$K which we observe today. Looking closer into the map of CMB temperature, there are fluctuations of order $10^{-5}$ seeded by the primordial perturbations and evolved subsequently in time. Such anisotropy in the CMB therefore contains valuable information about the universe.  Satellite surveys such as COBE, WMAP and Planck, as well as ground-based experiments including ACT, SPT, and BICEP have produced precise measurements of the CMB which have been thoroughly studied since. (TODO: add references) The CMB anisotropy is the gold standard dataset for precision cosmology.
+The CMB follows a blackbody spectrum since the radiation was in thermal equilibrium before it decoupled at recombination. Its temperature has been redshifted from approximately $3000$K to $T_{CMB}=2.725$K which we observe today. Looking closer into the map of CMB temperature, there are fluctuations of order $10^{-5}$ seeded by the primordial perturbations and evolved subsequently in time. Such anisotropy in the CMB therefore contains valuable information about the universe.  Satellite surveys such as COBE \cite{Smoot1992cobe}, WMAP \cite{Spergel2003wmapfirst} and Planck \cite{PlanckCollaboration2013paramters}, as well as numerous ground-based experiments including ACT \cite{Dunkley2011act}, SPT \cite{Carlstrom2011spt}, and BICEP/Keck array \cite{Ade2016bicepkeck} have produced precise measurements of the CMB which allowed us to constrain various cosmological parameters. The CMB anisotropy is the gold standard dataset for precision cosmology.
 
 This chapter provides mathematical background and some physical intuitions for studying CMB anisotropy. We start by making a step forward from the homogeneous universe discussed in the previous chapter and formulate cosmological perturbation theory in Section \ref{section:the_inhomogeneous_universe}. Focussing on scalar perturbations, we derive the linearised equations governing time evolution of the perturbative variables in Section \ref{section:linearised_equations}. The third, Section \ref{section:CMB_anisotropy}, introduces Boltzmann equation for photon and outlines how they are solved numerically. We connect the primordial power spectrum to angular power spectrum of the CMB anisotropy measured today.
 
@@ -123,7 +123,7 @@ where we have defined the density contrast $\delta_I := \delta\rho_I / \bar{\rho
 \end{align}
 Hence, the perturbed energy density and pressure also satisfy $P_I = w_I \rho_I$.
 
-Perturbations satisfying the strong constraint of \eqref{eqn:adiabatic_modes_density_contrast} are called \textit{adiabatic} modes. They affect every component equally so that the ratio between density contrasts is uniform in space. Orthogonal to adiabatic modes are \textit{isocurvature} modes where the total density contrast vanishes everywhere; $\delta_r = -\delta_m$. Some multi-field inflation models are expected to seed isocurvature perturbations. However, all observations so far are consistent with purely adiabatic initial conditions. (TODO: add references here)
+Perturbations satisfying the strong constraint of \eqref{eqn:adiabatic_modes_density_contrast} are called to be \textit{adiabatic}. They affect every component equally so that the ratio between density contrasts is uniform in space. Orthogonal to adiabatic modes are \textit{isocurvature} modes where the total density contrast vanishes everywhere; $\delta_r = -\delta_m$. Some multi-field inflation models are expected to seed isocurvature perturbations. However, all observations so far are consistent with purely adiabatic initial conditions \cite{Kogut2003wmapAdiabatic, PlanckCollaboration2018inflation}.
 
 \section{Linearised equations} \label{section:linearised_equations}
 
@@ -232,7 +232,7 @@ The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_
 Studying photon perturbations involves two major complications compared to cold dark matter. First, photons directly interact with baryons through Compton scattering. Their perturbations hence stay tightly coupled until recombination, when baryons form neutral hydrogen and photons start free-streaming instead. We outline in Section \ref{section:boltzmann_equations} how Boltzmann equations are used to find the time evolution of photon perturbations while accounting for scattering. Second, unlike cold dark matter whose perturbations are characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, we require a whole hierarchy of functions to accurately describe photons. This is because photons do not necessarily travel parallel to the wavevector when perturbed; $\vv{p} \nparallel \vv{k}$. We discuss the details in Section \ref{section:boltzmann_hierarchy}.
 
 
-\subsection{Boltzmann Equations} \label{section:boltzmann_equations}
+\subsection{Boltzmann equations} \label{section:boltzmann_equations}
 \subsubsection*{Photons}
 
 We start by calculating the path a photon takes while free-streaming within the perturbed metric \eqref{eqn:perturbed_metric_newtonian_gauge}. The 4-momentum of a photon in local coordinates satisfies $\eta_{\alpha\beta}\tilde{P}^\alpha \tilde{P}^\beta = 0$ since photons are massless. We may hence write its components as
@@ -318,7 +318,7 @@ where $\eta_e$ and $\bar{n}_e$ denote the proper time and (background) mean numb
 \begin{align}
 	\frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) = \frac{3\sigma_T}{16\pi} \left[ 1 + (\hat{\vv{p}} \cdot \hat{\vv{p}}_{in})^2 \right] \label{eqn:thomson_scattering_cross_section}
 \end{align}
-for Thomson scattering. (TODO: add refs here?) The Thomson differential cross section $\sigma_T$ is a fixed constant equal to $8\pi\hslash^2 \alpha^2 / 3c^2 m_e^2$. Note from \eqref{eqn:thomson_scattering_electron_rest_frame} and \eqref{eqn:thomson_scattering_cross_section} that the Thomson scattering leaves the photon energy $p$ unchanged. This justifies our previous assumption to drop the $p$ dependence from $\Theta$; the photon energy remains unperturbed by scattering in first order perturbation theory.
+for Thomson scattering \cite{Dodelson2003textbook}. The Thomson differential cross section $\sigma_T$ is a fixed constant equal to $8\pi\hslash^2 \alpha^2 / 3c^2 m_e^2$. Note from \eqref{eqn:thomson_scattering_electron_rest_frame} and \eqref{eqn:thomson_scattering_cross_section} that the Thomson scattering leaves the photon energy $p$ unchanged. This justifies our previous assumption to drop the $p$ dependence from $\Theta$; the photon energy remains unperturbed by scattering in first order perturbation theory.
 
 We now account for bulk velocity $\vv{v}_b$ of the electrons (baryons). In the non-relativistic limit where $\|\vv{v}_b \| \ll 1$, the Doppler effect alters the distribution function proportional to $\bar{n}_e (\hat{\vv{p}} \cdot \vv{v}_e)$. We also rewrite $f = \bar{f} - (\partial\bar{f}/\partial\ln p) \; \Theta$ and substitute \eqref{eqn:thomson_scattering_cross_section} into \eqref{eqn:thomson_scattering_electron_rest_frame} to obtain
 \begin{align}
@@ -391,7 +391,7 @@ after some calculations and noting that $P_2(\mu) = (1/2)(3\mu^2 -1)$.
 
 Incorporating the results so far, the Boltzmann equation becomes 
 \begin{align}
-	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right]
+	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right] \label{eqn:boltzmann_equation_in_fourier_space}
 \end{align}
 where $\vv{v}_b = \nabla v_b$, and the $\eta$ and $\vv{k}$ dependences are omitted for clarity. We combine the above with the Legendre basis expansion \eqref{eqn:temperature_perturbation_legendre_expansion}, 
 \begin{align}
@@ -455,7 +455,7 @@ As long as sufficiently many multipoles $l$ are included, spherical harmonic coe
 	&= \int \frac{d^3 k}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \int d^2\hat{\vv{p}} \; \Theta(\vv{k},\hat{\vv{p}},\eta) Y^*_{lm}(\hat{\vv{p}}). \label{eqn:alm_derivation_alm_using_theta}
 \end{align}
 
-Note that the evolution equation for perturbations (TODO: add refs to equations here) $\Theta(\vv{k},\hat{\vv{p}},\eta)$ here only depends on $k=\|\vv{k}\|$, the angle $\mu = \hat{\vv{k}} \cdot \hat{\vv{p}}$, and time $\eta$. The rest are determined from initial conditions. The following ratio therefore only depends on $k$, $\mu$ and $\eta$ as well;
+Note that the evolution equation \eqref{eqn:boltzmann_equation_in_fourier_space} for the perturbations $\Theta(\vv{k},\hat{\vv{p}},\eta)$ above only depends on $k=\|\vv{k}\|$, the angle $\mu = \hat{\vv{k}} \cdot \hat{\vv{p}}$, and time $\eta$. The rest are determined from initial conditions. The following ratio therefore only depends on $k$, $\mu$ and $\eta$ as well;
 \begin{align}
 	\frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(\vv{k},\eta_i)} &= f(k, \mu, \eta) \\
 	&= \sum_l (-i)^l (2l+1) P_l(\mu) \frac{\Theta_l(k,\eta)}{\Phi(\vv{k},\eta_i)} \label{eqn:alm_derivation_legendre_expansion}\\ 
