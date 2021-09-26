@@ -13,9 +13,9 @@
 
 The early universe consisted of hot plasma. Photons were tightly coupled to baryons through Compton scattering and remained in thermal equilibrium with the rest. Since the photon energy density dropped more rapidly with the universe's expansion compared to that of matter, the universe eventually transitioned from being radiation-dominated to matter-dominated. Its temperature also continued to drop until it was low enough for the electrons and protons to combine and form neutral hydrogen. Following this rather abrupt event at redshift $\approx1100$, called \textit{recombination}, the photons no longer had electrons to scatter off from and instead started streaming freely through space. These photons are now observed by us today as the Cosmic Microwave Background (CMB).
 
-The CMB follows a blackbody spectrum since the radiation was in thermal equilibrium before it decoupled at recombination. Its temperature has been redshifted from approximately $3000$K to $T_{CMB}=2.725$K which we observe today. Looking closer into the map of CMB temperature, there are fluctuations of order $10^{-5}$ seeded by the primordial perturbations and evolved subsequently in time. Such anisotropy in the CMB therefore contains valuable information about the universe.  Satellite surveys such as COBE \cite{Smoot1992cobe}, WMAP \cite{Spergel2003wmapfirst} and Planck \cite{PlanckCollaboration2013paramters}, as well as numerous ground-based experiments including ACT \cite{Dunkley2011act}, SPT \cite{Carlstrom2011spt}, and BICEP/Keck array \cite{Ade2016bicepkeck} have produced precise measurements of the CMB which allowed us to constrain various cosmological parameters. The CMB anisotropy is the gold standard dataset for precision cosmology.
+The CMB follows a blackbody spectrum since the radiation was in thermal equilibrium before it decoupled at recombination. Its temperature has been redshifted since then from approximately $3000$K to $T_{CMB}=2.725$K which we observe today. Looking closer into the map of CMB temperature, there are fluctuations of order $10^{-5}$ that were seeded by the primordial perturbations and evolved subsequently in time. Such anisotropy in the CMB therefore contains valuable information about the universe.  Satellite surveys such as COBE \cite{Smoot1992cobe}, WMAP \cite{Spergel2003wmapfirst} and Planck \cite{PlanckCollaboration2013paramters}, as well as numerous ground-based experiments including ACT \cite{Dunkley2011act}, SPT \cite{Carlstrom2011spt}, and BICEP/Keck array \cite{Ade2016bicepkeck} have produced precise measurements of the CMB which allowed us to constrain various cosmological parameters. The CMB anisotropy is the gold standard dataset for precision cosmology.
 
-This chapter provides mathematical background and some physical intuitions for studying CMB anisotropy. We start by making a step forward from the homogeneous universe discussed in the previous chapter and formulate cosmological perturbation theory in Section \ref{section:the_inhomogeneous_universe}. Focussing on scalar perturbations, we derive the linearised equations governing time evolution of the perturbative variables in Section \ref{section:linearised_equations}. The third, Section \ref{section:CMB_anisotropy}, introduces Boltzmann equation for photon and outlines how they are solved numerically. We connect the primordial power spectrum to angular power spectrum of the CMB anisotropy measured today.
+This chapter provides mathematical background and some physical intuitions for studying the CMB anisotropy. We start by making a step forward from the homogeneous and isotropic universe discussed in the previous chapter and formulate the cosmological perturbation theory in Section \ref{section:the_inhomogeneous_universe}. Focussing on scalar perturbations we derive the linearised equations governing the time evolution of the perturbative variables in Section \ref{section:linearised_equations}. In Section \ref{section:CMB_anisotropy} we introduce the Boltzmann equation for photons and outline how they are solved numerically. We connect the primordial power spectrum to the angular power spectrum of the CMB anisotropy measured today.
 
 
 \section{The inhomogeneous universe} \label{section:the_inhomogeneous_universe}
@@ -25,30 +25,30 @@ Recall that the FLRW metric is given using conformal time by
 \begin{align}
 	ds^2 = \bar{a}(t)^2 (-d\tau^2 + d\vv{x}^2),
 \end{align}
-where a bar is used to denote quantities computed from the homogeneous universe. We write perturbations around this background metric as follows.
+where we used a bar to distinguish the `background' quantities computed in the homogeneous universe. We now perturbed the metric as follows.
 \begin{align}
 	ds^2 = \bar{a}(t)^2 \left[ -(1+2A) dt^2 + 2B_i \; d\tau dx^i + (\delta_{ij} + h_{ij}) dx^i dx^j \right].
 \end{align}
-The spatial indices $i,j,\cdots$ are lowered and raised using $\delta_{ij}$ here. Note that the scale factor has not been perturbed, since any variation of it can be absorbed into other perturbative variables. There are 1, 3 and 6 degrees of freedom coming from $A$, $B_i$ and $h_{ij}$, respectively, adding up to 10 as expected from a 3+1 dimensional spacetime.
+The spatial indices $i,j,\cdots$ here are lowered and raised using $\delta_{ij}$. Note that the scale factor has not been perturbed, since any variation of it can be absorbed into other perturbative variables. There are 1, 3 and 6 degrees of freedom coming from $A$, $B_i$ and $h_{ij}$, respectively, adding up to 10 as expected from the metric tensor of 3+1 dimensional spacetime.
 
-We further extract the divergence part from $B_i$ and $h_{ij}$, as well as the trace of $h_{ij}$. Writing $V$ and $T$ to denote vector and tensor quantities, 
+We further extract the divergence part from $B_i$ and $h_{ij}$, as well as the trace of $h_{ij}$. Using $V$ and $T$ to denote vector and tensor quantities, 
 \begin{align}
 	B_i &= \partial_i B + B_i^V \\
 	h_{ij} &= 2C \delta_{ij} + 2\partial_{\langle i}\partial_{j \rangle} E + (\partial_i E_j^V + \partial_j E_i^V). + 2E^T_{ij},
 \end{align}
 where $\partial_{\langle i}\partial_{j \rangle} := \partial_i \partial_j - \frac{1}{3} \delta_{ij} \nabla^2$.
-The variables are chosen such that $B_i^V$ has vanishing divergence, and $h_{ij}^T$ is traceless and transverse.
+The variables are chosen such that $B_i^V$ is divergence-free, while $h_{ij}^T$ is traceless and transverse.
 
-The Scalar-Vector-Tensor (SVT) theorem states that to linear order in the perturbations, these modes decouple and evolve in three independent groups: scalars ($A,B,C,E$), vectors ($B_i^V,E_i^V$), and tensors ($E_{ij}^T$). Each of these contain 4, 4, and 2 degrees of freedom, respectively, again totalling to 10 as required. In this section, we are only interested in scalar perturbations which generates temperature anisotropy and E-mode polarisation in the CMB.
+The Scalar-Vector-Tensor (SVT) theorem states that to linear order in the perturbations, these modes decouple and evolve in three independent groups: scalars ($A,B,C,E$), vectors ($B_i^V,E_i^V$), and tensors ($E_{ij}^T$). These groups each contain 4, 4, and 2 degrees of freedom, respectively, again adding up to 10 as required. In this section, we are only interested in the scalar perturbations which generate the temperature anisotropy and E-mode polarisation in the CMB. We will therefore set the vector and tensor modes of the perturbations to zero.
 
 Keeping only the scalar modes, the perturbed metric becomes
 \begin{align}
 	ds^2 = \bar{a}(\tau)^2 \left[ -(1+2A) dt^2 + 2 \partial_i B \; d\tau dx^i + \left( (1+2C)\delta_{ij} + 2\partial_{\langle i}\partial_{j \rangle} E \right) dx^i dx^j \right]. \label{eqn:perturbed_metric_scalar}
 \end{align}
 
-Coordinate transformations are \textit{gauge} symmetries in General Relativity; they correspond to redundancies in our mathematical representation of the system. Redefining the coordinate variables may change how the theory looks like, but all physical results derived in the new set are equivalent to the original theory and are just a coordinate transformation away. These `redundant' degrees of freedom may still appear to evolve in a non-trivial manner and therefore have to be treated properly. Here, we outline how to fix a gauge in the perturbed metric and use gauge-invariant quantities to connect the results from different gauges.
+Coordinate transformations are \textit{gauge} symmetries in General Relativity; they correspond to redundancies in our mathematical representation of the system. Redefining the coordinate variables may change how the theory looks like, but all physical results derived in the new set are equivalent to the original theory. These redundant degrees of freedom may still appear to evolve in a non-trivial manner and therefore need to be treated properly. Here, we outline how to fix a gauge in the perturbed metric and use gauge-invariant quantities to connect results from different gauges.
 
-Consider gauge transformations $x^\mu \rightarrow \tilde{x}^\mu = x^\mu + \xi^\mu$ for some small $\xi$. As long as $\xi$ is of the same order as other perturbative variables, the background metric remains to be FLRW. We dcompose $\xi$ as above, keeping only the scalar perturbations. The transformations can then be described by two arbitrary functions: $\xi^0 = T(\tau,\vv{x})$ and $\xi^i = \partial_i L(\tau,\vv{x})$. The transformation matrices take the form
+Consider the coordinate transformations $x^\mu \rightarrow \tilde{x}^\mu = x^\mu + \xi^\mu$ for some small $\xi$. As long as $\xi$ is of the same order as other perturbative variables, the background metric remains to be FLRW. We dcompose $\xi$ as above, keeping only the scalar perturbations. The transformations can then be described by two arbitrary functions $T$ and $L$ so that $\xi^0 = T(\tau,\vv{x})$ and $\xi^i = \partial_i L(\tau,\vv{x})$. The transformation matrices take the form
 \begin{align}
 	\frac{d\tilde{x}^\alpha}{dx^\mu} = \begin{pmatrix}
 		1 + T' & \partial_i T \\ \partial_i L' & \delta_{ij} + \partial_i \partial_j L
@@ -63,113 +63,114 @@ The metric tensor in the new set of coordinates can be found using the tensor tr
 	g_{\mu\nu} \rightarrow \tilde{g}_{\alpha\beta} = \frac{dx^\mu}{d\tilde{x}^\alpha} \frac{dx^\nu}{d\tilde{x}^\beta} g_{\mu\nu}.
 \end{align}
 Note also that the scale factor also changes under 
-metric transforms due to variations in its argument;  $\bar{a}(\tau)^2 \rightarrow \bar{a}(\tilde{\tau})^2 = \bar{a}(t)^2 (1 + 2 \mathcal{H} T)$. After some calculations we see that each perturbation variables in the metric \eqref{eqn:perturbed_metric_scalar} transform like
+metric transforms due to variations in its argument;  $\bar{a}(\tau)^2 \rightarrow \bar{a}(\tilde{\tau})^2 = \bar{a}(t)^2 (1 + 2 \mathcal{H} T)$ to linear order in perturbations. After some calculations we see that each perturbation variable in the metric \eqref{eqn:perturbed_metric_scalar} transforms like
 \begin{alignat}{2}
 	\tilde{A} &= A - T' - \mathcal{H}T, \qquad &&\tilde{B} = B + T - L', \label{eqn:gauge_transform_perturbations_1}\\
 	\tilde{C} &= C - \mathcal{H}T - \frac{1}{3}\nabla^2 L, \qquad &&\tilde{E} = E - L. \label{eqn:gauge_transform_perturbations_2}
 \end{alignat}
-Hence, the two free functions $T$ and $E$ can be chosen in a way that the metric perturbations satisfy some desirable properties. Doing so \textit{fixes} the gauge and no further redundancies remain in our formulation. Popular choices include the \textit{spatially flat} gauge, where $C=E=0$ and spatial perturbations vanish as $h_{ij}=0$, and the \textit{synchronous} gauge, for which $A=B=0$, leaving time unperturbed.
+Hence, the two free functions $T$ and $E$ can be chosen in a way that the metric perturbations satisfy some desirable properties containing two degrees of freedom. Doing so \textit{fixes} the gauge and no further redundancies remain in our formulation. Popular choices include the \textit{spatially flat} gauge, where $C=E=0$ and the spatial perturbations vanish as $h_{ij}=0$, and the \textit{synchronous} gauge, for which $A=B=0$ and the time is left unperturbed.
 
-Results from different gauge choices may appear dissimilar. In order to link them together, it is convenient to work with quantities constructed from the perturbative variables such that they remain invariant under the transformations \eqref{eqn:gauge_transform_perturbations_1}-\eqref{eqn:gauge_transform_perturbations_2}. The Bardeen potentials are two examples of gauge-invariant variables;
+Results from different gauge choices may appear dissimilar. In order to link them together, it is convenient to work with quantities constructed from the perturbative variables such that they remain invariant under the transformations \eqref{eqn:gauge_transform_perturbations_1}-\eqref{eqn:gauge_transform_perturbations_2}. The Bardeen potentials are two such examples of gauge-invariant variables;
 \begin{align}
 	\Psi_B &:= A + \mathcal{H}(B-E') + B' - E'', \\
 	\Phi_B &:= -C - \mathcal{H}(B-E') + \frac{1}{3}\nabla^2 E.
 \end{align}
 
-The gauge we will be using for the rest of this chapter is \textit{Newtonian} gauge with $B=E=0$. This allows us to identify $A$ and $C$ with the Bardeen potentials, and the metric taktes the form (dropping the subscript):
+The gauge we will be using for the rest of this chapter is the \textit{Newtonian} gauge where $B=E=0$. This allows us to identify $A$ and $C$ with the Bardeen potentials, and the metric takes the form (dropping the subscript):
 \begin{align}
 	ds^2 = a(\tau)^2 \left[ -(1 + 2\Psi) d\tau^2 + (1-2\Phi) d\vv{x}^2  \right]. \label{eqn:perturbed_metric_newtonian_gauge}
 \end{align}
-Perturbations $\Psi(\tau,\vv{x})$ and $\Phi(\tau,\vv{x})$ are equivalent to the classical gravitational potential in the Newtonian limit.
+The perturbations $\Psi(\tau,\vv{x})$ and $\Phi(\tau,\vv{x})$ are equivalent to the classical gravitational potential in the Newtonian limit.
 
 
 \subsection{Matter perturbations}
 
-In order to complete the Einstein field equation, we need the energy-momentum tensor as well as the metric written to first order in perturbations. Recall that a perfect fluid in homogeneous universe has $\bar{T}_{\mu\nu} = (\bar{\rho} + \bar{P}) \bar{U}_\mu \bar{U}_\nu + \bar{P} \bar{g}_{\mu\nu}$. Not only the perturbations in energy density and pressure affects $T_{\mu\nu}$, but also variations in the metric and comoving observer's four-velocity. We consider the local inertial frame to separate these two effects. Let
+In order to complete the Einstein field equation, we need the energy-momentum tensor as well as the metric written to first order in perturbations. Recall that a perfect fluid in homogeneous universe has $\bar{T}_{\mu\nu} = (\bar{\rho} + \bar{P}) \bar{U}_\mu \bar{U}_\nu + \bar{P} \bar{g}_{\mu\nu}$. The perturbations in $T_{\mu\nu}$ come from two sources: a) directly from perturbations in the energy density and pressure, and b) indirectly through variations in the metric and comoving observer's four-velocity. We consider the local inertial frame to separate these two effects. Let
 \begin{align}
 	(E_0)^\mu := a^{-1} (1 - \Psi) \delta^\mu_0, \quad (E_i)^\mu := a^{-1} (1 + \Phi) \delta^\mu_i. \label{eqn:newtonian_gauge_tetrad}
 \end{align}
-The four vectors form an orthonormal frame where $g_{\mu\nu}(E_\alpha)^\mu (E_\beta)^\nu = \eta_{\alpha\beta}$. In this locally Minkowski frame, each component of the tensor $\tilde{T}^{\alpha\beta}$ corresponds to physical quantities. We write
+The four vectors above form an orthonormal frame where $g_{\mu\nu}(E_\alpha)^\mu (E_\beta)^\nu = \eta_{\alpha\beta}$. In this locally Minkowski frame, each component of the tensor $\tilde{T}^{\alpha\beta}$ corresponds to physical properties of the fluid. We write
 \begin{align}
 	&\tilde{T}^{00} = \rho = \bar{\rho} + \delta\rho, \qquad \tilde{T}^{0i} = q^i = (\bar{\rho}+\bar{P})v^i, \\
 	&\tilde{T}^{ij} = P \delta^{ij} - \Pi^{ij} = (\bar{P} + \delta P) \delta^{ij} - \Pi^{ij}.
 \end{align}
-The momentum density $\vv{q}$ and mean velocity $\vv{v}$ are first-order quantities which vanish in the homogeneous universe. Symmetric and traceless matrix $\Pi^{ij}$ represent anisotropic stress. This quantity vanishes for non-relativistic fluid such as dark matter, while it remains small but non-zero for relativistic particles including photons.
+The momentum density $\vv{q}$ and the mean velocity $\vv{v}$ are first-order quantities which vanish in the absence of perturbations. The symmetric and traceless matrix $\Pi^{ij}$ represents anisotropic stress. This quantity vanishes for non-relativistic fluid such as dark matter, while it remains small but non-zero for relativistic particles like photons.
 
-Transforming back to the original coordinates by $T^{\mu\nu}=(E_\alpha)^\mu (E_\beta)^\nu \tilde{T}^{\alpha\beta}$,
+Transforming back to the original coordinates through $T^{\mu\nu}=(E_\alpha)^\mu (E_\beta)^\nu \tilde{T}^{\alpha\beta}$, we get
 \begin{alignat}{2}
 	T^{00} &= a^{-2} \bar{\rho} &&\;\;+ a^{-2}\left( \delta\rho - 2\Psi\bar{\rho} \right) \label{eqn:perturbed_energy_momentum_tensor_1}\\
 	T^{0i} &= 0 &&\;\;+ a^{-2} q^i \label{eqn:perturbed_energy_momentum_tensor_2}\\
 	T^{ij} &= a^{-2} \bar{P} \delta^{ij} &&\;\;+ a^{-2} \left[ (\delta P + 2\Phi\bar{P})\delta^{ij} - \Pi^{ij} \right]\label{eqn:perturbed_energy_momentum_tensor_3}
 \end{alignat}
-to first order in perturbations. Note that when only scalar modes are considered, we may write $v^i = \partial_i v$ and $\Pi^{ij} = \partial_{\langle i} \partial_{j \rangle} \Pi$ for some $v$, $\Pi$. If multiple fluids contribute, then the total energy-momentum tensor is obtained from summing over all individual values; $\delta\rho = \sum_I \delta\rho_I$, $\delta P = \sum_I \delta P_I$, and $\delta \vv{q} = \sum_I \vv{q}_I$.
+to first order in perturbations. Note that when only the scalar modes are considered, we may write $v^i = \partial_i v$ and $\Pi^{ij} = \partial_{\langle i} \partial_{j \rangle} \Pi$ for some $v$ and $\Pi$. If multiple fluids contribute, then the total energy-momentum tensor can be obtained by summing over the individual values for each constituent $I$; $\delta\rho = \sum_I \delta\rho_I$, $\delta P = \sum_I \delta P_I$, and $\delta \vv{q} = \sum_I \vv{q}_I$.
 
 
 \subsection{Initial perturbations}
 
-With metric and matter perturbations written down, we only need one more ingredient to be able to solve linearised Einstein's equations: initial conditions. In inflationary $\Lambda CDM$, modulations about the background solution originate from quantum fluctuations of the inflation field as we discussed in Section \ref{section:quantum_fluctuations}. Statistical properties of the perturbations depend on the inflationary scenario.
+With the metric and matter perturbations written down, we only need one more ingredient to be able to solve the linearised Einstein's equations: initial conditions. In inflationary $\Lambda CDM$, modulations about the background solution originate from quantum fluctuations of the inflation field as we discussed in Section \ref{section:quantum_fluctuations}. Statistical properties of the perturbations' distribution depend on the details of the inflationary scenario.
 
-In models where a single field drives inflation, such as slow-roll inflation, the field can be thought of as a local \textit{clock}. Classical equations of motions dictate the trajectory followed by the field which regulates the expansion of the universe. Any spatial fluctuations of the inflation field can therefore be considered as differences in how far it has moved down the trajectory at each point. Resulting perturbations are then determined solely by variations in the local `clock' time $\delta\tau(\tau,\vv{x})$;
+In models where a single field drives inflation, such as slow-roll inflation, the field can be thought of as a local \textit{clock}. Classical equations of motions dictate the trajectory followed by the field which then regulates the expansion of the universe. The spatial fluctuations of the inflation field can therefore be considered as the differences in how far it has moved down the trajectory at each point in space. Any such perturbations can be determined solely from the variations in the local `clock' time $\delta\tau(\tau,\vv{x})$;
 \begin{align}
 	\delta f \;=\; \bar{f}(\tau + \delta\tau, \vv{x}) - \bar{f}(\tau,\vv{x}) \;=\; \frac{\partial\bar{f}}{\partial\tau} \delta\tau,
 \end{align}
-for any $f$. By substituting $f=\rho_I$ and $P_I$ we find that $\delta\rho_I/\bar{\rho}'_I = \delta P_I / \bar{P}'_I = \delta\tau$, which is locally constant for each constituent $I$. Combined with the background continuity equation \ref{eqn:continuity},
+for any $f$. By substituting $f=\rho_I$ and $P_I$ we find that $\delta\rho_I/\bar{\rho}'_I = \delta P_I / \bar{P}'_I = \delta\tau$, which is locally constant for each constituent $I$. Combined with the background continuity equation \eqref{eqn:continuity},
 \begin{align}
 	\frac{\delta_I}{1+w_I} = \frac{\delta_J}{1+w_J}, \label{eqn:adiabatic_modes_density_contrast}
 \end{align}
-where we have defined the density contrast $\delta_I := \delta\rho_I / \bar{\rho}_I$. \footnote{To avoid confusion with the differential operator and Dirac delta function, we always write the density contrast $\delta_I$ with a subscript $I$ indicating which fluid it represents. The \textit{total} density contrast is denoted $\delta_{tot}$.} In particular, $\delta_r = (4/3) \delta_m$ at each point $\vv{x}$. Furthermore, for a fluid with constant equation of state $w_I = \bar{P_I} / \bar{\rho_I}$, the \textit{sound speed} $c_s$ is given by
+where we have defined the density contrast as $\delta_I := \delta\rho_I / \bar{\rho}_I$. \footnote{To avoid confusion with the differential operator and Dirac delta function, we always write the density contrast $\delta_I$ with a subscript $I$ indicating which fluid it represents. The \textit{total} density contrast will be denoted as $\delta_{tot}$.} In particular, $\delta_r = (4/3) \delta_m$ at each point $\vv{x}$. Furthermore, for a fluid with constant equation of state $w_I = \bar{P_I} / \bar{\rho_I}$, the \textit{sound speed} $c_s$ is defined as
 \begin{align}
 	c_s^2 := \frac{\delta P_I}{\delta\rho_I} = \frac{\bar{P}'_I}{\bar{\rho}'_I} = \frac{d\bar{P}_I}{d\bar{\rho}_I} = w_I. \label{eqn:adiabatic_modes_sound_speed}
 \end{align}
-Hence, the perturbed energy density and pressure also satisfy $P_I = w_I \rho_I$.
+Hence, the perturbed energy density and pressure also satisfy the equation of state; $P_I = w_I \rho_I$.
 
-Perturbations satisfying the strong constraint of \eqref{eqn:adiabatic_modes_density_contrast} are called to be \textit{adiabatic}. They affect every component equally so that the ratio between density contrasts is uniform in space. Orthogonal to adiabatic modes are \textit{isocurvature} modes where the total density contrast vanishes everywhere; $\delta_r = -\delta_m$. Some multi-field inflation models are expected to seed isocurvature perturbations. However, all observations so far are consistent with purely adiabatic initial conditions \cite{Kogut2003wmapAdiabatic, PlanckCollaboration2018inflation}.
+Perturbations satisfying the strong constraint of \eqref{eqn:adiabatic_modes_density_contrast} are called to be \textit{adiabatic}. They affect every component of the universe equally so that the ratio between density contrasts is uniform in space. Orthogonal to adiabatic modes are \textit{isocurvature} modes where the total density contrast vanishes everywhere and $\delta_r = -\delta_m$ at the end of inflation. Some multi-field inflation models are expected to seed isocurvature perturbations. However, all observations so far are consistent with purely adiabatic initial conditions \cite{Kogut2003wmapAdiabatic, PlanckCollaboration2018inflation}.
 
 \section{Linearised equations} \label{section:linearised_equations}
 
-In this section, we derive equations governing time evolution of the perturbations defined in the previous section. The equations are linear in the perturbative variables to first order. Although all calculations are done in Newtonian gauge, the methodology illustrated here is general and applies to any choice of gauge. For reasons that will become clear, we use $\eta$ instead of $\tau$ for conformal time in this section.
+In this section, we derive the equations governing time evolution of the perturbations defined in the previous section. The equations are linear in the perturbative variables to first order. Although all calculations here are performed in Newtonian gauge, the methodology illustrated here is general and applies to any choice of gauge. In order to avoid conflicting notations later, we use $\eta$ instead of $\tau$ for conformal time in this section.
 
 \subsection{Kinematics}
 
-Non-interacting perfect fluids such as cold dark matter are conserved. They should satisfy the perturbed metric's equivalent of the continuity equation \eqref{eqn:continuity}, as well as the Euler equations regarding time evolution of perturbative velocity field $\vv{v}(\eta,\vv{x})$. In this section, we derive conservation equations for the perturbation theory from the constraint $\nabla_\nu {T^\nu}_\mu = 0$ mainly for dark matter.
+Non-interacting perfect fluids such as cold dark matter are \textit{conserved}; they should satisfy the perturbed metric's equivalent of the continuity equation \eqref{eqn:continuity}, as well as the Euler equations regarding time evolution of the perturbative velocity field $\vv{v}(\eta,\vv{x})$. In this section, we derive the conservation equations for the perturbation theory using the constraint $\nabla_\nu {T^\nu}_\mu = 0$.
 
-The first step is to compute the Christoffel symbols, or components of the Levi-Civita connection. Working in Newtonian gauge, they are given by
+The first step is to compute the Christoffel symbols \eqref{def:Levi_Civita}. Working in Newtonian gauge, they are given by
 \begin{alignat}{6}
 	&\Gamma^{0}_{00} &&= \mathcal{H} \;\;&&+ \Psi', \qquad &&\Gamma^{0}_{i0} &&= 0 \;\;&&+ \partial_i\Psi', \label{eqn:perturbed_christoffel_symbols_1}\\
 	&\Gamma^{0}_{ij} &&= \mathcal{H}\delta_{ij} \;\;&&- \left[\Phi' + 2\mathcal{H}(\Psi+\Phi) \right]\delta_{ij}, \qquad &&\Gamma^{i}_{00} &&= 0 \;\;&&+ \partial_i\Psi, \label{eqn:perturbed_christoffel_symbols_2}\\
 	&\Gamma^{i}_{jk} &&= 0 \;\;&&+ (\partial_k \Phi)\delta_{ij} - (\partial_i \Phi)\delta_{jk} - (\partial_j \Phi)\delta_{ik}, \qquad &&\Gamma^{i}_{j0} &&= \mathcal{H}\delta_{ij} \;\;&&- \Phi'\delta_{ij}. \label{eqn:perturbed_christoffel_symbols_3}
 \end{alignat}
-The background values at zeroth order in perturbations appear as the first term in each equation. Note that these are different to \eqref{eqn:homogenous_christoffel_1}-\eqref{eqn:homogenous_christoffel_3} because the conformal time $\eta$ is used here instead of comoving time $t$. Spatial indices are lowered and raised using delta function in above.
+The background values at the zeroth order in perturbations appear as the first term in each equation. Note that these look different to \eqref{eqn:homogenous_christoffel_1}-\eqref{eqn:homogenous_christoffel_3} because the conformal time $\eta$ is used here instead of the comoving time $t$. Spatial indices are lowered and raised using delta function in above.
 
-There are four components in equation $\nabla_\nu {T^\nu}_\mu = \partial_\nu {T^\nu}_\mu + \Gamma^\nu_{\nu\gamma} {T^\gamma}_\mu - \Gamma^\gamma_{\nu\mu} {T^\nu}_\gamma=0$. We take $\mu=0$ and substitute in the perturbed energy-momentum tensor \eqref{eqn:perturbed_energy_momentum_tensor_1}-\eqref{eqn:perturbed_energy_momentum_tensor_3}. After removing the background part $\bar{\rho}'=-3\mathcal{H}(\bar{\rho}+\bar{P})$, we obtain
+There are four components in the equation $\nabla_\nu {T^\nu}_\mu = \partial_\nu {T^\nu}_\mu + \Gamma^\nu_{\nu\gamma} {T^\gamma}_\mu - \Gamma^\gamma_{\nu\mu} {T^\nu}_\gamma=0$. We take $\mu=0$ and substitute in the perturbed energy-momentum tensor \eqref{eqn:perturbed_energy_momentum_tensor_1}-\eqref{eqn:perturbed_energy_momentum_tensor_3}. After removing the background part $\bar{\rho}'=-3\mathcal{H}(\bar{\rho}+\bar{P})$, we obtain
 \begin{align}
 	(\delta\rho)' + \nabla \cdot \vv{q}+ 3 \mathcal{H} (\delta\rho + \delta P) - 3 \Phi' (\bar{\rho} + \bar{P})  = 0.  \label{eqn:perturbed_continuity_equation}
 \end{align}
-This is the continuity equation. Only the first two terms would remain if the spacetime is flat; a change in energy density is directly related to fluid flow. The third term accounts for dilution of fluid density caused by expansion of the universe. The last term corrects for perturbations in the expansion, as can be seen form the effective spatial scale factor $a(\eta)(1-\Phi(\eta,\vv{x}))$. All factors of three come from having three spatial dimensions.
+This is the continuity equation. Only the first two terms would be present if the spacetime was flat; any changes in the energy density are caused by the fluid flow. The third term accounts for dilution of fluid density due to the expansion of the universe. The last term corrects for the perturbations in the expansion, where $\Phi'$ comes from the time derivative of the effective spatial scale factor $a(\eta)(1-\Phi(\eta,\vv{x}))$. All factors of three here originate from having three spatial dimensions.
 
-\eqref{eqn:p￣erturbed_continuity_equation} applies to every fluid component which does not interact with others. Rewriting in terms of the equation of state $w_I = \bar{P}_I / \bar{\rho}_I$, sound speed $c_s^2 = \delta P / \delta\rho$, and density contrast $\delta_I = \delta\rho_I / \bar{\rho}_I$, we have
+\eqref{eqn:perturbed_continuity_equation} applies to every fluid component which does not interact with others. Rewriting in terms of the equation of state $w_I = \bar{P}_I / \bar{\rho}_I$, sound speed $c_s^2 = \delta P / \delta\rho$, and density contrast $\delta_I = \delta\rho_I / \bar{\rho}_I$, we have
 \begin{align}
 	\delta'_I + (1+w_I) \nabla\cdot\vv{v}_I + 3\mathcal{H}(c_s^2-w_I)\delta_I - 3(1+w_I) \Phi' = 0.
 \end{align}
+This is a first-order differential equation for $\delta_I$.
 
 Meanwhile, the $\mu=i$ part of $\nabla_\nu {T^\nu}_\mu =0$ yields the Euler equations;
 \begin{align}
 	\vv{v}'_I + \mathcal{H} \left( 1 - \frac{3\bar{P}'}{\bar{\rho}'} \right) \vv{v}_I + \frac{\nabla(\delta P)}{\bar{\rho} + \bar{P}} + \nabla\Psi = 0. \label{eqn:perturbed_Euler_equation}
 \end{align}
-We do not have zeroth order terms for this case since $\vv{v}=\vv{0}$ in the homogeneous universe. Although \eqref{eqn:perturbed_Euler_equation} is a vector equation, it has only one independent scalar component after rewriting $\vv{v}=\nabla v$.
+We do not have the zeroth order terms in this case since $\vv{v}=\vv{0}$ in the homogeneous universe. Although \eqref{eqn:perturbed_Euler_equation} is a vector equation, it has only one independent scalar component after rewriting $\vv{v}=\nabla v$ for some $v$. This is because we are only considering the scalar perturbations.
 
-Physical meaning of individual terms in \eqref{eqn:perturbed_Euler_equation} is as follows. The second term with $\mathcal{H}$ represent dilution, or redshift, due to the expansion. The third is from pressure; the fluid's velocity accelerates in the direction of steepest pressure gradient. Lastly, the gravitational force pulling towards a potential well is encapsulated in the final term.
+Physical meaning of the individual terms in \eqref{eqn:perturbed_Euler_equation} is as follows. The second term with a factor of $\mathcal{H}$ represent the dilution, or redshift, of the velocity due to the universe's expansion. The third relates to the pressure; the fluid's velocity accelerates in the direction of steepest pressure gradient. Lastly, the gravitational force pulling towards a potential well is encapsulated in the final term.
 
 If we assume adiabatic initial conditions where $\bar{P}'/\bar{\rho}' = \delta P / \delta \rho = c^2_s$, then the Euler equation further simplifies to
 \begin{align}
-	\vv{v}' + \mathcal{H} (1 - 3c^2_s) \vv{v} + \frac{c^2_s}{1+w_I} \nabla\delta_I + \nabla\Psi = 0,
+	\vv{v}'_I + \mathcal{H} (1 - 3c^2_s) \vv{v}_I + \frac{c^2_s}{1+w_I} \nabla\delta_I + \nabla\Psi = 0,
 \end{align}
 for a given fluid component $I$.
 
 
 \subsection{Dynamics}
 
-Our next step is to solve linearised Einstein's equations. Using the results for Christoffel symbols \eqref{eqn:perturbed_christoffel_symbols_1}-\eqref{eqn:perturbed_christoffel_symbols_3}, we may derive the Einstein tensor for the perturbed metric. After a rather long but straightforward algebra,
+Our next step is to solve the linearised Einstein's equations. Using the Christoffel symbols \eqref{eqn:perturbed_christoffel_symbols_1}-\eqref{eqn:perturbed_christoffel_symbols_3}, we may calculate the Einstein tensor for the perturbed metric. After a rather long but straightforward algebra,
 \begin{alignat}{2}
 	G_{00} &= 3\mathcal{H}^2 \quad&&+ 2\nabla^2 \Phi - 6 \mathcal{H} \Phi', \label{eqn:perturbed_einstein_tensor_1}\\
 	G_{0i} &= 0 \quad&&+ 2\partial_i \Phi' + 2 \mathcal{H} \partial_i \Psi, \label{eqn:perturbed_einstein_tensor_2}\\
@@ -178,9 +179,9 @@ Our next step is to solve linearised Einstein's equations. Using the results for
 \end{alignat}
 where we have separated the zeroth and first order terms as before.
 
-The Einstein's equation $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ consists of 10 parts. Among these only 4 of them relate to scalar modes, similarly to how there are 4 independent scalar perturbations in the metric tensor \eqref{eqn:perturbed_metric_scalar}. We obtain one equation for each of $G_00$, $G_{i0}$, trace of $G_{ij}$, and trace-free part of $G_{ij}$.
+Einstein's equations, $G_{\mu\nu} = 8\pi G T_{\mu\nu}$, consists of 10 parts. Among these only 4 of them relate to scalar modes, similarly to how there are 4 independent scalar perturbations in the metric tensor \eqref{eqn:perturbed_metric_scalar}. We obtain one equation for each of $G_{00}$, $G_{i0}$, the trace of $G_{ij}$, and lastly the trace-free part of $G_{ij}$.
 
-We start with the trace-free mode of $G_{ij}$. Combining  \eqref{eqn:perturbed_einstein_tensor_3} and \eqref{eqn:perturbed_energy_momentum_tensor_3} gives
+We start with the trace-free component of $G_{ij}$. Combining  \eqref{eqn:perturbed_einstein_tensor_3} and \eqref{eqn:perturbed_energy_momentum_tensor_3} gives
 \begin{align}
 	-\partial_{\langle i} \partial_{j \rangle} (\Psi - \Phi) = \partial_{\langle i} \partial_{j \rangle} \Pi.
 \end{align}
@@ -198,12 +199,12 @@ Time derivatives of $\Phi$ on the left hand side can be removed by putting \eqre
 \begin{align}
 	\nabla^2 \Phi = 4\pi G \; a^2 (\delta\rho - 3\mathcal{H}q). \label{eqn:perturbed_poisson_eqution}
 \end{align}
-This very much resembles the Poisson's equation for Newtonian gravity: $\nabla^2 \phi_{newt} = 4\pi G \; \rho$. We confirm our previous claim that $\Phi$ corresponds to perturbations in the Newtonian gravitational potential. \eqref{eqn:perturbed_poisson_eqution} is best solved in Fourier space where $\nabla^2\Phi(\eta,\vv{x})$ reduces to $-k^2 \tilde{\Phi}(\eta,\vv{k})$.
+This resembles the Poisson's equation for Newtonian gravity: $\nabla^2 \phi_{\text{Newt.}} = 4\pi G \; \rho$. We confirm our previous claim that $\Phi$ corresponds to the perturbations of Newtonian gravitational potential. Note that \eqref{eqn:perturbed_poisson_eqution} is best solved in Fourier space where $\nabla^2\Phi(\eta,\vv{x})$ reduces to $-k^2 \tilde{\Phi}(\eta,\vv{k})$.
 
 
 \subsection{Curvature perturbations} \label{section:curvature_perturbations}
 
-The Bardeen potential $\Phi_B$ is an extremely useful quantity for cosmological perturbation theory. It is not only gauge-invariant, but it also represents a physically meaningful quantity\textemdash gravitational potential\textemdash in Newtonian gauge which can be solved using the Poisson's equation \eqref{eqn:perturbed_poisson_eqution}. Gauge-invariant quantities also let us connect results from different gauge choices in a consistent manner.
+The Bardeen potential $\Phi_B$ is an extremely useful quantity for studying cosmological perturbation theory. It is not only gauge-invariant but also representative of a physically meaningful quantity\textemdash gravitational potential\textemdash in Newtonian gauge which can be solved using the Poisson's equation \eqref{eqn:perturbed_poisson_eqution}. Gauge-invariant quantities also let us connect results from different gauge choices in a consistent manner.
 
 Another gauge-invariant variable with crucial role in cosmology is the constant density curvature perturbation, or simply \textit{curvature perturbation}, defined as
 \begin{align}
@@ -213,23 +214,23 @@ The name originates from the fact that it closely relates to the spatial curvatu
 \begin{align}
 	\zeta = \Phi + \mathcal{H}\frac{\delta\rho}{\bar{\rho}'} = \Phi - \frac{\delta\rho}{3(\bar{\rho}+\bar{P})},
 \end{align}
-where we used the background continuity equation $\bar{\rho}'=-3\mathcal{H}(\bar{\rho}+\bar{P})$ for the second equality. Time derivative of $\zeta$ can then be evaluated using \eqref{eqn:perturbed_continuity_equation}:
+where we used the background continuity equation $\bar{\rho}'=-3\mathcal{H}(\bar{\rho}+\bar{P})$ for the second equality. The time derivative of $\zeta$ can then be evaluated using \eqref{eqn:perturbed_continuity_equation}:
 \begin{align}
-	\zeta' &= \Phi' + \left[ \frac{1}{3}\nabla\cdot\vv{v} + \mathcal{H}\frac{\delta\rho + \delta P}{\bar{\rho} + \bar{P}} - \Phi' \right] + \frac{\delta\rho (\bar{\rho}' + \bar{P}')}{3(\bar{\rho}+\bar{P})^2} \\
-	&= \frac{1}{3}\nabla^2 v + \frac{\mathcal{H}}{\bar{\rho} + \bar{P}} \left( \delta P - \frac{\bar{P}'}{\bar{\rho}'} \delta\rho \right).
+	\zeta' &= \Phi' + \left[ \frac{1}{3}\nabla\cdot\vv{v} + \mathcal{H}\frac{\delta\rho + \delta P}{\bar{\rho} + \bar{P}} - \Phi' \right] + \frac{\delta\rho (\bar{\rho}' + \bar{P}')}{3(\bar{\rho}+\bar{P})^2}  \label{eqn:zeta_time_derivate_1} \\
+	&= \frac{1}{3}\nabla^2 v + \frac{\mathcal{H}}{\bar{\rho} + \bar{P}} \left( \delta P - \frac{\bar{P}'}{\bar{\rho}'} \delta\rho \right). \label{eqn:zeta_time_derivate_2}
 \end{align}
-The second term vanishes for adiabatic modes sourced by single field inflation, if we also assume constant equations of state as shown in \eqref{eqn:adiabatic_modes_sound_speed}. We are then left with $\zeta' = (1/3) \nabla^2 v$.
+The second term in \eqref{eqn:zeta_time_derivate_2} vanishes for the adiabatic modes sourced by single field inflation, as long as we assume the constant equations of state shown in \eqref{eqn:adiabatic_modes_sound_speed}. We are then left with $\zeta' = (1/3) \nabla^2 v$.
 
-Now consider scales much larger than the comoving Hubble radius $\mathcal{H}^{-1}$, namely the `super-horizon' scales. The Fourier space equivalent of this condition is $k \ll \mathcal{H}$. The Fourier transform of $\nabla^2 v$, $-k^2 \tilde{v}$, is thus much smaller than the typical time scale $\mathcal{H}$ in this limit. It follows that $\zeta'\approx 0$; curvature perturbations are conserved in the super-horizon scales.
+Now consider scales much larger than the comoving Hubble radius $\mathcal{H}^{-1}$, namely the `super-horizon' scales. The Fourier space equivalent of this condition is $k \ll \mathcal{H}$. The Fourier transform of $\nabla^2 v$ equals $-k^2 \tilde{v}$, which is much smaller than the typical time scale $\mathcal{H}$ in this limit. It follows that $\zeta'\approx 0$; curvature perturbations are conserved in super-horizon scales.
 
-For this reason, the curvature perturbations play a major role in connecting inflation with initial conditions. Recall that the comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation due to the exponential growth. Most physical scales of interest that were originally sub-horizon, or $k^{-1}\gg \mathcal{H}^{-1}$, eventually exit the horizon as $\mathcal{H}^{-1}$ drops below $k^{-1}$. After the end of inflation, $\mathcal{H}^{-1}$ grows back so that the modes can re-enter the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links quantum fluctuations during inflation to initial perturbations after inflation.
+For this reason, the curvature perturbations play a major role in connecting inflation with the primordial initial conditions. Recall that the comoving Hubble radius $\mathcal{H}^{-1}$ shrinks during inflation due to exponential growth of the universe. Most physical scales of interest that were originally sub-horizon, or $k^{-1}\gg \mathcal{H}^{-1}$, eventually exit the horizon as $\mathcal{H}^{-1}$ drops below $k^{-1}$. After the end of inflation, $\mathcal{H}^{-1}$ grows back so that the modes can re-enter the horizon. Here, since $\zeta$ remains constant at super-horizon scales, the value of $\zeta$ at horizon re-entry is equal to the one evaluated at the time the mode left the horizon. $\zeta$ serves as a bridge which links the quantum fluctuations generated during inflation to the initial perturbations after inflation.
 
 
 \section{CMB anisotropy} \label{section:CMB_anisotropy}
 
-The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} dictate the time evolution of gravitational perturbations given the total energy, momentum, and pressure of the universe's components. Contributions to these characteristics from cold dark matter can be solved using the perturbed continuity equation \eqref{eqn:perturbed_continuity_equation} and Euler equations \eqref{eqn:perturbed_Euler_equation}. This section covers how perturbations in the photon temperature evolve and translate into the observed CMB anisotropy, the main cosmological dataset in this thesis.
+The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} dictate the time evolution of the gravitational perturbations given the total energy, momentum, and pressure of the universe's constituents. The cold dark matter's contributions to these quantities can be solved using the perturbed continuity equation \eqref{eqn:perturbed_continuity_equation} and Euler equations \eqref{eqn:perturbed_Euler_equation}. This section covers how perturbations in the photon temperature evolve and translate into the observed CMB anisotropy, the main cosmological dataset of our interest.
 
-Studying photon perturbations involves two major complications compared to cold dark matter. First, photons directly interact with baryons through Compton scattering. Their perturbations hence stay tightly coupled until recombination, when baryons form neutral hydrogen and photons start free-streaming instead. We outline in Section \ref{section:boltzmann_equations} how Boltzmann equations are used to find the time evolution of photon perturbations while accounting for scattering. Second, unlike cold dark matter whose perturbations are characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, we require a whole hierarchy of functions to accurately describe photons. This is because photons do not necessarily travel parallel to the wavevector when perturbed; $\vv{p} \nparallel \vv{k}$. We discuss the details in Section \ref{section:boltzmann_hierarchy}.
+Studying photon perturbations involves two major complications compared to the cold dark matter. First, photons interact directly with baryons through Compton scattering. Their perturbations hence stay tightly coupled until recombination, when the electrons and protons combine to form neutral hydrogen and the photons start free-streaming instead. We outline in Section \ref{section:boltzmann_equations} how Boltzmann equations are used to find the time evolution of photon perturbations while accounting for the scattering effects. Second, unlike cold dark matter whose perturbations are characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, we require a whole hierarchy of functions to accurately describe photons. This is because the photons do not necessarily travel parallel to the wavevector when perturbed; $\vv{p} \nparallel \vv{k}$. We discuss the details in Section \ref{section:boltzmann_hierarchy}.
 
 
 \subsection{Boltzmann equations} \label{section:boltzmann_equations}
@@ -237,9 +238,9 @@ Studying photon perturbations involves two major complications compared to cold 
 
 We start by calculating the path a photon takes while free-streaming within the perturbed metric \eqref{eqn:perturbed_metric_newtonian_gauge}. The 4-momentum of a photon in local coordinates satisfies $\eta_{\alpha\beta}\tilde{P}^\alpha \tilde{P}^\beta = 0$ since photons are massless. We may hence write its components as
 \begin{align}
-	\tilde{P}^0 =: p, \qquad \tilde{P}^i =: p \hat{p}^i,
+	\tilde{P}^0 = p, \qquad \tilde{P}^i = p \hat{p}^i,
 \end{align}
-where $\hat{\vv{p}}$ is a unit vector indicating the direction of propagation. We can revert back to the perturbed metric using the tetrad in \eqref{eqn:newtonian_gauge_tetrad}; since $P^\mu = (E_\alpha)^\mu \tilde{P}^\alpha$,
+where $\hat{\vv{p}}$ is a unit vector indicating the direction of propagation and $p$ is the magnitude of the 3-momentum. We can revert back to the perturbed metric using the tetrad in \eqref{eqn:newtonian_gauge_tetrad}; since $P^\mu = (E_\alpha)^\mu \tilde{P}^\alpha$,
 \begin{align}
 	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i  \label{eqn:perturbed_photon_four_momentum}
 \end{align}
@@ -257,74 +258,75 @@ Meanwhile, differentiating \eqref{eqn:perturbed_photon_four_momentum} gives
 \begin{align}
 	\frac{dP^0}{d\eta} = \frac{1-\Psi}{a} \left( \frac{dp}{d\eta} - \mathcal{H}p \right) - \frac{p}{a} \left( \frac{\partial\Psi}{\partial\eta} + \frac{dx^i}{d\eta} \frac{\partial\Psi}{\partial x^i}  \right). \label{eqn:perturbed_energy_total_derivative}
 \end{align}
-Note the distinction between total and partial derivatives; $d/d\eta$ here is taken along the trajectory $x^\mu = x^\mu(\eta)$ of a photon. We may combine \eqref{eqn:geodesic_equation_four_momentum} and \eqref{eqn:perturbed_photon_four_momentum} to obtain an expression for the total derivative of $p$;
+Note that the total derivative $d/d\eta$ here is taken along the trajectory $x^\mu = x^\mu(\eta)$ of the photon. We may combine \eqref{eqn:geodesic_equation_four_momentum} and \eqref{eqn:perturbed_photon_four_momentum} to obtain an expression for the total derivative of $p$;
 \begin{align}
 	\frac{1}{p} \left( \frac{dp}{d\eta} \right) = - \mathcal{H} + \Phi' - \hat{p}^i \partial_i \Psi. \label{eqn:perturbed_p_total_derivative}
 \end{align}
-Only the first term on the right hand side remains in the zeroth order to give $p\propto a^{-1}$. We confirm that photons get redshifted as the universe expands, justifying the definition of $z$ in \eqref{def:redshift}. The other two terms quantify the effect of gravitational perturbations on photon's energy. Photons in a deepening potential well has to spend some of its energy to come out of it, hence the term $\Phi'$. On the other hand, moving into a region with deeper potential provides energy equal to $-({\vv{p}}\cdot\nabla)\Psi$. Dividing by $p$ gives the last term in \eqref{eqn:perturbed_p_total_derivative}.
+Only the first term on the right hand side is present at the zeroth order in perturbations, where we get $p\propto a^{-1}$. We confirm that photons are redshifted as the universe expands, justifying the definition of the redshift $z$ in \eqref{def:redshift}. The other two terms quantify the effect of gravitational perturbations on the photon energy. Photons in a deepening potential well have to spend some of their energy to climb out of it, hence the term $\Phi'$. On the other hand, moving into a region with deeper potential provides energy equal to $-({\vv{p}}\cdot\nabla)\Psi$. Dividing by $p$ gives the last term in \eqref{eqn:perturbed_p_total_derivative}.
 
 
 \subsubsection*{Distribution function} \label{section:distribution_function}
-In order to fully understand physical properties of perturbations in photons, we need to study their distribution function $f(\eta,\vv{x},\vv{p})$ which measures number of particles in a unit phase space volume. Photons in a thermal equilibrium with the homogenous universe follow the Bose-Einstein distribution where   
+
+In order to fully understand the physical properties of photon perturbations, we need to study their distribution function $f(\eta,\vv{x},\vv{p})$ which measures the number of particles in a unit phase space volume. Photons in a thermal equilibrium within the homogenous universe follow the Bose-Einstein distribution where   
 \begin{align}
 	\bar{f}(\eta, p) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)} \right\} - 1 \right]^{-1}, \label{eqn:photon_distribution_function}
 \end{align}
 up to a factor and the Boltzmann constant, both of which we set to one for convenience. This is equivalent to the blackbody radiation with temperature $\bar{T}(\eta)$.
 
-We define fractional temperature anisotropy $\Theta$ by perturbing the photon distribution function as follows;
+We define the fractional temperature anisotropy $\Theta$ by perturbing the photon distribution function as follows;
 \begin{align}
 	f(\eta, \vv{x}, p, \hat{\vv{p}}) = \left[ \exp \left\{ \frac{p}{\bar{T}(\eta)\left[1 + \Theta (\eta,\vv{x},\hat{\vv{p}}) \right]} \right\} - 1 \right]^{-1}. \label{eqn:perturbed_photon_distribution_function}
 \end{align}
-We made an implicit assumption here that $\Theta(\eta,\vv{x},\hat{\vv{p}})$ does not depend on $p$, the photon energy. This claim will be justified later as we show that the Thomson scattering leaves energy of photons virtually unchanged.
+We made an implicit assumption here that $\Theta(\eta,\vv{x},\hat{\vv{p}})$ does not depend on $p$, the photon energy. This claim will be justified later as we show that the Thomson scattering between photons and electrons leaves the energy of photons virtually unchanged.
 
 The distribution function \eqref{eqn:perturbed_photon_distribution_function} can be expanded to linear order in perturbations as
 \begin{align}
 	f = \bar{f} - \frac{\partial \bar{f}}{\partial (\ln p)} \; \Theta,  \label{eqn:perturbed_photon_distribution_function_expansion}
 \end{align}
-by replacing $p$ with $p(1-\Theta)$ in \eqref{eqn:photon_distribution_function}. The temperature anisotropy $\Theta$ therefore closely relates to the perturbed distribution function.
+by replacing $p$ with $p(1-\Theta)$ in \eqref{eqn:photon_distribution_function}. The temperature anisotropy $\Theta$ therefore closely relates to perturbations in the distribution function.
 
 \subsubsection*{Collisionless equations} \label{section:collisionless_equation}
 
-Liouville's theorem states that the phase space distribution function remains constant along the system's trajectories. A generalisation of this to systems with collisions is the Boltzmann equation. For our photon distribution function, it reads
+Liouville's theorem states that the phase space distribution function remains constant along the system's classical trajectories. A generalisation of this to systems with collisions is the Boltzmann equation. For our photon distribution function, it reads
 \begin{align}
 	\frac{df}{d\eta} &= \frac{\partial f}{\partial \eta} + \frac{\partial f}{\partial x^i}\frac{dx^i}{d\eta} + \frac{\partial f}{\partial(\ln  p)}\frac{d(\ln p)}{d\eta} + \frac{\partial f}{\partial \hat{p}^i}\frac{d\hat{p}^i}{d\eta} \label{eqn:boltzmann_equation_base}\\
 	&= \left. \frac{df}{d\eta} \right|_\text{scattering} . \label{eqn:boltzmann_equation_base_scattering}
 \end{align}
-In \eqref{eqn:boltzmann_equation_base} we used chain rule to expand out the total derivative again. Note that the last term only appears at the second order in perturbations since both $(\partial f/\partial \hat{p}^i)$ and $(d\hat{p}^i/d\eta)$ appear at the first order. This term corresponding to gravitational lensing opens up a whole subject of its own, but it will be neglected for the purposes of this discussion.
+In \eqref{eqn:boltzmann_equation_base} we used chain rule to expand out the total derivative again. Note that the last term only appears at the second order in perturbations since both $(\partial f/\partial \hat{p}^i)$ and $(d\hat{p}^i/d\eta)$ appear at the first order. This term corresponding to gravitational lensing opens up a whole subject of its own but will be neglected for the purposes of this discussion.
 
 Without scattering, the term in \eqref{eqn:boltzmann_equation_base_scattering} vanishes and the distribution function is conserved along each trajectory. The zeroth order part of the equation yields
 \begin{align}
 	\frac{d\bar{f}}{d\eta} = \frac{\partial \bar{f}}{\partial\eta} - \frac{\partial \bar{f}}{\partial(\ln p)}\frac{d(\ln\bar{p})}{d\eta} = 0. \label{eqn:boltzmann_equation_collisionless_zeroth}
 \end{align}
-Substituting the form of $\bar{f}$ we see that the background temperature scales as $\bar{T}\propto a^{-1}$, consistent with the redshift caused by expansion of the universe.
+Substituting the form of $\bar{f}$ we see that the background temperature scales as $\bar{T}\propto a^{-1}$, consistent with the redshift caused by the expansion of the universe.
 
-We can write down the first order part of \eqref{eqn:boltzmann_equation_base} in terms of the temperature anisotropy using our previous results \eqref{eqn:perturbed_photon_position_total_derivative}, \eqref{eqn:perturbed_p_total_derivative}, and \eqref{eqn:perturbed_photon_distribution_function_expansion};
+We can write down the first order part of \eqref{eqn:boltzmann_equation_base} in terms of the temperature anisotropy $\Theta$ using our previous results \eqref{eqn:perturbed_photon_position_total_derivative}, \eqref{eqn:perturbed_p_total_derivative}, and \eqref{eqn:perturbed_photon_distribution_function_expansion};
 \begin{align}
 	\frac{df}{d\eta} &= - \frac{\partial}{\partial\eta} \left( \frac{\partial \bar{f}}{\partial(\ln p)} \Theta \right) - \frac{\partial \bar{f}}{\partial (\ln p)} \hat{p}^i \frac{\partial \Theta}{\partial x^i} +  \frac{\partial^2 \bar{f}}{\partial(\ln p)^2} \mathcal{H}\Theta + \frac{\partial \bar{f}}{\partial (\ln p)} \left( \frac{\partial \Phi}{\partial \eta} - \hat{p}^i \frac{\partial \Psi}{\partial x^i} \right) \\
 	&= - \frac{\partial \bar{f}}{\partial (\ln p)} \biggl[ \Theta' + \hat{p}^i \partial_i \Theta - \Phi' + \hat{p}^i \partial_i \Psi \biggr], \label{eqn:boltzmann_equation_collisionless_first}
 \end{align}
-after some algebra. There are four terms in \eqref{eqn:boltzmann_equation_collisionless_first}. The first two naturally arise from the free-streaming of temperature anisotropies, corresponding to temporal and spatial changes in $\Theta$. The other two in brackets account for changes in photon energy caused by the metric perturbations $\Phi$ and $\Psi$. The sum of them are in fact equal to $-p^{-1}(d \ln(ap)/d\eta)$. The \textit{comoving} energy $ap$ of a photon remains constant in the homogeneous universe.
+after some lengthy algebra. There are four terms in \eqref{eqn:boltzmann_equation_collisionless_first}. The first two naturally arise from the free-streaming of the photon and correspond to the temporal and spatial changes in $\Theta$. The other two in brackets account for the changes in photon energy caused by the metric perturbations $\Phi$ and $\Psi$. The sum of the two is in fact equal to $-p^{-1}(d \ln(ap)/d\eta)$. The \textit{comoving} energy $ap$ of the photon remains constant in the homogeneous universe.
 
 
 \subsubsection*{Thomson scattering} \label{section:thompson_scattering}
 
-The early universe contains hot plasma in which photons bounce off charged particles via Compton scattering. In particular, photons and electrons interact through Thomson scattering $e^- + \gamma \leftrightarrow e^- + \gamma$. The interaction provides the dominant contribution to the Boltzmann equation for photon temperature anisotropies until recombination, when electrons and protons combine to form hydrogen atom, letting photons travel freely.
+The early universe contains hot plasma in which photons bounce off charged particles via Compton scattering. In particular, photons and electrons interact through Thomson scattering $e^- + \gamma \leftrightarrow e^- + \gamma$. This interaction provides the dominant contribution to the Boltzmann equation for photon temperature anisotropies until recombination, when electrons and protons combine to form hydrogen atom, letting photons travel freely.
 
 Thomson scattering involves a photon and a non-relativistic electron with energy $E_e (\vv{q}) = m_e + \frac{1}{2m_e} q^2$, where $m_e$ is the electron rest mass. In the electron's rest frame, the scattering term \eqref{eqn:boltzmann_equation_base_scattering} takes the form
 \begin{align}
 	\left. \frac{df}{d\eta_e} \right|_\text{scattering} = \bar{n}_e \int d^2 \hat{\vv{p}}_{in} \; \frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) \; \left[ f(p,\hat{\vv{p}}_{in}) - f(p,\hat{\vv{p}})\right], \label{eqn:thomson_scattering_electron_rest_frame}
 \end{align}
-where $\eta_e$ and $\bar{n}_e$ denote the proper time and (background) mean number density of the electrons, respectively. We have suppressed the $\eta$ and $\vv{x}$ dependencies from the photon distribution function $f(\eta,\vv{x},p,\hat{\vv{p}})$ for now. The integrand of \eqref{eqn:thomson_scattering_electron_rest_frame} comprises two parts. The former corresponds to photons originally travelling along the direction $\hat{\vv{p}}_{in}$, but then scatters \textit{into} $\hat{\vv{p}}$. The latter is the opposite; it accounts for photons scattering \textit{out of} $\hat{\vv{p}}$ to some other direction, say $\hat{\vv{p}}_{in}$. Both \textit{in} and \textit{out} scatters are equally effective since the Thomson scattering is a reversible process. The rate of interaction depends on the number densities, $\bar{n}_e$ and $f$, as well as an angle dependent function given by
+where $\eta_e$ and $\bar{n}_e$ denote the proper time and (background) mean number density of the electrons, respectively. We have suppressed the $\eta$ and $\vv{x}$ dependencies from the photon distribution function $f(\eta,\vv{x},p,\hat{\vv{p}})$ for now. The integrand of \eqref{eqn:thomson_scattering_electron_rest_frame} comprises two parts. The former corresponds to the photons originally travelling along the direction $\hat{\vv{p}}_{in}$ but then scatters \textit{into} $\hat{\vv{p}}$. The latter is the opposite; it accounts for the photons scattering \textit{out of} $\hat{\vv{p}}$ to some other direction, say $\hat{\vv{p}}_{in}$. Both \textit{in} and \textit{out} scatters are equally effective since the Thomson scattering is a reversible process. The rate of interaction depends on the number densities $\bar{n}_e$ and $f$, as well as the angle dependent function given by
 \begin{align}
 	\frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) = \frac{3\sigma_T}{16\pi} \left[ 1 + (\hat{\vv{p}} \cdot \hat{\vv{p}}_{in})^2 \right] \label{eqn:thomson_scattering_cross_section}
 \end{align}
-for Thomson scattering \cite{Dodelson2003textbook}. The Thomson differential cross section $\sigma_T$ is a fixed constant equal to $8\pi\hslash^2 \alpha^2 / 3c^2 m_e^2$. Note from \eqref{eqn:thomson_scattering_electron_rest_frame} and \eqref{eqn:thomson_scattering_cross_section} that the Thomson scattering leaves the photon energy $p$ unchanged. This justifies our previous assumption to drop the $p$ dependence from $\Theta$; the photon energy remains unperturbed by scattering in first order perturbation theory.
+for Thomson scattering \cite{Dodelson2003textbook}. The Thomson differential cross section $\sigma_T$ is a fixed constant equal to $8\pi\hslash^2 \alpha^2 / 3c^2 m_e^2$. Note from \eqref{eqn:thomson_scattering_electron_rest_frame} and \eqref{eqn:thomson_scattering_cross_section} that Thomson scattering leaves the photon energy $p$ unchanged. This justifies our previous assumption to drop the $p$ dependence from $\Theta$; the photon energy remains unperturbed by scattering in our linear perturbation theory.
 
-We now account for bulk velocity $\vv{v}_b$ of the electrons (baryons). In the non-relativistic limit where $\|\vv{v}_b \| \ll 1$, the Doppler effect alters the distribution function proportional to $\bar{n}_e (\hat{\vv{p}} \cdot \vv{v}_e)$. We also rewrite $f = \bar{f} - (\partial\bar{f}/\partial\ln p) \; \Theta$ and substitute \eqref{eqn:thomson_scattering_cross_section} into \eqref{eqn:thomson_scattering_electron_rest_frame} to obtain
+We now account for the bulk velocity $\vv{v}_b$ of electrons (baryons). In the non-relativistic limit where $\|\vv{v}_b \| \ll 1$, the Doppler effect alters the distribution function by an amount proportional to $\bar{n}_e (\hat{\vv{p}} \cdot \vv{v}_e)$. We also rewrite $f = \bar{f} - (\partial\bar{f}/\partial\ln p) \; \Theta$ and substitute \eqref{eqn:thomson_scattering_cross_section} into \eqref{eqn:thomson_scattering_electron_rest_frame} to obtain
 \begin{align}
 	\left. \frac{df}{d\eta} \right|_\text{scattering} = a \bar{n}_e \sigma_T \frac{d\bar{f}}{d(\ln p)}  \left[ \Theta(\hat{\vv{p}}) - \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] - \hat{\vv{p}} \cdot \vv{v}_b \right], \label{eqn:thomson_scattering}
 \end{align}
-where we relabelled $\hat{\vv{p}}_{in}$ as $\hat{\vv{n}}$ and performed the $\int d^2\hat{\vv{n}}$ integral for the \textit{out} term, which cancels out the factor $3/16\pi$.
+where we relabelled $\hat{\vv{p}}_{in}$ as $\hat{\vv{n}}$ and performed the $\int d^2\hat{\vv{n}}$ integral for the \textit{out} term cancelling out the factor $3/16\pi$. We now have a complete form of the scattering term appearing Boltzmann's equations.
 
 
 \subsubsection*{Line of sight solution} \label{section:line_of_sight_solution}
@@ -334,11 +336,11 @@ We obtain the full photon Boltzmann equation by combining \eqref{eqn:boltzmann_e
 	\Theta' + (\hat{\vv{p}} \cdot \nabla) &\Theta - \Phi' +(\hat{\vv{p}} \cdot \nabla) \Psi  \nonumber \\	
 	&= a \bar{n}_e \sigma_T \left[ -\Theta + \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] + \hat{\vv{p}} \cdot \vv{v}_b \right]. \label{eqn:boltzmann_equation_1}
 \end{align}
-Note that every term on the right hand side has a factor of $a\bar{n}_e \sigma_T$ from scattering, which motivates us to define \textit{optical depth};
+Note that every term on the right hand side has a factor of $a\bar{n}_e \sigma_T$ from scattering, which motivates us to define the \textit{optical depth};
 \begin{align}
 	\tau(\eta) := \int_\eta^{\eta_0} d\eta'\; \left[ a(\eta') \bar{n}_e (\eta') \sigma_T \right],
 \end{align}
-where $\tau$ is not to be confused with conformal time, also denoted $\tau$ elsewhere in this section.\footnote{Unfortunately, we could not have avoided the clash in notation by naming conformal time as $\eta$ to begin with, since $\eta$ is also used as one of the slow-roll parameters in inflation.} Here, $-\delta\tau = a\bar{n}_e \sigma_T \delta\eta$ corresponds to the probability of scattering to occur between some small time interval $\delta\eta$. The optical depth hence measures how \textit{opaque} the universe has been for photons to travel without running into something until today. The probability of a scatter between some time $\eta$ and today $\eta_0$ is in fact equal to $e^{-\tau(\eta)}$. This is $1$ for $\tau=0$ and tends to $0$ as $\tau\rightarrow\infty$. Taking the time derivative yields the \textit{visibility function} $g(\eta):=-\tau'(\eta) e^{-\tau(\eta)}$, or the probability of having last scattered at $\eta$.
+where $\tau$ is not to be confused with conformal time, also denoted $\tau$ elsewhere in other chapters.\footnote{Unfortunately, we could not have avoided the clash by writing $\eta$ for conformal time to begin with, since $\eta$ is also commonly used as one of the slow-roll parameters in inflation.} Here, $-\delta\tau = a\bar{n}_e \sigma_T \delta\eta$ corresponds to the probability of scattering to occur between some small time interval $\eta$ and $\eta+\delta\eta$. The optical depth hence measures how \textit{opaque} the universe has been for photons to travel without running into something until today. The probability of a scatter between some time $\eta$ and today $\eta_0$ is in fact equal to $e^{-\tau(\eta)}$. This is $1$ for $\tau=0$ and tends to $0$ as $\tau\rightarrow\infty$. Taking the time derivative yields the \textit{visibility function} $g(\eta):=-\tau'(\eta) e^{-\tau(\eta)}$, or the probability of having last scattered at $\eta$.
 
 Using $\tau$ and $\eta$ we may rewrite \eqref{eqn:boltzmann_equation_1} as follows.
 \begin{align}
@@ -351,34 +353,34 @@ where we defined the source term $S(\eta,\vv{x},\hat{\vv{p}})$ as the right hand
 \end{align}
 since $\tau(\eta_0)=0$ and $\tau(0) = \infty$.
 
-We can simplify the problem further by assuming that all photons started free-streaming since their last scattering at fixed $\eta=\eta_*$. The visibility function is then equal to $g(\eta)\approx g(\eta_*)\delta(\eta-\eta_*)$, and $e^{-\tau}$ switches immediately from $0$ to $1$ at recombination $\eta=\eta_*$. The integral term in \eqref{eqn:boltzmann_equation_2} reduces to the \textit{monopole} $\Theta_0 := (1/4\pi)\int d^2\hat{\vv{n}} \;\Theta(\hat{\vv{n}})$ as long as we neglect the anisotropic stress, which we will detail in the next section. 
+We can simplify the problem further by assuming that all photons last scattered at a fixed $\eta=\eta_*$ and started free-streaming since. The visibility function is then equal to $g(\eta)\approx g(\eta_*)\delta(\eta-\eta_*)$, and $e^{-\tau}$ switches immediately from $0$ to $1$ at recombination $\eta=\eta_*$. The integral term in \eqref{eqn:boltzmann_equation_2} reduces to the \textit{monopole} $\Theta_0 := (1/4\pi)\int d^2\hat{\vv{n}} \;\Theta(\hat{\vv{n}})$ as long as we neglect the anisotropic stress, which we will detail in the next section. 
 
 With these approximations,
 \begin{align}
 	&\Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}) + \Psi(\eta_0, \vv{x}_0) \nonumber \\
 	&\qquad \approx \Theta_0(\eta_*, \vv{x}_*) + \Psi(\eta_*, \vv{x}_*) + \hat{\vv{p}}\cdot \vv{v}_b (\eta_*, \vv{x}_*) + \int_{\eta_*}^{\eta_0} d\eta' \; (\Psi' + \Phi')(\eta', \vv{x}_0-(\eta_0-\eta')\hat{\vv{p}}), \label{eqn:line_of_sight_solution_approximated}
 \end{align}
-where $\vv{x}_* = \vv{x}_0-(\eta_0-\eta_*)\hat{\vv{p}}$ is the comoving coordinate of the point at last scattering surface the given photon comes from.
+Here, $\vv{x}_* = \vv{x}_0-(\eta_0-\eta_*)\hat{\vv{p}}$ is the comoving coordinate of the point within the last scattering surface where the given photon comes from.
 
-There are several different contributions to $\Theta$ in \eqref{eqn:line_of_sight_solution_approximated}. Firstly, the difference in $\Psi$ at last scattering $(\eta_*,\vv{x}_*)$ and today $(\eta_0, \vv{x}_0)$ induces gravitational redshift for any photons climbing out of the potential well. Next, the monopole $\Theta_0$ at recombination is closely related to the photon energy density contrast, as we will see shortly. Sum of the $\Psi$ and monopole terms is often called the Sachs-Wolfe (SW) contribution and is dominant at large scales. The third term $\hat{\vv{p}}\cdot\vv{v}_b$ measures the Doppler effect caused by the electron's peculiar velocity at the last scattering. Lastly, the last integral accounts for the Integrated Sachs-Wolfe (ISW) effect, where time variations in the potentials affect observed temperature anisotropy. Accelerated late-time expansion due to dark energy contributes the most to the integral.
+There are several different contributions to $\Theta$ in \eqref{eqn:line_of_sight_solution_approximated}. Firstly, the difference in the potential $\Psi$ between last scattering $(\eta_*,\vv{x}_*)$ and today $(\eta_0, \vv{x}_0)$ induces gravitational redshift for any photons climbing out of the potential well. Next, the monopole $\Theta_0$ at recombination is closely related to the photon energy density contrast, as we will see shortly. The sum of $\Psi$ and $\Theta_0$ is often called the Sachs-Wolfe (SW) contribution and is dominant at large scales. The third term $\hat{\vv{p}}\cdot\vv{v}_b$ measures the Doppler effect caused by the electron's peculiar velocity at the last scattering. Lastly, the last integral accounts for the Integrated Sachs-Wolfe (ISW) effect, where time variations in the gravitational potentials affect the photon energy. Accelerated expansion in the late universe due to dark energy contributes the most to this integral.
 
 
 \subsection{Boltzmann hierarchy} \label{section:boltzmann_hierarchy}
 
-The full Boltzmann equation \eqref{eqn:boltzmann_equation_1} is not in an ideal structure for us to solve numerically. It is not only in an integro-differential form, but also a function of three quantities $\eta$, $\vv{x}$ and $\hat{\vv{p}}$, totalling 6 dimensions. In this section, we outline the formulation that Boltzmann solvers today such as CAMB \cite{Lewis2000} and CLASS \cite{Blas2011class} use to find time evolution of the photon temperature anisotropy.
+The full Boltzmann equation \eqref{eqn:boltzmann_equation_1} is not in an ideal structure for us to solve numerically. It is not only in an integro-differential form, but also a function of three quantities $\eta$, $\vv{x}$ and $\hat{\vv{p}}$, totalling 6 dimensions. In this section, we outline the formulation that the Boltzmann solvers today such as CAMB \cite{Lewis2000} and CLASS \cite{Blas2011class} use to find time evolution of the photon temperature anisotropy.
 
-We work in the Fourier space of $\vv{x}$ so that $\tilde{\Theta} = \tilde{\Theta}(\eta,\vv{k},\hat{\vv{p}})$. The term $(\hat{\vv{p}}\cdot\nabla)\Theta$ then simplifies to $(\hat{\vv{p}}\cdot i\;\vv{k})\tilde{\Theta} = ik\mu\tilde{\Theta}$, where $\mu := \hat{\vv{p}} \cdot \hat{\vv{k}}$ measures the angle between wavevector $\vv{k}$ and direction of propagation $\hat{\vv{p}}$.
+We work in the Fourier space of $\vv{x}$ so that $\tilde{\Theta} = \tilde{\Theta}(\eta,\vv{k},\hat{\vv{p}})$. The term $(\hat{\vv{p}}\cdot\nabla)\Theta$ then simplifies to $(\hat{\vv{p}}\cdot i\;\vv{k})\tilde{\Theta} = ik\mu\tilde{\Theta}$, where $\mu := \hat{\vv{p}} \cdot \hat{\vv{k}}$ measures the angle between wavevector $\vv{k}$ and the direction of propagation $\hat{\vv{p}}$.
 
-The next major simplification comes from that even though $\Theta(\eta,\vv{k},\hat{\vv{p}})$ depends on $\hat{\vv{p}}$, it is axisymmetric with respect to $\vv{k}$ for the scalar perturbations we are studying. The scattering term in \eqref{eqn:thomson_scattering} also preserves axisymmetry. Thus, $\tilde{\Theta}(\eta,\vv{k},\hat{\vv{p}}) = \tilde{\Theta}(\eta,\vv{k},\mu)$. This motivates us to define the $l$th \textit{multipole} as \footnote{Note that some literature adopt a different convention where a factor of $2l+1$ is included in the definition of $\Theta_l$.}
+The next major simplification comes from that even though $\Theta(\eta,\vv{k},\hat{\vv{p}})$ depends on $\hat{\vv{p}}$, it is axisymmetric with respect to $\vv{k}$ for the scalar perturbations we are studying. The scattering term in \eqref{eqn:thomson_scattering} also preserves this axisymmetry. Thus, $\tilde{\Theta}(\eta,\vv{k},\hat{\vv{p}}) = \tilde{\Theta}(\eta,\vv{k},\mu)$, where we managed to cut down one dimension. This motivates us to define the $l$th \textit{multipole} as \footnote{Note that some literature adopt a different convention where a factor of $2l+1$ is included in the definition of $\Theta_l$.}
 \begin{align}
 	\Theta_l (\eta,\vv{k}) :=& \; i^l \int \frac{d^2 \hat{\vv{p}}}{4\pi} \; P_l (\hat{\vv{k}} \cdot \hat{\vv{p}}) \; \Theta(\eta, \vv{k}, \hat{\vv{p}}) \\
 	=& \; i^l \int^1_{-1} \frac{d\mu}{2} \; P_l (\mu) \; \Theta(\eta, \vv{k}, \mu), \label{eqn:temperature_perturbation_multipole} 
 \end{align}
-where we dropped the tildes on $\Theta$ for brevity. $P_l(\mu)$ denote the $l$th order Legendre polynomial, constructed to satisfy the orthogonality condition
+where we dropped the tildes on $\Theta$ representing Fourier variables for brevity. $P_l(\mu)$ denotes the $l$th order Legendre polynomial, constructed to satisfy the orthogonality condition
 \begin{align}
 	\int_{-1}^{1} \frac{d\mu}{2} \; P_{l_1}(\mu) P_{l_2}(\mu) = \frac{1}{2l_1 + 1} \delta_{l_1 l_2}. \label{eqn:legendre_polynomial_orthogonality}
 \end{align}
-Legendre polynomials form a complete basis for functions defined on interval $[-1,1]$. Hence, we may expand $\Theta$ in $\mu$ using these polynomials for each $(\eta,\vv{k})$. After substituting into \eqref{eqn:temperature_perturbation_multipole}, \eqref{eqn:legendre_polynomial_orthogonality} yields
+Legendre polynomials form a complete basis for smooth functions defined on interval $[-1,1]$. Hence, we may expand $\Theta(\eta,\vv{k},\mu)$ in $\mu$ using these polynomials for each $(\eta,\vv{k})$. After substituting into \eqref{eqn:temperature_perturbation_multipole}, \eqref{eqn:legendre_polynomial_orthogonality} yields
 \begin{align}
 	\Theta(\eta,\vv{k},\mu) = \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \Theta_l (\eta, \vv{k}) \label{eqn:temperature_perturbation_legendre_expansion}
 \end{align}
@@ -393,7 +395,7 @@ Incorporating the results so far, the Boltzmann equation becomes
 \begin{align}
 	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right] \label{eqn:boltzmann_equation_in_fourier_space}
 \end{align}
-where $\vv{v}_b = \nabla v_b$, and the $\eta$ and $\vv{k}$ dependences are omitted for clarity. We combine the above with the Legendre basis expansion \eqref{eqn:temperature_perturbation_legendre_expansion}, 
+where $\vv{v}_b = \nabla v_b$, and the $\eta$ and $\vv{k}$ dependences are omitted for clarity. We combine the above with the Legendre basis expansion \eqref{eqn:temperature_perturbation_legendre_expansion} to get
 \begin{align}
 	&\sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \Theta'_l + ik\mu \Theta_l \right] \nonumber\\
 	&\quad= \sum_{l=0}^{\infty} (-i)^l (2l+1) P_l (\mu) \left[ \tau' \Theta_l + \delta_{l0} (\Phi' - \tau'\Theta_0) + \delta_{l1} (\frac{1}{3}k\Psi + \frac{1}{3}k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2) \right],
@@ -407,9 +409,9 @@ We can then equate the coefficients of $P_l(\mu)$ from both sides for each $l$, 
 	&\Theta'_l - \frac{l}{2l+1} k\Theta_{l-1} + \frac{l+1}{2l+1} k\Theta_{l+1}  \nonumber\\
 	&\qquad= \tau' \Theta_l + \delta_{l0} (\Phi' - \tau' \Theta_0) + \delta_{l1} (\frac{1}{3} k\Psi + \frac{1}{3} k\tau' v_b) + \delta_{l2}(\frac{1}{10}\tau' \Theta_2),
 \end{align}
-for $l=0,1,2,.\cdots$ and $\Theta_{-1}$ set to $0$. Finally, the first-order differential equations from each $l$ can be solved in conjunction with other linearised equations \eqref{eqn:perturbed_continuity_equation}, \eqref{eqn:perturbed_Euler_equation}, and \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} derived from perturbation theory.
+for $l=0,1,2,.\cdots$ ($\Theta_{-1}$ set to $0$). Finally, the first-order differential equations from each $l$ can be solved in conjunction with other linearised equations including \eqref{eqn:perturbed_continuity_equation}, \eqref{eqn:perturbed_Euler_equation}, and \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} derived from the perturbation theory.
 
-We note two key properties of the full set of differential equations which dictates how perturbations in the metric, matter, and radiation vary as the universe expands. First, the Fourier modes evolve independently from each other. The perturbative variables evaluated at different $\vv{k}$s do not affect each other to leading order and hence can be studied separately. Second, the time evolution of each Fourier mode only depends on $k=\|\vv{k}\|$ instead of $\vv{k}$ for scalar perturbations. The Euler equation \eqref{eqn:perturbed_Euler_equation} may seem to depend on the full vector $\vv{k}$ at first, but they go away after rewriting $\vv{v}=\nabla v$ for some $v$. The same is true for the $i0$ component of the linearised Einstein's equations \eqref{eqn:perturbed_einstein_equations_2}. 
+We note two key properties of the full set of differential equations which dictates how perturbations in the metric, matter, and radiation vary as the universe expands. First, the Fourier modes `decouple'; they evolve independently from each other. The perturbative variables evaluated at different $\vv{k}$s do not affect each other to leading order and hence can be studied separately. Second, the time evolution of each Fourier mode only depends on $k=\|\vv{k}\|$ instead of $\vv{k}$ for scalar perturbations. The Euler equation \eqref{eqn:perturbed_Euler_equation} may seem to depend on the full vector $\vv{k}$ at first, but they go away after rewriting $\vv{v}=\nabla v$ for some $v$. The same is true for the $i0$ component of the linearised Einstein's equations \eqref{eqn:perturbed_einstein_equations_2}. 
 
 \iffalse
 % How the first two Boltzmann equations relate to continuity and Euler equations...
@@ -429,17 +431,17 @@ in the rest frame. Note the integration measure is Lorentz invariant. Have $\del
 
 \subsection{Late-time anisotropy}
 
-We have derived the set of differential equations governing time evolution of photon temperature perturbations. Adiabatic initial conditions mean that there is only one degree of freedom for scalar perturbations at the end of inflation. Hence, $\Phi(\eta_i,\vv{k})$, for example, fully specifies the initial values needed for the evolution equations, which themselves depend only on the value of $k=\|\vv{k}\|$ as discussed earlier. It follows that the radiation transfer function defined as $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about the photons' time evolution, from the early times, $\eta=\eta_i$, to present, $\eta=\eta_0$. In this section, we derive relations between the photon temperature perturbation $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
+We have derived the set of differential equations governing the time evolution of photon temperature perturbations. Adiabatic initial conditions mean that there is only one degree of freedom for scalar perturbations at the end of inflation. Hence, $\Phi(\eta_i,\vv{k})$ for example fully specifies the initial values needed for the evolution equations, which themselves depend only on the magnitude $k$ of the wavevector as discussed earlier. It follows that the \textit{radiation transfer function} defined as $\Delta_l(k) := \Theta(k,\eta_0) / \Phi(k,\eta_i) $ encapsulates all the relevant information about the photons' time evolution, from the early times, $\eta=\eta_i$, to present, $\eta=\eta_0$. In this section, we derive the relations between the photon temperature perturbation $\Theta(k,\eta_0)$ and the CMB anisotropy observed today.
 
-We measure the CMB while sitting at a fixed point in spacetime: here ($\vv{x}=\vv{x}_0$) and now ($\eta=\eta_0$). Small variations in our time and location have effects that are completely negligible considering the Hubble scale today. Anisotropy in the CMB temperature we observe hence takes the simple form
+We measure the CMB while sitting on a fixed point in spacetime: here ($\vv{x}=\vv{x}_0$) and now ($\eta=\eta_0$). Small variations in our time and location have effects that are completely negligible considering the Hubble scale today. Anisotropy in the CMB temperature we observe hence takes the simple form
 \begin{align}
 	\left( \frac{\Delta T}{T} \right) (\hat{\vv{p}}) = \Theta(\eta_0, \vv{x}_0, \hat{\vv{p}}, \eta_0).
 \end{align}
-The vector $\hat{\vv{p}}$ relates to which direction in the sky we point our telescopes. Observed data hence lie on a unit two-dimensional sphere containing $\hat{\vv{p}}$. The equivalent of Fourier transform for functions defined on a sphere is the spherical harmonic transform;
+The vector $\hat{\vv{p}}$ relates to which direction in the sky we point our telescopes. The observed data thus lie on a two-dimensional sphere containing $\hat{\vv{p}}$. The equivalent of Fourier transform for functions defined on a sphere is the spherical harmonic transform;
 \begin{align}
 	\Theta(\vv{x}, \hat{\vv{p}}, \eta) = \sum_{l,m} a_{lm}(\vv{x},\eta) Y_{lm}(\hat{\vv{p}}). 
 \end{align} 
-In physical terms, the spherical harmonics $Y_{lm}(\hat{\vv{p})}$ are joint eigenstate of angular momentum operators $\hat{L}^2$ and $\hat{L}_3$, with associated quantum numbers $l$ and $m$, respectively. In mathematical terms, they form a basis of harmonic (vanishing Laplacian) polynomials of degree $l$ in three dimensions, restricted to a sphere. For each $l$, $m$ may take one of the $2l+1$ values in ${-l,-l+1,\cdots,l}$. Note that $Y_{lm}$s are orthonormal by construction:
+In physical terms, the spherical harmonics $Y_{lm}(\hat{\vv{p})}$ are joint eigenstates of the angular momentum operators $\hat{L}^2$ and $\hat{L}_3$ with associated quantum numbers $l$ and $m$, respectively. In mathematical terms, they form a basis of harmonic (vanishing Laplacian) polynomials of degree $l$ in three dimensions, their domain restricted to a sphere. For each $l$, the number $m$ may take one of the $2l+1$ values in $\{-l,-l+1,\cdots,l\}$. Note that $Y_{lm}$s are orthogonal and normalised by construction:
 \begin{align}
 	\int d^2\hat{\vv{p}} \; Y^*_{lm} (\hat{\vv{p}}) Y_{l'm'} (\hat{\vv{p}}) = \delta_{ll'} \delta_{mm'}. \label{eqn:spherical_harmonic_orthonormality}
 \end{align}
@@ -449,7 +451,7 @@ Another useful identity is the addition theorem for spherical harmonics given by
 \end{align}
 where $P_l(\mu)$ are Legendre polynomials.
 	
-As long as sufficiently many multipoles $l$ are included, spherical harmonic coefficients $a_{lm}$ contain full information of the original function. Thanks to orthonormality, the spherical multipole coefficients can be computed using
+As long as sufficiently many multipoles $l$ are included, the spherical harmonic coefficient $a_{lm}$ contain full information of the original function, just like the Fourier transform. Thanks to orthonormality \eqref{eqn:spherical_harmonic_orthonormality}, the spherical multipole coefficients can be computed using
 \begin{align}
 	a_{lm} (\vv{x},\eta) &= \int d^2\hat{\vv{p}} \; \Theta(\vv{x}, \hat{\vv{p}},\eta) Y^*_{lm} (\hat{\vv{p}}). \\
 	&= \int \frac{d^3 k}{(2\pi)^3} e^{i\vv{k}\cdot\vv{x}} \int d^2\hat{\vv{p}} \; \Theta(\vv{k},\hat{\vv{p}},\eta) Y^*_{lm}(\hat{\vv{p}}). \label{eqn:alm_derivation_alm_using_theta}
@@ -458,8 +460,8 @@ As long as sufficiently many multipoles $l$ are included, spherical harmonic coe
 Note that the evolution equation \eqref{eqn:boltzmann_equation_in_fourier_space} for the perturbations $\Theta(\vv{k},\hat{\vv{p}},\eta)$ above only depends on $k=\|\vv{k}\|$, the angle $\mu = \hat{\vv{k}} \cdot \hat{\vv{p}}$, and time $\eta$. The rest are determined from initial conditions. The following ratio therefore only depends on $k$, $\mu$ and $\eta$ as well;
 \begin{align}
 	\frac{\Theta(\vv{k},\hat{\vv{p}},\eta)}{\Phi(\vv{k},\eta_i)} &= f(k, \mu, \eta) \\
-	&= \sum_l (-i)^l (2l+1) P_l(\mu) \frac{\Theta_l(k,\eta)}{\Phi(\vv{k},\eta_i)} \label{eqn:alm_derivation_legendre_expansion}\\ 
-	&= \sum_l (-i)^l (2l+1) P_l(\mu) \Delta_l(\vv{k},\eta),
+	&= \sum_l (-i)^l (2l+1) P_l(\mu) \frac{\Theta_l(\vv{k},\eta)}{\Phi(\vv{k},\eta_i)} \label{eqn:alm_derivation_legendre_expansion}\\ 
+	&= \sum_l (-i)^l (2l+1) P_l(\mu) \Delta_l(k,\eta),
 \end{align}
 where we expanded using Legendre polynomials in \eqref{eqn:alm_derivation_legendre_expansion} and used the definition of transfer functions. Substituting this into \eqref{eqn:alm_derivation_alm_using_theta},
 \begin{align}
@@ -469,20 +471,20 @@ where we expanded using Legendre polynomials in \eqref{eqn:alm_derivation_legend
 \end{align}
 For the last line, we expanded $P_{l'}$ using the addition theorem \eqref{eqn:harmonic_addition_theorem} and performed the $\int d\hat{\vv{p}}$ integral. Orthonormality \eqref{eqn:spherical_harmonic_orthonormality} forces $l'=l$ and simplifies the summation over $l'$.
 
-Setting $\vv{x}=\vv{x_0}$ to be $\vv{0}$ and choosing $\eta=\eta_0$, we obtain a formula for the observed temperature anisotropy:
+Setting $\vv{x}=\vv{x_0} = \vv{0}$ and choosing $\eta=\eta_0$, we obtain a formula for the observed temperature anisotropy:
 \begin{align}
 	a_{lm} = 4\pi (-i)^l \int \frac{d^3\vv{k}}{(2\pi)^3} \Phi(\vv{k}) \Delta_{l}(k) Y^*_{lm}(\hat{\vv{k}}). \label{eqn:alm_from_phi}
 \end{align}
 
 \subsection{CMB power spectrum}
 
-Slow-roll inflation generates quantum fluctuations which are mostly Gaussian. In Section \ref{section:quantum_fluctuations} we derived the dimensionless power spectrum for $\delta\phi$ \eqref{eqn:single_field_inflation_power_spectrum}, the fluctuations in the inflationary field, by evaluating the vacuum expectation value $\langle \delta\phi(\vv{k}_1,\tau) \delta\phi(\vv{k}_2,\tau) \rangle$ through canonical quantisation of $\delta\phi$. The equivalent expression for the potential $\Phi$ evaluated at the end of inflation is
+Slow-roll inflation generates quantum fluctuations that are mostly Gaussian. In Section \ref{section:quantum_fluctuations} we derived the dimensionless power spectrum for $\delta\phi$ \eqref{eqn:single_field_inflation_power_spectrum}, the fluctuations in the inflationary field, by evaluating the vacuum expectation value $\langle \delta\phi(\vv{k}_1,\tau) \delta\phi(\vv{k}_2,\tau) \rangle$ through canonical quantisation of $\delta\phi$. The equivalent expression for the potential $\Phi$ evaluated at the end of inflation is
 \begin{align}
 	\langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle = (2\pi)^3 \delta^{(3)} (\vv{k} + \vv{k}') P_\Phi (k), \label{eqn:bardeen_potential_power_spectrum}
 \end{align}
-where $P_\Phi (k)$ is the power spectrum for $\Phi$. The Dirac delta function above enforces momentum conservation, a manifestation of statistical homogeneity. This can be seen by considering a spatial translation $\vv{x} \rightarrow \vv{x}+\vv{c}$ under which the field transforms as $\Phi(\vv{k}) \rightarrow \exp(i\vv{k}\cdot\vv{c}) \Phi(\vv{k})$. The correlation function on the left hand side of \eqref{eqn:bardeen_potential_power_spectrum} then gains a factor of $\exp(i(\vv{k}+\vv{k}')\cdot\vv{c})$. For this to be equal to $1$ for arbitrary $\vv{c}$, we require $\vv{k}+\vv{k}'=\vv{0}$ as above.
+where $P_\Phi (k)$ is the power spectrum of $\Phi$. The Dirac delta function above enforces the momentum conservation, a manifestation of statistical homogeneity. This can be seen by considering a spatial translation $\vv{x} \rightarrow \vv{x}+\vv{c}$ under which the field transforms as $\Phi(\vv{k}) \rightarrow \exp(i\vv{k}\cdot\vv{c}) \Phi(\vv{k})$. The correlation function on the left hand side of \eqref{eqn:bardeen_potential_power_spectrum} then gains a factor of $\exp(i(\vv{k}+\vv{k}')\cdot\vv{c})$. For this to be equal to $1$ for arbitrary $\vv{c}$, we require $\vv{k}+\vv{k}'=\vv{0}$ as above.
 
-We can now compute the power spectrum of late-time CMB temperature anisotropy from given $P_\Phi(k)$. Using \eqref{eqn:alm_from_phi},
+We can now compute the power spectrum of late-time CMB temperature anisotropy from the given primordial power spectrum $P_\Phi(k)$. Using \eqref{eqn:alm_from_phi},
 \begin{align}
 	\langle a^*_{lm} a_{l'm'} \rangle &= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \frac{d^3\vv{k'}}{(2\pi)^3} \langle \Phi (\vv{k}) \Phi (\vv{k}') \rangle (\vv{k}') \Delta_l (k) \Delta_{l'} (k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}'})  \\
 	&= (4\pi)^2 i^{l-l'} \int \frac{d^3\vv{k}}{(2\pi)^3} \Delta_l (k) \Delta_{l'} (k) P_\Phi(k) Y_{lm}(\hat{\vv{k}}) Y^*_{l'm'}(\hat{\vv{k}}) \\
@@ -493,12 +495,20 @@ where the \textit{angular power spectrum} is defined as
 \begin{align}
 		C_l := \frac{2}{\pi} \int dk \; k^2 |\Delta_l(k)|^2 P_\Phi (k) = 4\pi \int d(\ln k) \; |\Delta_l(k)|^2 \mathcal{P}_\Phi (k).
 \end{align}
+The dimensionless power spectrum $\mathcal{P}_\Phi(k) := (1/2\pi^2) P_\Phi(k)$ as before.
 
-Gaussianity of primordial perturbations for slow-roll inflation means that the $a_{lm}$s, evolved linearly from the initial fluctuations, are also Gaussian. CMB measurements show that the $a_{lm}$s indeed follow multivariate Gaussian distribution. The form of \eqref{eqn:alm_from_phi} shows that the multipoles $a_{lm}$ are uncorrelated with each other, and since they are Gaussian distributed, vanishing correlation implies independence. In particular, $a_{lm}$s with same $l$ but distinct $m$s are independent and identically distributed. We can therefore combine them to get a more precise estimate for $C_l$;
+Gaussianity of the primordial perturbations from slow-roll inflation means that the $a_{lm}$s, evolved linearly from the initial fluctuations, are also Gaussian. CMB measurements show that the $a_{lm}$s are indeed consistent with a multivariate Gaussian distribution. The form of \eqref{eqn:alm_from_phi} shows that the multipoles $a_{lm}$ are uncorrelated with each other, and since they are Gaussian distributed, vanishing correlation implies independence. In particular, the $a_{lm}$s with same $l$ but distinct $m$s are independent and identically distributed. We can therefore combine them to get a more precise estimate for $C_l$;
 \begin{align}
 	\hat{C}_l = \frac{1}{2l+1} \sum_{m=-l}^{m=l} a^*_{lm} a_{lm}.
 \end{align}
 This allows us to do precision cosmology with the CMB data.
 
 
-%Borrow Planck 2018 analysis picture maybe?
+
+\section*{Summary}
+
+In this chapter we formulated the cosmological perturbation theory with a focus on CMB anisotropy. Starting from the perturbed metric of the universe, we derived the conservation and Einstein equations to first order in perturbations. We then discussed how to fix a gauge and introduced several important gauge-invariant quantities, including the curvature perturbation $\zeta$ which is constant at super-horizon scales. Working in Newtonian gauge, we derived the time evolution equations for both matter and radiation perturbations. The latter involved writing down the Boltzmann's equation with scattering terms. The result is a system of differential equations for the multipoles $\Theta_l$ of the photon temperature perturbations, which can be solved to obtain the transfer functions encapsulating the full evolution history of the CMB.
+
+CMB anisotropy is the most powerful probe for constraining cosmological parameters. The CMB power spectrum obtained from recent observations provided extremely precise estimates of the inflationary $\Lambda$CDM parameters such as the energy composition and age of the universe. In addition to the temperature anisotropy mainly discussed in this chapter, weak polarisation present in the CMB due to Thompson scattering is also a key observable for cosmology. There are two polarisation modes, $E$ and $B$, sourced by the scalar and tensor perturbations, respectively. The E-mode polarisation data has been combined with the temperature one which significantly improved the CMB's estimation power, owing to recent advances in measurement sensitivity \cite{PlanckCollaboration2018Parameters}. 
+
+Furthermore, the fact that CMB anisotropy depends linearly on the primordial perturbations makes it an ideal dataset for studying higher-order correlation functions. In the next chapter, we will discuss how the CMB bispectrum can be used to go beyond the Gaussian assumption and test various inflation models via primordial non-Gaussianity.
