@@ -2,7 +2,7 @@
 %*******************************************************************************
 %****************************** Fifth Chapter **********************************
 %*******************************************************************************
-\chapter{High-Resolution CMB Bispectrum Estimator}
+\chapter{High-Resolution CMB Bispectrum Estimator} \label{chapter:high_resolution_cmb_bispectrum_estimator}
 
 % **************************** Define Graphics Path **************************
 \ifpdf
@@ -13,7 +13,7 @@
 
 Despite their major role in constraining a wide range of inflation models, there are only a few implementations of the CMB bispectrum estimator due to computational challenges. The Planck collaboration mainly utilised three independent approaches for their bispectrum analysis \cite{PlanckCollaboration2015,PlanckCollaboration2018}: KSW \cite{Komatsu2005}, Binned \cite{Bucher2010}, and Modal \cite{Fergusson2012}. Standard bispectrum templates for Local, Equilateral and Orthogonal shapes have been constrained using all three methods independently, while other more specific ones were covered by only a subset of them.
 
-Some of the most challenging models to handle are those with oscillatory behaviour. Numerous theoretically well-motivated models fall into this category. Feature models, as discussed in the previous chapter, often predict linearly spaced oscillations in the bispectrum. Resonance models such as Axion monodromy, ones with varying speed of sound, ... all produce log-spaced oscillations modulated with various envelopes. (TODO: CHECK! NBD, DBI? PUT LOTS OF REFS HERE). Constraining such models are difficult since oscillations in the bispectra degrade numerical stability of the integrals involved.
+Some of the most challenging models to handle are those with oscillatory behaviour. Numerous theoretically well-motivated models fall into this category. Feature models, as discussed in the previous chapter, often predict linearly spaced oscillations in the bispectrum. Resonance models such as Axion monodromy, ones with varying speed of sound, ... all produce log-spaced oscillations modulated with various envelopes. (TODO: add refs on NBD, DBI resonance etc). Constraining such models are difficult since oscillations in the bispectra degrade numerical stability of the integrals involved.
 
 Several simple models with oscillations have been studied in the latest Planck analysis using Modal and some specific KSW-type estimators introduced in \cite{Munchmeyer2014}. Modal estimator covers wide range of oscillatory models, with and without envelopes, thanks to versatility of its mode expansion. It is however difficult to constrain models with high-frequency oscillations using generic mode functions. Modal code allows choosing a more tailored set of modes for this purpose, but the fact that there are \textit{two} independent sets of mode functions - primordial and late-time - complicates targeted analyses. For each specific selection of mode functions in primordial `$k$' domain, a suitable choice of basis has to be made in late-time `$l$' space. Rapidly oscillating signals may also get lost during the projection from one to the other and cause some numerical issues.
 
@@ -813,7 +813,7 @@ As with the feature models before, we plot the correlation matrix between the te
 
 Collaborating closely with the main author of \textsc{Primodal}, Philip Clarke, we verified the integrity of the combined \textsc{Primodal} + \textsc{CMB-BEst} routine. We thoroughly tested the consistency of basis functions, their orthogonalisation, and convergence. Both \textsc{Primodal} and \textsc{CMB-BEst} are now in the exploitation phase. We present a working example of the combined pipeline as a proof of concept.
 
-DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi,Chen2005runningdbi,Bean2008comparingdbi} (TODO: add more DBI paper references) is a well-studied single-field inflation model inspired by string theory. Its action follows the general form \eqref{eqn:general_single_field_action}, with a non-canonical kinetic term given by
+DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi,Chen2005runningdbi,Bean2008comparingdbi} is a well-studied single-field inflation model inspired by string theory. Its action follows the general form \eqref{eqn:general_single_field_action}, with a non-canonical kinetic term given by
 \begin{align}
 	P(X,\phi) = - \frac{1}{f(\phi)} \left[ \sqrt{1 - 2f(\phi)X} - 1 \right] - V(\phi),
 \end{align}
