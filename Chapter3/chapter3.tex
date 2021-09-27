@@ -111,7 +111,7 @@ We now write down the action. Compared to \eqref{eqn:real_scalar_field_action}, 
 \begin{align}
 	S = \int dt d^3 \vv{x} \; \sqrt{-g} \left[ \frac{M_p}{2} R + P(X,\phi) \right],  \label{eqn:general_single_field_action}
 \end{align}
-where $M_p := (8\pi G)^{-1/2}$ is the reduced Planck mass, and $X:=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ denote the canonical kinetic term. We set $M_p=1$ for convenience. $P(X,\phi)$ is an arbitrary function which generalises $X-V(\phi)$ of the standard slow-roll inflation. (TODO: add references to P(X,phi) models).
+where $M_p := (8\pi G)^{-1/2}$ is the reduced Planck mass, and $X:=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ denote the canonical kinetic term. We set $M_p=1$ for convenience. $P(X,\phi)$ is an arbitrary function which generalises $X-V(\phi)$ of the standard slow-roll inflation \cite{Chen2007b}.
 
 One notable consequence of the non-trivial kinetic term $P$ is that fluctuations in the inflation field no longer necessarily propagate with speed of light. The sound speed, defined as the ratio $\delta P / \delta \rho$, in these models is given by
 \begin{align}
@@ -161,7 +161,7 @@ where the mode functions $u_k(\tau)$ satisfy the equations of motion from the qu
 
 Meanwhile, all information about interactions are captured in the time evolution operator $\hat{U_I}(t,t_0) = T\exp \left(-i\int_{t_0}^t H_I(t')dt'\right)$, where $H_I$ denotes $H_{int}$ in the interaction picture. The time-ordering operator $T$ arranges operators so that ones evaluated at earlier times appear on the right. States at time $t$ is given by $|\psi_I(t)\rangle = U_I(t,t_0) |\psi_I(t_0)\rangle$.
 
-The in-in formalism (TODO: add references here) allows us to calculate correlation functions at given time $t$ using two `in' states: vacua at the infinite past in our case. For some local operator $Q(t)$ written as a product of $\hat{\zeta}(\vv{x},t)$ and $\hat{\pi}(\vv{x},t)$, we define correlation as
+The in-in formalism (\cite{Schwinger1961inin} and first used for cosmology in \cite{Jordan1986inincosmo1,Calzetta1987inincosmo2}) allows us to calculate correlation functions at given time $t$ using two `in' states: vacua at the infinite past in our case. For some local operator $Q(t)$ written as a product of $\hat{\zeta}(\vv{x},t)$ and $\hat{\pi}(\vv{x},t)$, we define correlation as
 \begin{align}
 	\left< Q(t) \right> &:= \langle in |\;Q(t)\;| in \rangle \nonumber\\ &=  \langle\vv{0}| \left[ \bar{T} \exp \left( i \int_{t_0}^{t} H_I(t')dt \right) \right] Q_I(t) \left[ T \exp \left( -i \int_{t_0}^{t} H_I(t')dt \right) \right]  |\vv{0}\rangle. \label{eqn:in_in_formalism_expectation}
 \end{align}
@@ -189,7 +189,7 @@ where $\tau$ is conformal time. The choice of $u_k(\tau)$ being the positive fre
 
 Before proceeding to computing correlation functions using the in-in formalism, we first need to obtain the Hamiltonian of the system. The conjugate momentum is defined as $\pi = \partial \mathcal{L} / \partial \dot{\zeta}$, where $\mathcal{L}$ is the Lagrangian density. The Hamiltonian density then takes the form $\mathcal{H} = \pi \dot{\zeta} - \mathcal{L} = \mathcal{H}_0 + \mathcal{H}_{int}$. At the order of perturbations we are studying, $\mathcal{H}_{int}$ consists only of cubic terms $\mathcal{H}_3$, which is simply equal to $-\mathcal{L}_3$ obtained from the cubic action $S_3$. It is also sufficient to consider the leading contribution to $\zeta$, so that $\pi \propto \dot{\zeta}$.
 \footnote{There are some subtleties here. We first use $\pi = \partial \mathcal{L} / \partial \dot{\zeta}$, which does contain contributions from higher order terms coming from $\mathcal{L}=\mathcal{L}_0 + \mathcal{L}_{int}$, to obtain the Hamiltonian density $\mathcal{H} = \pi \dot{\zeta} - \mathcal{L}$. We then rewrite $\pi$ in terms of $\zeta$ and its derivatives within $\mathcal{H}$. Next, the quadratic terms in $\mathcal{H}$ are combined as $\mathcal{H}_0$. From this free Hamiltonian we define the conjugate momentum in the interaction picture; $\pi_I :=  \partial \mathcal{H}_0 / \partial \dot{\zeta}$. This $\pi_I$ is what we refer to as $\pi$, simply proportional to $\dot{\zeta}$ in our case.}
-We will rewrite $\pi$ in terms of $\dot{\zeta}$ the rest of this section. (TODO: add reference to Lim's notes?)
+We will rewrite $\pi$ in terms of $\dot{\zeta}$ the rest of this section.
 
 When working perturbatively, the leading contribution to three-point correlation functions comes from terms with one interaction Hamiltonian. Noting that the two terms coming from the two $H_I$s in \eqref{eqn:in_in_formalism_expectation} are complex conjugates to each other, we have
 \begin{align}
@@ -230,7 +230,7 @@ The shape function is then
 \end{align}
 which is maximised in the equilateral limit and vanishes at the squeezed limit.
 
-The full bispectrum can be computed following the general methodology shown in this section. We quote one of the most important results; for the canonical slow-roll inflation with $P(X,\phi) = X - V(\phi)$, the bispectrum is suppressed by the slow-roll parameters $\epsilon$ and $\eta$ \cite{Maldacena2013}. However, relaxing any of the assumptions\textemdash canonical kinetic term, slow-roll, single-field, and Bunch-Davis vacuum \textemdash may yield significant and observable signatures in the bispectrum (e.g., \cite{Chen2010,Komatsu2010} for reviews. TODO: add more references).
+The full bispectrum can be computed following the general methodology shown in this section. We quote one of the most important results; for the canonical slow-roll inflation with $P(X,\phi) = X - V(\phi)$, the bispectrum is suppressed by the slow-roll parameters $\epsilon$ and $\eta$ \cite{Maldacena2013}. However, relaxing any of the assumptions\textemdash canonical kinetic term, slow-roll, single-field, and Bunch-Davis vacuum \textemdash may yield significant and observable signatures in the bispectrum (\cite{Chen2010,Komatsu2010} for reviews).
 
 \section{CMB bispectrum estimation} \label{section:CMB_bispectrum_estimation}
 
@@ -243,11 +243,11 @@ In this section, we formulate the theory of CMB bispectrum estimation. Estimatin
 
 \subsection{CMB bispectrum}
 
-Consider the three-point correlation function of the spherical harmonic coefficients $a_{lm}^X$s from (TODO: reference alm definition here).
+Consider the three-point correlation function of the spherical harmonic coefficients $a_{lm}^X$s from \eqref{eqn:alm_from_phi};
 \begin{align}
-	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> = (4\pi)^3 (-i)^{l_1 + l_2 + l_3} \left< \prod_{j=1}^{3} \left[ \int \frac{d^3\vv{k}_j}{(2\pi)^3} \zeta(\vv{k}_j)   \Delta_{l_j}^{X_j} (k_j) Y^*_{l_j m_j} (\hat{\vv{k}}_j) \right] \right>. \label{eqn:bispectrum_derivation_base_form}
+	\left< a_{l_1 m_1}^{X_1} a_{l_2 m_2}^{X_2} a_{l_3 m_3}^{X_3}  \right> = (4\pi)^3 (-i)^{l_1 + l_2 + l_3} \left< \prod_{j=1}^{3} \left[ \int \frac{d^3\vv{k}_j}{(2\pi)^3} \zeta(\vv{k}_j)   \Delta_{l_j}^{X_j} (k_j) Y^*_{l_j m_j} (\hat{\vv{k}}_j) \right] \right>, \label{eqn:bispectrum_derivation_base_form}
 \end{align}
-Here $X_j$s can be either $T$ or $E$, corresponding to temperature and E-mode polarisation of CMB anisotropy, respectively. The transfer functions $\Delta_l^X (k)$ depend only on $k=\left\| \vv{k} \right\|$ and incorporate all information about the evolution of primordial perturbations $\zeta$ and then projection onto the observed sky today.
+where we replaced $\Phi$ with $\zeta$ in the integrand. Here $X_j$s can be either $T$ or $E$, corresponding to temperature and E-mode polarisation of CMB anisotropy, respectively. The $\zeta$ transfer functions $\Delta_l^X (k)$ for $\zeta$ depend only on $k=\left\| \vv{k} \right\|$ and incorporate all information about the evolution of primordial perturbations $\zeta$ and then projection onto the observed sky today.
 
 We may take everything but $\zeta(\vv{k_j})$s outside the brackets $\left< \cdot \right>$. From the definition of bispectrum, we have
 \begin{align}
@@ -315,7 +315,7 @@ By squaring the Gaunt integral and summing over $m$s, we get a simpler quantity 
 \subsection{Optimal estimator}
 The bispectrum of the CMB anisotropy is a powerful probe of primordial non-Gaussianity. Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum of various shapes, constraining a wide class of inflationary models. Thanks to the largely linear evolution of CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure. Here, we derive the optimal CMB bispectrum estimator using the mathematical formulation laid out previously.
 
-Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as local, equilateral, and orthogonal shapes (TODO: define these earlier and reference them here). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of shapes chosen;
+Consider a number of inflation models which predict non-vanishing primordial bispectrum of form $B^{(i)}(k_1,k_2,k_3)$ for $i=1,2,\cdots$. We often use templates capturing the common characteristics of a class of models, such as the local, equilateral, and orthogonal shapes (\ref{def:local_template}-\ref{def:orthogonal_template}). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of shapes chosen;
 \begin{align}
 	B(k_1,k_2,k_3) = \sum_i f_{NL}^{(i)} \; B^{(i)}(k_1,k_2,k_3), \label{eqn:primordial_bispectrum_fNLs}
 \end{align}
@@ -467,7 +467,7 @@ In some cases, a seemingly non-separable function can be expanded using an analy
 allows us to approximate the left hand side with a sum over separable terms parametrised by $u$ \cite{Smith2011}. Such numerical trick, however, is restricted to cases where the integrand is relatively well-behaved. Otherwise, a large number of terms are needed for accurate expansion, which hurts the total computation time.
 
 \subsubsection*{Modal estimator}
-KSW estimator is fast and numerically stable but restrictive in the type of bispectra it can tackle. Modal estimator, first developed in \cite{Fergusson2010general} and expanded much further through \cite{Fergusson2012,Fergusson2014,Shiraishi2014parityodd,Shiraishi2019cross} (TODO: ask J for refs here?), builds on a simple but crucial idea to address this issue; when the bispectrum shape cannot be factorised, we may instead \textit{expand} it using a basis constructed from separable modes.
+KSW estimator is fast and numerically stable but restrictive in the type of bispectra it can tackle. Modal estimator, first developed in \cite{Fergusson2010general} and expanded much further through \cite{Fergusson2012,Fergusson2014,Shiraishi2014parityodd,Shiraishi2019cross}, builds on a simple but crucial idea to address this issue; when the bispectrum shape cannot be factorised, we may instead \textit{expand} it using a basis constructed from separable modes.
 
 The essence of Modal estimator is captured in the following `modal' expansion.
 \begin{align}
@@ -657,7 +657,7 @@ where the Weyl potential $\Psi_W = (\Psi + \Phi)/2$ is defined as the average of
 \begin{align}
 	\psi := - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi}  \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi), \label{def:lensing_potential}
 \end{align}
-so that $\vv{\alpha}(\hat{\vv{n}}) = \nabla_{\hat{\vv{n}}} \psi$ in our regime. $\psi$ is a secondary observable of CMB which opens up a whole field by itself. We refer to \cite{Bartelmann2001weaklensing,Lewis2006weaklensing,Hanson2010weaklensing} for detailed reviews on CMB lensing including derivations of the equations above. (TODO: add references for recent lensing results)
+so that $\vv{\alpha}(\hat{\vv{n}}) = \nabla_{\hat{\vv{n}}} \psi$ in our regime. $\psi$ is a secondary observable of CMB which opens up a whole field by itself. We refer to \cite{Bartelmann2001weaklensing,Lewis2006weaklensing,Hanson2010weaklensing} for detailed reviews on CMB lensing including derivations of the equations above.
 
 Another significant late-time contribution to CMB anisotropy comes from the Integrated Sachs-Wolfe (ISW) effect. This is the last term in \eqref{eqn:line_of_sight_solution_approximated} with a simple relabelling of variables:
 \begin{align}
@@ -684,8 +684,10 @@ Partial sky coverage due to masks cause multiple complications. For CMB bispectr
 
 Second, the sky mask generates non-vanishing bispectrum by itself which introduces additional noise in the estimation. Sharp cuts around the edges of the mask induce some high-frequency signals. A low-frequency mode from the overall mask shape then correlates with them to produce bispectrum in squeezed configurations. We follow \cite{Gruetjen2017inpainting} and utilise a simple inpainting method to reduce the effect. In this approach, a linear diffusive method is used to interpolate and hence smoothen the mask edges; at each iteration, every pixel within previously masked regions takes the average value of its neighbouring pixels. The resulting inpainted map after a sufficient number of iterations is shown to contain little excess contamination from the mask. 
 
-TODO: Point sources, sky masks: dust synchrotron free-free emission
 
+
+TODO: Point sources, sky masks: dust synchrotron free-free emission
+From Planck 2013 NG paper: Extra-Galactic point sources at Planck frequencies are divided into two broad categories: radio sources with synchrotron and/or free-free emission; and infrared galaxies with thermal emission from dust heated by young stars.
 
 \section*{Summary}
 
