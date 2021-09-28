@@ -167,7 +167,7 @@ We follow \cite{Fergusson2010general} and denote this domain consisting of two t
 \begin{figure}
 	\centering    
 	\includegraphics[width=1.0\textwidth]{legendre_modes_3D_final.pdf}
-	\caption{Examples of our Legendre basis functions, evaluated on the sliced tetrapyd domain shown in Figure \ref{fig:tetrapyd}. Functions are defined as $Q_{p_1 p_2 p_3}(k_1,k_2,k_3) := P_{p_1}(k_1) P_{p_2}(k_2) P_{p_3}(k_3)$, where $P_l(k)$ are Legendre polynomials. Here we plot $p_1 = p_2 = p_3 = p$, where $p$ equals (a) $0$, (b) $1$, (c) $2$, (d) $3$, (e) $4$, and (f) $5$. A single colour map is used across plots: red and blue correspond to $+1$ and $-1$, respectively.}	
+	\caption{Examples of our Legendre basis functions, evaluated on the sliced tetrapyd domain shown in Figure \ref{fig:tetrapyd}. Functions are defined as $Q_{p_1 p_2 p_3}(k_1,k_2,k_3) := P_{p_1}(k_1) P_{p_2}(k_2) P_{p_3}(k_3)$, where $P_l(k)$ are Legendre polynomials. Here we plot $p_1 = p_2 = p_3 = p$, where $p$ equals (a) $0$, (b) $1$, (c) $2$, (d) $3$, (e) $4$, and (f) $5$. A single colour map is used across the plots: red and blue correspond to $+1$ and $-1$, respectively.}	
 	\label{fig:Legendre_basis_functions_3D}
 \end{figure}
 
@@ -828,11 +828,17 @@ DBI inflation generates non-Gaussianity with its shape similar to the equilatera
 	B_\Phi^{DBI}(k_1,k_2,k_3) = \frac{6A_\Phi^2}{(k_1 k_2 k_3)^3} \frac{-3/7}{(k_1 + k_2 + k_3)^2} \bigg[ \sum_i k_i^5 &+ \sum_{i\neq j} (2k_i^4 k_j - 3k_i^3 k_j^2)  \nonumber \\
 	&+ \sum_{i\neq j\neq l} (k_i^3 k_j k_l - 4k_i^2 k_j^2 k_l) \bigg]. \label{eqn:dbi_bispectrum_template}
 \end{align}
-We switched to a convention where the potential $\Phi$ is used instead of $\zeta$. On superhorizon scales at the end of inflation they differ by a constant factor: $\Phi = (3/5)\zeta$. With respect to this template, the theoretical bispectrum from DBI inflation has amplitude $f_{NL}^{DBI} \approx - (35/108)((c^{DBI}_s)^{-2}-1)$, an approximation accurate as long as the DBI sound speed $c^{DBI}_s \ll 1$. Constraints on $f_{NL}^{DBI}$ therefore place limits on $c_s$. Planck 2018 analysis \cite{PlanckCollaboration2018} found $f_{NL}^{DBI} = 46 \;\pm\; 58$ with 68\% confidence level from CMB temperature data. Corresponding bound on the speed of sound is $c^{DBI}_s \ge 0.079$.
+We switched to a convention where the potential $\Phi$ is used instead of $\zeta$. On superhorizon scales at the end of inflation they differ by a constant factor: $\Phi = (3/5)\zeta$. With respect to this template, the theoretical bispectrum from DBI inflation has amplitude
+\begin{align}
+	f_{NL}^{DBI} \approx - \frac{35}{108} \left[ \frac{1}{\left( c^{DBI}_s \right)^2} - 1 \right], \label{eqn:DBI_fNL_and_sound_speed}
+\end{align}
+an approximation accurate as long as the DBI sound speed $c^{DBI}_s \ll 1$. Constraints on $f_{NL}^{DBI}$ therefore place limits on $c_s$. Planck 2018 analysis \cite{PlanckCollaboration2018} found $f_{NL}^{DBI} = 46 \;\pm\; 58$ with 68\% confidence level from CMB temperature data. Corresponding bound on the speed of sound is $c^{DBI}_s \ge 0.079$.
 
-We reproduce the DBI sound speed constraint with the Planck 2018 data using the \textsc{Primodal}$+$\textsc{CMB-BEst} routine. Unlike the Planck analysis, our method does not require templates to connect inflationary predictions to CMB data. Instead of using a single estimate from an approximate template, we scan over DBI theory parameters and constrain the individual primordial bispectrum directly. A given parameter set can be ruled out if the corresponding constraint on $f_{NL}$ excludes $f_{NL}=1$ with high confidence.
+We reproduce the DBI sound speed constraint from Planck 2018 analysis using the \textsc{Primodal}$+$\textsc{CMB-BEst} routine. Unlike the Planck analysis, our method does not require templates to connect inflationary predictions to CMB data. Instead of using a single estimate from an approximate template, we scan over DBI theory parameters and constrain the individual primordial bispectrum directly. A given parameter set can be ruled out if the corresponding constraint on $f_{NL}$ excludes $f_{NL}=1$ with high confidence. 
 
-The parameter $\beta_{IR}$ is varied within interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. Results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
+One notable limitation in the current implementation of \textsc{Primodal} is that the details of how inflation ends are not prescribed. This means that the scales during inflation and what we observe cannot be mapped directly, which restricts our ability to translate the results into a constraint on more fundamental parameters such as $\beta_{IR}$. Our work here still serves as a useful validation of the combined pipeline. For the DBI sound speed scan, the approximate relation \eqref{eqn:DBI_fNL_and_sound_speed} is used to relate the output $c^*_s$\textemdash sound speed at some pivot scale during horizon crossing\textemdash from \textsc{Primodal} with the physical DBI sound speed $c^{DBI}_s$. Numerous other validation tests we performed such as convergence tests with respect to the basis size $p_{max}$ are unaffected by this caveat and still serves as a proof of concept for our combined pipeline.
+
+The parameter $\beta_{IR}$ is varied within the interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. The results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -847,26 +853,52 @@ First of all, we check that our Legendre basis with $p_{max}=30$ has converged a
 \end{align}
 where $f^{(i)}_1$ and $f^{(i)}_2$ denote $f_{NL}$ estimate for the $i$th Gaussian simulated map from the two routines. $\epsilon^2$ measures the mean squared error in the two sets of $f_{NL}$ signal-to-noises for $N_{sim}$ simulations. Comparing results from the Legendre basis with $p_{max} = 30$ and $25$ across the scan, we confirmed that $\epsilon < 0.01$ in the full range and $\epsilon \approx 0.002$ for the majority. A plot with the full result will be provided in \cite{Sohn2021inprep}.
 
-Secondly, we constrain the DBI sound speed as $c_s \gtrapprox 0.056$ with $95\%$ confidence using CMB temperature data from Planck. Each of the points in Figure \ref{fig:dbi_sound_speed_scan} are normalised such that $f_{NL}=1$ corresponds to the bispectrum predicted by the model. Estimates from the Planck 2018 map take negative values, with error bars small enough to exclude $f_{NL}=1$ with $2\sigma$ confidence level when $c_s < 0.056$. TODO:  a) why does bispectrum amplitude increase with decreasing sound speed? b) explain the discrepancy with Planck Modal result. c) caveat: using gaussian sims to approximate true variance
+Secondly, we constrain the DBI sound speed as $c_s \gtrapprox 0.056$ with $95\%$ confidence using CMB temperature data from Planck. Each of the points in Figure \ref{fig:dbi_sound_speed_scan} are normalised to some $\tilde{f}_{NL}$ such that $\tilde{f}_{NL}=1$ corresponds to the bispectrum predicted by the model. Estimates from the Planck 2018 map take negative values, with error bars small enough to exclude $f_{NL}=1$ with $2\sigma$ confidence level when $c_s < 0.056$. Our constraint is similar but not identical to the result from Planck 2018 analysis which reads $c_s \ge 0.079$. The discrepancy stems from differences in the constraints for DBI template \eqref{eqn:dbi_bispectrum_template}: $f^{DBI}_{NL}=27 \pm 58$ for \textsc{Primodal}+\textsc{CMB-BEst} whereas $f^{DBI}_{NL}=46 \pm 58$ for Planck. This $\approx0.32\sigma$ gap in signal to noise is largely because the Modal expansion is incomplete so that the correlation between the expanded and full DBI template equals $r\approx 0.95$. As discussed in Appendix B of \cite{PlanckCollaboration2013}, this level of correlation causes an expected scatter in $f_{NL}$s approximately equal to $0.3\sigma$.
 
-Lastly, we verify that the DBI template \eqref{eqn:dbi_bispectrum_template} accurately approximates the full bispectrum. 
+Lastly, we verify that the DBI template \eqref{eqn:dbi_bispectrum_template} accurately approximates the full numerical result obtained from \textsc{Primodal}. Shown in blue dashed line on Figure \ref{fig:dbi_sound_speed_scan}, the difference between $\tilde{f}_{NL}$ constraints obtained using \textsc{Primodal} and the DBI template differ at order $O(0.01)\sigma$.
+
+\bigskip
+
+We extend the \textsc{Primodal}+\textsc{CMB-BEst} pipeline to study DBI models with resonance. The primordial bispectrum appears similar to the DBI template but has extra log-spaced oscillations superimposed. The Planck analysis covers both DBI shape and resonance templates independently but has not constrained the combination of the two. Our method studies the bispectrum obtained directly from inflation without using approximate templates. We vary the effective frequency $\omega$ of the oscillations while keeping other DBI theory parameters fixed. Figure \ref{fig:dbi_resonance_scan} summarises results of the scan.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.8\textwidth]{dbi_reso_scan_fNLs_new.pdf}
-	\caption{Constraints on the DBI model with oscillations imposed on the inflationary potential, causing resonance-type bispectra approximately parametrised as $\sin(\omega \log(k_1+k_2+k_3) + \phi)$. Primordial bispectrum is computed from \textsc{Primodal} for various step sizes, which was then are fed directly to CMB-BEst.}
+	\caption{Constraints on the DBI model with oscillations imposed on the inflationary potential, causing resonance-type bispectra approximately parametrised as $\sin(\omega \log(k_1+k_2+k_3) + \phi)$. The primordial bispectrum computed from \textsc{Primodal} for various oscillation frequency $\omega$ has been fed directly to CMB-BEst. The results (black line) are shown together with the ones obtained from a smaller basis where $p_{max}=29$ (blue $\times$). The blue regions in the plot represent $1\sigma$ and $2\sigma$ confidence intervals.}
 	\label{fig:dbi_resonance_scan}
 \end{figure}
+
+We find no significant detection of non-Gaussianity in the parameter range we study. Note also that our $f_{NL}$ estimates become unreliable after $\omega\gtrsim2.0$ as the Legendre basis fails to represent rapid oscillations accurately. This can be seen by comparing the estimates from bases of size $p_{max}=30$ and $29$ in the figure. Augmenting the Legendre basis with specific functions or choosing an alternative set of basis \cite{Clarke2021} can improve the convergence up to $\omega\approx5$ (to be included in \cite{Sohn2021inprep}), which is a significant improvement but still rather restrictive compared to the viable parameter range of $\omega\lesssim 35$ for the `vanilla' resonance models shown in Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}.
+
+Investigating the lack of convergence has revealed a more fundamental issue with the primordial basis expansion. Earlier in this chapter, we discussed how the tetrapyd domain of primordial bispectrum can be extended to the cube given by $[k_{min},k_{max}]^3$ such that the decomposition coefficients can be computed accurately and efficiently via \eqref{eqn:basis_expansion}. By doing so, we are expanding the given bispectrum in a cube which contains the tetrapyd while analytically continuing the function in between the two. Having good convergence in the cube then implies good convergence in the tetrapyd inside it. However, in cases where the target function behaves badly outside the tetrapyd, trying to fit the function in the whole cube instead of the tetrapyd may be suboptimal.
+
+We demonstrate this issue by computing the $f_{NL}$ constraints using a bispectrum template $S(k_1,k_2,k_3) = S^{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$: the equilateral shape with sine-log oscillations imposed. Figure \ref{fig:sinlog_equil_template_decomp_comparison} shows two plots analogous to Figure \ref{fig:sinlog_template_correlations}. The correlations between $f_{NL}$s estimated from different values of $\omega$ are computed using two different approaches for the primordial basis expansion. Shown on the left hand side is the result for when we evaluate the given shape function $S(k_1,k_2,k_3)$ within the whole \textit{cube}, as we have so far. We see that the basis fails to express the given bispectrum template accurately after $\omega\gtrsim4$. Large correlations shown in the plot are simply artefacts inaccuracy in the expansion.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sinlog_equil_template_correlations_compare_decomp.pdf}
-	\caption{Correlations between $f_{NL}$ constraints for the enveloped resonance shape $S(k_1,k_2,k_3) = S^{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$ with different $\omega$s. Since the given shape behaves badly in a region outside the tetrapyd but within the cubic domain of (\ref{eqn:basis_expansion}), we observe large off-diagonal correlations in the original Legendre basis expansion (Left). Manually setting the shape function to zero at these unphysical configurations therefore dramatically improves the numerical performance (Right). }
+	\caption{Correlations between $f_{NL}$ constraints for the enveloped resonance shape $S(k_1,k_2,k_3) = S^{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$ with different $\omega$s. Since the given shape behaves badly in the region outside tetrapyd but within the cubic domain of (\ref{eqn:basis_expansion}), we observe large off-diagonal correlations in the original Legendre basis expansion (Left). Manually setting the shape function to zero at these unphysical configurations therefore dramatically improves the numerical performance (Right). }
 	\label{fig:sinlog_equil_template_decomp_comparison}
 \end{figure}
 
+On the right hand side is the result for which the shape function values outside the tetrapyd were manually set to zero during the primordial basis expansion. The modified shape function is still continuous within the cubic domain since the equilateral shape, despite its divergence outside the tetrapyd, vanishes on the boundaries of it. We see that this simple trick has dramatically improved the basis' ability to expand highly oscillatory bispectrum templates. The cross-correlations between templates remain small up until $\omega\approx75$, quite similar to what we saw for the sine-log templates. We confirm that it is indeed the bad behaviour of the templates outside the tetrapyd domain during the primordial basis expansion that causes the lack of convergence. We plan to explore further on this topic in the future.
 
 
+\section*{Summary}
+TODO: finish this
+
+
+In this chapter, we presented a thorough review of our work on the high-resolution bispectrum estimator \textsc{CMB-BEst}. Starting with the mathematical framework of our pipeline, we showed that the
+
+motivation
+formalism
+challenges
+intense optimisation and parallelisation in multiple levels
+thorough validation, both internally and against planck
+proof of concept. combined with primodal. sound speed constraint.
+tetrapyd vs cube expansion - future research?
+Future work.
+We are currently preparing to publish the work presented here as \cite{Sohn2021inprep}.
 
 
 
