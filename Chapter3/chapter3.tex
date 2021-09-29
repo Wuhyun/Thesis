@@ -11,7 +11,7 @@
     \graphicspath{{Chapter3/Figs/Vector/}{Chapter3/Figs/}}
 \fi
 
-The primordial perturbations are consistent with being Gaussian distributed according to observations to date \cite{PlanckCollaboration2018}. Statistical properties of a Gaussian random field are completely characterised by its mean and covariance functions. The latter is directly related to the CMB angular power spectrum since the CMB is a near-linear probe of the early universe. In fact, the power spectrum is a sufficient statistic in the perfect Gaussian limit, which means that it contains all the information about initial conditions we may ever extract from the CMB. The inverse is also true however; if the initial conditions are non-Gaussian, it is essential to go beyond the power spectra and study higher-order statistics. Such non-Gaussian contributions are best captured in the three-point correlation functions, or their Fourier counterpart, the bispectrum.
+The primordial perturbations are consistent with being Gaussian distributed according to observations to date \cite{PlanckCollaboration2018}. The statistical properties of a Gaussian random field are completely characterised by its mean and covariance functions. The latter is directly related to the CMB angular power spectrum since the CMB is a near-linear probe of the early universe. In fact, the power spectrum is a sufficient statistic in the perfect Gaussian limit, which means that it contains all the information about the distribution of the primordial perturbations we may ever extract from the CMB. The inverse is also true however; if the initial perturbations were non-Gaussian, it is essential to go beyond the power spectra and study higher-order statistics. Such non-Gaussian contributions are best captured in the three-point correlation functions, or their Fourier counterpart, the bispectrum.
 
 In single field slow-roll inflation with standard kinetic term and vacuum, the primordial bispectrum is suppressed by slow-roll parameters \cite{Maldacena2013}. However, numerous other inflationary scenarios that are physically well-motivated violate these simple assumptions and hence predict non-Gaussian signatures. They are expected to leave imprints on the CMB bispectrum with characteristic shape and amplitude, where the latter is parametrised by $f_{NL}$.
 
@@ -24,7 +24,7 @@ Consider the three-point correlation function $\left< \zeta(\vv{x}_1) \zeta(\vv{
 \begin{align}
 	\left< \zeta(\vv{k}_1) \zeta(\vv{k}_2) \zeta(\vv{k}_3) \right> = \int d^3\vv{x}_1 d^3\vv{x}_2 d^3\vv{x}_3 \; e^{-i(\vv{k}_1 \cdot \vv{x}_1 + \vv{k}_2 \cdot \vv{x}_2 + \vv{k}_3 \cdot \vv{x}_3 )} \left< \zeta(\vv{x}_1) \zeta(\vv{x}_2) \zeta(\vv{x}_3) \right>. \label{eqn:bispectrum_from_fourier_derivation_1}
 \end{align}
-Assuming that the universe is statistically homogeneous, these correlation functions are invariant under arbitrary spatial translation $\vv{x} \rightarrow \vv{x}' = \vv{x} + \vv{c}$. In particular, we have $\left< \zeta(\vv{x}_1) \zeta(\vv{x}_2) \zeta(\vv{x}_3) \right> = \left< \zeta(\vv{x}_1 - \vv{x}_3) \zeta(\vv{x}_2 - \vv{x}_3) \zeta(\vv{0}) \right>$. Relabelling the integration variables so that $\vv{x}'_1=\vv{x}_1-\vv{x}_3$ and $\vv{x}'_2=\vv{x}_2-\vv{x}_3$, \eqref{eqn:bispectrum_from_fourier_derivation_1} becomes
+Assuming that the universe is statistically homogeneous, these correlation functions are invariant under arbitrary spatial translation $\vv{x} \rightarrow \vv{x}' = \vv{x} + \vv{c}$. In particular, we have \\${\left< \zeta(\vv{x}_1) \zeta(\vv{x}_2) \zeta(\vv{x}_3) \right> = \left< \zeta(\vv{x}_1 - \vv{x}_3) \zeta(\vv{x}_2 - \vv{x}_3) \zeta(\vv{0}) \right>}$. Relabelling the integration variables so that $\vv{x}'_1=\vv{x}_1-\vv{x}_3$ and $\vv{x}'_2=\vv{x}_2-\vv{x}_3$, \eqref{eqn:bispectrum_from_fourier_derivation_1} becomes
 \begin{align}
 	&\int d^3\vv{x}'_1 d^3\vv{x}'_2 d^3\vv{x}_3 \; e^{-i[ \vv{k}_1 \cdot (\vv{x}'_1 + \vv{x}_3) + \vv{k}_2 \cdot (\vv{x}'_2 + \vv{x}_3) + \vv{k}_3 \cdot \vv{x}_3 ]} \left< \zeta(\vv{x}'_1) \zeta(\vv{x}'_2) \zeta(\vv{0}) \right> \nonumber \\
 	&\hspace{0.05\textwidth} = (2\pi)^3 \delta^{(3)}(\vv{k}_1 + \vv{k}_2 + \vv{k}_3) \int d^3\vv{x}'_1 d^3\vv{x}'_2 \; e^{-i( \vv{k}_1 \cdot \vv{x}'_1 + \vv{k}_2 \cdot \vv{x}'_2)} \left< \zeta(\vv{x}'_1) \zeta(\vv{x}'_2) \zeta(\vv{0}) \right> \label{eqn:bispectrum_from_fourier_derivation_2}\\
@@ -43,7 +43,7 @@ where we have used the fact that $R^T=R^{-1}$. We may therefore fix $\vv{k}_1$ t
 \end{align}
 Note that the bispectrum $B(k_1,k_2,k_3)$ is a three-dimensional function, as opposed to the one-dimensional power spectrum $P(k)$. The domain of $B$ is further restricted by the constraint given by the delta function; $k_1,k_2$, and $k_3$ must form three sides of a triangle.
 
-THe functional form of the bispectrum comprises two parts: its dependence on the overall scaling $K=k_1+k_2+k_3$, called \textit{running}, and the \textit{shape} of the triangle formed by $k_1$,$k_2$ and $k_3$. Some notable shapes are depicted in Figure \ref{fig:triangle_configurations}.
+The functional form of the bispectrum comprises two parts: its dependence on the overall scaling $K=k_1+k_2+k_3$, called \textit{running}, and the \textit{shape} of the triangle formed by $k_1$,$k_2$ and $k_3$. Some notable shapes are depicted in Figure \ref{fig:triangle_configurations}.
 
 \begin{figure}
 	\centering
@@ -65,7 +65,7 @@ Substituting this form into \eqref{eqn:bispectrum_from_fourier_derivation_1} giv
 \begin{align}
 	\left< \zeta_G(\vv{x}_1)^2 \zeta_G(\vv{x}_2) \zeta_G(\vv{x}_3) \right> = &\left< \zeta_G(\vv{x}_1)^2 \right> \left< \zeta_G(\vv{x}_2) \zeta_G(\vv{x}_3) \right> + \left< \zeta_G(\vv{x}_1) \zeta_G(\vv{x}_2) \right> \left< \zeta_G(\vv{x}_1) \zeta_G(\vv{x}_3) \right> \nonumber \\ &\hspace{0.15\textwidth} + \left< \zeta_G(\vv{x}_1) \zeta_G(\vv{x}_3) \right> \left< \zeta_G(\vv{x}_1) \zeta_G(\vv{x}_2) \right>. \label{eqn:local_model_derivation_1}
 \end{align}
-Contributions from the first term in \eqref{eqn:local_model_derivation_1} cancels out with the ones coming from $\left< \zeta_G^2 \right>$ in the definition \eqref{eqn:local_model_fNL_defitintion}. After expressing two-point correlations in terms of the power spectrum in Fourier space, we obtain the \textit{local} bispectrum;
+Contributions from the first term in \eqref{eqn:local_model_derivation_1} cancel out with the ones coming from $\left< \zeta_G^2 \right>$ in the definition \eqref{eqn:local_model_fNL_defitintion}. After expressing the two-point correlations in terms of the power spectrum in Fourier space, we obtain the \textit{local} bispectrum;
 \begin{align}
 	B(k_1, k_2, k_3) = \frac{3}{5} f_{NL} \left[ 2P_\zeta(k_2) P_\zeta(k_3) + 2P_\zeta(k_3) P_\zeta(k_1) + 2P_\zeta(k_1) P_\zeta(k_2) \right]. \label{eqn:local_bispectrum_using_power_spectrum}
 \end{align}
@@ -80,7 +80,7 @@ We parametrise the power spectrum as $P_\zeta(k) = A_\zeta k^{n_s-4}$ using the 
 \end{align}
 Note that we do not include $f_{NL}^{local}$ in our definition of the template either; it is set to $1$.
 
-The primordial bispectrum from multi-field inflation models typically falls into this category (reviewed in e.g., \cite{Byrnes2010review}). The local shape peaks in the squeezed limit where $k_1 \approx k_2 \gg k_3$, diverging as $k_3\rightarrow0$. General single field models, on the other hand, are better described by the equilateral and orthogonal templates \cite{Creminelli2006limits,Senatore2010orthogonal}:
+The primordial bispectrum from multi-field inflation models typically falls into this category (reviewed in e.g., \cite{Byrnes2010review}). The local shape peaks in the squeezed limit where ${k_1 \approx k_2 \gg k_3}$, diverging as $k_3\rightarrow0$. General single field models, on the other hand, are better described by the equilateral and orthogonal templates \cite{Creminelli2006limits,Senatore2010orthogonal}:
 \begin{align}
 	B_\zeta^{equil} (k_1, k_2, k_3) &:= 6A_\zeta^2 \left[ -\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{2 cyc.} \right) -\frac{2}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
 	&\hspace{0.2\textwidth} + \left. \left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right], \label{def:equilateral_template} \\
@@ -99,13 +99,13 @@ We introduce the necessary tools in Section \ref{section:in_in_formalism} and \r
 
 In order to study the perturbed metric in the presence of one or more inflation fields, it is convenient to use the Arnowitt-Deser-Misner (ADM) formalism \cite{Arnowitt2008ADMrepublication}:
 \begin{align}
-	ds^2 = -N dt^2 + h_{ij}(dx^i + N^i dt) (dx^j N^j dt),
+	ds^2 = -N dt^2 + h_{ij}(dx^i + N^i dt) (dx^j + N^j dt),
 \end{align}
 where the lapse and shift functions $N$ and $N^i$, respectively, are non-dynamical variables of the action. They act as Lagrange multipliers and provide constraint equations. We focus on the scalar perturbations here and ignore vector and tensor modes, since they evolve independently owing to the SVT theorem. The spatial metric $h_{ij}$ contains two scalar degrees of freedom. When inflation is driven by a single scalar field, there is one extra scalar mode from perturbations of the field. Out of the three dynamical scalar degrees of freedom, two can be fixed by a gauge choice as we saw in \ref{section:metric_perturbations}. Here we choose the gauge so that the inflation field is uniform. The spatial metric takes the form
 \begin{align}
 	h_{ij} = a(t)^2 \;e^{2\zeta} \; \delta_{ij},  \label{eqn:spatial_metric_curvature_perturbation}
 \end{align}
-where $\zeta(\vv{x},t)$ is equivalent to the curvature perturbation we defined earlier in \eqref{def:curvature_perturbation}. Note that, if we define $N(t) = \int^{t}_{t_0} H dt' = \ln a(t) - \ln a(t_0)$ (not to be confused with the lapse function $N$) to represent the number of $e$-folds of expansion between time $t$ and $t_0$, then $\zeta = \delta N$. 
+where $\zeta(\vv{x},t)$ is equivalent to the curvature perturbation we defined earlier in \eqref{def:curvature_perturbation}. Note that, if we define $N(t) = \int^{t}_{t_0} H dt' = \ln a(t) - \ln a(t_0)$ (not to be confused with the lapse function $N$) to represent the number of $e$-folds of expansion between time $t$ and $t_0$, then $\zeta = \delta N$. \footnote{To be precise, $\delta N$ is defined as in \eqref{eqn:local_clock_time_fluctuation} with $f=N$. We have $\zeta(t,\vv{x})= \delta N = N(t+\delta t) - N(t)$, where $\delta t(t,\vv{x})$ represents the perturbations in the inflationary `clock time' at the given spatial position $\vv{x}$.}
 	
 We now write down the action. Compared to \eqref{eqn:real_scalar_field_action}, the Einstein-Hilbert term is added since the metric is no longer fixed. We consider a generalised form of the field Lagrangian with the action given by
 \begin{align}
@@ -136,21 +136,21 @@ The quadratic part of the action is given by
 \begin{align}
 	S_2 = \int dt d^3\vv{x} \; \left[ \frac{\epsilon}{c_s^2} a^3 \dot{\zeta}^2 - \epsilon a(\partial\zeta)^2  \right], \label{eqn:quadratic_action_in_zeta}
 \end{align}
-where the slow roll parameter $\epsilon=-\dot{H}/H^2$ has made a reappearance. Here, $\partial\zeta$ denotes the spatial derivatives of $\zeta$. Note that there are no terms proportional to $\zeta^2$ in the quadratic action, meaning that $\zeta$ is massless even without the slow-roll assumptions.
+where the slow roll parameter $\epsilon=-\dot{H}/H^2$ has made a reappearance. Here, $(\partial\zeta)^2$ is a shorthand for $\partial_i \zeta \partial^i \zeta$ which involves the spatial derivatives of $\zeta$. Note that there are no terms proportional to $\zeta^2$ in the quadratic action, meaning that $\zeta$ is massless even without the slow-roll assumptions.
 
-The third order contains many terms with varying amounts of contributions to the bispectrum. We write only one particular term here for an example calculation which will be shown later. The full result can be found in \cite{Chen2007b}. 
+The third order action contains many terms with varying amounts of contributions to the bispectrum. We write only one particular term here for an example calculation which will be shown later. The full result can be found in \cite{Chen2007b}. 
 \begin{align}
 	S_3 \supset \int d\tau d^3\vv{x} \; a^3 \left[ -\frac{\epsilon}{H c_s^2} \left( 1 - \frac{1}{c_s^2} \right) + \frac{2\lambda c_s^2}{H^2 \epsilon} \right] \dot{\zeta}^3.	 \label{eqn:cubic_action_example_term}
 \end{align}
 
 \subsection{In-in formalism} \label{section:in_in_formalism}
 
-We need to calculate the Hamiltonian from the action in order to quantise the field. When only the quadratic part \eqref{eqn:quadratic_action_in_zeta} is considered, the corresponding Hamiltonian, say $H_0$, is also quadratic in $\zeta$ and its conjugate momentum $\pi := \partial\Lagr/\partial(\dot{\zeta})$. $H_0$ describes the free theory in which the equations of motion are linear and we can find the mode functions that solve them, as we did in Section \ref{section:quantum_fluctuations}. Meanwhile, third-order and higher terms in the action such as \eqref{eqn:cubic_action_example_term} appear in the Hamiltonian as couplings that contribute to the correlation functions. Denoting these `interacting' terms as $H_{int}$, the total Hamiltonian is given by
+We need to calculate the Hamiltonian from the action in order to quantise the field. When only the quadratic part \eqref{eqn:quadratic_action_in_zeta} is considered, the corresponding Hamiltonian, say $H_0$, is also quadratic in $\zeta$ and its conjugate momentum $\pi := \partial\Lagr/\partial(\dot{\zeta})$. $H_0$ describes the free theory in which the equations of motion are linear and we can find the mode functions that solve them, as we did in Section \ref{section:quantum_fluctuations}. Meanwhile, third-order and higher terms in the action such as \eqref{eqn:cubic_action_example_term} appear in the Hamiltonian as couplings that contribute to the correlation functions. Denoting these `interacting' terms as $H_{int}$, the total Hamiltonian for the perturbations takes the form
 \begin{align}
-	H = H_0 + H_{int}.
+	H = H_0 + H_{int}. \label{eqn:interaction_picture_hamiltonian}
 \end{align}
 
-There are multiple formalisms in quantum mechanics regarding time evolution of the operators and states. In the Schr\"odinger picture, the states evolve in time according to the Hamiltonian, while the operators remain fixed over time. On the other hand, the Heisenberg picture has the operators varying in time and the states constant. Yet another alternative is the interaction picture where the Hamiltonian is split into two parts, each half responsible for the time evolution of the states and the operators, respectively. All three pictures are physically equivalent; all the correlation function values are identical between them.
+There are multiple formalisms in quantum mechanics regarding time evolution of the operators and states. In the Schr\"odinger picture, the states evolve in time according to the Hamiltonian, while the operators remain fixed over time. On the other hand, the Heisenberg picture has the operators varying in time and the states constant. Yet another alternative is the interaction picture where the Hamiltonian \eqref{eqn:interaction_picture_hamiltonian} is split into two parts, responsible for the time evolution of the states and the operators, respectively. All three pictures are physically equivalent; all the correlation function values are identical between them.
 
 We choose to work in the interaction picture where the operators and states evolve in time through $H_0$ and $H_{int}$, respectively. The main advantage of this formalism is that we can use the results from the free ($H=H_0$) theory to evolve operators in time. In particular, we may canonically quantise the field $\hat{\zeta}(\vv{x},t)$ using its Fourier transform;
 \begin{align}
@@ -159,9 +159,9 @@ We choose to work in the interaction picture where the operators and states evol
 \end{align} 
 where the mode functions $u_k(\tau)$ satisfy the equations of motion from the quadratic action \eqref{eqn:quadratic_action_in_zeta} related to $H_0$, which we can solve analytically. Note that $u_k(\tau)$ depends only on $k=\|\vv{k}\|$ because the spatial derivatives enter through $(\partial\zeta)^2$ only. The annihilation and creation operators $\hat{a}_\vv{k}$ and $\hat{a}_{-\vv{k}}^\dagger$ satisfy the usual commutation relations: $[\hat{a}_{\vv{k}_1},\hat{a}_{\vv{k}_2}^\dagger] = (2\pi)^3 \delta^{(3)}(\vv{k}_1-\vv{k}_2)$.
 
-Meanwhile, all information about the interactions are captured in the time evolution operator $\hat{U_I}(t,t_0) = T\exp \left(-i\int_{t_0}^t H_I(t')dt'\right)$, where $H_I$ denotes $H_{int}$ in the interaction picture. The time-ordering operator $T$ arranges the operators so that the ones evaluated at earlier times appear on the right. The states at time $t$ is given by $|\psi_I(t)\rangle = U_I(t,t_0) |\psi_I(t_0)\rangle$.
+Meanwhile, all the information about the interactions is captured in the time evolution operator $\hat{U_I}(t,t_0) = T\exp \left(-i\int_{t_0}^t H_I(t')dt'\right)$, where $H_I$ denotes $H_{int}$ in the interaction picture. The time-ordering operator $T$ arranges the operators so that the ones evaluated at earlier times appear on the right. The states at time $t$ are given by $|\psi_I(t)\rangle = U_I(t,t_0) |\psi_I(t_0)\rangle$.
 
-The in-in formalism (\cite{Schwinger1961inin,Jordan1986inincosmo1,Calzetta1987inincosmo2}) allows us to calculate correlation functions at a given time $t$ using two `in' states: the vacua at infinite past in our case. For some local operator $Q(t)$ written as a product of $\hat{\zeta}(\vv{x},t)$ and $\hat{\pi}(\vv{x},t)$, we define its expected value as follows;
+The in-in formalism (\cite{Schwinger1961inin,Jordan1986inincosmo1,Calzetta1987inincosmo2}) allows us to calculate correlation functions at a given time $t$ using two `in' states: two copies of the vacuum at infinite past in our case. For some local operator $Q(t)$ written as a product of $\hat{\zeta}(\vv{x},t)$ and $\hat{\pi}(\vv{x},t)$, we define its expected value as follows;
 \begin{align}
 	\left< Q(t) \right> &:= \langle in |\;Q(t)\;| in \rangle \nonumber\\ &=  \langle\vv{0}| \left[ \bar{T} \exp \left( i \int_{t_0}^{t} H_I(t')dt \right) \right] Q_I(t) \left[ T \exp \left( -i \int_{t_0}^{t} H_I(t')dt \right) \right]  |\vv{0}\rangle. \label{eqn:in_in_formalism_expectation}
 \end{align}
@@ -171,7 +171,7 @@ Note that the operators within the correlator in \eqref{eqn:in_in_formalism_expe
 \begin{align}
 	[ \zeta^+(\vv{k}_1,t_1) , \zeta^-(\vv{k}_2,t_2) ] &= u_{k_1}(t_1) u^*_{k_2}(t_2) [ \hat{a}_{\vv{k_1}}, \hat{a}_{\vv{k_2}}^\dagger] \\ &= u_{k_1}(t_1) u^*_{k_2}(t_2) (2\pi)^3 \delta^{(3)} (\vv{k}_1 + \vv{k}_2), 
 \end{align}
-where the positive and negative frequency solutions $\zeta^+$ and $\zeta^-$ refer to the terms with $\hat{a}$ and $\hat{a}^\dagger$ in \eqref{eqn:zeta_canonical_quantisation}, respectively. Note that swapping the order of $\zeta(\vv{k}_1,t_1)$ and $\zeta(\vv{k}_2,t_2)$ does alter the value of this commutator. We make equivalent definitions to the quantised conjugate momenta $\hat{\pi}_\vv{k}$.
+where the positive and negative frequency solutions $\zeta^+$ and $\zeta^-$ refer to the terms with $\hat{a}$ and $\hat{a}^\dagger$ in \eqref{eqn:zeta_canonical_quantisation}, respectively. Note that swapping the order of $\zeta(\vv{k}_1,t_1)$ and $\zeta(\vv{k}_2,t_2)$ does alter the value of this commutator. We make equivalent definitions for the quantised conjugate momenta $\hat{\pi}_\vv{k}$.
 
 We now have a result comparable to Wick's theorem;
 \begin{align}
@@ -185,19 +185,19 @@ The mode function defined in \eqref{eqn:zeta_canonical_quantisation} can be obta
 \begin{align}
 	u_k(\tau) = \frac{iH}{\sqrt{4\epsilon c_s k^3}} (1 + ikc_s \tau) e^{-ikc_s \tau},
 \end{align}
-where $\tau$ is the conformal time. The choice of $u_k(\tau)$ being the positive frequency solution as shown here is analogous to \eqref{eqn:bunch_davis_mode_function} from before; we are fixing the vacuum state to be the Bunch-Davis vacuum.
+where $\tau$ is conformal time. The choice of $u_k(\tau)$ being the positive frequency solution as shown here is analogous to \eqref{eqn:bunch_davis_mode_function} from before; we are fixing the vacuum state to be the Bunch-Davis vacuum.
 
 Before proceeding to computing correlation functions using the in-in formalism, we first need to obtain the Hamiltonian of the system. The conjugate momentum is defined as $\pi = \partial \mathcal{L} / \partial \dot{\zeta}$, where $\mathcal{L}$ is the Lagrangian density. The Hamiltonian density then takes the form $\mathcal{H} = \pi \dot{\zeta} - \mathcal{L} = \mathcal{H}_0 + \mathcal{H}_{int}$. At the order of perturbations we are studying, $\mathcal{H}_{int}$ consists only of cubic terms $\mathcal{H}_3$, which is simply equal to $-\mathcal{L}_3$ obtained from the cubic action $S_3$. It is also sufficient to consider the leading contribution to $\zeta$, so that $\pi \propto \dot{\zeta}$.
 \footnote{There are some subtleties here. We first use $\pi = \partial \mathcal{L} / \partial \dot{\zeta}$, which does contain contributions from higher order terms coming from $\mathcal{L}=\mathcal{L}_0 + \mathcal{L}_{int}$. The Hamiltonian density $\mathcal{H} = \pi \dot{\zeta} - \mathcal{L}$ is obtained using this $\pi$. We then rewrite $\pi$ in terms of $\zeta$ and its derivatives within $\mathcal{H}$. Next, the quadratic terms in $\mathcal{H}$ are combined as $\mathcal{H}_0$. From this free Hamiltonian we define the conjugate momentum in the interaction picture; $\pi_I :=  \partial \mathcal{H}_0 / \partial \dot{\zeta}$. This $\pi_I$ is what we refer to as $\pi$, simply proportional to $\dot{\zeta}$ in our case.}
 We will rewrite $\pi$ in terms of $\dot{\zeta}$ the rest of this section.
 
-When working perturbatively, leading contributions to the three-point correlation function comes from the terms with one interaction Hamiltonian. Noting that the two terms coming from the two $H_I$s in \eqref{eqn:in_in_formalism_expectation} are complex conjugates to each other, we have
+When working perturbatively, the leading contributions to the three-point correlation function comes from the terms with one factor of the interaction Hamiltonian. Noting that the two terms coming from the two $H_I$s in \eqref{eqn:in_in_formalism_expectation} are complex conjugates to each other, we have
 \begin{align}
-	\left< \zeta_{\vv{k}_1}(t) \zeta_{\vv{k}_2}(t) \zeta_{\vv{k}_3}(t) \right> = 2 \text{Re}\left[ \langle\vv{0}| -i \zeta_{\vv{k}_1}(t) \zeta_{\vv{k}_2}(t) \zeta_{\vv{k}_3}(t) \int_{t_0}^{t} H_I(t') dt' |\vv{0}\rangle \right]. \label{eqn:in_in_formalism_bispectrum}
+	\left< \zeta_{\vv{k}_1}(t) \zeta_{\vv{k}_2}(t) \zeta_{\vv{k}_3}(t) \right> = 2 \text{Re}\left[ \langle\vv{0}| -i \zeta_{\vv{k}_1}(t) \zeta_{\vv{k}_2}(t) \zeta_{\vv{k}_3}(t) \int_{t_0}^{t} H_I(t') dt' |\vv{0}\rangle \right], \label{eqn:in_in_formalism_bispectrum}
 \end{align}
-This is the key formula for computing the primordial bispectrum from a given single field inflation Lagrangian.
+in tree-level. This is the key formula for computing the primordial bispectrum from a given single field inflation Lagrangian.
 
-We demonstrate how to compute \eqref{eqn:in_in_formalism_bispectrum} using a simple example. We take the term proportional to $\dot\zeta^3$ within the cubic action \eqref{eqn:cubic_action_example_term}. To simplify further, we write it as $\lambda a^3 \dot{\zeta}^3$, where $\lambda=\lambda(t)$ is given in terms of the variation parameters like $\epsilon$. The corresponding contribution to the interaction Hamiltonian is given by
+We will now demonstrate how to compute \eqref{eqn:in_in_formalism_bispectrum} using a simple example. We take the term proportional to $\dot\zeta^3$ within the cubic action \eqref{eqn:cubic_action_example_term}. To simplify further, we write it as $\lambda a^3 \dot{\zeta}^3$, where $\lambda=\lambda(t)$ is given in terms of the variation parameters like $\epsilon$. The corresponding contribution to the interaction Hamiltonian is given by
 \begin{align}
 	H_{I,\dot{\zeta}^3}(t) &:= -\lambda(t) a(t)^3 \int d^3\vv{x} \; \left[  \dot{\zeta}(\vv{x},t)^3 \right]  \\
 	&= -\lambda a^3 \int d^3\vv{x} \; \frac{d^3\vv{p}_1}{(2\pi)^3} \frac{d^3\vv{p}_2}{(2\pi)^3} \frac{d^3\vv{p}_3}{(2\pi)^3} \; e^{i(\vv{p}_1 + \vv{p}_2 + \vv{p}_3)\cdot\vv{x}} \left[ \dot{\zeta}_{\vv{p}_1} \dot{\zeta}_{\vv{p}_2} \dot{\zeta}_{\vv{p}_3} \right] \\
@@ -214,11 +214,11 @@ We substitute \eqref{def:interaction_hamiltonian_zeta_dot_cube} into \eqref{eqn:
 \end{align}
 Note that we discarded some terms which involve contracting the fields at equal times. Such contractions necessarily cause one of the $\vv{p}_j$ to be $\vv{0}$ due to the delta function present in \eqref{def:interaction_hamiltonian_zeta_dot_cube}. $\zeta_\vv{0}$ corresponds to a constant scaling of the background $a(t)$, and after absorbing that factor into $a(t)$, $\zeta_{\vv{0}}$ can be set to zero. 
 
-Combining the results so far, we obtain the following expression for the bispectrum induced by the $\dot{\zeta}^3$ term.
+Combining the results so far, we obtain the following expression for the bispectrum induced by the $\dot{\zeta}^3$ term
 \begin{align}
 	B_{\dot{\zeta}^3}(k_1,k_2,k_3,t) = \text{Re}\left[ 2i u_{k_1}(t) u_{k_2}(t) u_{k_3}(t) \int_{t_0}^{t} dt' \lambda(t') a(t')^3 \dot{u}^*_{k_1}(t') \dot{u}^*_{k_2}(t') \dot{u}^*_{k_3}(t')   + \text{5 perms} \right].
 \end{align}
-In order to evaluate the bispectrum at the end of inflation, we convert back from comoving to conformal time. The time integral is then taken from $\tau=-\infty$ to $\tau=0$. The lower limit of the integral can be troublesome, since $e^{i k c_s \tau}$ in the mode function displays oscillatory behaviour as $\tau\rightarrow -\infty$. We use a numerical trick where $-\infty$ is shifted to $-\infty(1+i\epsilon)$ so that the integrand is suppressed at the lower limit. We further approximate the variation parameters including $\lambda(\tau)$ to be constant and use the de Sitter background $a(\tau)\approx -1/(H\tau)$ within the integral;
+In order to evaluate the bispectrum at the end of inflation, we convert back from comoving to conformal time. The time integral is then taken from $\tau=-\infty$ to $\tau=0$. The lower limit of the integral can be troublesome, since $e^{i k c_s \tau}$ in the mode function displays oscillatory behaviour as $\tau\rightarrow -\infty$. We shift $-\infty$ to $-\infty(1+i\epsilon)$ so that the integrand is suppressed at the lower limit. We further approximate the variation parameters including $\lambda(\tau)$ to be constant and use the de Sitter background $a(\tau)\approx -1/(H\tau)$ within the integral;
 \begin{align}
 	B_{\dot{\zeta}^3}(k_1,k_2,k_3) &\approx -12\lambda \cdot \text{Imag}\left[  u_{k_1}(0) u_{k_2}(0) u_{k_3}(0) \int_{-\infty(1+i\epsilon)}^{0} d\tau \;  a(\tau) {u'}^*_{k_1}(\tau) {u'}^*_{k_2}(\tau) {u'}^*_{k_3}(\tau)  \right] \\
 	&= -12\lambda \cdot \text{Imag} \left[ \frac{H^5 c_s^3}{64\epsilon^3} \frac{1}{k_1 k_2 k_3} \int_{-\infty(1+i\epsilon)}^{0} d\tau \; \tau^2 e^{ic_s\tau(k_1+k_2+k_3)} \right] \\
@@ -230,11 +230,11 @@ The corresponding shape function takes the form
 \end{align}
 which is maximised in the equilateral limit and vanishes at the squeezed limit.
 
-The full bispectrum can be computed using the general methodology shown in this section. We quote one of the most important results; for canonical slow-roll inflation with $P(X,\phi) = X - V(\phi)$, the bispectrum is suppressed by the slow-roll parameters $\epsilon$ and $\eta$ \cite{Maldacena2013}. However, relaxing any of the assumptions\textemdash canonical kinetic term, slow-roll, single-field, and Bunch-Davis vacuum\textemdash may yield significant and observable signatures in the bispectrum (\cite{Chen2010review,Komatsu2010} for reviews).
+The full bispectrum can be computed using the general methodology shown in this section. We quote one of the most important results; for canonical slow-roll inflation with $P(X,\phi) = X - V(\phi)$, the bispectrum is suppressed by the slow-roll parameters $\epsilon$ and $\eta$ \cite{Maldacena2013}. However, relaxing any of the assumptions\textemdash canonical kinetic term, slow-roll, single-field, and Bunch-Davis vacuum\textemdash may yield significant and observable signatures in the bispectrum (see \cite{Chen2010review,Komatsu2010} for reviews).
 
 \section{CMB bispectrum estimation} \label{section:CMB_bispectrum_estimation}
 
-The presence of non-vanishing bispectrum at the end of inflation due to primordial non-Gaussianity leaves some imprints on the CMB. Bispectrum of the observed CMB anisotropy directly relates to the primordial counterpart thanks to the linear nature of the evolution, and hence is a key statistic for constraining primordial non-Gaussianity.
+The presence of a non-vanishing bispectrum at the end of inflation due to primordial non-Gaussianity leaves imprints on the CMB. The bispectrum of the observed CMB anisotropy directly relates to the primordial counterpart thanks to the linear nature of the evolution, and hence is a key statistic for constraining primordial non-Gaussianity.
 
 Near-Gaussianity of the CMB means that its bispectrum has relatively small signal-to-noise. In contrast to the power spectrum analysis where we treat each $C_l$ (after binning) as an independent data point, the noise-dominated $b_{l_1 l_2 l_3}$s are not so significant individually. Therefore, we instead fit the whole bispectrum data to the theoretical prediction from a given model in order to estimate a single parameter measuring the amplitude: $f_{NL}$.
 
@@ -254,7 +254,7 @@ We may take everything but $\zeta(\vv{k_j})$s outside the brackets $\left< \cdot
 	\left< \zeta(\vv{k}_1) \zeta(\vv{k}_2)  \zeta(\vv{k}_3) \right> &= (2\pi)^3 \delta^{(3)}(\vv{k}_1 + \vv{k}_2 + \vv{k}_3) B(k_1, k_2, k_3) \label{eqn:primordial_bispectrum}\\
 	&= \int d^3 \vv{r} \; e^{-i\vv{r} \cdot (\vv{k}_1 + \vv{k}_2 + \vv{k}_3)}  B(k_1, k_2, k_3). \label{eqn:bispectrum_derivation_delta_function}
 \end{align}
-where an integral expression is substituted for the Dirac $\delta$-function in the second line. At the cost of introducing an extra integral, we managed to express the $\delta$-function in a separable form: $\exp(\vv{r} \cdot (\vv{k}_1+\vv{k}_2+\vv{k}_3)) = \exp(\vv{r}\cdot \vv{k}_1) \exp(\vv{r}\cdot \vv{k}_2) \exp(\vv{r}\cdot \vv{k}_3)$. Remaining exponentials are rewritten using the plane wave expansion;
+where an integral expression is substituted for the Dirac $\delta$-function in the second line. At the cost of introducing an extra integral, we managed to express the $\delta$-function in a separable form: $\exp(\vv{r} \cdot (\vv{k}_1+\vv{k}_2+\vv{k}_3)) = \exp(\vv{r}\cdot \vv{k}_1) \exp(\vv{r}\cdot \vv{k}_2) \exp(\vv{r}\cdot \vv{k}_3)$. The remaining exponentials are rewritten using the plane wave expansion;
 \begin{align}
 	e^{-i \vv{k} \cdot \vv{r}} &= \sum_{l=0}^{\infty} (2l+1) (-i)^l j_l(kr) P_l(\hat{\vv{k}} \cdot \hat{\vv{r}})  \\	
 	&= \sum_{l=0}^{\infty} \sum_{m=-l}^{l} 4\pi (-i)^l j_l(kr) Y_{lm}(\hat{\vv{k}}) Y^*_{lm}(\hat{\vv{r}}). \label{eqn:bispectrum_derivation_rayleigh}
@@ -315,7 +315,7 @@ By squaring the Gaunt integral and summing over $m$s, we get a simpler quantity 
 \subsection{Optimal estimator}
 The bispectrum of the CMB anisotropy is a powerful statistic for studying primordial non-Gaussianity. The Planck collaboration's CMB bispectrum analyses provided the most stringent bounds on the amplitude of primordial bispectrum with respect to various shapes and constrained a wide class of inflationary models. Due to the largely linear evolution of the CMB, there are little contributions to the bispectrum from non-primordial origins compared to other probes such as the large scale structure. Here, we derive the optimal CMB bispectrum estimator using mathematical foundations laid out previously.
 
-Consider a number of inflation models which predict non-zero primordial bispectrum. We often use template bispectra which captures some common characteristics of a class of models, like the local, equilateral, and orthogonal shapes (\ref{def:local_template}-\ref{def:orthogonal_template}). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of the functions $B^{(i)}$ chosen;
+Consider a number of inflation models which predict non-zero primordial bispectra. We often use template bispectra which capture some common characteristics of a class of models, like the local, equilateral, and orthogonal shapes (\ref{def:local_template}-\ref{def:orthogonal_template}). We would like to find out if the true underlying bispectrum, if any, can be expanded in terms of the functions $B^{(i)}$ chosen;
 \begin{align}
 	B(k_1,k_2,k_3) = \sum_i f_{NL}^{(i)} \; B^{(i)}(k_1,k_2,k_3), \label{eqn:primordial_bispectrum_fNLs}
 \end{align}
@@ -346,7 +346,7 @@ The form of \eqref{eqn:bispectrum_estimation_core} makes it clear that the bispe
 	\item $\vv{\epsilon}$ is the \textit{error term} which represents the noise in bispectrum sample compared to the true underlying value. $\epsilon_\vv{L}$ can be sourced by the sampling error (from having limited number of samples) and/or inaccuracies in the measurements. 
 \end{itemize}
 
-We adopt the least squares method to estimate $f_{NL}$s from given $\vv{B}^{obs}$ and $B^{(i)}_\vv{L}$. Before doing so, each element of the regressand and regressors needs to be normalised so that the expected variances in the error are constant across different observations $\vv{L}$. We compute the theoretical variance in $B^{obs}_\vv{L}$ under two assumptions. First, we work in a weak non-Gaussian limit where the dominant contributions to correlation functions come from the Gaussian part of $a_\vv{l}$s. Wick's theorem then reduces the problem down to summing over all possible contractions. Second, we neglect inaccuracies in the $a_{lm}$ measurements, since their contributions to total error is much smaller compared to the sampling errors.
+We adopt the least squares method to estimate $f_{NL}$s from given $\vv{B}^{obs}$ and $B^{(i)}_\vv{L}$. Before doing so, each element of the regressand and regressors needs to be normalised so that the expected variances in the error are constant across different observations $\vv{L}$. We compute the theoretical variance in $B^{obs}_\vv{L}$ under two assumptions. First, we work in a weak non-Gaussian limit where the dominant contributions to correlation functions come from the Gaussian part of $a_\vv{l}$s. Wick's theorem then reduces the problem down to summing over all possible contractions. Second, we neglect inaccuracies in the $a_{lm}$ measurements, since their contributions to the total error is much smaller compared to the sampling errors.
 
 Under these assumptions, the expected covariance of the observed bispectra is given by
 \begin{align}
@@ -355,7 +355,7 @@ Under these assumptions, the expected covariance of the observed bispectra is gi
 	&= \left[ \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_2} \right> + \cdots \right]^\ddagger \nonumber \\
 	&\;\;\;\; + \left[ \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_1} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_1} \right> + \cdots \right]^{\ddagger\ddagger} \label{eqn:bispectrum_variance_contractions2}.
 \end{align}
-\eqref{eqn:bispectrum_variance_contractions2} contains all possible contractions of the 6 $a_\vv{l}$s, 3 from each of $B^{obs}_\vv{L}$ and $B^{obs}_{\vv{L}'}$. There are 15 such contractions: 6 consisting only of terms between the two bispectra (in $\ddagger$) and 9 which also have internal contractions ($\ddagger\ddagger$). Our aim is to modify the regression variables so that the resulting covariance matrix reduces to identity. The error in each $\vv{L}$ is required to be independent and of unit variance.
+\eqref{eqn:bispectrum_variance_contractions2} contains all possible contractions of the 6 $a_\vv{l}$s, 3 from each of $B^{obs}_\vv{L}$ and $B^{obs}_{\vv{L}'}$. There are 15 such contractions: 6 consisting only of terms between the two bispectra (in $\ddagger$) and 9 which also have internal contractions ($\ddagger\ddagger$). Our aim is to modify the regression variables so that the resulting covariance matrix reduces to the identity. The error in each $\vv{L}$ is required to be independent and of unit variance.
 
 The terms in ($\ddagger$) originate from a symmetry present in the bispectrum; $B^{obs}_\vv{L} = a_{\vv{l}_1}  a_{\vv{l}_2}  a_{\vv{l}_3}$ is invariant under permutations of ${\vv{l}_1, \vv{l}_2, \vv{l}_3}$. In order to remove duplicate elements, we restrict our $\vv{L}$s to ones satisfying $\vv{l}_1 \le \vv{l}_2 \le \vv{l}_3$. \footnote{$(l_1,m_1) < (l_2,m_2)$ if and only if ($l_1 < l_2$) \textbf{or} ($l_1 = l_2$ and $m_1 < m_2$).}
 
@@ -680,7 +680,7 @@ Second, the sky mask generates a non-vanishing bispectrum by itself which introd
 
 Lastly, we note that not all contaminants can be masked away, especially if they are localised and scattered. As detailed in \cite{PlanckCollaboration2013}, extra-Galactic point sources such as synchrotron emission and thermal emission from dust appear in the measured CMB data. Their reduced bispectrum is expected to be constant. Similarly to the case of lensing bispectrum, this bispectrum contributions from point sources bias the $f_{NL}$ estimates and therefore need to be subtracted off. We use the bias given in \eqref{eqn:lensing_ISW_bias} with $\vv{b}^{PS}=1$ instead of $\vv{b}^{lens}$ to account for this effect.
 
-
+\newpage
 \section*{Summary}
 
 In this chapter, we introduced the theory of the bispectrum and explained why it is a key quantity for testing inflation against the CMB data. We first outlined how to compute the primordial bispectrum from the inflationary Lagrangian using the in-in formalism. The bispectrum is expected to be unobservably small for the simplest single-field, slow-roll inflation with a canonical kinetic term and Bunch-Davies vacuum. However, we showed using an example of a non-canonical kinetic term that breaking some of these assumptions can induce detectable non-Gaussianity with distinct shapes. Moving on to the late-time universe, we reviewed the theory of CMB bispectrum estimation while keeping an analogy to linear regression in mind. It was noted that the high-dimensional integrals appearing in the bispectrum estimator are computationally expensive and numerically challenging. Exploiting separability is the key to reducing computational complexity. We detailed three main estimators used in the latest Planck analysis: KSW, Modal and binned.
