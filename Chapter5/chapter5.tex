@@ -885,20 +885,13 @@ On the right hand side is the result for which the shape function values outside
 
 \newpage
 \section*{Summary}
-TODO: finish this
 
+In this chapter, we presented a thorough review of our work on the high-resolution bispectrum estimator \textsc{CMB-BEst}. Starting with the mathematical framework of our pipeline, we showed that our formalism combines the strengths of conventional approaches to bispectrum estimation; we can handle highly oscillatory functions as accurately as the KSW estimator whilst covering a broad range of models like Modal. In order to tackle the computational complexity, we thoroughly optimised the code in both algorithmic and implementation levels. The code was then parallelised for maximal utilisation of high performance computing clusters.
 
-In this chapter, we presented a thorough review of our work on the high-resolution bispectrum estimator \textsc{CMB-BEst}. Starting with the mathematical framework of our pipeline, we showed that the
+With the completed code we performed various tests to validate the integrity of \textsc{CMB-BEst}. We showed that the two different choices of basis functions\textemdash monomials and Legendre polynomials\textemdash give consistent constraints for the standard bispectrum shapes. Furthermore, we compared our results to those from the Modal estimator using the Planck 2018 data and found that they agree on a map-by-map basis. Oscillatory shapes such as the feature and resonance templates were also constrained; by analysing correlation between the templates with different oscillation frequencies, we showed that our basis can handle oscillatory shapes as accurately as the Planck analysis using the Legendre basis of size $p_{max}=30$.
 
-motivation
-formalism
-challenges
-intense optimisation and parallelisation in multiple levels
-thorough validation, both internally and against planck
-proof of concept. combined with primodal. sound speed constraint.
-tetrapyd vs cube expansion - future research?
-Future work.
-We are currently preparing to publish the work presented here as \cite{Sohn2021inprep}.
+Having validated the pipeline, we provided a proof-of-concept example where \textsc{CMB-BEst} is combined with \textsc{Primodal} to constrain inflation models with non-canonical kinetic terms. The combined pipeline is capable of constraining inflation models directly without using approximate templates. We studied the DBI inflation models while varying the speed of sound parameter to obtain the constraint $c_s^{DBI} \ge 0.056$ with 95\% confidence. We are currently preparing to publish the work presented here as \cite{Sohn2021inprep}.
+
 
 
 
