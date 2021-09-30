@@ -4,6 +4,11 @@
 %*******************************************************************************
 \chapter{Conclusion}
 
+
+
+In this thesis,
+
+
 TODO
 
 Motivation behind CMB-BEst
@@ -19,41 +24,41 @@ Future research. Include polarisation. Explore primordial basis expansion furthe
 Concluding paragraph... 
 
 
-%Summary
-%
-%homogenous -> perturbation -> CMB anisotropy
-%inflation -> primordial NG -> bispectrum
-%CMB bispectrum to connect inflation with observations
-%
-%Our pipeline has been fully implemented, optimised and tested.
-%Our pipeline is designed to combine the strengths of both KSW and Modal estimators. We first formulated the mathematical framework, 
-%
-%Starting by formulating the mathematical framework of the primordial basis expansion and 
-%
-%We developed a novel CMB bispectrum estimation pipeline \textit{CMB-BEst}, a code heavily optimised in both algorithmic and programming levels, suitable for analysing high-resolution data from future surveys.
-%
-%Despite their major role in constraining inflation models, there are few implementations of the CMB bispectrum estimator due to computational challenges \cite{Komatsu2005,Fergusson2012,Bucher2010}. The Planck collaboration utilised three independent routines with two covering various models with oscillations \cite{PlanckCollaboration2015,PlanckCollaboration2018}. Motivated by the forecast for future surveys, we created \textit{CMB-BEst} which has two main advantages over former methods. First, it is implemented for general basis sets, which allows both broad and specialised analyses on inflationary models. One of the conventional estimators (KSW) is in fact equivalent to a simple subset of \textit{CMB-BEst}. Second, it is capable of handling highly oscillatory signals. The code will be used on numerous inflation models with oscillations yet to be investigated due to lack of resolution from previous methods.
-%
-%Considerable time has been spent on optimisation of the code. The primordial mode expansion and subsequent mathematical formalism were chosen carefully for maximal reduction in computational complexity. I adopted code optimisation techniques such as cache blocking for efficient memory usage, as well as MPI/OpenMP parallelisation tailored to computing clusters in use. As a result, we obtained an efficient working code which uses 27,000 modes to analyse Planck satellite data.
-%
-%The code has been tested thoroughly both internally and against Planck analysis. I used CMB maps and simulations from the Planck satellite experiment and checked that \textit{CMB-BEst} agrees with previous routines map-by-map for various bispectrum templates. Different choices of basis functions within \textit{CMB-BEst} also yielded consistent results. I am preparing to make the code public in the near future.
-%
-%
-%I plan to utilise \textit{CMB-BEst} to its full potential by constraining various inflation models that are currently unexplored, in particular with a focus on those with oscillations.
-%
-%Many physically well-motivated inflation models predict oscillations in the primordial power spectrum and bispectrum which causes scale dependence \cite{Chen2010,Chluba2015}. Such fluctuations may be sinusoidal, logarithmically spaced, and/or have an overall envelop. Some of these possibilities have been studied in the Planck analysis \cite{PlanckCollaboration2018}, but a large amount of the parameter space is yet to be covered due to numerical instability from rapid oscillations.
-%
-%\textit{CMB-BEst} has already been tested to be stable in high-frequency regimes for models with sinusoidal oscillations. I have candidates for specialised basis sets and plan on using the Planck satellite data to explore more general oscillatory models. Detecting non-Gaussianity would be crucial evidence for the corresponding inflationary scenario. Moreover, even non-detection would give us valuable insight about inflation and bring us one step closer to falsifying many models.
-%
-%
-%I intend to continue working in SO as an independent collaborator, in charge of developing and running one of the main bispectrum estimation pipelines for future surveys.
-%
-%The first light from SO is expected to be observed in early 2022. Increased sensitivity and resolution may cause some computational challenges, for which I plan to adapt and optimise \textit{CMB-BEst} accordingly. Bispectrum analysis will be essential for validation purposes in early stages of the survey; computation of secondary effects such as lensing-ISW bias and various systematics would benefit from it.
-%
-%When SO data accumulates, I will perform extensive analysis on primordial non-Gaussianity from the CMB bispectrum. Consistency with previous datasets including Planck as well as other estimation methods will be checked. Afterwards, combining multiple datasets would provide us with much stronger constraints on $f_{NL}$, opening up discovery potential. 
-%
-%It is truly an exciting time to be researching cosmology. Numerous future experiments will soon provide us with ever more immense and accurate measurements of the universe. In particular, we will be able to extract much greater information about primordial non-Gaussianity which would allow us to constrain a wide variety of inflation models.
-%
+Summary
+
+
+homogenous -> perturbation -> CMB anisotropy
+inflation -> primordial NG -> bispectrum
+
+CMB bispectrum to connect inflation with observations
+
+Our pipeline has been fully implemented, optimised and tested.
+Our pipeline is designed to combine the strengths of both KSW and Modal estimators. We first formulated the mathematical framework, 
+
+Starting by formulating the mathematical framework of the primordial basis expansion and 
+
+We developed a novel CMB bispectrum estimation pipeline \textit{CMB-BEst}, a code heavily optimised in both algorithmic and programming levels, suitable for analysing high-resolution data from future surveys.
+
+Considerable time has been spent on optimisation of the code. The primordial mode expansion and subsequent mathematical formalism were chosen carefully for maximal reduction in computational complexity. We adopted code optimisation techniques such as cache blocking for efficient memory usage, as well as MPI/OpenMP parallelisation tailored to computing clusters in use. As a result, we obtained an efficient working code which uses 27,000 modes to analyse Planck satellite data.
+
+The code has been tested thoroughly both internally and against Planck analysis. I used CMB maps and simulations from the Planck satellite experiment and checked that \textit{CMB-BEst} agrees with previous routines map-by-map for various bispectrum templates. Different choices of basis functions within \textit{CMB-BEst} also yielded consistent results. I am preparing to make the code public in the near future.
+
+
+I plan to utilise \textit{CMB-BEst} to its full potential by constraining various inflation models that are currently unexplored, in particular with a focus on those with oscillations.
+
+Many physically well-motivated inflation models predict oscillations in the primordial power spectrum and bispectrum which causes scale dependence \cite{Chen2010,Chluba2015}. Such fluctuations may be sinusoidal, logarithmically spaced, and/or have an overall envelop. Some of these possibilities have been studied in the Planck analysis \cite{PlanckCollaboration2018}, but a large amount of the parameter space is yet to be covered due to numerical instability from rapid oscillations.
+
+\textit{CMB-BEst} has already been tested to be stable in high-frequency regimes for models with sinusoidal oscillations. I have candidates for specialised basis sets and plan on using the Planck satellite data to explore more general oscillatory models. Detecting non-Gaussianity would be crucial evidence for the corresponding inflationary scenario. Moreover, even non-detection would give us valuable insight about inflation and bring us one step closer to falsifying many models.
+
+
+I intend to continue working in SO as an independent collaborator, in charge of developing and running one of the main bispectrum estimation pipelines for future surveys.
+
+The first light from SO is expected to be observed in early 2022. Increased sensitivity and resolution may cause some computational challenges, for which I plan to adapt and optimise \textit{CMB-BEst} accordingly. Bispectrum analysis will be essential for validation purposes in early stages of the survey; computation of secondary effects such as lensing-ISW bias and various systematics would benefit from it.
+
+When SO data accumulates, I will perform extensive analysis on primordial non-Gaussianity from the CMB bispectrum. Consistency with previous datasets including Planck as well as other estimation methods will be checked. Afterwards, combining multiple datasets would provide us with much stronger constraints on $f_{NL}$, opening up discovery potential. 
+
+It is truly an exciting time to be researching cosmology. Numerous future experiments will soon provide us with ever more immense and accurate measurements of the universe. In particular, we will be able to extract much greater information about primordial non-Gaussianity which would allow us to constrain a wide variety of inflation models.
+
 %\section*{Summary}
 %
 %\section*{Future research}

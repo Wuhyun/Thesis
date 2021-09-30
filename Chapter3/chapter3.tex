@@ -426,9 +426,9 @@ All known CMB bispectrum estimation methods therefore deploy some ingenious tech
 \subsubsection*{KSW estimator}
 The Komatsu-Spergel-Wandelt (KSW) estimator was first introduced in \cite{Komatsu2005} together with a construction of the bispectrum estimator and has been studied extensively since then \cite{Creminelli2006limits,Babich2005optimal,Creminelli2007estimators} (see e.g, \cite{Komatsu2010} for reviews). The core idea is to exploit the \textit{separability} of the bispectrum. Consider the local shape for example:
 \begin{align}
-	S^{loc}(k_1, k_2, k_3) = 2A^2 \left( \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} +  \frac{k_3^2}{k_1 k_2} \right),
+	S^{loc}(k_1, k_2, k_3) = 2A_\Phi^2 \left( \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} +  \frac{k_3^2}{k_1 k_2} \right),
 \end{align}
-where $A$ is amplitude of the power spectrum with the scalar spectral index $n_s$ set to $1$. Note that each term can be expressed as a product of three separate functions that only depend on one of the variables: $k_1^2/(k_2 k_3) = k_1^2 \cdot k_2^{-1} \cdot k_3^{-1}$, for example. The reduced bispectrum then simplifies to an integral of separable terms;
+where $A_\Phi$ is amplitude of the power spectrum of $\Phi$ with the scalar spectral index $n_s$ set to $1$. Note that each term can be expressed as a product of three separate functions that only depend on one of the variables: $k_1^2/(k_2 k_3) = k_1^2 \cdot k_2^{-1} \cdot k_3^{-1}$, for example. The reduced bispectrum then simplifies to an integral of separable terms;
 \begin{align}
 	b^{loc}_{l_1 l_2 l_3} = 2A^2 \int dr \; r^2 \left[ \alpha_{l_1}(r) \beta_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \alpha_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \beta_{l_2}(r) \alpha_{l_3}(r) \right], \label{eqn:local_reduced_bispectrum}
 \end{align}
@@ -464,7 +464,7 @@ In some cases, a non-separable function can be expanded to separable ones using 
 \begin{align}
 	\frac{1}{(k_1+k_2+k_3)^n} = \frac{1}{(n-1)!} \int_0^{\infty} du \; u^{n-1} e^{-u(k_1+k_2+k_3)}
 \end{align}
-allows us to approximate the left hand side with a sum over separable terms parametrised by $u$ \cite{Smith2011}. These numerical tricks, however, are restricted to cases where the integrand is relatively well-behaved. Otherwise, we require a large number of terms is for an accurate expansion, and the trick hurts the total computation time more than it saves.
+allows us to approximate the left hand side with a sum over separable terms parametrised by $u$ \cite{Smith2011}. These numerical tricks, however, are restricted to cases where the integrand is relatively well-behaved. Otherwise, we require a large number of terms for an accurate expansion, and the trick causes a net increase in computation time instead of a net decrease.
 
 \subsubsection*{Modal estimator}
 The KSW estimator is fast and numerically stable but restrictive in the type of bispectra it can tackle. The Modal estimator, first developed in \cite{Fergusson2010general} and expanded much further through \cite{Fergusson2012,Fergusson2014,Shiraishi2014parityodd,Shiraishi2019cross}, builds on a simple but effective idea to address this issue; when the bispectrum shape cannot be factorised, we may instead \textit{expand} it using a basis constructed from separable functions.
@@ -497,13 +497,13 @@ so that the estimator simply becomes a dot product of $\alpha$ and $\beta$: $\ha
 
 Before moving on to calculating the normalisation factor, we first modify the inner product defined in \eqref{def:bispectrum_estimation_fisher_inner_product} as
 \begin{align}
-	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_{l_j,m_j} \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}.
+	\left< \vv{b}^{(i)}, \vv{b}^{(j)} \right> &:= \sum_{l_j} \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}.
 \end{align}
 The weights appearing in the inner product above, $(h_{l_1 l_2 l_3}/v_{l_1} v_{l_2} v_{l_3})^2\approx const.$, are now nearly uniform across the allowed $l$ configurations \cite{Fergusson2010general}. This serves as a natural inner product for basis functions $\vv{Q}_n$, especially for polynomial modes.
 
 Expanding the bispectrum in \eqref{eqn:bispectrum_estimator_normalisation_single_shape} gives
 \begin{align}
-	N &= \sum_{n_1} \sum_{n_2} \alpha^Q_{n_1} \alpha^Q_{n_2} \left( \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; Q_{n_1 \; l_1 l_2 l_3} Q_{n_2 \; l_1 l_2 l_3} \right) \\
+	N &= \sum_{n_1} \sum_{n_2} \alpha^Q_{n_1} \alpha^Q_{n_2} \left( \sum_{l_j} \frac{h^2_{l_1 l_2 l_3}}{\nu_{l_1}^2 \nu_{l_2}^2 \nu_{l_3}^2 } \; Q_{n_1 \; l_1 l_2 l_3} Q_{n_2 \; l_1 l_2 l_3} \right) \\
 	&= \sum_{n_1} \sum_{n_2} \alpha^Q_{n_1} \alpha^Q_{n_2} \left< \vv{Q}_{n_1}, \vv{Q}_{n_2} \right>. \label{eqn:modal_estimator_normalisation_Q}
 \end{align}
 Another key quantity to be computed in the Modal formalism is the matrix
@@ -581,7 +581,7 @@ The matrix $\Gamma$ therefore lets us convert the primordial modal expansion coe
 
 \hspace{10pt}
 
-We discussed the inner workings of Modal estimator in great detail. Despite the long list of formulae here, the core idea of it is captured in the modal decomposition \eqref{eqn:modal_estimator_late_expansion}. The main computational challenge in the Modal approach is precomputing $\vv{\beta}^Q$, which contains complete information about the fit between the basis and observed bispectrum. Afterwards, the bispectrum estimation problem reduces down to a matter of finding the modal coefficients $\vv{\alpha}$ for models under consideration. This decomposition is performed fast and efficiently using the orthonormal basis functions $\vv{R}$ and $\bar{\vv{R}}$.
+We have discussed the inner workings of the Modal estimator in great detail. Despite the long list of formulae here, the core idea of it is captured in the modal decomposition \eqref{eqn:modal_estimator_late_expansion}. The main computational challenge in the Modal approach is precomputing $\vv{\beta}^Q$, which contains complete information about the fit between the basis and observed bispectrum. Afterwards, the bispectrum estimation problem reduces down to a matter of finding the modal coefficients $\vv{\alpha}$ for models under consideration. This decomposition is performed fast and efficiently using the orthonormal basis functions $\vv{R}$ and $\bar{\vv{R}}$.
 
 \subsubsection*{Binned estimator}
 
@@ -598,7 +598,7 @@ where $M_l$s analogous to the filtered maps of the KSW and Modal estimators are 
 \end{align}
 They correspond to the $l$-multipole component of the original map. We define the observed bispectrum $B^{obs}_{l_1 l_2 l_3}$ to be the integrand of \eqref{eqn:binned_estimator_formulation_1}.\footnote{This is the convention from the original literature \cite{Bucher2010}, which is different to some conventions elsewhere by a factor of $h_{l_1 l_2 l_3}$. In terms of the theoretical reduced bispectrum $b_{l_1 l_2 l_3}$, we have $\langle B^{obs}_{l_1 l_2 l_3} \rangle = h^2_{l_1 l_2 l_3} b^{th}_{l_1 l_2 l_3}$.}
 
-The core idea of this formulation is based on the fact that $a_{lm}$s with similar $l$s are distributed in a comparable fashion, and can be binned without big loss of information. The multipole moments $l$ in range $[l_{min},l_{max}]$ are divided into $N_{bin}$ intervals $\Delta_i := [l_i,l_{i+1}-1]$, where $i=0,1,\cdots,N_{bins}-1$.  The filtered map corresponding to the $i$th bin is given by
+The core idea of this formulation is based on the fact that $a_{lm}$s with similar $l$s are distributed in a comparable fashion, and can be binned without a big loss of information. The multipole moments $l$ in the range $[l_{min},l_{max}]$ are divided into $N_{bin}$ intervals $\Delta_i := [l_i,l_{i+1}-1]$, where $i=0,1,\cdots,N_{bins}-1$.  The filtered map corresponding to the $i$th bin is given by
 \begin{align}
 		M_i(\hat{\vv{n}}) := \sum_{l\in\Delta_i}\sum_{m=-l}^{l} a_{lm} Y_{lm}(\hat{\vv{n}}).
 \end{align}
@@ -632,14 +632,15 @@ Binning different multipoles together inevitably causes some information loss an
 \end{align}
 which always lies between $0$ and $1$. As long as $R$ is close to $1$, the binned estimator performs just as well as the full bispectrum estimator.
 
-The main advantage of the binned estimator is the significant reduction in the computational complexity. Using optimised binning strategies outlined in \cite{Bucher2016}, this can be done with minimal loss of information. The Binning formalism works particularly well for models with smooth bispectra or localised features. The full binned bispectrum can also be used for non-parametric studies of non-Gaussianity from observations after certain smoothing operations. It is also worth noting that the most computationally expensive part of the estimation process\textemdash obtaining $B^{obs}_{i_1 i_2 i_3}$\textemdash only needs to be done once per dataset. The result can then be used to constrain various models instantaneously as long as their theoretical bispectra are provided.
+The main advantage of the binned estimator is the significant reduction in the computational complexity. Using optimised binning strategies outlined in \cite{Bucher2016}, this can be done with minimal loss of information. The Binning formalism works particularly well for models with smooth bispectra or features in $l$-space. The full binned bispectrum can also be used for non-parametric studies of non-Gaussianity from observations after certain smoothing operations. It is also worth noting that the most computationally expensive part of the estimation process\textemdash obtaining $B^{obs}_{i_1 i_2 i_3}$\textemdash only needs to be done once per dataset. The result can then be used to constrain various models instantaneously as long as their theoretical bispectra are provided.
 
-Meanwhile, the binned estimator is not as effective for constraining models with features or oscillations. This is not only because the binning smooths out high-frequency oscillations in the bispectrum, but also since evaluating the theoretical bispectra in $l$ space through \eqref{eqn:binned_estimator_theoretical_bispectra} becomes numerically challenging. The reduced bispectrum needs to be computed for every $(l_1,l_2,l_3)$ triplet and then summed over within each bin. Such computation of the bispectrum is often practically intractable unless the given shape is separable. For the same reason, the binned estimator struggles to constrain non-separable shapes, even though the formalism itself applies to any shape.
+Meanwhile, the binned estimator is not as effective for constraining models with general features or oscillations. This is not only because the binning smooths out high-frequency oscillations in the bispectrum, but also since evaluating the theoretical bispectra in $l$ space through \eqref{eqn:binned_estimator_theoretical_bispectra} becomes numerically challenging. The reduced bispectrum needs to be computed for every $(l_1,l_2,l_3)$ triplet and then summed over within each bin. Such computation of the bispectrum is often practically intractable unless the given shape is separable. For the same reason, the binned estimator struggles to constrain non-separable shapes, even though the formalism itself applies to any shape.
 
 
 \subsection{Other sources of non-Gaussianity.} \label{section:other_sources_of_non_gaussianity}
 
-The CMB is one of the cleanest probes of the primordial bispectrum. CMB anisotropy remains linear in initial perturbations to a very good approximation so that its bispectrum contains little contribution from non-linear evolution. Regardless, there are non-primordial sources of non-Gaussianity that requires close attention. In this section, we discuss both physical and experimental complications to the CMB bispectrum estimation.
+The CMB is one of the cleanest probes of the primordial bispectrum. CMB anisotropy remains linear in initial perturbations to a very good approximation so that its bispectrum contains little contribution from non-linear evolution. Regardless, there are non-primordial sources of non-Gaussianity that requires close attention. In this section, we discuss both physical and experimental complications to the CMB bispectrum estimation. Instrumental effects including the measurement noise and the width of the probing beam will be covered in the next chapter (Section \ref{section:beam_and_noise}).
+
 
 \subsubsection*{Lensing bispectrum}
 
@@ -647,7 +648,7 @@ After its departure from the last scattering surface, the CMB photons travel thr
 \begin{align}
 	\vv{\alpha} = - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi} \nabla_{\hat{\vv{n}}} \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi), 
 \end{align}
-where the Weyl potential $\Psi_W = (\Psi + \Phi)/2$ is defined as the average of two Newtonian potentials. The integral is performed along the unperturbed path, an assumption known as the Born approximation. This is valid as long as the deflection angle $\vv{\alpha}$ remains small. The angular derivate $\nabla_{\hat{\vv{n}}}$ is taken orthogonal to $\hat{\vv{n}}$ and within the tangent plane on the sphere. The integration weight quantifies how earlier deflections cause greater displacements in the sky today. However, most contributions to the integral in fact come from the late-time universe with redshift $z\lessapprox2$. We define the \textit{lensing potential} as
+where the Weyl potential $\Psi_W = (\Psi + \Phi)/2$ is defined as the average of two Newtonian potentials. The integral is performed along the unperturbed path, an assumption known as the Born approximation. This is valid as long as the deflection angle $\vv{\alpha}$ remains small. The angular derivative $\nabla_{\hat{\vv{n}}}$ is taken orthogonal to $\hat{\vv{n}}$ and within the tangent plane on the sphere. The integration weight quantifies how earlier deflections cause greater displacements in the sky today. However, most contributions to the integral in fact come from the late-time universe with redshift $z\lessapprox2$. We define the \textit{lensing potential} as
 \begin{align}
 	\psi := - 2\int_0^{\chi_*} d\chi \; \frac{\chi_* - \chi}{\chi_* \chi}  \Psi_W (\chi\hat{\vv{n}}; \eta_0-\chi), \label{def:lensing_potential}
 \end{align}
@@ -672,13 +673,13 @@ for the bispectrum template $\vv{b}^{(t)}$ of interest. This bias can be signifi
 
 \subsubsection*{Sky mask and inpainting}
 
-CMB measurements are affected by various foreground contaminants. A number of component separation methods such as the SMICA \cite{Cardoso2008component}, NILC \cite{Basak2012nilc}, SEVEM \cite{Martinez2003sevem}, and Commander \cite{Eriksen2008commander} have been developed to clean unwanted signals from data \cite{PlanckCollaboration2018component}, but some regions with an overwhelming amount of contaminations need to be \textit{masked} away. The corresponding parts of the sky are simply removed from any analysis. Even in a full-sky survey like Planck, only $\approx 78\%$ of the sky can be used for science \cite{PlanckCollaboration2018component}.
+CMB measurements are affected by various foreground contaminants. A number of component separation methods such as SMICA \cite{Cardoso2008component}, NILC \cite{Basak2012nilc}, SEVEM \cite{Martinez2003sevem}, and Commander \cite{Eriksen2008commander} have been developed to clean unwanted signals from data \cite{PlanckCollaboration2018component}, but some regions with an overwhelming amount of contaminations need to be \textit{masked} away. The corresponding parts of the sky are simply removed from any analysis. Even in a full-sky survey like Planck, only $\approx 78\%$ of the sky can be used for science \cite{PlanckCollaboration2018component}.
 
 The partial sky coverage due to masks induces multiple complications. For the CMB bispectrum analysis there are two main issues to manage. First, statistical isotropy of the data is broken due to the irregular mask shape. The covariance matrix $C_{l_1 m_1, l_2, m_2} = \langle a^*_{l_1 m_1} a_{l_2 m_2} \rangle$ is no longer diagonal. Using the full covariance matrix can be costly for bispectrum analysis, but the linear part of the bispectrum estimator introduced in \eqref{def:bispectrum_estimate_including_linear} can handle most of the errors caused by off-diagonal covariances.
 
 Second, the sky mask generates a non-vanishing bispectrum by itself which introduces additional noise in the estimation. Sharp cuts around the edges of the mask induce some high-frequency signals. A low-frequency mode from the overall mask shape then correlates with them to produce bispectrum in squeezed configurations. We follow \cite{Gruetjen2017inpainting} and utilise a simple inpainting method to reduce the effect. In this approach, a linear diffusive method is used to interpolate and hence smoothen the mask edges; at each iteration, every pixel within previously masked regions takes the average value of its neighbouring pixels. The resulting inpainted map after a sufficient number of iterations is shown to contain little excess contamination from the mask. 
 
-Lastly, we note that not all contaminants can be masked away, especially if they are localised and scattered. As detailed in \cite{PlanckCollaboration2013}, extra-Galactic point sources such as synchrotron emission and thermal emission from dust appear in the measured CMB data. Their reduced bispectrum is expected to be constant. Similarly to the case of lensing bispectrum, this bispectrum contributions from point sources bias the $f_{NL}$ estimates and therefore need to be subtracted off. We use the bias given in \eqref{eqn:lensing_ISW_bias} with $\vv{b}^{PS}=1$ instead of $\vv{b}^{lens}$ to account for this effect.
+Lastly, we note that not all contaminants can be masked away, especially if they are localised and scattered. As detailed in \cite{PlanckCollaboration2013}, extra-Galactic point sources such as synchrotron emission and thermal emission from dust appear in the measured CMB data. Their reduced bispectrum is expected to be constant. Similarly to the case of the lensing bispectrum, these bispectrum contributions from point sources bias the $f_{NL}$ estimates and therefore need to be subtracted off. We use the bias given in \eqref{eqn:lensing_ISW_bias} with $\vv{b}^{PS}=1$ instead of $\vv{b}^{lens}$ to account for this effect.
 
 \newpage
 \section*{Summary}

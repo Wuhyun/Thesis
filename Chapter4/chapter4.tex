@@ -199,7 +199,7 @@ and similarly $P_{cs}$ and $P_{cc}$.
 Calculation of (\ref{s_lin_using_filtered_maps}) and (\ref{P_ss definition}) are two of the most computationally expensive steps. If we did not orthonormalise the covariance matrix, there would be extra summations over $X'$ and some $2\times2$ matrix computations involving $(C_l^{-1})^{XX'}$ in these steps.
 
 
-\subsection{Probing beam and instrumental noise}
+\subsection{Probing beam and instrumental noise} \label{section:beam_and_noise}
 
 In an ideal experiment where measurements are made on each point of the sky perfectly, the covariance matrices $C_l^{XX'}$ in (\ref{Estimator S definition}) and (\ref{Estimator F definition}) would consist purely of the signal. In reality, however, the probing beam has finite width and the sensors are noisy. These effects can be incorporated by modifying the covariance matrices and bispectra as follows;
 \begin{equation}
