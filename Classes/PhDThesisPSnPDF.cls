@@ -14,7 +14,7 @@
 \newcommand\fileversion{2.3.1}
 \newcommand\filedate{2016/04/23}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
+\ProvidesClass{Classes/PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
@@ -496,7 +496,7 @@ supported!}
           citestyle=numeric, sorting=none, natbib=true]{biblatex}
         \setBiBLaTeXfalse
       \else
-        \RequirePackage[numbers,compress]{natbib} 
+        \RequirePackage[numbers,compress,sort=none]{natbib} 
       \fi % default
       \setBibfalse
     \fi % custombib
