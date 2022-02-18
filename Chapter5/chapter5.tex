@@ -39,7 +39,7 @@ Upcoming surveys will provide major improvements to constraints on primordial no
 \subsection{CMB-BEst formalism}
 Recall that the optimal CMB bispectrum estimator for a given template can be written as
 \begin{align}
-	\hat{f}_{NL} = \frac{1}{N} \sum_{l_j,m_j} \frac{\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \left[ a_{l_1 m_1} a_{l_2 m_2} a_{l_3 m_3} - \left( \left< a^G_{l_1 m_1} a^G_{l_2 m_2} \right> a_{l_3 m_3} + \text{2\ cyc.} \right)  \right].		\label{eqn:bispectrum_estimator_standard}
+	\hat{f}_\text{NL} = \frac{1}{N} \sum_{l_j,m_j} \frac{\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} b_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \left[ a_{l_1 m_1} a_{l_2 m_2} a_{l_3 m_3} - \left( \left< a^G_{l_1 m_1} a^G_{l_2 m_2} \right> a_{l_3 m_3} + \text{2\ cyc.} \right)  \right].		\label{eqn:bispectrum_estimator_standard}
 \end{align}
 Here we omit superscripts $X$ for temperature and polarisation for notational convenience. Even though the formalism in this section will be presented for CMB temperature data only, the method is general and can easily be extended to include polarisation. For estimation of the full covariance matrix $C_{lm,l'm'}$ needed for the linear term, we use an ensemble average from Gaussian simulations, as denoted by superscripts $G$ and the bracket $\left<\cdot\right>$.
 
@@ -68,20 +68,20 @@ We define the filtered maps as
 \begin{align}
 	M^{(i)}_p (\vv{n}, r) := \sum_{l,m} \frac{\tilde{q}_p (l,r)}{C_l} a^{(i)}_{lm} Y_{lm} (\vv{n}), \label{def:filtered_maps}
 \end{align}
-where $a^{(i)}_{lm}$'s are represent the spherical harmonic transform of the $i$th CMB map. For later convenience, we use a convention where $i=0$ corresponds to the observed CMB map. Maps number $1$-$N_{sims}$ are Gaussian simulations. Note that without the factors involving $\tilde{q}$ and $C_l$'s, $M$ is simply equal to the original map in real space. Each mode extracts different anisotropy scales present in the map.
+where $a^{(i)}_{lm}$'s are represent the spherical harmonic transform of the $i$th CMB map. For later convenience, we use a convention where $i=0$ corresponds to the observed CMB map. Maps number $1$-$N_\text{sims}$ are Gaussian simulations. Note that without the factors involving $\tilde{q}$ and $C_l$'s, $M$ is simply equal to the original map in real space. Each mode extracts different anisotropy scales present in the map.
 
 The bispectrum estimator (\ref{eqn:bispectrum_estimator_standard}) reduces to
 \begin{align}
-	\hat{f}_{NL}^{(i)} = \frac{1}{N} \sum_{p_j} \alpha_{p_1 p_2 p_3} (\beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3}), \label{eqn:fNL_from_betas}
+	\hat{f}_\text{NL}^{(i)} = \frac{1}{N} \sum_{p_j} \alpha_{p_1 p_2 p_3} (\beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3}), \label{eqn:fNL_from_betas}
 \end{align}
 where most of the computation required is now contained in the `$\beta$'s, given by
 \begin{align}
 	\beta^{cub,(i)}_{p_1 p_2 p_3} &:= \int dr \int d^2\vv{n} \; M^{(i)}_{p_1} (\vv{n},r) M^{(i)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r),	\label{def:beta_cubic} \\
-	\beta^{lin,(i)}_{p_1 p_2 p_3} &:= \frac{1}{N_{sims}} \sum_{j \neq i} \int dr \int d^2\vv{n} \; M^{(j)}_{p_1} (\vv{n},r) M^{(j)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r). \label{def:beta_linear}
+	\beta^{lin,(i)}_{p_1 p_2 p_3} &:= \frac{1}{N_\text{sims}} \sum_{j \neq i} \int dr \int d^2\vv{n} \; M^{(j)}_{p_1} (\vv{n},r) M^{(j)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r). \label{def:beta_linear}
 \end{align}
-Here we evaluate $f_{NL}$ estimates for each of the Gaussian simulations $i=1,\cdots,N_{sims}$. Naturally, they are normally distributed with mean zero. Under the null hypothesis that the initial fluctuations are purely Gaussian, the value of $f_{NL}$ estimated from the observed CMB map is also drawn from the same normal distribution. Any statistically significant deviations from zero would therefore allow us to reject the null hypothesis.
+Here we evaluate $f_\text{NL}$ estimates for each of the Gaussian simulations $i=1,\cdots,N_\text{sims}$. Naturally, they are normally distributed with mean zero. Under the null hypothesis that the initial fluctuations are purely Gaussian, the value of $f_\text{NL}$ estimated from the observed CMB map is also drawn from the same normal distribution. Any statistically significant deviations from zero would therefore allow us to reject the null hypothesis.
 
-It is important to note that the $\beta$ matrices depend only on the choice of mode functions and input map data, and are independent of the theoretical bispectrum considered. Once $\beta^{cub}$ and $\beta^{lin}$ are computed and stored, we may constrain any model of interest by decomposing the template to get $\alpha$. The $f_{NL}$ estimate is then  a simple dot product: $\vv{\alpha} \cdot \vv{\beta} / N$.
+It is important to note that the $\beta$ matrices depend only on the choice of mode functions and input map data, and are independent of the theoretical bispectrum considered. Once $\beta^\text{cub}$ and $\beta^\text{lin}$ are computed and stored, we may constrain any model of interest by decomposing the template to get $\alpha$. The $f_\text{NL}$ estimate is then  a simple dot product: $\vv{\alpha} \cdot \vv{\beta} / N$.
 
 The normalisation can also be obtained in a similar fashion;
 \begin{align}
@@ -94,7 +94,7 @@ or equivalently, $N = \vv{\alpha}^T \Gamma \vv{\alpha}$. We exploit separability
 \end{align}
 where $P_l(\mu)$'s are the Legendre polynomials.
 
-In summary, CMB-BEst computes the main quantities: $\beta^{cub}$, $\beta^{lin}$, and $\Gamma$. The most computationally expensive part is the linear term $\beta^{lin}$ by a couple orders of magnitude in most cases. Considerable effort has been made to optimise the corresponding part of the code, which will be detailed in the following sections.
+In summary, CMB-BEst computes the main quantities: $\beta^\text{cub}$, $\beta^\text{lin}$, and $\Gamma$. The most computationally expensive part is the linear term $\beta^\text{lin}$ by a couple orders of magnitude in most cases. Considerable effort has been made to optimise the corresponding part of the code, which will be detailed in the following sections.
 
 \subsection{Basis functions} \label{section:basis_functions}
 
@@ -111,11 +111,11 @@ All three standard templates - local, equilateral, and orthogonal - can be expre
 \end{align}
 where $A$ is the primordial power spectrum amplitude. Decomposition coefficients $\alpha_{p_1 p_2 p_3}$ have three non-zero components: $\alpha_{300} = \alpha_{030} = \alpha_{003} = 2A^2$. Coefficients for the equilateral and orthogonal templates can similarly be found.
 
-We set the scalar spectral index as $n_s = 1$ above for simplicity. In the presence of non-unit $n_s$, we modify the basis as follows;
+We set the scalar spectral index as $n_\text{s} = 1$ above for simplicity. In the presence of non-unit $n_\text{s}$, we modify the basis as follows;
 \begin{align}
-	q_p(k) = k^2 \left[ k_* \left( \frac{k}{k_*} \right)^{(4-n_s)/3} \right]^{p-3}, \;\; p=0,1,2,3. \label{eqn:KSW_basis}
+	q_p(k) = k^2 \left[ k_* \left( \frac{k}{k_*} \right)^{(4-n_\text{s})/3} \right]^{p-3}, \;\; p=0,1,2,3. \label{eqn:KSW_basis}
 \end{align}
-The pivot scale $k_*$ is defined such that the power spectrum evaluates to $A$ at $k=k_*$. Including $k_*$ here ensures that the $q_p(k)$'s have the right units. Note that the prefactor $k^2$ comes from the definition of the shape function and is therefore unaffected by $n_s$. We will refer to this choice of mode functions to be the `KSW' basis.
+The pivot scale $k_*$ is defined such that the power spectrum evaluates to $A$ at $k=k_*$. Including $k_*$ here ensures that the $q_p(k)$'s have the right units. Note that the prefactor $k^2$ comes from the definition of the shape function and is therefore unaffected by $n_\text{s}$. We will refer to this choice of mode functions to be the `KSW' basis.
 
 For studying models with linearly spaced, high-frequency oscillation, a Fourier-like basis
 \begin{align}
@@ -125,24 +125,24 @@ for a fixed $\omega$ is an appropriate choice. This is in fact equivalent to the
 
 Lastly, for investigating a wide variety of models simultaneously, we construct large basis sets suitable for decomposing general shape functions. One such example is the following basis which consists of Legendre polynomials;
 \begin{align}
-	q_p(k) = P_p(\bar{k}), \;\;\text{where}\;\; \bar{k} = \frac{2k-k_{min}-k_{max}}{k_{max}-k_{min}}.  \label{eqn:Legendre_basis_no_inv_k}
+	q_p(k) = P_p(\bar{k}), \;\;\text{where}\;\; \bar{k} = \frac{2k-k_\text{min}-k_\text{max}}{k_\text{max}-k_\text{min}}.  \label{eqn:Legendre_basis_no_inv_k}
 \end{align}
-Here we linearly map the range from $k \in [k_{min},k_{max}]$ to $\bar{k} \in [-1,1]$, which is the interval where Legendre polynomials are defined. The number of modes are not bounded; the larger the basis, the more complete coverage of theory $k$ space we get.
+Here we linearly map the range from $k \in [k_\text{min},k_\text{max}]$ to $\bar{k} \in [-1,1]$, which is the interval where Legendre polynomials are defined. The number of modes are not bounded; the larger the basis, the more complete coverage of theory $k$ space we get.
 
 The Legendre basis functions are inherently orthogonal, so that $\int_{-1}^{1} d\bar{k} P_{l}(\bar{k}) P_{l'}(\bar{k}) = 0$ whenever $l \neq l'$. Orthogonality is essential for this class of basis sets since it allows us to greatly simplify the way of decomposing theoretical templates. We elaborate on the decomposition method in Section \ref{section:primordial_basis_expansion}. 
 
-The Legendre basis also enables direct connection to \textsc{Primodal}, a fast numerical code for computing primordial bispectra from general single-field inflation models \cite{Clarke2021}. \textsc{Primodal} utilises the inherent separability present in the \textit{in-in} formalism to efficiently compute the bispectrum using a separable basis. Using the Legendre polynomials for the basis is optimal for this step, but the methodology is not restricted to any particular choice of basis. The code then outputs the expansion coefficients of the primordial bispectrum with respect to the Legendre polynomials. Hence, the result can be plugged in directly to \textsc{CMB-BEst}, creating one fluid pipeline from the model Lagrangian to $f_{NL}$ estimation.
+The Legendre basis also enables direct connection to \textsc{Primodal}, a fast numerical code for computing primordial bispectra from general single-field inflation models \cite{Clarke2021}. \textsc{Primodal} utilises the inherent separability present in the \textit{in-in} formalism to efficiently compute the bispectrum using a separable basis. Using the Legendre polynomials for the basis is optimal for this step, but the methodology is not restricted to any particular choice of basis. The code then outputs the expansion coefficients of the primordial bispectrum with respect to the Legendre polynomials. Hence, the result can be plugged in directly to \textsc{CMB-BEst}, creating one fluid pipeline from the model Lagrangian to $f_\text{NL}$ estimation.
 
-As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomials with one or more extra functions for better description of some bispectrum templates. One solid choice is to add a mode $q(k) = k^{n_s -2}$, orthogonalised with respect to the rest of the basis. This significantly boosts the performance of decomposing local-type bispectra.
+As noted in \cite{Clarke2021}, we may augment the base set of Legendre polynomials with one or more extra functions for better description of some bispectrum templates. One solid choice is to add a mode $q(k) = k^{n_\text{s} -2}$, orthogonalised with respect to the rest of the basis. This significantly boosts the performance of decomposing local-type bispectra.
 
-Ideally, we would like the $k$ range used in the definition (\ref{eqn:Legendre_basis_no_inv_k}) to be as wide as possible so that more information from different scales are incorporated in the estimation process. A wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_{max}/k_{min} = 1000$ is an overall sweet spot for analysing Planck data.
+Ideally, we would like the $k$ range used in the definition (\ref{eqn:Legendre_basis_no_inv_k}) to be as wide as possible so that more information from different scales are incorporated in the estimation process. A wider $k$ range, however, also results in lower resolving power because the interval can fit more oscillations of given frequency. Polynomials of higher degrees are necessary to handle the same bispectra. We found that $k_\text{max}/k_\text{min} = 1000$ is an overall sweet spot for analysing Planck data.
 
-Throughout the rest of this thesis, we refer to a basis with the $k^{n_s - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $(k_{min}, k_{max}) = (2.09 \times 10^{-4}, 2.09 \times 10^{-1})$, as the `Legendre' basis. Any deviation from this set of parameters will be stated explicitly. Note that this is for our convenience during testing only; the code may take any choice of basis.
+Throughout the rest of this thesis, we refer to a basis with the $k^{n_\text{s} - 2}$ mode and the first 29 Legendre polynomials, totalling 30 modes, defined in the $k$ range with $(k_\text{min}, k_\text{max}) = (2.09 \times 10^{-4}, 2.09 \times 10^{-1})$, as the `Legendre' basis. Any deviation from this set of parameters will be stated explicitly. Note that this is for our convenience during testing only; the code may take any choice of basis.
 
 
 \subsection{Primordial basis expansion} \label{section:primordial_basis_expansion}
 
-Our formalism assumes that the bispectrum shape of interest can be accurately represented as a linear combination of chosen basis set; 
+Our formalism assumes that the bispectrum shape of interest can be accurately represented as a linear combination of a chosen basis set; 
 \begin{align}
 	S(k_1,k_2,k_3) = \sum_{p_j} \alpha_{p_1,p_2,p_3} \; Q_{p_1 p_2 p_3}(k_1, k_2, k_3),
 \end{align}
@@ -152,13 +152,13 @@ where the three-dimensional mode functions are defined as
 \end{align}
 For some models the coefficients $\alpha_{p_1 p_2 p_3}$ are obtained analytically. The local shape function with respect to the KSW basis is a simple example; $\alpha_{300}=\alpha_{030}=\alpha_{003}=2A^2$ and zero otherwise. For other models, the shape function needs to be expanded with respect to the chosen basis. 
 
-Shape functions are defined on the same domain as bispectra: $(k_1,k_2,k_3) \in \mathbb{R}^3$ where $k_1$, $k_2$, and $k_3$ form a triangle. We cannot observe scales smaller than a certain size in practice, which places an upper bound on $k$: $k < k_{max}$. The resulting domain in three dimensions is shown in Figure \ref{fig:tetrapyd}.
+Shape functions are defined on the same domain as bispectra: $(k_1,k_2,k_3) \in \mathbb{R}^3$ where $k_1$, $k_2$, and $k_3$ form a triangle. We cannot observe scales smaller than a certain size in practice, which places an upper bound on $k$: $k < k_\text{max}$. The resulting domain in three dimensions is shown in Figure \ref{fig:tetrapyd}.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\hspace{10pt}
 	\includegraphics[width=1.0\textwidth]{tetrapyd.pdf}
-	\caption{Tetrapyd domain in which the shape functions are defined. Left: the full region specified by triangle inequalities and an upper bound $k_{max}$. Right: one sixth slice of the tetrapyd from which shape functions are uniquely determined by symmetry in the $k$'s. Edges representing the equilateral, flattened and squeezed configurations are annotated.}
+	\caption{Tetrapyd domain in which the shape functions are defined. Left: the full region specified by triangle inequalities and an upper bound $k_\text{max}$. Right: one sixth slice of the tetrapyd from which shape functions are uniquely determined by symmetry in the $k$'s. Edges representing the equilateral, flattened and squeezed configurations are annotated.}
 	\label{fig:tetrapyd}
 \end{figure}
 
@@ -176,7 +176,7 @@ Let $V_{\vv{k}}$ be the subset of $\mathbb{R}^3$ representing the sliced tetrapy
 	\left< S_1, S_2 \right> = \int_{V_{\vv{k}}} d^3\vv{k} \;\; S_1(\vv{k}) S_2(\vv{k}), \label{eqn:tetrapyd_inner_product}
 \end{align}
 we restrict our attention to an $L^2$ space defined on $V_{\vv{k}}$: a vector space consisting of square-integrable functions.
-\footnote{Note that the local shape function $S(k_1,k_2,k_3) = (k_1^2 / k_2 k_3 + \text{2 cyc.})$ is not in fact square-integrable due to its divergence as $k_i \rightarrow 0$. We work around this problem by prescribing a lower bound $k \ge k_{min}$, which is also the case in numerical calculations.}
+\footnote{Note that the local shape function $S(k_1,k_2,k_3) = (k_1^2 / k_2 k_3 + \text{2 cyc.})$ is not in fact square-integrable due to its divergence as $k_i \rightarrow 0$. We work around this problem by prescribing a lower bound $k \ge k_\text{min}$, which is also the case in numerical calculations.}
 A set of three-dimensional basis functions $Q_{\vv{p}}$ with size $N$ spans a subspace $U_{Q} \subset L^2(V_{\vv{k}})$ of dimension at most $N$.
 
 Using this notation, expanding a given shape function $S$ with respect to a basis set $Q$ is equivalent to finding its orthogonal projection into $U_{Q}$;
@@ -196,7 +196,7 @@ From above, we can compute $\alpha_\vv{p}$ by inverting the matrix $\Gamma_{\vv{
 
 We rewrote the formalism using linear analysis language here to emphasize two aspects of our primordial basis expansion. First, even though we chose a simple inner product (\ref{eqn:tetrapyd_inner_product}) for now, the method is completely general and we may freely choose a different inner product. For example, non-unit weights $w(\vv{k})$ can be included in the integrand and/or the domain of integration may be changed. Doing so alters how we decompose shape functions in terms of our basis.
 
-Second, we highlight the fact that basis expansion is in essence a minimisation problem with respect to chosen inner product, which is often oblivious of late-time physics. The orthogonal projection of $S$ to subspace $U_Q$ is a point in $U_Q$ which has minimal distance to $S$: $\left\| S - S^\parallel \right\|$ is minimised. The obtained $S^\parallel$, however, is not necessarily the best description of $S$ when we consider their late-time counterparts in $l$ space. Some errors with small norm $\left\| \Delta S \right\|$ might get enhanced when convolved with transfer functions, yielding large reduced bispectrum $\Delta b_{l_1 l_2 l_3}$. Meanwhile, sometimes large differences in $S$ are completely unobservable late-time and provide mostly identical constraints on $f_{NL}$.
+Second, we highlight the fact that basis expansion is in essence a minimisation problem with respect to chosen inner product, which is often oblivious of late-time physics. The orthogonal projection of $S$ to subspace $U_Q$ is a point in $U_Q$ which has minimal distance to $S$: $\left\| S - S^\parallel \right\|$ is minimised. The obtained $S^\parallel$, however, is not necessarily the best description of $S$ when we consider their late-time counterparts in $l$ space. Some errors with small norm $\left\| \Delta S \right\|$ might get enhanced when convolved with transfer functions, yielding large reduced bispectrum $\Delta b_{l_1 l_2 l_3}$. Meanwhile, sometimes large differences in $S$ are completely unobservable late-time and provide mostly identical constraints on $f_\text{NL}$.
 
 With these points in mind, we define the following metrics to compare shape functions in primordial space;
 \begin{align}
@@ -205,13 +205,13 @@ With these points in mind, we define the following metrics to compare shape func
 \end{align}
 Corr$(S_1,S_2)$ measures correlation between the two shapes and is independent of the normalisation. $\epsilon(S_1,S_2)$ is the distance between the two shapes, which reduces to $\sqrt{2 - 2\;\text{Corr}(S_1,S_2)}$ when $S_1$ and $S_2$ have equal amplitude. We use both of these values to test if our primordial basis expansion has converged to the target shape function. 
 
-Inverting the matrix $\Gamma_{\vv{p} \vv{p}'} = \left< Q_\vv{p}, Q_{\vv{p}'} \right>$ in \eqref{eqn:primordial_basis_expansion_SQ_and_QQ} can be tricky in practice. The $p_{max}^3 \times p_{max}^3$ matrix is not only large in size for high $p_{max}$, but also near singular. Some of the three-dimensional mode functions $Q_\vv{p}$ become linearly dependent within tetrapyd even if they are constructed from independent modes in one dimension. Presence of such degenerate modes introduces severe numerical instability during inversion.
+Inverting the matrix $\Gamma_{\vv{p} \vv{p}'} = \left< Q_\vv{p}, Q_{\vv{p}'} \right>$ in \eqref{eqn:primordial_basis_expansion_SQ_and_QQ} can be tricky in practice. The $p_\text{max}^3 \times p_\text{max}^3$ matrix is not only large in size for high $p_\text{max}$, but also near singular. Some of the three-dimensional mode functions $Q_\vv{p}$ become linearly dependent within tetrapyd even if they are constructed from independent modes in one dimension. Presence of such degenerate modes introduces severe numerical instability during inversion.
 
 For our Legendre basis, we use a small trick to get around this problem. Motivated by the fact that Legendre polynomials form an orthogonal basis in one dimension, we extend the domain of integral in the inner product \eqref{eqn:tetrapyd_inner_product} to a cube containing the tetrapyd instead. Most template shape functions have an analytic form and can easily be extended in this region. As long as $\int dk \; q_p(k) q_{p'}(k) = \delta_{pp'}$, the decomposed coefficients for a given $S$ can be found by
 \begin{align}
 	\alpha^{(t)}_{p_1 p_2 p_3} = \int dk_1 \int dk_2 \int dk_3 \; S^{(t)}(k_1, k_2, k_3) q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3). \label{eqn:basis_expansion}
 \end{align}
-Note that the three-dimensional integral can now be split into three separate one-dimensional integrals in range $[k_{min}, k_{max}]$. By performing the three integrals one by one, we obtain a numerically stable algorithm that is fast and memory efficient. Decomposing a shape evaluated on $1000^3$ $k$ grid points with respect to $30^3$ Legendre basis functions only takes a few seconds in our \textsc{C} code.
+Note that the three-dimensional integral can now be split into three separate one-dimensional integrals in range $[k_\text{min}, k_\text{max}]$. By performing the three integrals one by one, we obtain a numerically stable algorithm that is fast and memory efficient. Decomposing a shape evaluated on $1000^3$ $k$ grid points with respect to $30^3$ Legendre basis functions only takes a few seconds in our \textsc{C} code.
 
 After we obtain coefficients from (\ref{eqn:basis_expansion}), we evaluate the accuracy of the expansion using the inner product defined in tetrapyd because it is the only physical region where our shape function matters. Since the cube includes tetrapyd, good convergence in the cube guarantees a small error within the tetrapyd in most cases. The only exception is when the target shape function blows up outside the tetrapyd. We will see such examples in later sections.
 
@@ -220,7 +220,7 @@ After we obtain coefficients from (\ref{eqn:basis_expansion}), we evaluate the a
 
 CMB bispectrum estimation is a numerically challenging task. All existing approaches exploit the separability of multi-dimensional integrals to reduce computational complexity, because it is practically impossible otherwise. Planck analysis provided constraints to primordial non-Gaussianity from various bispectrum templates, but having limited computing resources was what stopped us from exploring further. Numerous shapes such as complex oscillatory models have been outside our reach, despite being theoretically well-motivated.
 
-The CMB-BEst formalism significantly reduces the amount of computation needed for CMB bispectrum estimation. Obtaining the linear term $\beta^{lin}$ in (\ref{def:beta_linear}), however, is still prohibitively expensive unless thoroughly optimised. Performance is especially crucial here since it directly affects the breadth of models we can cover; the faster the code, the higher number of modes we can have, and so the more shapes we can expand in our basis accurately.
+The CMB-BEst formalism significantly reduces the amount of computation needed for CMB bispectrum estimation. Obtaining the linear term $\beta^\text{lin}$ in (\ref{def:beta_linear}), however, is still prohibitively expensive unless thoroughly optimised. Performance is especially crucial here since it directly affects the breadth of models we can cover; the faster the code, the higher number of modes we can have, and so the more shapes we can expand in our basis accurately.
 
 In this section, we provide details for various aspects of our optimisation process: algorithm design, parallel computing, and data locality improvements. Final specifications and data files used are outlined at the end.
 
@@ -237,13 +237,13 @@ Throughout this section we will treat the functions of interest as discrete arra
 		\midrule
 		$r$ & $[0, N_r)$ & Line-of-sight integral $r$ grid index. \\
 		
-		$p, p_j$ & $[0, p_{max})$ & Mode number. $p_j$ is a shorthand for $(p_1, p_2, p_3)$. \\
+		$p, p_j$ & $[0, p_\text{max})$ & Mode number. $p_j$ is a shorthand for $(p_1, p_2, p_3)$. \\
 		
-		$i,j$ & $[0, N_{sims}]$ & Map number. Index $i=0$ corresponds to the observed CMB map, while $i>0$ are for simulated Gaussian maps. \\			
+		$i,j$ & $[0, N_\text{sims}]$ & Map number. Index $i=0$ corresponds to the observed CMB map, while $i>0$ are for simulated Gaussian maps. \\			
 		
-		$n$ & $[0, N_{pix})$ & Map pixel number. \\ 
+		$n$ & $[0, N_\text{pix})$ & Map pixel number. \\ 
 		
-		$l,m$ & $[0, l_{max})$ & Spherical harmonic multipole moments. Note $-l \le m \le l$. \\
+		$l,m$ & $[0, l_\text{max})$ & Spherical harmonic multipole moments. Note $-l \le m \le l$. \\
 		
 		$\mu$ & $[0, N_\mu)$ & Gauss-Legendre quadrature $\mu$ grid index. \\
 		
@@ -253,22 +253,22 @@ Throughout this section we will treat the functions of interest as discrete arra
 
 \subsection{Algorithm}
 
-Our goal is to compute three key quantities: $\Gamma$ (\ref{def:gamma}), $\beta^{cub}$ (\ref{def:beta_cubic}), and $\beta^{lin}$ (\ref{def:beta_linear}). The matrix $\Gamma$ allows us to find the normalisation factor $N$ for a given theoretical template, while the two $\beta$'s provide the amplitude of $f_{NL}$ for each of the CMB maps and simulations used up to normalisation.
+Our goal is to compute three key quantities: $\Gamma$ (\ref{def:gamma}), $\beta^\text{cub}$ (\ref{def:beta_cubic}), and $\beta^\text{lin}$ (\ref{def:beta_linear}). The matrix $\Gamma$ allows us to find the normalisation factor $N$ for a given theoretical template, while the two $\beta$'s provide the amplitude of $f_\text{NL}$ for each of the CMB maps and simulations used up to normalisation.
 
-In most cases of interest, the bottleneck point of our pipeline is computing the linear term $\beta^{lin}$. Even though the $\Gamma$ matrix computation through (\ref{def:gamma}) grows more rapidly with the number of basis functions ($\propto p_{max}^6$) than the $\beta$'s ($\propto p_{max}^3$), it does not involve operations with high-definition maps and remains subdominant in terms of total cost.
+In most cases of interest, the bottleneck point of our pipeline is computing the linear term $\beta^\text{lin}$. Even though the $\Gamma$ matrix computation through (\ref{def:gamma}) grows more rapidly with the number of basis functions ($\propto p_\text{max}^6$) than the $\beta$'s ($\propto p_\text{max}^3$), it does not involve operations with high-definition maps and remains subdominant in terms of total cost.
 
 We dedicate this section to explain our algorithm design for $\beta$ computation in detail. The discretised versions of (\ref{def:beta_cubic}-\ref{def:beta_linear}) are given by
 \begin{align}
-	\beta^{cub}(i, p_1,p_2,p_3) &= \sum_r \sum_n \; M(r, i, p_1, n) \cdot M(r, i, p_2, n) \cdot M(r, i, p_3, n), \\
-	\beta^{lin}(i, p_1,p_2,p_3) &= \sum_r \sum_{j \neq i} \sum_n \; M(r, j, p_1, n) \cdot M(r, j, p_2, n) \cdot M(r, i, p_3, n).
+	\beta^\text{cub}(i, p_1,p_2,p_3) &= \sum_r \sum_n \; M(r, i, p_1, n) \cdot M(r, i, p_2, n) \cdot M(r, i, p_3, n), \\
+	\beta^\text{lin}(i, p_1,p_2,p_3) &= \sum_r \sum_{j \neq i} \sum_n \; M(r, j, p_1, n) \cdot M(r, j, p_2, n) \cdot M(r, i, p_3, n).
 \end{align}
 The order of indices are chosen such that later calculations have optimal memory layouts. Some integral weights and factors are absorbed into arrays for brevity.
 
-Note that the data arrays for different values of $r$ are completely independent to each other. This provides us a natural way to distribute tasks. We compute and save contributions to $\beta$'s for each $r$ separately. The summation over $r$ is performed in the end. Therefore, throughout the rest of this chapter, we assume that $r$ is fixed and drop the $r$ dependence in the descriptions of our algorithms.
+Note that the data arrays for different values of $r$ are completely independent from each other. This provides us with a natural way to distribute tasks. We compute and save contributions to $\beta$'s for each $r$ separately. The summation over $r$ is performed at the end. Therefore, throughout the rest of this chapter, we assume that $r$ is fixed and drop the $r$ dependence in the descriptions of our algorithms.
 
 The filtered map arrays $M(i,p,n)$ are obtained as follows. A given map $i$ is first transformed into spherical harmonic coefficients $a^{(i)}(l,m)$s via SHT. We then compute $\tilde{q}_(p,l) * a(i,l,m) / C(l)$ from (\ref{def:filtered_maps}), which is fed into reverse SHT to synthesise the filtered maps.
 
-As a rough guide to the size of each summation, we typically have $N_{sim} \approx 150$ simulations, $p_{max} = 30$ modes, and $N_{pix} = 50,331,648$ pixels. \footnote{This value corresponds to $N_{side} = 2048$ in Healpix. $N_{pix} = 12 N_{side}^2$} Considering the fact that one double-precision array of size $\sim 50$ million pixels takes about 400MB of memory space, this is indeed a task for supercomputers.
+As a rough guide to the size of each summation, we typically have $N_{sim} \approx 150$ simulations, $p_\text{max} = 30$ modes, and $N_\text{pix} = 50,331,648$ pixels. \footnote{This value corresponds to $N_{side} = 2048$ in Healpix. $N_\text{pix} = 12 N_{side}^2$} Considering the fact that one double-precision array of size $\sim 50$ million pixels takes about 400MB of memory space, this is indeed a task for supercomputers.
 
 Our first and most straightforward method of computing $\beta$s is outlined in Algorithm \ref{alg:beta_first_attempt}. Computational complexity of each innermost loop is annotated on the right hand side.
 
@@ -277,12 +277,12 @@ Our first and most straightforward method of computing $\beta$s is outlined in A
 	\label{alg:beta_first_attempt}
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
 		\State Allocate $M(i,p,n)$
-		\Comment{Memory $\sim N_{sims} \cdot p_{max} \cdot N_{pix}$}
+		\Comment{Memory $\sim N_\text{sims} \cdot p_\text{max} \cdot N_\text{pix}$}
 
 		\\
 		\For{each map $i$}
 			\For{each mode $p$}
-			\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+			\Comment{$O(N_\text{sims} \cdot p_\text{max} \cdot N_\text{pix}^{3/2})$}
 				\State \textbf{compute} $M(i,p,n)$ by SHT
 			\EndFor
 		\EndFor \Comment{$M(i,p,n)$ ready}
@@ -291,8 +291,8 @@ Our first and most straightforward method of computing $\beta$s is outlined in A
 		\For{each map $i$}
 			\For{each set of modes $(p_1,p_2,p_3)$}
 				\For{each pixel $n$}
-				\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}
-					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq M(i,p_1,n) \cdot M(i,p_2,n) \cdot M(i,p_3,n)$
+				\Comment{$O(N_\text{sims} \cdot p_\text{max}^3 \cdot N_\text{pix})$}
+					\State $\beta^\text{cub}(i, p_1, p_2, p_3) \pluseq M(i,p_1,n) \cdot M(i,p_2,n) \cdot M(i,p_3,n)$
 				\EndFor
 			\EndFor
 		\EndFor
@@ -302,8 +302,8 @@ Our first and most straightforward method of computing $\beta$s is outlined in A
 			\For{each map $j \neq i$}
 				\For{each set of modes $(p_1,p_2,p_3)$}
 					\For{each pixel $n$}
-					\Comment{$O(N_{sims}^2 \cdot p_{max}^3 \cdot N_{pix})$}
-						\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq M(j,p_1,n) \cdot M(j,p_2,n) \cdot M(i,p_3,n)$
+					\Comment{$O(N_\text{sims}^2 \cdot p_\text{max}^3 \cdot N_\text{pix})$}
+						\State $\beta^\text{lin}(i, p_1, p_2, p_3) \pluseq M(j,p_1,n) \cdot M(j,p_2,n) \cdot M(i,p_3,n)$
 					\EndFor
 				\EndFor
 			\EndFor
@@ -312,22 +312,22 @@ Our first and most straightforward method of computing $\beta$s is outlined in A
 	\end{algorithmic}
 \end{algorithm}
 
-Here, we first obtain the filtered maps $M(i,p,n)$ via SHT for each map and modes. The full results are stored in memory. Next, we iterate through each map and set of modes $(p_1, p_2, p_3)$ and sum over each of the map pixels to obtain $\beta^{cub}$ and $\beta^{lin}$. Symmetries in the indices are respected; we only loop over $(p_1,p_2,p_3)$ satisfying $p_1\ge p_2$ for the linear terms, and $p_1\ge p_2\ge p_3$ for the cubic ones.
+Here, we first obtain the filtered maps $M(i,p,n)$ via SHT for each map and modes. The full results are stored in memory. Next, we iterate through each map and set of modes $(p_1, p_2, p_3)$ and sum over each of the map pixels to obtain $\beta^\text{cub}$ and $\beta^\text{lin}$. Symmetries in the indices are respected; we only loop over $(p_1,p_2,p_3)$ satisfying $p_1\ge p_2$ for the linear terms, and $p_1\ge p_2\ge p_3$ for the cubic ones.
 
-SHT typically scales as $\propto l_{max}^3$, where $l_{max}$ is the maximum degree of spherical harmonic functions used. The total number of pixels $N_{pix}$ grows $\propto l_{max}^2$ when chosen appropriately for resolution, hence the SHT costs $O(N_{sims}\cdot p_{max} \cdot N_{pix}^{3/2})$. The most expensive part of this algorithm is still the loop where we calculate the linear term, which scales as $O(N_{sims}^2 \cdot p_{max}^3 \cdot N_{pix})$.
+SHT typically scales as $\propto l_\text{max}^3$, where $l_\text{max}$ is the maximum degree of spherical harmonic functions used. The total number of pixels $N_\text{pix}$ grows $\propto l_\text{max}^2$ when chosen appropriately for resolution, hence the SHT costs $O(N_\text{sims}\cdot p_\text{max} \cdot N_\text{pix}^{3/2})$. The most expensive part of this algorithm is still the loop where we calculate the linear term, which scales as $O(N_\text{sims}^2 \cdot p_\text{max}^3 \cdot N_\text{pix})$.
 
-Our first major optimisation comes from the observation that we may swap the order of summations to reduce the computation. By precomputing $C(p_1, p_2, n) = \sum_j M(j,p_1,n) \cdot M(j,p_2,n)$, we require one fewer loop over maps for $\beta^{lin}$, leading to a factor of $N_{sims}\sim150$ improvement. Algorithm \ref{alg:beta_second_attempt} shows a pseudocode for this method.
+Our first major optimisation comes from the observation that we may swap the order of summations to reduce the computation. By precomputing $C(p_1, p_2, n) = \sum_j M(j,p_1,n) \cdot M(j,p_2,n)$, we require one fewer loop over maps for $\beta^\text{lin}$, leading to a factor of $N_\text{sims}\sim150$ improvement. Algorithm \ref{alg:beta_second_attempt} shows a pseudocode for this method.
 
 \begin{algorithm}[htbp]
 	\caption{Computing $\beta$s: optimised for computation}
 	\label{alg:beta_second_attempt}
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
-		\State Allocate $M(i,p,n)$ \Comment{Memory $\sim N_{sims} \cdot p_{max} \cdot N_{pix}$}
-		\State Allocate $C(p_1,p_2,n)$ \Comment{Memory $\sim p_{max}^2 \cdot N_{pix}$}
+		\State Allocate $M(i,p,n)$ \Comment{Memory $\sim N_\text{sims} \cdot p_\text{max} \cdot N_\text{pix}$}
+		\State Allocate $C(p_1,p_2,n)$ \Comment{Memory $\sim p_\text{max}^2 \cdot N_\text{pix}$}
 		\\
 		\For{each map $i$}
 			\For{each mode $p$}
-				\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\Comment{$O(N_\text{sims} \cdot p_\text{max} \cdot N_\text{pix}^{3/2})$}
 				\State \textbf{compute} $M(i,p,n)$ by SHT
 			\EndFor
 		\EndFor \Comment{$M(i,p,n)$ ready}
@@ -335,7 +335,7 @@ Our first major optimisation comes from the observation that we may swap the ord
 		\For{each map $j$}
 			\For{each pair of modes $(p_1,p_2)$}
 				\For{each pixel $n$}
-					\Comment{$O(N_{sims} \cdot p_{max}^2 \cdot N_{pix})$}
+					\Comment{$O(N_\text{sims} \cdot p_\text{max}^2 \cdot N_\text{pix})$}
 					\State $C(p_1,p_2,n) \pluseq M(j,p_1,n) \cdot M(j,p_2,n)$
 				\EndFor
 			\EndFor
@@ -344,39 +344,39 @@ Our first major optimisation comes from the observation that we may swap the ord
 		\For{each map $i$}
 			\For{each set of modes $(p_1,p_2,p_3)$}
 				\For{each pixel $n$}
-					\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}
-					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq M(i, p_1, n) \cdot M(i, p_2, n) \cdot M(i, p_3, n)$
-					\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot M(i, p_3, n)$
+					\Comment{$O(N_\text{sims} \cdot p_\text{max}^3 \cdot N_\text{pix})$}
+					\State $\beta^\text{cub}(i, p_1, p_2, p_3) \pluseq M(i, p_1, n) \cdot M(i, p_2, n) \cdot M(i, p_3, n)$
+					\State $\beta^\text{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot M(i, p_3, n)$
 				\EndFor
 			\EndFor
 		\EndFor
 	\end{algorithmic}
 \end{algorithm}
 
-Note that the resulting sum fo $\beta^{lin}$ includes an unwanted contribution from the case where $j=i$, since $C(p_1,p_2,n)$ is obtained by summing over all maps. Thankfully, this extra contribution is exactly equal to the cubic term. We just have to subtract $\beta^{cub}$ from the total sum to get the correct value of $\beta^{lin}$.
+Note that the resulting sum fo $\beta^\text{lin}$ includes an unwanted contribution from the case where $j=i$, since $C(p_1,p_2,n)$ is obtained by summing over all maps. Thankfully, this extra contribution is exactly equal to the cubic term. We just have to subtract $\beta^\text{cub}$ from the total sum to get the correct value of $\beta^\text{lin}$.
 
-We shaved off a whole loop at the cost of extra memory usage. For our purposes $N_{sims} \sim 150 > p_{max} = 30$, so the additional space required for $C(p_1,p_2,n)$ is relatively small compared to $M(i,p,n)$. The symmetry in $p_1$ and $p_2$ also means that we only need to store $p_{max}(p_{max}+1)/2$ maps instead of $p_{max}^2$ for $C$.
+We shaved off a whole loop at the cost of extra memory usage. For our purposes $N_\text{sims} \sim 150 > p_\text{max} = 30$, so the additional space required for $C(p_1,p_2,n)$ is relatively small compared to $M(i,p,n)$. The symmetry in $p_1$ and $p_2$ also means that we only need to store $p_\text{max}(p_\text{max}+1)/2$ maps instead of $p_\text{max}^2$ for $C$.
 
-Our next challenge is the amount of memory required to save $M(i,p,n)$. For the parameters mentioned above, this is $\approx 1.8$TB, which is quite significant. Although it is not impossible to find supercomputing systems which can accommodate such large arrays, reducing the memory usage would be highly beneficial. We seek to achieve this whilst keeping the overall computational complexity to be $O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$ as before.
+Our next challenge is the amount of memory required to save $M(i,p,n)$. For the parameters mentioned above, this is $\approx 1.8$TB, which is quite significant. Although it is not impossible to find supercomputing systems which can accommodate such large arrays, reducing the memory usage would be highly beneficial. We seek to achieve this whilst keeping the overall computational complexity to be $O(N_\text{sims} \cdot p_\text{max}^3 \cdot N_\text{pix})$ as before.
 
-We observe that most summations are done for a single map $i$. The array $C(p_1,p_2,n)$ is required to be computed before the main loop for $\beta^{lin}$, but otherwise there are no `mixing' between the maps. We exploited this fact to develop Algorithm \ref{alg:beta_third_attempt}.
+We observe that most summations are done for a single map $i$. The array $C(p_1,p_2,n)$ is required to be computed before the main loop for $\beta^\text{lin}$, but otherwise there are no `mixing' between the maps. We exploited this fact to develop Algorithm \ref{alg:beta_third_attempt}.
 
 \begin{algorithm}[htbp]
 	\caption{Computing $\beta$s: fast and memory efficient}
 	\label{alg:beta_third_attempt}
 	\begin{algorithmic}[1] % The number tells where the line numbering should start	
-		\State Allocate $m(p,n)$ \Comment{Memory $\sim p_{max} \cdot N_{pix}$}
-		\State Allocate $C(p_1,p_2,n)$ \Comment{Memory $\sim p_{max} \cdot p_{max} \cdot N_{pix}$}
+		\State Allocate $m(p,n)$ \Comment{Memory $\sim p_\text{max} \cdot N_\text{pix}$}
+		\State Allocate $C(p_1,p_2,n)$ \Comment{Memory $\sim p_\text{max}^2 \cdot N_\text{pix}$}
 		\\
 		\For{each map $i$}
 			\For{each mode $p$}
-				\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\Comment{$O(N_\text{sims} \cdot p_\text{max} \cdot N_\text{pix}^{3/2})$}
 				\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
 			\EndFor
 			\\
 			\For{each pair of modes $(p_1,p_2)$}
 				\For{each pixel $n$}
-				\Comment{$O(N_{sims} \cdot p_{max}^2 \cdot N_{pix})$}
+				\Comment{$O(N_\text{sims} \cdot p_\text{max}^2 \cdot N_\text{pix})$}
 					\State $C(p_1,p_2,n) \pluseq m(p_1,n) \cdot m(p_2,n)$
 				\EndFor
 			\EndFor
@@ -385,15 +385,15 @@ We observe that most summations are done for a single map $i$. The array $C(p_1,
 		\\
 		\For{each map $i$}
 			\For{each of mode $p$}
-				\Comment{$O(N_{sims} \cdot p_{max} \cdot N_{pix}^{3/2})$}
+				\Comment{$O(N_\text{sims} \cdot p_\text{max} \cdot N_\text{pix}^{3/2})$}
 				\State \textbf{compute} $M(i,p,n)$ by SHT and store in $m(p,n)$
 			\EndFor
 			\\
 			\For{each set of modes $(p_1,p_2,p_3)$}		\label{alg:thrid_attempt_main_loop}	
 				\For{each pixel $n$}
-					\Comment{$O(N_{sims} \cdot p_{max}^3 \cdot N_{pix})$}	
-					\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
-					\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot m( p_3, n)$
+					\Comment{$O(N_\text{sims} \cdot p_\text{max}^3 \cdot N_\text{pix})$}	
+					\State $\beta^\text{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
+					\State $\beta^\text{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot m( p_3, n)$
 				\EndFor
 			\EndFor
 		\EndFor
@@ -402,7 +402,7 @@ We observe that most summations are done for a single map $i$. The array $C(p_1,
 
 Algorithm \ref{alg:beta_third_attempt} dramatically reduces the amount of memory required, at the cost of doubling the SHTs for computing $M(i,p,n)$s. The first time through, SHT results from each map are used to find $C(p_1,p_2,n)$. After a full loop over maps we have $C(p_1,p_2,n)$ ready, another set of SHTs for each map allows us to obtain the $\beta$'s.
 
-SHTs have subdominant contribution to the total computation time even after becoming doubled in number. One of the main strengths of Algorithm \ref{alg:beta_third_attempt} is that both the memory and computation time scale linearly with the number of simulations used, $N_{sims}$. In the future when a larger number of Gaussian simulations are required to acquire a more accurate estimate of the linear term, it is straightforward to adapt our method accordingly.
+SHTs have subdominant contribution to the total computation time even after becoming doubled in number. One of the main strengths of Algorithm \ref{alg:beta_third_attempt} is that both the memory and computation time scale linearly with the number of simulations used, $N_\text{sims}$. In the future when a larger number of Gaussian simulations are required to acquire a more accurate estimate of the linear term, it is straightforward to adapt our method accordingly.
 
 We choose Algorithm \ref{alg:beta_third_attempt} to be our main method of computing $\beta$'s for CMB-BEst.
 
@@ -410,7 +410,7 @@ We choose Algorithm \ref{alg:beta_third_attempt} to be our main method of comput
 
 % Do I need more computing related references here maybe?
 
-In order to fully benefit from modern computer architecture, parallel computing is a must. In this section, we outline how CMB-BEst was parallelised for optimal performance on supercomputers.
+In order to fully benefit from modern computer architecture, parallel computing is essential. In this section, we outline how CMB-BEst was parallelised for optimal performance on supercomputers.
 
 Following \cite{Jeffers2016intel}, we discuss parallelism in three different levels: domain, thread, and data. They mostly correspond to nodes, cores, and registers in modern computer clusters. Each level has distinct characteristics which make them ideal for different parallelisation techniques. We make full use of each level in our methodology.
 
@@ -483,8 +483,8 @@ The second optimisation centres around \textit{cache blocking}, a technique used
 \begin{algorithmic}
 	\For{each set of modes $(p_1,p_2,p_3)$}
 		\For{each pixel $n$}
-			\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
-			\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot m( p_3, n)$
+			\State $\beta^\text{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n) \cdot m(p_2,n) \cdot m(p_3,n)$
+			\State $\beta^\text{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n) \cdot m( p_3, n)$
 		\EndFor
 	\EndFor
 \end{algorithmic}
@@ -499,8 +499,8 @@ Motivated by these facts, we divide the map array into equally sized blocks so t
 	\For{each block $b$}
 		\For{each set of modes $(p_1,p_2,p_3)$}
 			\For{each pixel $n'$ in block}
-				\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n') \cdot m(p_2,n') \cdot m(p_3,n')$
-				\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n') \cdot m( p_3, n')$
+				\State $\beta^\text{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n') \cdot m(p_2,n') \cdot m(p_3,n')$
+				\State $\beta^\text{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n') \cdot m( p_3, n')$
 			\EndFor
 		\EndFor
 	\EndFor
@@ -510,7 +510,7 @@ New pixel numbers are calculated as $n' = B \cdot b + n$, where $B$ is the size 
 
 One caveat here is that having too many blocks may degrade performance. There exist a non-negligible overhead coming from an extra \textit{for} loop and the OpenMP construct used over $n'$. The block size divided by the number of cores should not be smaller than the size of cache lines either. The optimal size of cache blocks depends on the memory architecture of the processor used. This often needs to be found empirically.
 
-Figure (\ref{fig:cache_block_optimisation}) shows how runtime of a small test code varies with the number of cache blocks used. The code was run on the Intel Gold 6154 processor, which is an 18-core high performance chip with total L1, L2, and L3 cache memory sizes of 1.125MiB, 18MiB, and 24.74MiB, respectively \cite{intel_data_sheet}. Even though some parameters such as $N_{sims}$ are tuned down for faster testing, this is representative of the full computation.
+Figure (\ref{fig:cache_block_optimisation}) shows how runtime of a small test code varies with the number of cache blocks used. The code was run on the Intel Gold 6154 processor, which is an 18-core high performance chip with total L1, L2, and L3 cache memory sizes of 1.125MiB, 18MiB, and 24.74MiB, respectively \cite{intel_data_sheet}. Even though some parameters such as $N_\text{sims}$ are tuned down for faster testing, this is representative of the full computation.
 
 \begin{figure}[htbp!] 
 	\centering    
@@ -558,8 +558,8 @@ Algorithm \ref{alg:beta_final_algorithm} summarises our final implementation of 
 		\For{each set of modes $(p_1,p_2,p_3)$}		
 		\For{each pixel $n'$ in block}
 		\Comment{OpenMP \textit{for} construct}
-		\State $\beta^{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n') \cdot m(p_2,n') \cdot m(p_3,n')$
-		\State $\beta^{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n') \cdot m( p_3, n')$
+		\State $\beta^\text{cub}(i, p_1, p_2, p_3) \pluseq m(p_1,n') \cdot m(p_2,n') \cdot m(p_3,n')$
+		\State $\beta^\text{lin}(i, p_1, p_2, p_3) \pluseq C(p_1, p_2, n') \cdot m( p_3, n')$
 		\EndFor
 		\EndFor
 		\EndFor
@@ -573,34 +573,34 @@ CMB bispectrum estimation is not only computationally challenging but also prone
 
 \subsection{Internal consistency checks} \label{section:internal_consistency}
 
-CMB-BEst is a general code where one can freely choose a set of basis functions. Three of our main options are the `KSW' basis (\ref{eqn:KSW_basis}), `Legendre' basis (\ref{eqn:Legendre_basis_no_inv_k}, augmented with $q(k)=k^{n_s-2}$) as discussed previously in Section \ref{section:basis_functions}, and Fourier basis (\ref{eqn:Fourier_basis}). Both KSW and Legendre basis sets can cover the standard templates: local, equilateral, and orthogonal (see e.g., \cite{PlanckCollaboration2013} for definitions). The KSW basis provides an exact form to the three templates by choosing appropriate powers of $k$ as its basis elements. On the other hand, the templates are expanded in terms of separable Legendre polynomials up to some fixed degree $p_{max}$ for the Legendre basis. As long as $p_{max}$ is sufficiently large, most smooth bispectrum shapes can be represented accurately. 
+CMB-BEst is a general code where one can freely choose a set of basis functions. Three of our main options are the `KSW' basis (\ref{eqn:KSW_basis}), `Legendre' basis (\ref{eqn:Legendre_basis_no_inv_k}, augmented with $q(k)=k^{n_\text{s}-2}$) as discussed previously in Section \ref{section:basis_functions}, and Fourier basis (\ref{eqn:Fourier_basis}). Both KSW and Legendre basis sets can cover the standard templates: local, equilateral, and orthogonal (see e.g., \cite{PlanckCollaboration2013} for definitions). The KSW basis provides an exact form for the three templates by choosing appropriate powers of $k$ as its basis elements. On the other hand, the templates are expanded in terms of separable Legendre polynomials up to some fixed degree $p_\text{max}$ for the Legendre basis. As long as $p_\text{max}$ is sufficiently large, most smooth bispectrum shapes can be represented accurately. 
 
-Our first consistency check is shown in Figure \ref{fig:map_by_map_Legendre_KSW}, where we compare the $f_{NL}$ estimates from the Planck 2018 CMB map and 140 full focal plane (FFP10) realistic Gaussian simulations \cite{PlanckCollaboration2015simulations}. We use CMB maps obtained through the SMICA component separation method \cite{Cardoso2008component, PlanckCollaboration2013ComponentSeparation}. On the left hand side are scatter plots of $f_{NL}$ values obtained using each of the two basis sets. In an ideal case where the two estimates are identical for every test map, all the points would lie on a straight line given by $y=x$. Drawn in dashed red line is the best linear fit to the data. Its slope, intercept, and the $R$-squared value are annotated below. On the right is a more detailed plot of the computed $f_{NL}$ for each map.
+Our first consistency check is shown in Figure \ref{fig:map_by_map_Legendre_KSW}, where we compare the $f_\text{NL}$ estimates from the Planck 2018 CMB map and 140 full focal plane (FFP10) realistic Gaussian simulations \cite{PlanckCollaboration2015simulations}. We use CMB maps obtained through the SMICA component separation method \cite{Cardoso2008component, PlanckCollaboration2013ComponentSeparation}. On the left hand side are scatter plots of $f_\text{NL}$ values obtained using each of the two basis sets. In an ideal case where the two estimates are identical for every test map, all the points would lie on a straight line given by $y=x$. Drawn in dashed red line is the best linear fit to the data. Its slope, intercept, and the $R$-squared value are annotated below. On the right is a more detailed plot of the computed $f_\text{NL}$ for each map.
 
 \begin{figure}[htbp!] 
 	\centering 
 	\includegraphics[width=\textwidth]{map_by_map_Legendre_KSW.pdf}
-	\caption{Map-by-map comparison of $f_{NL}$ estimates for standard templates, evaluated using each of the KSW and Legendre basis sets. Planck 2018 CMB map and 140 FFP10 simulations have been used, each representing a single point on the scatter plot shown left. Details of the linear best-fit to data (red dashed) are annotated below. On the right hand side is shown a plot of $f_{NL}$ values for each map. In the ideal case where the two basis sets yield identical results, we should see all the points on $y=x$ for the left plot, and exactly overlapping graphs for the right. For more information on  each of the three theoretical templates used, see e.g., \cite{PlanckCollaboration2013}.}
+	\caption{Map-by-map comparison of $f_\text{NL}$ estimates for standard templates, evaluated using each of the KSW and Legendre basis sets. Planck 2018 CMB map and 140 FFP10 simulations have been used, each representing a single point on the scatter plot shown left. Details of the linear best-fit to data (red dashed) are annotated below. On the right hand side is shown a plot of $f_\text{NL}$ values for each map. In the ideal case where the two basis sets yield identical results, we should see all the points on $y=x$ for the left plot, and exactly overlapping graphs for the right. For more information on  each of the three theoretical templates used, see e.g., \cite{PlanckCollaboration2013}.}
 	\label{fig:map_by_map_Legendre_KSW}
 \end{figure}
 
 We see that results from the two different sets of basis are in good agreement. The $R$-squared value of the linear fit is greater than $0.99$ for Local, and $0.999$ for Equilateral and Orthogonal shapes. The intercept and sample mean are also near zero. We do not find any systematic discrepancies across the shapes from individual map estimates either.
 
-The fact that results from the KSW and Legendre basis are consistent validates multiple aspects of our pipeline. First of all, we can deduce that the Legendre basis expansion (\ref{eqn:basis_expansion}) accurately represents the bispectrum shapes of interest, especially since the KSW basis is designed to be exact for the three standard shapes. Having $p_{max}=30$ modes is more than sufficient. Figure \ref{fig:map_by_map_Legendre_30_29} explicitly compares results obtained from Legendre bases with $p_{max}=29$ and $30$, while keeping everything else the same. The two results show absolute agreement, the largest of errors less than $O(10^{-5})$. This further confirms that our expansion using Legendre polynomials has completely converged.
+The fact that results from the KSW and Legendre basis are consistent validates multiple aspects of our pipeline. First of all, we can deduce that the Legendre basis expansion (\ref{eqn:basis_expansion}) accurately represents the bispectrum shapes of interest, especially since the KSW basis is designed to be exact for the three standard shapes. Having $p_\text{max}=30$ modes is more than sufficient. Figure \ref{fig:map_by_map_Legendre_30_29} explicitly compares results obtained from Legendre bases with $p_\text{max}=29$ and $30$, while keeping everything else the same. The two results show absolute agreement, the largest of errors less than $O(10^{-5})$. This further confirms that our expansion using Legendre polynomials has completely converged.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{map_by_map_Legendre_30_29.pdf}
-	\caption{Map-by-map comparison of $f_{NL}$ estimates for standard templates using the Legendre basis with different number of modes: $p_{max}=29$ and $30$. The two results agree with error less than $O(10^{-5})$, as can be seen from the scatter plots (left) and map-by-map plots (right). This confirms that our expansion using Legendre polynomials has completely converged for these bispectrum shapes.}
+	\caption{Map-by-map comparison of $f_\text{NL}$ estimates for standard templates using the Legendre basis with different number of modes: $p_\text{max}=29$ and $30$. The two results agree with error less than $O(10^{-5})$, as can be seen from the scatter plots (left) and map-by-map plots (right). This confirms that our expansion using Legendre polynomials has completely converged for these bispectrum shapes.}
 	\label{fig:map_by_map_Legendre_30_29}
 \end{figure}
 
-Secondly, we validated the accuracy of the linear term and lensing-ISW bias calculations through the sample mean of $f_{NL}$ estimates from lensed simulations. When we exclude either of the two, we find the sample mean to be far from zero. The error is especially large for the local template. The linear term accounts for the anisotropy introduced by masking parts of the observed sky. The squeezed limit contribution to bispectrum comes from couplings between a pair of small-scale modes and a large-scale one, making it more susceptible to bias from partial coverage. Presence of sky masks therefore offsets the $f_{NL}$ estimates from the local shape which has a large squeezed limit. Lensing-ISW bias is also the largest in squeezed configurations and affects Local $f_{NL}$. The fact that our lensed Gaussian simulations have $f_{NL}$s fluctuate around $0$ validates our bias subtractions.
+Secondly, we validated the accuracy of the linear term and lensing-ISW bias calculations through the sample mean of $f_\text{NL}$ estimates from lensed simulations. When we exclude either of the two, we find the sample mean to be far from zero. The error is especially large for the local template. The linear term accounts for the anisotropy introduced by masking parts of the observed sky. The squeezed limit contribution to bispectrum comes from couplings between a pair of small-scale modes and a large-scale one, making it more susceptible to bias from partial coverage. The presence of sky masks therefore offsets the $f_\text{NL}$ estimates from the local shape which has a large squeezed limit. Lensing-ISW bias is also the largest in squeezed configurations and affects Local $f_\text{NL}$. The fact that our lensed Gaussian simulations have $f_\text{NL}$s fluctuating around $0$ validates our bias subtractions.
 
-Lastly, we check that CMB-BEst accurately preserves optimality of the CMB bispectrum estimator. In the weak non-Gaussian limit, the estimator (\ref{eqn:bispectrum_estimator_standard}) saturates the Cramer-Rao bound. Its expected variance is the lowest amongst all possible unbiased bispectrum estimators of $f_{NL}$. Heuristically speaking, the estimator extracts as much information about non-Gaussianity as possible from the CMB bispectrum . As we discussed in Chapter \ref{chapter:CMB_state-4_forecast}, this bound only depends on the Fisher information determined from normalisation; $Var[\hat{f}_{NL}]=F^{-1}=6/N$. We refer to this value as the \textit{theoretical} variance (the best possible from theory). Meanwhile, individual $f_{NL}$ estimates from simulated maps and independent and normally distributed. Sample variance obtained from $N_{sims}$ simulations should therefore approach the theoretical variance as $N_{sims}\rightarrow\infty$. Table \ref{table:trio_sample_and_theory_variances} summarises calculated values of the two types of variances discussed.
+Lastly, we check that CMB-BEst accurately preserves optimality of the CMB bispectrum estimator. In the weak non-Gaussian limit, the estimator (\ref{eqn:bispectrum_estimator_standard}) saturates the Cramer-Rao bound. Its expected variance is the lowest amongst all possible unbiased bispectrum estimators of $f_\text{NL}$. Heuristically speaking, the estimator extracts as much information about non-Gaussianity as possible from the CMB bispectrum. As we discussed in Chapter \ref{chapter:CMB_state-4_forecast}, this bound only depends on the Fisher information determined from normalisation; $Var[\hat{f}_\text{NL}]=F^{-1}=6/N$. We refer to this value as the \textit{theoretical} variance (the best possible from theory). Meanwhile, individual $f_\text{NL}$ estimates from simulated maps and independent and normally distributed. Sample variance obtained from $N_\text{sims}$ simulations should therefore approach the theoretical variance as $N_\text{sims}\rightarrow\infty$. Table \ref{table:trio_sample_and_theory_variances} summarises calculated values of the two types of variances discussed.
 
 \begin{table}[h]
-	\caption{Comparison of the sample and theoretical variances obtained from $f_{NL}$ estimates of standard shapes, computed using each of the KSW and Legendre basis sets. Sample variances are within $1\sigma$ of theoretical values assuming that the 140 individual $f_{NL}$'s from simulated maps are normally distributed. This is statistically consistent with optimality of our bispectrum estimator.}
+	\caption{Comparison of the sample and theoretical variances obtained from $f_\text{NL}$ estimates of standard shapes, computed using each of the KSW and Legendre basis sets. Sample variances are within $1\sigma$ of theoretical values assuming that the 140 individual $f_\text{NL}$'s from simulated maps are normally distributed. This is statistically consistent with optimality of our bispectrum estimator.}
 	\centering
 	\label{table:trio_sample_and_theory_variances}
 	\renewcommand{\arraystretch}{1.5} 
@@ -618,44 +618,44 @@ Lastly, we check that CMB-BEst accurately preserves optimality of the CMB bispec
 	\end{tabular}
 \end{table}
 
-Note that the numbers do not match up exactly between sample and theoretical variances. The estimator for sample variance $\hat{S}^2 = (\sum_i (f^{(i)}_{NL})^2 )/N_{sims}$ follows a chi-squared distribution with $N_{sims}-1$ degrees of freedom under our assumptions. The standard deviation corresponding to the (normalised) distribution equals $\sqrt{2/(N_{sims}-1)}$, which is $\approx 0.12$ for $N_{sims}=140$. It is therefore not surprising to see our sample variances differ by up to $12\%$ from the theoretical ones.
+Note that the numbers do not match up exactly between sample and theoretical variances, and the results for equilateral template appear to be more optimal than the theory allows. This is because the sample variance $\hat{S}^2 = (\sum_i (f^{(i)}_\text{NL})^2 )/N_\text{sims}$ follows a chi-squared distribution with $N_\text{sims}-1$ degrees of freedom under our assumptions. The standard deviation corresponding to the (normalised) distribution equals $\sqrt{2/(N_\text{sims}-1)}$, which is $\approx 0.12$ for $N_\text{sims}=140$. It is therefore not surprising to see our sample variances differ by up to $12\%$ from the theoretical ones. 
 
 We performed further checks to ensure that this discrepancy is due to statistical fluctuations rather than systematic errors. The ratio between sample and theoretical variances remained nearly constant across the KSW and Legendre basis from CMB-BEst, as well as Planck's Modal pipeline on the same set of simulated maps. Meanwhile, sample variances evaluated from independent sets of simulations do fluctuate around the theoretical value. A closer check has been done for each of the mode sets $(p_1,p_2,p_3)$ in the Legendre basis. The decomposition coefficient $\alpha$ is set to be 1 at $(p_1,p_2,p_3)$ and its permutations, and then vanishing everywhere else. Substituting into \eqref{eqn:fNL_from_betas} and \eqref{eqn:normlisation_from_gamma}, we get
 \begin{align}
-	f_{NL}^{(i)} &= \frac{1}{N} \left[ \left( \beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3} \right) + \text{5 cyc.} \right], \\
+	f_\text{NL}^{(i)} &= \frac{1}{N} \left[ \left( \beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3} \right) + \text{5 cyc.} \right], \\
 	N &= 6\left( \Gamma_{p_1 p_2 p_3, p_1 p_2 p_3} + \Gamma_{p_1 p_2 p_3, p_1 p_3 p_2} + \cdots + \Gamma_{p_1 p_2 p_3, p_3 p_2 p_1} \right).
 \end{align}
 Here we assumed that $p_1,p_2,p_3$ are distinct for convenience. Corresponding sample and theoretical variances have been compared for each of the modes. Overall, they are found to be statistically consistent as before.
 
 % Optional: could include a historgram plot for (sample var)/(theory var) calculated for each of the modes (p1,p2,p3) in Legendre basis. p_max = 30 would make the plot look sufficiently smooth...
 
-While Figure \ref{fig:map_by_map_Legendre_KSW} shows excellent agreement between results from the KSW and Legendre basis sets overall, there are small but noticeable scatters in the plot for the local shape. The slope of linear best fit is also slightly above 1, meaning that $f_{NL}$ estimates from the Legendre routine tend to vary 5\% more than the KSW ones. Larger variance means that less information extracted. Our first hypothesis was that Legendre polynomials are losing a small fraction of information due to their fixed $k$ range in their definition ($\ref{eqn:Legendre_basis_no_inv_k}$). We test this by increasing the range by changing $k_{max}/k_{min} = 1000$ to $2000$. The results are shown in Figure \ref{fig:map_by_map_Legendre_KSW_k_ratio_2000}.
+While Figure \ref{fig:map_by_map_Legendre_KSW} shows excellent agreement between results from the KSW and Legendre basis sets overall, there are small but noticeable scatters in the plot for the local shape. The slope of linear best fit is also slightly above 1, meaning that $f_\text{NL}$ estimates from the Legendre routine tend to vary 5\% more than the KSW ones. Larger variance means that less information extracted. Our first hypothesis was that Legendre polynomials are losing a small fraction of information due to their fixed $k$ range in their definition ($\ref{eqn:Legendre_basis_no_inv_k}$). We test this by increasing the range by changing $k_\text{max}/k_\text{min} = 1000$ to $2000$. The results are shown in Figure \ref{fig:map_by_map_Legendre_KSW_k_ratio_2000}.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{map_by_map_Legendre_KSW_k_ratio_2000.pdf}
-	\caption{Map-by-map comparison of $f_{NL}$ estimates for standard templates from the KSW and Legendre basis sets, similar to Figure \ref{fig:map_by_map_Legendre_KSW}. Here, the Legendre basis has a wider $k$ domain: $k_{max}/k_{min} = 2000$ instead of the usual $1000$. Number of modes ($p_{max}$) has been reduced to $10$ instead of $30$ for simplicity. We see that additional information from large scales (low $k$) fixes the small scatter present in $f_{NL}^{local}$ of the previous plot.}
+	\caption{Map-by-map comparison of $f_\text{NL}$ estimates for standard templates from the KSW and Legendre basis sets, similar to Figure \ref{fig:map_by_map_Legendre_KSW}. Here, the Legendre basis has a wider $k$ domain: $k_\text{max}/k_\text{min} = 2000$ instead of the usual $1000$. The number of modes ($p_\text{max}$) has been reduced to $10$ instead of $30$ due to limited computational resources. We see that additional information from large scales (low $k$) fixes the small scatter present in $f_\text{NL}^{local}$ of the previous plot.}
 	\label{fig:map_by_map_Legendre_KSW_k_ratio_2000}
 \end{figure}
 
-Our main focus of this figure is on the local template results. Estimates from the KSW and Legendre basis sets match almost perfectly now. When altering the ratio $k_{max}/k_{min}$, we fixed the $k_{max}$ and lowered $k_{min}$. Including more small-$k$, or large scale modes provides extra information in the bispectrum. Local shape is especially affected by this, since squeezed configurations including one of these extra large scale modes have a more significant contribution to the total estimate. Also note that $k_{max} / k_{min} = 2000$ is comfortably larger than the equivalent ratio in harmonic space $l_{max} / l_{min} = 2500 / 2$.
+Our main focus of this figure is on the local template results. Estimates from the KSW and Legendre basis sets match almost perfectly now. When altering the ratio $k_\text{max}/k_\text{min}$, we fixed the $k_\text{max}$ and lowered $k_\text{min}$. Including more small-$k$, or large scale modes provides extra information in the bispectrum. Local shape is especially affected by this, since squeezed configurations including one of these extra large scale modes have a more significant contribution to the total estimate. Also note that $k_\text{max} / k_\text{min} = 2000$ is comfortably larger than the equivalent ratio in harmonic space $l_\text{max} / l_\text{min} = 2500 / 2$.
 
-Despite the improvements in the squeezed limit and local template, we may not simply set $k_{max} / k_{min} = 2000$ as default because it hurts convergence in other shapes of interest. As can be seen from the Equilateral and Orthogonal plots in Figure \ref{fig:map_by_map_Legendre_KSW_k_ratio_2000}, newer estimates of $f_{NL}$ are less accurate for shapes other than Local. The fact that $p_{max}=10$ here rather than $30$ is one of the main causes of the drop in precision, but having smaller $k$ values within Legendre polynomials' domain also has a negative impact. Shapes with inverse $k$ scaling vary more dramatically when $k$ is small and tend to be harder to expand in terms of Legendre polynomials.
+Despite the improvements in the squeezed limit and local template, we may not simply set $k_\text{max} / k_\text{min} = 2000$ as default because it hurts convergence in other shapes of interest. As can be seen from the Equilateral and Orthogonal plots in Figure \ref{fig:map_by_map_Legendre_KSW_k_ratio_2000}, newer estimates of $f_\text{NL}$ are less accurate for shapes other than Local. The fact that $p_\text{max}=10$ here rather than $30$ is one of the main causes of the drop in precision, but having smaller $k$ values within Legendre polynomials' domain also has a negative impact. Shapes with inverse $k$ scaling vary more dramatically when $k$ is small and tend to be harder to expand in terms of Legendre polynomials.
 
-For the final check of internal consistency, we inspect how each point in the line of sight integral ($r$) contributes to $f_{NL}$ estimates. CMB-BEst's formalism makes it straightforward to plot the $r$ integrand since the integral is done at the very end. Figure \ref{fig:trio_r_dependence} shows plots of $f_{NL}$ contributions from different sources and for the three standard bispectrum templates. Shaded in light blue are the $1\sigma$ regions obtained from 140 simulations for each point in $r$.
+For the final check of internal consistency, we inspect how each point in the line of sight integral ($r$) contributes to $f_\text{NL}$ estimates. CMB-BEst's formalism makes it straightforward to plot the $r$ integrand since the integral is done at the very end. Figure \ref{fig:trio_r_dependence} shows plots of $f_\text{NL}$ contributions from different sources and for the three standard bispectrum templates. Shaded in light blue are the $1\sigma$ regions obtained from 140 simulations for each point in $r$.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{trio_r_dependence.pdf}
-	\caption{Contributions to the total $f_{NL}$ from each point in the line-of-sight integral over $r$ for standard templates. On the left hand side, we plot contributions from the cubic, linear, and lensing-ISW bias, as well as the total $f_{NL}$. Shown in blue is the $1\sigma$ interval obtained from corresponding terms in 140 FFP10 Gaussian simulations. We focus on the $r$ interval around recombination where most of the signal comes from. Plots on the right hand side show $f_{NL}$ contributions over the whole $r$ range in log scale. ISW effect, reionisation, and recombination are responsible for the three most noticeable peaks in all three plots.}
+	\caption{Contributions to the total $f_\text{NL}$ from each point in the line-of-sight integral over $r$ for standard templates. On the left hand side, we plot contributions from the cubic, linear, and lensing-ISW bias, as well as the total $f_\text{NL}$. Shown in blue is the $1\sigma$ interval obtained from corresponding terms in 140 FFP10 Gaussian simulations. We focus on the $r$ interval around recombination where most of the signal comes from. Plots on the right hand side show $f_\text{NL}$ contributions over the whole $r$ range in log scale. ISW effect, reionisation, and recombination are responsible for the three most noticeable peaks in all three plots.}
 	\label{fig:trio_r_dependence}
 \end{figure}
 
 As illustrated in plots on the right hand side of Figure \ref{fig:trio_r_dependence}, the vast majority of signal comes from recombination around $r = 14,000$Mpc. In fact, its contribution is dominant enough so that neglecting signal from everywhere else would still be a good approximation. CMB-BEst uses an adaptive $r$ grid which is denser around recombination, following the works of \cite{Smith2011}. Other small but notable contributions to the total estimate comes from reionisation ($r \sim 10,000$Mpc) and the ISW effect ($r < 5,000$Mpc).
 
-Zooming in on an interval around recombination, significant contributions from the cubic term to $f_{NL}$ of Local template is rather prominent (upper left of Figure \ref{fig:trio_r_dependence}). The signal is sufficiently larger than the expected random fluctuations evaluated from Gaussian simulations, which could be hinting at non-zero primordial non-Gaussianity. However, contributions from the linear term (shown orange) completely counterbalances it, bringing the total down to values consistent with zero. This again validates accuracy of our methodology; bias to $f_{NL}$ generated from anisotropic sky masks are precisely subtracted off using the linear terms.
+Zooming in on an interval around recombination, significant contributions from the cubic term to $f_\text{NL}$ of Local template is rather prominent (upper left of Figure \ref{fig:trio_r_dependence}). The signal is sufficiently larger than the expected random fluctuations evaluated from Gaussian simulations, which could be hinting at non-zero primordial non-Gaussianity. However, contributions from the linear term (shown orange) completely counterbalances it, bringing the total down to values consistent with zero. This again validates accuracy of our methodology; bias to $f_\text{NL}$ generated from anisotropic sky masks are precisely subtracted off using the linear terms.
 
-We do not find any statistically significant signal across the whole $r$ range otherwise, especially when taking look-elsewhere effect into account. It is not meaningful to find a couple of 3-4$\sigma$ values when the other 500 points are simply disregarded. If we detect primordial non-Gaussianity in the future, however, then these plots of $f_{NL}$ contributions for each $r$ will provide valuable insights on where the signal comes from.
+We do not find any statistically significant signal across the whole $r$ range otherwise, especially when taking look-elsewhere effect into account. It is not meaningful to find a couple of 3-4$\sigma$ values when the other 500 points are simply disregarded. If we detect primordial non-Gaussianity in the future, however, then these plots of $f_\text{NL}$ contributions for each $r$ will provide valuable insights on where the signal comes from.
 
 % Write about convergecne? 
 %- Convergence epsilon definition
@@ -667,10 +667,10 @@ We do not find any statistically significant signal across the whole $r$ range o
 
 In the previous section, we demonstrated how the integrity of CMB-BEst was validated. The next set of validations involves comparing it against other existing codes for CMB bispectrum estimation.
 
-We test primordial non-Gaussianity constraints on Local, Equilateral and Orthogonal templates against the Planck 2018 analysis \cite{PlanckCollaboration2018}. Two sets of basis functions, KSW and Legendre, have been used to compute $f_{NL}$ from the foreground-cleaned CMB map included in the final data release. We choose SMICA as the main component separation method since it was shown to be the most reliable and robust for Planck bispectrum analysis \cite{PlanckCollaboration2013ComponentSeparation, PlanckCollaboration2013,PlanckCollaboration2015,PlanckCollaboration2018}. Table \ref{table:trio_fNL_comparison_with_planck} summarises the constraints obtained, together with the quoted results from the Planck team's own KSW estimator and Modal 2 pipeline.
+We test primordial non-Gaussianity constraints on Local, Equilateral and Orthogonal templates against the Planck 2018 analysis \cite{PlanckCollaboration2018}. Two sets of basis functions, KSW and Legendre, have been used to compute $f_\text{NL}$ from the foreground-cleaned CMB map included in the final data release. We choose SMICA as the main component separation method since it was shown to be the most reliable and robust for Planck bispectrum analysis \cite{PlanckCollaboration2013ComponentSeparation, PlanckCollaboration2013,PlanckCollaboration2015,PlanckCollaboration2018}. Table \ref{table:trio_fNL_comparison_with_planck} summarises the constraints obtained, together with the quoted results from the Planck team's own KSW estimator and Modal 2 pipeline.
 
 \begin{table}[h]
-	\caption{Constraints on $f_{NL}$ for the standard shapes from the KSW and Legendre basis of CMB-BEst, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. Only temperature data from the SMICA foreground-cleaned map and FFP10 simulations were used for the analysis. Values shown are after the lensing bias subtraction, with uncertainties at 68\% CL.}
+	\caption{Constraints on $f_\text{NL}$ for the standard shapes from the KSW and Legendre basis of CMB-BEst, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. Only temperature data from the SMICA foreground-cleaned map and FFP10 simulations were used for the analysis. Values shown are after the lensing bias subtraction, with uncertainties at 68\% CL.}
 	\centering
 	\label{table:trio_fNL_comparison_with_planck}
 	\renewcommand{\arraystretch}{1.5} 
@@ -687,16 +687,16 @@ We test primordial non-Gaussianity constraints on Local, Equilateral and Orthogo
 	\end{tabular}
 \end{table}
 
-Note that while the constraints from CMB-BEst are largely consistent with Planck 2018 results, there discrepancies up to $0.3\sigma$. However, there are variations around this level within the estimates from different pipelines of Planck as well. Equilateral constraints from Planck's own KSW and Modal estimators shown here, for example, differ by $\approx 0.4\sigma$. A similar amount of fluctuation can be found in the full result shown in \cite{PlanckCollaboration2018}. In an ideal world, they should match exactly across different approaches as long as the same dataset is used. However, statistical significance of the individual $f_{NL}$'s is not largely affected by such variations.
+Note that while the constraints from CMB-BEst are largely consistent with Planck 2018 results, there are discrepancies of up to $0.3\sigma$. However, there are variations around this level within the estimates from different pipelines of Planck as well. Equilateral constraints from Planck's own KSW and Modal estimators shown here, for example, differ by $\approx 0.4\sigma$. A similar amount of fluctuation can be found in the full result shown in \cite{PlanckCollaboration2018}. In an ideal world, they should match exactly across different approaches as long as the same dataset is used. However, statistical significance of the individual $f_\text{NL}$'s is not largely affected by such variations.
 
-We invested a significant proportion of our time investigating this error. Here we discuss three potential areas which might account for the discrepancies. First of all, human error during the implementation and estimation process should not be neglected. Bispectrum analysis is complex and computationally expensive. Implementing it often involves writing a long and heavily optimised code. During the development and testing stages, we found and fixed many mistakes in our $10,000+$ lines of \textsc{C} code. Various unit tests were performed in the process to test individual sections of the code: basis expansion, projection to the $l$ space, SHTs, parallelisation, and more. Internal consistency checks were then used to verify integrity of the combined pipeline. The Planck team also went on lengths to validate and cross-check different methods \cite{PlanckCollaboration2013}. It therefore seems unlikely that trivial mistakes are causing the gap in results.
+We invested a significant proportion of our time investigating this error. Here we discuss three potential areas which might account for the discrepancies. First of all, human error during the implementation and estimation process should not be neglected. Bispectrum analysis is complex and computationally expensive. Implementing it often involves writing a long and heavily optimised code. During the development and testing stages, we found and fixed many mistakes in our $10,000+$ lines of \textsc{C} code. Various unit tests were performed in the process to test individual sections of the code: basis expansion, projection to the $l$ space, SHTs, parallelisation, and more. Internal consistency checks were then used to verify integrity of the combined pipeline. The Planck team also went to great lengths to validate and cross-check different methods \cite{PlanckCollaboration2013}. It therefore seems unlikely that trivial mistakes are causing the gap in results.
 
-The next source of error we studied is the parameter set. The cosmological parameters we used for constraints in Table \ref{table:trio_fNL_comparison_with_planck} are identical to those of the Planck Modal pipeline. Small changes in cosmological parameters are also shown to have little effect on $f_{NL}$ \cite{PlanckCollaboration2015,PlanckCollaboration2018}. One major difference, however, is the number of Gaussian simulations used. We included 140 simulated maps while Modal has about 300. This number is mainly restricted by computational resources required for the large Legendre basis in CMB-BEst. While we found 140 to be sufficient for most cases, sample variance may cause some fluctuation in the linear term and error bar. A rough estimate for sampling error is $\sim \sqrt{2/N_{sims}} \approx 0.12$, as calculated in the previous section. Other than $N_{sims}$, more internal parameters such as the grid density of discretised arrays have also been checked to yield consistent results when varied. 
+The next source of error we studied is the parameter set. The cosmological parameters we used for constraints in Table \ref{table:trio_fNL_comparison_with_planck} are identical to those of the Planck Modal pipeline. Small changes in cosmological parameters are also shown to have little effect on $f_\text{NL}$ \cite{PlanckCollaboration2015,PlanckCollaboration2018}. One major difference, however, is the number of Gaussian simulations used. We included 140 simulated maps while Modal has about 300. This number is mainly restricted by computational resources required for the large Legendre basis in CMB-BEst. While we found 140 to be sufficient for most cases, sample variance may cause some fluctuation in the linear term and error bar. A rough estimate for sampling error is $\sim \sqrt{2/N_\text{sims}} \approx 0.12$, as calculated in the previous section. Other than $N_\text{sims}$, more internal parameters such as the grid density of discretised arrays have also been checked to yield consistent results when varied. 
 
-We are left with systematic errors as potential causes for discrepancies. The most significant bias to $f_{NL}$ constraints is the lensing-ISW bias discussed in Section \ref{section:other_sources_of_non_gaussianity}. Table \ref{table:trio_lensing_bias_comparison_with_planck} shows biases from the lensing bispectrum \cite{Lewis2011lensing} for both CMB-BEst and Planck 2018 analysis. The numbers vary but are consistent overall. Map-by-map comparison of constraints from the Legendre basis and Modal are shown in Figure \ref{fig:map_by_map_Legendre_Modal}. 
+We are left with systematic errors as potential causes for discrepancies. The most significant bias to $f_\text{NL}$ constraints is the lensing-ISW bias discussed in Section \ref{section:other_sources_of_non_gaussianity}. Table \ref{table:trio_lensing_bias_comparison_with_planck} shows biases from the lensing bispectrum \cite{Lewis2011lensing} for both CMB-BEst and Planck 2018 analysis. The numbers vary but are consistent overall. Map-by-map comparison of constraints from the Legendre basis and Modal are shown in Figure \ref{fig:map_by_map_Legendre_Modal}. 
 
 \begin{table}[h]
-	\caption{Bias to $f_{NL}$ of standard shapes originating from the lensing bispectrum. We compare CMB-BEst's two different basis sets and the Planck 2018 analysis \cite{PlanckCollaboration2018}, using SMICA map and FFP10 simulations. }
+	\caption{Bias to $f_\text{NL}$ of standard shapes originating from the lensing bispectrum. We compare CMB-BEst's two different basis sets and the Planck 2018 analysis \cite{PlanckCollaboration2018}, using SMICA map and FFP10 simulations. }
 	\centering
 	\label{table:trio_lensing_bias_comparison_with_planck}
 	\renewcommand{\arraystretch}{1.5} 
@@ -716,82 +716,82 @@ We are left with systematic errors as potential causes for discrepancies. The mo
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{map_by_map_Legendre_Modal.pdf}
-	\caption{Map-by-map comparison of $f_{NL}$ estimates obtained from CMB-BEst's Legendre basis set against the Modal estimator results for Planck 2018 analysis \cite{PlanckCollaboration2018}. The first 140 FFP10 simulations are used. On the left hand side are scatter plots where each simulation is represented by a point according to $f_{NL}$ estimates of standard templates. Their linear best fit lines are shown in dashed red. Results from the two routines are shown map-by-map on the right hand side. Overall, CMB-BEst and Modal are in good agreement without any significant systematic errors.}
+	\caption{Map-by-map comparison of $f_\text{NL}$ estimates obtained from CMB-BEst's Legendre basis set against the Modal estimator results for Planck 2018 analysis \cite{PlanckCollaboration2018}. The first 140 FFP10 simulations are used. On the left hand side are scatter plots where each simulation is represented by a point according to $f_\text{NL}$ estimates of standard templates. Their linear best fit lines are shown in dashed red. Results from the two routines are shown map-by-map on the right hand side. Overall, CMB-BEst and Modal are in good agreement without any significant systematic errors.}
 	\label{fig:map_by_map_Legendre_Modal}
 \end{figure}
 
-Out of the three templates, local shape shows the largest scatter between constraints. Comparing $f_{NL}$'s of simulated maps from CMB-BEst and Modal, we find a correlation of 0.916. The intercept value of $0.78$ in the linear fit is mainly due to the sample mean present in Modal. Legendre's sample mean is $0.069$ for Local, while Modal's is $-0.698$. Otherwise, the difference between the two pipelines are distributed such that its sample standard deviation equals $2.5$, skewness is $-0.14$, and kurtosis is $0.19$. Having a low level of small skewness and kurtosis less than $1$ implies that the distribution is close to a univariate normal, consistent with random fluctuation. Similarly, we do not find any significant systematic error from the equilateral and orthogonal shapes either.
+Out of the three templates, local shape shows the largest scatter between constraints. Comparing $f_\text{NL}$'s of simulated maps from CMB-BEst and Modal, we find a correlation of 0.916. The intercept value of $0.78$ in the linear fit is mainly due to the sample mean present in Modal. Legendre's sample mean is $0.069$ for Local, while Modal's is $-0.698$. Otherwise, the difference between the two pipelines are distributed such that its sample standard deviation equals $2.5$, skewness is $-0.14$, and kurtosis is $0.19$. Having a low level of small skewness and kurtosis less than $1$ implies that the distribution is close to a univariate normal, consistent with random fluctuation. Similarly, we do not find any significant systematic error from the equilateral and orthogonal shapes either.
 
-Having not found a clear source of error, we conclude that the small gaps between the $f_{NL}$ estimates in Table \ref{table:trio_fNL_comparison_with_planck} mainly come from differences in methodology and are consistent with random fluctuations.
+Having not found a clear source of error, we conclude that the small gaps between the $f_\text{NL}$ estimates in Table \ref{table:trio_fNL_comparison_with_planck} mainly come from differences in methodology and are consistent with random fluctuations.
 
-We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of the form $S^\text{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from the Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. We follow \cite{Fergusson2015a} and increase $\omega$ in steps of $10$ so that correlation between shapes with different $\omega$ is kept low.
+We now move on to constraining models with oscillations. The simplest template for oscillatory models is the feature model studied in Chapter \ref{chapter:CMB_state-4_forecast}. We use a template shape function of the form $S^\text{feat}(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3) + \phi)$. Figure \ref{fig:sine_template_frequency_Legendre_Modal} shows $f_\text{NL}$ constraints obtained from the Legendre basis and compares them with Modal results from the Planck 2018 analysis. The `phase' $\phi$ is set to zero, while oscillation `frequency' $\omega$ was varied from $10$ Mpc to $350$ Mpc. We follow \cite{Fergusson2015a} and increase $\omega$ in steps of $10$ so that correlation between shapes with different $\omega$ is kept low.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sine_template_frequency_Legendre_Modal.pdf}
-	\caption{Estimated $f_{NL}$'s for feature models with shape $S(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3)$, obtained using the Legendre basis with (blue) and Planck's Modal (black). Left: direct comparison of $f_{NL}$ for different values of $\omega$. Error bars indicate the expected standard deviation in the estimator, calculated using 140 Gaussian simulations. Right: measured signal-to-noise $f_{NL}/\sigma$, again for a range of $\omega$ values. Shaded in blue are the $1\sigma$ and $2\sigma$ levels. We see that the two approaches yield coherent estimates overall.}
+	\caption{Estimated $f_\text{NL}$'s for feature models with shape $S(k_1,k_2,k_3) = \sin(\omega (k_1 + k_2 + k_3)$, obtained using the Legendre basis with (blue) and Planck's Modal (black). Left: direct comparison of $f_\text{NL}$ for different values of $\omega$. Error bars indicate the expected standard deviation in the estimator, calculated using 140 Gaussian simulations. Right: measured signal-to-noise $f_\text{NL}/\sigma$, again for a range of $\omega$ values. Shaded in blue are the $1\sigma$ and $2\sigma$ levels. We see that the two approaches yield coherent estimates overall.}
 	\label{fig:sine_template_frequency_Legendre_Modal}
 \end{figure}
 
-The Legendre basis accurately expands the feature model template using Legendre polynomials via basis expansion outlined in (\ref{eqn:basis_expansion}). Estimates from the two methods, CMB-BEst's Legendre and Planck's Modal, are mostly compatible. The most notable difference is at $\omega=230$Mpc where $f_{NL}$ from Legendre is more than $1\sigma$ larger compared to Modal. Even though it is interesting that the new estimate now passes the $2\sigma$ threshold, having one such point out of 35 shown here has less statistical significance.
+The Legendre basis accurately expands the feature model template using Legendre polynomials via basis expansion outlined in (\ref{eqn:basis_expansion}). Estimates from the two methods, CMB-BEst's Legendre and Planck's Modal, are mostly compatible. The most notable difference is at $\omega=230$Mpc where $f_\text{NL}$ from Legendre is more than $1\sigma$ larger compared to Modal. Even though it is interesting that the new estimate now passes the $2\sigma$ threshold, having one such point out of 35 shown here has less statistical significance.
 
-Both the Legendre and Modal approaches involve expanding the shape function with respect to a polynomial basis. Polynomials are versatile but have limited resolution for oscillatory signals; it cannot resolve shapes with a number of oscillations greater than the maximum degree of polynomials ($p_{max}$ here). For the Legendre basis with $k$ range $[2.09\times 10^{-4}, 2.09\times 10^{-1}]\text{Mpc}^{-1}$ and $p_{max}=30$, frequencies greater than $\pi p_{max} / (k_{max} - k_{min}) \approx 436$Mpc are unresolvable. In reality, numerics start to break before this value. We do not have a reference analytic value for true $f_{NL}$s, but evaluating correlations between shapes is effective for checking our numerics.
+Both the Legendre and Modal approaches involve expanding the shape function with respect to a polynomial basis. Polynomials are versatile but have limited resolution for oscillatory signals; it cannot resolve shapes with a number of oscillations greater than the maximum degree of polynomials ($p_\text{max}$ here). For the Legendre basis with $k$ range $[2.09\times 10^{-4}, 2.09\times 10^{-1}]\text{Mpc}^{-1}$ and $p_\text{max}=30$, frequencies greater than $\pi p_\text{max} / (k_\text{max} - k_\text{min}) \approx 436$Mpc are unresolvable. In reality, numerics start to break before this value. We do not have a reference analytic value for true $f_\text{NL}$s, but evaluating correlations between shapes is effective for checking our numerics.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sine_template_correlations_new.pdf}
 	\includegraphics[width=\textwidth]{cosine_template_correlations_new.pdf}
-	\caption{Correlations between feature model templates $S(k_1,k_2,k_3)=\sin(\omega (k_1 + k_2 + k_3) + \phi)$ with different $\omega$ values, for $\phi = 0$ (top two) and $\phi = \pi/2$ (bottom two). Results are from the Legendre basis. `Sample' correlations are obtained from $f_{NL}$ estimates from 140 Gaussian simulations, while `theory' correlations come from the inner product induced by $\Gamma_{p_1 p_2 p_3, p_1 p_2 p_3}$ matrix in (\ref{def:gamma}). Large non-diagonal correlations appear around $\omega \approx 300$, after which oscillations in the shape are no longer resolved by polynomials of degree up to $p_max$.}
+	\caption{Correlations between feature model templates $S(k_1,k_2,k_3)=\sin(\omega (k_1 + k_2 + k_3) + \phi)$ with different $\omega$ values, for $\phi = 0$ (top two) and $\phi = \pi/2$ (bottom two). Results are from the Legendre basis. `Sample' correlations are obtained from $f_\text{NL}$ estimates from 140 Gaussian simulations, while `theory' correlations come from the inner product induced by $\Gamma_{p_1 p_2 p_3, p_1 p_2 p_3}$ matrix in (\ref{def:gamma}). Large non-diagonal correlations appear around $\omega \approx 300$, after which oscillations in the shape are no longer resolved by polynomials of degree up to $p_max$.}
 	\label{fig:feature_template_correlations}
 \end{figure}
 
-Figure \ref{fig:feature_template_correlations} shows correlations between $f_{NL}$s from feature models with different frequency $\omega$s. The plots show correlation between $f_{NL}$ estimates from 140 FFP10 Gaussian simulations (`sample'), together with the one evaluated using our `late-time' inner product ('theoretical') given by
+Figure \ref{fig:feature_template_correlations} shows correlations between $f_\text{NL}$s from feature models with different frequency $\omega$s. The plots show correlation between $f_\text{NL}$ estimates from 140 FFP10 Gaussian simulations (`sample'), together with the one evaluated using our `late-time' inner product ('theoretical') given by
 \begin{align}
 	\left< b^{(i)}, b^{(j)} \right> &= \sum_{l_j} \frac{h^2_{l_1 l_2 l_3} b^{(i)}_{l_1 l_2 l_3} b^{(j)}_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}}  \\
 	&= \sum_{p_j p'_j} \alpha^{(i)}_{p_1 p_2 p_3} \alpha^{(j)}_{p'_1 p'_2 p'_3} \sum_{l_j} \frac{h^2_{l_1 l_2 l_3} (b^{(i)}_{p_1 p_2 p_3})_{l_1 l_2 l_3} (b^{(j)}_{p'_1 p'_2 p'_3})_{l_1 l_2 l_3}}{C_{l_1} C_{l_2} C_{l_3}} \\
 	&= \sum_{p_j p'_j} \alpha^{(i)}_{p_1 p_2 p_3} \alpha^{(j)}_{p'_1 p'_2 p'_3} \Gamma_{p_1 p_2 p_3, p'_1 p'_2 p'_3} \\
 	&= \vv{\alpha^{(i)}} \; \Gamma \; \vv{\alpha^{(j)}}, \label{eqn:late_time_inner_product}
 \end{align}
-where $\Gamma$ is defined in (\ref{def:gamma}). In the limit $N_{sims} \rightarrow \infty$, the sample correlation can be shown to approach the theoretical value in the weakly non-Gaussian limit. We see from Figure \ref{fig:feature_template_correlations} that they indeed display the same qualitative behaviour for $N_{sims}=140$.
+where $\Gamma$ is defined in (\ref{def:gamma}). In the limit $N_\text{sims} \rightarrow \infty$, the sample correlation can be shown to approach the theoretical value in the weakly non-Gaussian limit. We see from Figure \ref{fig:feature_template_correlations} that they indeed display the same qualitative behaviour for $N_\text{sims}=140$.
 
 The templates with $\omega < 300$ are highly uncorrelated with each other, as can be seen from small non-diagonal elements. Noticeable correlations on lines $\omega_2 = \omega_1 \pm c$ for $c = 70, 140$ arise from resonance between oscillations and transfer functions at the Baryonic Acoustic Oscillation (BAO) scale, as we observed in Figure \ref{insight feature plot}. Faint lines can also be found near $\omega_2 = -\omega_1 + c, \;\; c = 70,140,210,\cdots$ for similar reasons.
 
 When $\omega > 300$, however, large non-diagonal correlations appear. This is about when the oscillation frequency surpasses the resolution set by the highest degree of polynomials. Our basis expansion becomes inaccurate after this point. There are interesting linear structures present, with slopes roughly equal to $2, 1/2$ and subsequently $4, 1/4$. These lines come from aliasing caused by subsampling rapid oscillations; our basis picks up $\omega' = \omega/2$ signal instead. $\omega_2/2 = -\omega_1 + 70$ and other pairs of $(\omega_1, \omega_2)$ resonate to give large non-diagonal correlations.
 
-We verify our claim that numerical inaccuracies at high $\omega$s are caused by the lack of resolution due to a limited number of polynomial modes. Figure \ref{fig:feature_template_correlations_compare_lmax} illustrates how having a smaller $k$ range allows us to constrain faster oscillations more accurately. Note that we also change $l_{max}$ correspondingly since smaller scales are neglected. The plot on the right hand side uses a Legendre basis with the $(k_{min}, k_{max})$ range rescaled by a factor of $3/4$. Fewer oscillations appear within the $k$ interval and are therefore easier to expand using fewer polynomials. As we expected, the scale at which non-diagonal correlations blow up is now shifted to a higher frequency, $\omega \approx (4/3) \cdot 300$. 
+We verify our claim that numerical inaccuracies at high $\omega$s are caused by the lack of resolution due to a limited number of polynomial modes. Figure \ref{fig:feature_template_correlations_compare_lmax} illustrates how having a smaller $k$ range allows us to constrain faster oscillations more accurately. Note that we also change $l_\text{max}$ correspondingly since smaller scales are neglected. The plot on the right hand side uses a Legendre basis with the $(k_\text{min}, k_\text{max})$ range rescaled by a factor of $3/4$. Fewer oscillations appear within the $k$ interval and are therefore easier to expand using fewer polynomials. As we expected, the scale at which non-diagonal correlations blow up is now shifted to a higher frequency, $\omega \approx (4/3) \cdot 300$. 
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sine_template_correlations_compare_lmax_new.pdf}
-	\caption{Theoretical correlations between feature model templates with different frequency $\omega$s, as described in Figure \ref{fig:feature_template_correlations}. The phase $\phi$ is set to zero in both cases, while the right plot is obtained from the Legendre basis with a different $k$ range. The maximum $l$ value is reduced from $2500$ to $2000$, shifting $(k_{min},k_{max})$ by a factor of $2000/2500 = 0.75$. Having a smaller $k$ range means fewer oscillations within the $k$ interval for same $\omega$ which provides better effective resolution. The right plot does indeed show smaller non-diagonal correlations at high frequencies.}
+	\caption{Theoretical correlations between feature model templates with different frequency $\omega$s, as described in Figure \ref{fig:feature_template_correlations}. The phase $\phi$ is set to zero in both cases, while the right plot is obtained from the Legendre basis with a different $k$ range. The maximum $l$ value is reduced from $2500$ to $2000$, shifting $(k_\text{min},k_\text{max})$ by a factor of $2000/2500 = 0.75$. Having a smaller $k$ range means fewer oscillations within the $k$ interval for same $\omega$ which provides better effective resolution. The right plot does indeed show smaller non-diagonal correlations at high frequencies.}
 	\label{fig:feature_template_correlations_compare_lmax}
 \end{figure}
 
-There is a subtlety around $f_{NL}$ estimates obtained from inaccurate primordial basis expansions. CMB-BEst computes $\beta$s and $\Gamma$s with respect to the fixed Legendre basis, which has been shown to be accurate even for the highest degree of polynomials. When the primordial basis is unable to resolve rapid modulations as we have seen, the $f_{NL}$ estimates we obtain are nevertheless meaningful; they are simply probing the wrong model. The constraints are not for the given shape function, but rather its projection to the vector subspace spanned by the basis functions as shown in (\ref{eqn:primordial_basis_projection}). Detecting non-zero $f_{NL}$ here can still have significant implications.
+There is a subtlety around $f_\text{NL}$ estimates obtained from inaccurate primordial basis expansions. CMB-BEst computes $\beta$s and $\Gamma$s with respect to the fixed Legendre basis, which has been shown to be accurate even for the highest degree of polynomials. When the primordial basis is unable to resolve rapid modulations as we have seen, the $f_\text{NL}$ estimates we obtain are nevertheless meaningful; they are simply probing the wrong model. The constraints are not for the given shape function, but rather its projection to the vector subspace spanned by the basis functions as shown in (\ref{eqn:primordial_basis_projection}). Detecting non-zero $f_\text{NL}$ here can still have significant implications.
 
-Another popular template for models with oscillations is the `resonance' shape parametrised as $S(k_1, k_2, k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$. Log-spaced modulations are numerically harder to deal with since the oscillation frequency diverges as $k \rightarrow 0$. Note also that any scaling factors to the $k$'s can be absorbed into the phase via $\log(c(k_1 + k_2 + k_3)) = \log(k_1 + k_2 + k_3) + \log(c)$. For our Legendre basis with $k_{max}/k_{min}$ fixed to $1000$, the full $k$ range includes $\approx 1.1\omega$ oscillations. Any frequency larger than $\approx 27$ therefore cannot be expanded using $p_{max}=30$ polynomials. We still explore shapes with higher $\omega$s however, since the basis can pick up slower oscillations in higher $k$ values. Corresponding constraints should be taken with a grain of salt; they probe bispectrum shapes \textit{similar} to the resonance template. Low-$k$ oscillations are especially likely to be wiped out from these shapes.
+Another popular template for models with oscillations is the `resonance' shape parametrised as $S(k_1, k_2, k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$. Log-spaced modulations are numerically harder to deal with since the oscillation frequency diverges as $k \rightarrow 0$. Note also that any scaling factors to the $k$'s can be absorbed into the phase via $\log(c(k_1 + k_2 + k_3)) = \log(k_1 + k_2 + k_3) + \log(c)$. For our Legendre basis with $k_\text{max}/k_\text{min}$ fixed to $1000$, the full $k$ range includes $\approx 1.1\omega$ oscillations. Any frequency larger than $\approx 27$ therefore cannot be expanded using $p_\text{max}=30$ polynomials. We still explore shapes with higher $\omega$s however, since the basis can pick up slower oscillations in higher $k$ values. Corresponding constraints should be taken with a grain of salt; they probe bispectrum shapes \textit{similar} to the resonance template. Low-$k$ oscillations are especially likely to be wiped out from these shapes.
 
-Figure \ref{fig:sinlog_template_frequency_Legendre_Modal} compares $f_{NL}$ constraints for the resonance template over a range of $\omega$s. As can be seen from the top two plots, the signal-to-noise values obtained from the Legendre basis and Modal are relatively consistent up until $\omega \approx 35$, after which the two results start diverging significantly. The threshold is about the same for `sinlog' ($\phi = 0$) and `coslog' ($\phi=\pi/2$) shapes.
+Figure \ref{fig:sinlog_template_frequency_Legendre_Modal} compares $f_\text{NL}$ constraints for the resonance template over a range of $\omega$s. As can be seen from the top two plots, the signal-to-noise values obtained from the Legendre basis and Modal are relatively consistent up until $\omega \approx 35$, after which the two results start diverging significantly. The threshold is about the same for `sinlog' ($\phi = 0$) and `coslog' ($\phi=\pi/2$) shapes.
 
-Recall that the sample $\sigma$ from $f_{NL}$ estimates of Gaussian simulations should converge to the theoretical value calculated from the Fisher information as $N_{sims}\rightarrow\infty$, since the CMB bispectrum estimator is optimal. We have checked that the sample and theoretical variances are consistent for standard templates in Section \ref{section:internal_consistency}, using both KSW and Legendre basis sets. The bottom two plots in Figure \ref{fig:sine_template_frequency_Legendre_Modal} show the equivalent results for the resonance template with varying $\omega$.
+Recall that the sample $\sigma$ from $f_\text{NL}$ estimates of Gaussian simulations should converge to the theoretical value calculated from the Fisher information as $N_\text{sims}\rightarrow\infty$, since the CMB bispectrum estimator is optimal. We have checked that the sample and theoretical variances are consistent for standard templates in Section \ref{section:internal_consistency}, using both KSW and Legendre basis sets. The bottom two plots in Figure \ref{fig:sine_template_frequency_Legendre_Modal} show the equivalent results for the resonance template with varying $\omega$.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sinlog_template_frequency_Legendre_Modal.pdf}
-	\caption{Constraints for the resonance shape $S(k_1,k_2,k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$ with varying $\omega$s and $\phi$ set to $0$ (left) and $\pi/2$ (right). Results are obtained using CMB-BEst's Legendre basis (blue) and Planck's Modal estimator (black). Top: signal-to-noise significance of the estimated $f_{NL}$s with $1\sigma$ and $2\sigma$ levels shaded in blue. Bottom: standard deviations of the $f_{NL}$ estimates against frequency $\omega$, calculated from the $f_{NL}$s of 140 simulations (sample) and the $\Gamma$ matrix (theory).}
+	\caption{Constraints for the resonance shape $S(k_1,k_2,k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$ with varying $\omega$s and $\phi$ set to $0$ (left) and $\pi/2$ (right). Results are obtained using CMB-BEst's Legendre basis (blue) and Planck's Modal estimator (black). Top: signal-to-noise significance of the estimated $f_\text{NL}$s with $1\sigma$ and $2\sigma$ levels shaded in blue. Bottom: standard deviations of the $f_\text{NL}$ estimates against frequency $\omega$, calculated from the $f_\text{NL}$s of 140 simulations (sample) and the $\Gamma$ matrix (theory).}
 	\label{fig:sinlog_template_frequency_Legendre_Modal}
 \end{figure}
 
-Similarly to the feature models studied in Chapter \ref{chapter:CMB_state-4_forecast}, uncertainty in the estimated $f_{NL}$s increases as we raise $\omega$, exploring more rapid oscillations in bispectrum. Both the Modal and Legendre methods lose their ability to resolve shapes with $\omega$s larger than $35$. The constraints are then no longer for the precise resonance shape but rather an approximation to it. A notable difference between Modal and CMB-BEst's Legendre basis is their behaviour at high $\omega$. Modal's numerical accuracy is completely lost after $\omega\approx 50$, leading to disproportionately large bispectra and small $\sigma$. On the other hand, Legendre retains stability in its basis expansion, yielding constraints for approximate bispectrum shapes closest to the true, high-frequency ones.
+Similarly to the feature models studied in Chapter \ref{chapter:CMB_state-4_forecast}, uncertainty in the estimated $f_\text{NL}$s increases as we raise $\omega$, exploring more rapid oscillations in bispectrum. Both the Modal and Legendre methods lose their ability to resolve shapes with $\omega$s larger than $35$. The constraints are then no longer for the precise resonance shape but rather an approximation to it. A notable difference between Modal and CMB-BEst's Legendre basis is their behaviour at high $\omega$. Modal's numerical accuracy is completely lost after $\omega\approx 50$, leading to disproportionately large bispectra and small $\sigma$. On the other hand, Legendre retains stability in its basis expansion, yielding constraints for approximate bispectrum shapes closest to the true, high-frequency ones.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sinlog_template_frequency_variances_Legendre.pdf}
-	\caption{Ratio between sample and theoretical variances obtained from Legendre basis for resonance shapes. Sampled variance is calculated from $f_{NL}$ estimates of $140$ Gaussian simulations. $1\sigma$ and $2\sigma$ intervals are chosen based on a $\chi^2$-distribution, which accurately describes sample variances as long as the $f_{NL}$s are normally distributed. Results are statistically consistent with random fluctuations except potentially at $\omega=20$, as discussed in the main text.}
+	\caption{Ratio between sample and theoretical variances obtained from Legendre basis for resonance shapes. Sampled variance is calculated from $f_\text{NL}$ estimates of $140$ Gaussian simulations. $1\sigma$ and $2\sigma$ intervals are chosen based on a $\chi^2$-distribution, which accurately describes sample variances as long as the $f_\text{NL}$s are normally distributed. Results are statistically consistent with random fluctuations except potentially at $\omega=20$, as discussed in the main text.}
 	\label{fig:sinlog_template_frequency_variances_Legendre}
 \end{figure}
 
-A detailed comparison between the sample and theoretical variances is depicted in Figure \ref{fig:sinlog_template_frequency_variances_Legendre}. This serves as a useful consistency check within the CMB-BEst pipeline. Sample variances are calculated from a finite number of $f_{NL}$ samples from simulations. We test if these estimates are compatible with the underlying distribution: $\chi^2$ with $N_{sims}-1$ degrees of freedom in this case. We achieve the desired consistency for both $\phi=0$ and $\phi=\pi/2$. One potentially meaningful outlier is at $\omega=20$ and $\phi=0$, where the sample estimate is below 60\% of the expected level. This anomaly is not likely to be a numerical error specific to CMB-BEst since a similar dip can be found from Modal results in Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}. No significant irregularity is found for different phases at the same frequency. We classify this point as a random fluctuation for now, but a further investigation using an independent set of Gaussian simulations is required to be certain.
+A detailed comparison between the sample and theoretical variances is depicted in Figure \ref{fig:sinlog_template_frequency_variances_Legendre}. This serves as a useful consistency check within the CMB-BEst pipeline. Sample variances are calculated from a finite number of $f_\text{NL}$ samples from simulations. We test if these estimates are compatible with the underlying distribution: $\chi^2$ with $N_\text{sims}-1$ degrees of freedom in this case. We achieve the desired consistency for both $\phi=0$ and $\phi=\pi/2$. One potentially meaningful outlier is at $\omega=20$ and $\phi=0$, where the sample estimate is below 60\% of the expected level. This anomaly is not likely to be a numerical error specific to CMB-BEst since a similar dip can be found from Modal results in Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}. No significant irregularity is found for different phases at the same frequency. We classify this point as a random fluctuation for now, but a further investigation using an independent set of Gaussian simulations is required to be certain.
 
 As with the feature models before, we plot the correlation matrix between the templates with different $\omega$s in Figure \ref{fig:sinlog_template_correlations}. Shapes with similar $\omega$s are naturally correlated, but most off-diagonal terms of the matrix vanish. Even for $\omega > 35$ where the basis expansion becomes less accurate, cross-correlations tend to remain small until $\omega \approx 75$. We verify the stability of CMB-BEst's Legendre basis expansion; best approximations to the highly oscillatory template are found, allowing us to continue exploring independent bispectrum shapes with the characteristic log-spaced oscillations.
 
@@ -801,7 +801,7 @@ As with the feature models before, we plot the correlation matrix between the te
 	\includegraphics[width=\textwidth]{sinlog_template_correlations_new.pdf}
 	(b) $ \phi=\pi/2 $
 	\includegraphics[width=\textwidth]{coslog_template_correlations_new.pdf}
-	\caption{Correlations between resonance model templates $S(k_1,k_2,k_3) = \sin(\omega\log(k_1+k_2+k_3)+\phi)$ with different $\omega$ values, for (a) $\phi = 0$ and (b) $\phi=\pi/2$. `Sample' correlations are obtained from the Legendre basis $f_{NL}$ estimates from 140 Gaussian simulations. `Theory' correlations come from the inner product induced by $\Gamma$ matrix as shown in (\ref{eqn:late_time_inner_product}).}
+	\caption{Correlations between resonance model templates $S(k_1,k_2,k_3) = \sin(\omega\log(k_1+k_2+k_3)+\phi)$ with different $\omega$ values, for (a) $\phi = 0$ and (b) $\phi=\pi/2$. `Sample' correlations are obtained from the Legendre basis $f_\text{NL}$ estimates from 140 Gaussian simulations. `Theory' correlations come from the inner product induced by $\Gamma$ matrix as shown in (\ref{eqn:late_time_inner_product}).}
 	\label{fig:sinlog_template_correlations}
 \end{figure}
 
@@ -819,43 +819,43 @@ DBI inflation \cite{Silverstein2004dbi,Alishahiha2004dbi,Chen2005runningdbi,Bean
 \end{align}
 where $X=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ as before. $f(\phi)$ is an arbitrary function called the warp factor. We choose
 \begin{align}
-	f(\phi) = \frac{\lambda_{DBI}}{\phi^4}, \qquad V(\phi) = V_0 - \frac{1}{2}m^2\phi^2, \qquad m = \sqrt{\beta_{IR}} \; H,
+	f(\phi) = \frac{\lambda_\text{DBI}}{\phi^4}, \qquad V(\phi) = V_0 - \frac{1}{2}m^2\phi^2, \qquad m = \sqrt{\beta_\text{IR}} \; H,
 \end{align}
-for some theory parameters $\lambda_{DBI}$, $V_0$, and $\beta_{IR}$. The sound speed can then be obtained from \eqref{eqn:general_single_field_sound_speed}, which evaluates to $c^{DBI}_s \approx 3/\beta_{IR} N_e$ under some slow-roll approximations \cite{Chen2005runningdbi}. Here, $N_e$ denotes the number of e-folds until the end of inflation.
+for some theory parameters $\lambda_\text{DBI}$, $V_0$, and $\beta_\text{IR}$. The sound speed can then be obtained from \eqref{eqn:general_single_field_sound_speed}, which evaluates to $c^\text{DBI}_\text{s} \approx 3/\beta_\text{IR} N_e$ under some slow-roll approximations \cite{Chen2005runningdbi}. Here, $N_e$ denotes the number of e-folds until the end of inflation.
 
 DBI inflation generates non-Gaussianity with its shape similar to the equilateral template \eqref{def:equilateral_template}. The latest constraints on the model comes from the Planck CMB bispectrum analysis using an approximate template 
 \begin{align}
-	B_\Phi^{DBI}(k_1,k_2,k_3) = \frac{6A_\Phi^2}{(k_1 k_2 k_3)^3} \frac{-3/7}{(k_1 + k_2 + k_3)^2} \bigg[ \sum_i k_i^5 &+ \sum_{i\neq j} (2k_i^4 k_j - 3k_i^3 k_j^2)  \nonumber \\
+	B_\Phi^\text{DBI}(k_1,k_2,k_3) = \frac{6A_\Phi^2}{(k_1 k_2 k_3)^3} \frac{-3/7}{(k_1 + k_2 + k_3)^2} \bigg[ \sum_i k_i^5 &+ \sum_{i\neq j} (2k_i^4 k_j - 3k_i^3 k_j^2)  \nonumber \\
 	&+ \sum_{i\neq j\neq l} (k_i^3 k_j k_l - 4k_i^2 k_j^2 k_l) \bigg]. \label{eqn:dbi_bispectrum_template}
 \end{align}
 We switched to a convention where the potential $\Phi$ is used instead of $\zeta$. On superhorizon scales at the end of inflation they differ by a constant factor: $\Phi = (3/5)\zeta$. With respect to this template, the theoretical bispectrum from DBI inflation has amplitude
 \begin{align}
-	f_{NL}^{DBI} \approx - \frac{35}{108} \left[ \frac{1}{\left( c^{DBI}_s \right)^2} - 1 \right], \label{eqn:DBI_fNL_and_sound_speed}
+	f_\text{NL}^\text{DBI} \approx - \frac{35}{108} \left[ \frac{1}{\left( c^\text{DBI}_\text{s} \right)^2} - 1 \right], \label{eqn:DBI_fNL_and_sound_speed}
 \end{align}
-an approximation which is accurate as long as the DBI sound speed $c^{DBI}_s \ll 1$. Constraints on $f_{NL}^{DBI}$ therefore place limits on $c_s$. Planck 2018 analysis \cite{PlanckCollaboration2018} found $f_{NL}^{DBI} = 46 \;\pm\; 58$ with a 68\% confidence level from CMB temperature data. The corresponding bound on the speed of sound is $c^{DBI}_s \ge 0.079$.
+an approximation which is accurate as long as the DBI sound speed $c^\text{DBI}_\text{s} \ll 1$. Constraints on $f_\text{NL}^\text{DBI}$ therefore place limits on $c_\text{s}$. Planck 2018 analysis \cite{PlanckCollaboration2018} found $f_\text{NL}^\text{DBI} = 46 \;\pm\; 58$ with a 68\% confidence level from CMB temperature data. The corresponding bound on the speed of sound is $c^\text{DBI}_\text{s} \ge 0.079$.
 
-We reproduce the DBI sound speed constraint from Planck 2018 analysis using the \textsc{Primodal}$+$\textsc{CMB-BEst} routine. Unlike the Planck analysis, our method does not require templates to connect inflationary predictions to CMB data. Instead of using a single estimate from an approximate template, we scan over DBI theory parameters and constrain the individual primordial bispectrum directly. A given parameter set can be ruled out if the corresponding constraint on $f_{NL}$ excludes $f_{NL}=1$ with high confidence. 
+We reproduce the DBI sound speed constraint from Planck 2018 analysis using the \textsc{Primodal}$+$\textsc{CMB-BEst} routine. Unlike the Planck analysis, our method does not require templates to connect inflationary predictions to CMB data. Instead of using a single estimate from an approximate template, we scan over DBI theory parameters and constrain the individual primordial bispectrum directly. A given parameter set can be ruled out if the corresponding constraint on $f_\text{NL}$ excludes $f_\text{NL}=1$ with high confidence. 
 
-One notable limitation in the current implementation of \textsc{Primodal} is that the details of how inflation ends are not prescribed. This means that the scales during inflation and what we observe cannot be mapped directly, which restricts our ability to translate the results into a constraint on more fundamental parameters such as $\beta_{IR}$. Our work here still serves as a useful validation of the combined pipeline. For the DBI sound speed scan, the approximate relation \eqref{eqn:DBI_fNL_and_sound_speed} is used to relate the output $c^*_s$\textemdash sound speed at some pivot scale during horizon crossing\textemdash from \textsc{Primodal} with the physical DBI sound speed $c^{DBI}_s$. Numerous other validation tests we performed such as convergence tests with respect to the basis size $p_{max}$ are unaffected by this caveat and still serves as a proof of concept for our combined pipeline.
+One notable limitation in the current implementation of \textsc{Primodal} is that the details of how inflation ends are not prescribed. This means that the scales during inflation and what we observe cannot be mapped directly, which restricts our ability to translate the results into a constraint on more fundamental parameters such as $\beta_\text{IR}$. Our work here still serves as a useful validation of the combined pipeline. For the DBI sound speed scan, the approximate relation \eqref{eqn:DBI_fNL_and_sound_speed} is used to relate the output $c^*_s$\textemdash sound speed at some pivot scale during horizon crossing\textemdash from \textsc{Primodal} with the physical DBI sound speed $c^\text{DBI}_\text{s}$. Numerous other validation tests we performed such as convergence tests with respect to the basis size $p_\text{max}$ are unaffected by this caveat and still serves as a proof of concept for our combined pipeline.
 
-The parameter $\beta_{IR}$ is varied within the interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. The results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
+The parameter $\beta_\text{IR}$ is varied within the interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_\text{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. The results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{dbi_sound_speed_scan_annotated_new.pdf}
-	\caption{Constraints on the DBI model with varying sound speed $c_s$. Primordial bispectrum computed from \textsc{Primodal} is fed directly into CMB-BEst in the form of coefficients $\alpha_{p_1 p_2 p_3}$ appearing in Legendre basis expansion. Constraints from the Legendre basis with $p_{max}=30$ (black $+$) are shown in comparison with $p_{max}=29$ (black $\times$). $1\sigma$ and $2\sigma$ confidence intervals around $0$ are shaded in blue and represent the uncertainty in the estimated $f_{NL}$s. Bispectrum shapes are normalised so that $f_{NL}=1$ corresponds to the DBI model under consideration. Our constraint on DBI sound speed is $c^{DBI}_s > 0.056$ with $95\%$ confidence level. Equivalent results from an approximate DBI bispectrum template \eqref{eqn:dbi_bispectrum_template} (blue dashed) give the $c^{DBI}_s$ bound identical up to two significant figures.}
+	\caption{Constraints on the DBI model with varying sound speed $c_\text{s}$. Primordial bispectrum computed from \textsc{Primodal} is fed directly into CMB-BEst in the form of coefficients $\alpha_{p_1 p_2 p_3}$ appearing in Legendre basis expansion. Constraints from the Legendre basis with $p_\text{max}=30$ (black $+$) are shown in comparison with $p_\text{max}=29$ (black $\times$). $1\sigma$ and $2\sigma$ confidence intervals around $0$ are shaded in blue and represent the uncertainty in the estimated $f_\text{NL}$s. Bispectrum shapes are normalised so that $f_\text{NL}=1$ corresponds to the DBI model under consideration. Our constraint on DBI sound speed is $c^\text{DBI}_\text{s} > 0.056$ with $95\%$ confidence level. Equivalent results from an approximate DBI bispectrum template \eqref{eqn:dbi_bispectrum_template} (blue dashed) give the $c^\text{DBI}_\text{s}$ bound identical up to two significant figures.}
 	\label{fig:dbi_sound_speed_scan}
 \end{figure}
 
-First of all, we check that our Legendre basis with $p_{max}=30$ has converged and accurately represents the primordial bispectrum from DBI inflation. Values of the $f_{NL}$ estimates obtained from $p_{max}=30$ were tested against the equivalent result with $p_{max}=29$ and shown to differ by less than $0.01\%$, as can be seen in Figure \ref{fig:dbi_sound_speed_scan}. In order to thoroughly investigate the degree of convergence, we studied a late-time equivalent of $\epsilon$ in  \eqref{def:primordial_shape_epsilon} used to compare primordial bispectrum shapes;
+First of all, we check that our Legendre basis with $p_\text{max}=30$ has converged and accurately represents the primordial bispectrum from DBI inflation. Values of the $f_\text{NL}$ estimates obtained from $p_\text{max}=30$ were tested against the equivalent result with $p_\text{max}=29$ and shown to differ by less than $0.01\%$, as can be seen in Figure \ref{fig:dbi_sound_speed_scan}. In order to thoroughly investigate the degree of convergence, we studied a late-time equivalent of $\epsilon$ in  \eqref{def:primordial_shape_epsilon} used to compare primordial bispectrum shapes;
 \begin{align}
 	\epsilon^2 (\vv{f}_1, \vv{f}_2) = \frac{1}{N_{sim}}  \sum_{i=1}^{N_{sim}} \left( \frac{f^{(i)}_1}{\sigma_1} - \frac{f^{(i)}_2}{\sigma_2} \right)^2,
 \end{align}
-where $f^{(i)}_1$ and $f^{(i)}_2$ denote $f_{NL}$ estimate for the $i$th Gaussian simulated map from the two routines. $\epsilon^2$ measures the mean squared error in the two sets of $f_{NL}$ signal-to-noises for $N_{sim}$ simulations. Comparing results from the Legendre basis with $p_{max} = 30$ and $25$ across the scan, we confirmed that $\epsilon < 0.01$ in the full range and $\epsilon \approx 0.002$ for the majority. A plot with the full result will be provided in \cite{Sohn2021inprep}.
+where $f^{(i)}_1$ and $f^{(i)}_2$ denote $f_\text{NL}$ estimate for the $i$th Gaussian simulated map from the two routines. $\epsilon^2$ measures the mean squared error in the two sets of $f_\text{NL}$ signal-to-noises for $N_{sim}$ simulations. Comparing results from the Legendre basis with $p_\text{max} = 30$ and $25$ across the scan, we confirmed that $\epsilon < 0.01$ in the full range and $\epsilon \approx 0.002$ for the majority. A plot with the full result will be provided in \cite{Sohn2021inprep}.
 
-Secondly, we constrain the DBI sound speed as $c_s \gtrapprox 0.056$ with $95\%$ confidence using CMB temperature data from Planck. Each of the points in Figure \ref{fig:dbi_sound_speed_scan} are normalised to some $\tilde{f}_{NL}$ such that $\tilde{f}_{NL}=1$ corresponds to the bispectrum predicted by the model. Estimates from the Planck 2018 map take negative values with error bars small enough to exclude $f_{NL}=1$ with $2\sigma$ confidence level when $c_s < 0.056$. Our constraint is similar but not identical to the result from Planck 2018 analysis which reads $c_s \ge 0.079$. The discrepancy stems from differences in the constraints for DBI template \eqref{eqn:dbi_bispectrum_template}: $f^{DBI}_{NL}=27 \pm 58$ for \textsc{Primodal}+\textsc{CMB-BEst} whereas $f^{DBI}_{NL}=46 \pm 58$ for Planck. This $\approx0.32\sigma$ gap in signal to noise is largely because the Modal expansion is incomplete so that the correlation between the expanded and full DBI template equals $r\approx 0.95$. As discussed in Appendix B of \cite{PlanckCollaboration2013}, this level of correlation causes an expected scatter in $f_{NL}$s approximately equal to $0.3\sigma$.
+Secondly, we constrain the DBI sound speed as $c_\text{s} \gtrapprox 0.056$ with $95\%$ confidence using CMB temperature data from Planck. Each of the points in Figure \ref{fig:dbi_sound_speed_scan} are normalised to some $\tilde{f}_\text{NL}$ such that $\tilde{f}_\text{NL}=1$ corresponds to the bispectrum predicted by the model. Estimates from the Planck 2018 map take negative values with error bars small enough to exclude $f_\text{NL}=1$ with $2\sigma$ confidence level when $c_\text{s} < 0.056$. Our constraint is similar but not identical to the result from Planck 2018 analysis which reads $c_\text{s} \ge 0.079$. The discrepancy stems from differences in the constraints for DBI template \eqref{eqn:dbi_bispectrum_template}: $f^\text{DBI}_\text{NL}=27 \pm 58$ for \textsc{Primodal}+\textsc{CMB-BEst} whereas $f^\text{DBI}_\text{NL}=46 \pm 58$ for Planck. This $\approx0.32\sigma$ gap in signal to noise is largely because the Modal expansion is incomplete so that the correlation between the expanded and full DBI template equals $r\approx 0.95$. As discussed in Appendix B of \cite{PlanckCollaboration2013}, this level of correlation causes an expected scatter in $f_\text{NL}$s approximately equal to $0.3\sigma$.
 
-Lastly, we verify that the DBI template \eqref{eqn:dbi_bispectrum_template} accurately approximates the full numerical result obtained from \textsc{Primodal}. Shown in blue dashed line on Figure \ref{fig:dbi_sound_speed_scan}, the difference between $\tilde{f}_{NL}$ constraints obtained using \textsc{Primodal} and the DBI template differ by order $O(0.01)\sigma$.
+Lastly, we verify that the DBI template \eqref{eqn:dbi_bispectrum_template} accurately approximates the full numerical result obtained from \textsc{Primodal}. Shown in blue dashed line on Figure \ref{fig:dbi_sound_speed_scan}, the difference between $\tilde{f}_\text{NL}$ constraints obtained using \textsc{Primodal} and the DBI template differ by order $O(0.01)\sigma$.
 
 \bigskip
 
@@ -864,20 +864,20 @@ We extend the \textsc{Primodal}+\textsc{CMB-BEst} pipeline to study DBI models w
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.8\textwidth]{dbi_reso_scan_fNLs_new.pdf}
-	\caption{Constraints on the DBI model with oscillations imposed on the inflationary potential, causing resonance-type bispectra approximately parametrised as $\sin(\omega \log(k_1+k_2+k_3) + \phi)$. The primordial bispectrum computed from \textsc{Primodal} for various oscillation frequency $\omega$ has been fed directly to CMB-BEst. The results (black line) are shown together with the ones obtained from a smaller basis where $p_{max}=29$ (blue $\times$). The blue regions in the plot represent $1\sigma$ and $2\sigma$ confidence intervals.}
+	\caption{Constraints on the DBI model with oscillations imposed on the inflationary potential, causing resonance-type bispectra approximately parametrised as $\sin(\omega \log(k_1+k_2+k_3) + \phi)$. The primordial bispectrum computed from \textsc{Primodal} for various oscillation frequency $\omega$ has been fed directly to CMB-BEst. The results (black line) are shown together with the ones obtained from a smaller basis where $p_\text{max}=29$ (blue $\times$). The blue regions in the plot represent $1\sigma$ and $2\sigma$ confidence intervals.}
 	\label{fig:dbi_resonance_scan}
 \end{figure}
 
-We find no significant detection of non-Gaussianity in the parameter range we study. Note also that our $f_{NL}$ estimates become unreliable after $\omega\gtrsim2.0$ as the Legendre basis fails to represent rapid oscillations accurately. This can be seen by comparing the estimates from bases of size $p_{max}=30$ and $29$ in the figure. Augmenting the Legendre basis with specific functions or choosing an alternative set of basis \cite{Clarke2021} can improve the convergence up to $\omega\approx5$ (to be included in \cite{Sohn2021inprep}), which is a significant improvement but still rather restrictive compared to the viable parameter range of $\omega\lesssim 35$ for the `vanilla' resonance models shown in Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}.
+We find no significant detection of non-Gaussianity in the parameter range we study. Note also that our $f_\text{NL}$ estimates become unreliable after $\omega\gtrsim2.0$ as the Legendre basis fails to represent rapid oscillations accurately. This can be seen by comparing the estimates from bases of size $p_\text{max}=30$ and $29$ in the figure. Augmenting the Legendre basis with specific functions or choosing an alternative set of basis \cite{Clarke2021} can improve the convergence up to $\omega\approx5$ (to be included in \cite{Sohn2021inprep}), which is a significant improvement but still rather restrictive compared to the viable parameter range of $\omega\lesssim 35$ for the `vanilla' resonance models shown in Figure \ref{fig:sinlog_template_frequency_Legendre_Modal}.
 
-Investigating the lack of convergence has revealed a more fundamental issue with the primordial basis expansion. Earlier in this chapter, we discussed how the tetrapyd domain of primordial bispectrum can be extended to the cube given by $[k_{min},k_{max}]^3$ such that the decomposition coefficients can be computed accurately and efficiently via \eqref{eqn:basis_expansion}. By doing so, we are expanding the given bispectrum in a cube which contains the tetrapyd while analytically continuing the function in between the two. Having good convergence in the cube then implies good convergence in the tetrapyd inside it. However, in cases where the target function behaves badly outside the tetrapyd, trying to fit the function in the whole cube instead of the tetrapyd may be suboptimal.
+Investigating the lack of convergence has revealed a more fundamental issue with the primordial basis expansion. Earlier in this chapter, we discussed how the tetrapyd domain of primordial bispectrum can be extended to the cube given by $[k_\text{min},k_\text{max}]^3$ such that the decomposition coefficients can be computed accurately and efficiently via \eqref{eqn:basis_expansion}. By doing so, we are expanding the given bispectrum in a cube which contains the tetrapyd while analytically continuing the function in between the two. Having good convergence in the cube then implies good convergence in the tetrapyd inside it. However, in cases where the target function behaves badly outside the tetrapyd, trying to fit the function in the whole cube instead of the tetrapyd may be suboptimal.
 
-We demonstrate this issue by computing the $f_{NL}$ constraints using a bispectrum template $S(k_1,k_2,k_3) = S^{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$: the equilateral shape with sine-log oscillations imposed. Figure \ref{fig:sinlog_equil_template_decomp_comparison} shows two plots analogous to Figure \ref{fig:sinlog_template_correlations}. The correlations between $f_{NL}$s estimated from different values of $\omega$ are computed using two different approaches for the primordial basis expansion. Shown on the left hand side is the result for when we evaluate the given shape function $S(k_1,k_2,k_3)$ within the whole \textit{cube}, as we have so far. We see that the basis fails to express the given bispectrum template accurately after $\omega\gtrsim4$. Large correlations shown in the plot are simply artefacts of inaccuracy in the expansion.
+We demonstrate this issue by computing the $f_\text{NL}$ constraints using a bispectrum template $S(k_1,k_2,k_3) = S^\text{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$: the equilateral shape with sine-log oscillations imposed. Figure \ref{fig:sinlog_equil_template_decomp_comparison} shows two plots analogous to Figure \ref{fig:sinlog_template_correlations}. The correlations between $f_\text{NL}$s estimated from different values of $\omega$ are computed using two different approaches for the primordial basis expansion. Shown on the left hand side is the result for when we evaluate the given shape function $S(k_1,k_2,k_3)$ within the whole \textit{cube}, as we have so far. We see that the basis fails to express the given bispectrum template accurately after $\omega\gtrsim4$. Large correlations shown in the plot are simply artefacts of inaccuracy in the expansion.
 
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{sinlog_equil_template_correlations_compare_decomp.pdf}
-	\caption{Correlations between $f_{NL}$ constraints for the enveloped resonance shape $S(k_1,k_2,k_3) = S^{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$ with different $\omega$s. Since the given shape behaves badly in the region outside the tetrapyd but within the cubic domain of (\ref{eqn:basis_expansion}), we observe large off-diagonal correlations in the original Legendre basis expansion (Left). Manually setting the shape function to zero at these unphysical configurations therefore dramatically improves numerical performance (Right). }
+	\caption{Correlations between $f_\text{NL}$ constraints for the enveloped resonance shape $S(k_1,k_2,k_3) = S^\text{equil}(k_1,k_2,k_3) \sin(\omega \log(k_1+k_2+k_3))$ with different $\omega$s. Since the given shape behaves badly in the region outside the tetrapyd but within the cubic domain of (\ref{eqn:basis_expansion}), we observe large off-diagonal correlations in the original Legendre basis expansion (Left). Manually setting the shape function to zero at these unphysical configurations therefore dramatically improves numerical performance (Right). }
 	\label{fig:sinlog_equil_template_decomp_comparison}
 \end{figure}
 
@@ -888,9 +888,9 @@ On the right hand side is the result for which the shape function values outside
 
 In this chapter, we presented a thorough review of our work on the high-resolution bispectrum estimator \textsc{CMB-BEst}. Starting with the mathematical framework of our pipeline, we showed that our formalism combines the strengths of conventional approaches to bispectrum estimation; we can handle highly oscillatory functions as accurately as the KSW estimator whilst covering a broad range of models like Modal. In order to tackle the computational complexity, we thoroughly optimised the code in both algorithmic and implementation levels. The code was then parallelised for maximal utilisation of high performance computing clusters.
 
-With the completed code we performed various tests to validate the integrity of \textsc{CMB-BEst}. We showed that the two different choices of basis functions\textemdash monomials and Legendre polynomials\textemdash give consistent constraints for the standard bispectrum shapes. Furthermore, we compared our results to those from the Modal estimator using the Planck 2018 data and found that they agree on a map-by-map basis. Oscillatory shapes such as the feature and resonance templates were also constrained; by analysing correlation between the templates with different oscillation frequencies, we showed that our basis can handle oscillatory shapes as accurately as the Planck analysis using the Legendre basis of size $p_{max}=30$.
+With the completed code we performed various tests to validate the integrity of \textsc{CMB-BEst}. We showed that the two different choices of basis functions\textemdash monomials and Legendre polynomials\textemdash give consistent constraints for the standard bispectrum shapes. Furthermore, we compared our results to those from the Modal estimator using the Planck 2018 data and found that they agree on a map-by-map basis. Oscillatory shapes such as the feature and resonance templates were also constrained; by analysing correlation between the templates with different oscillation frequencies, we showed that our basis can handle oscillatory shapes as accurately as the Planck analysis using the Legendre basis of size $p_\text{max}=30$.
 
-Having validated the pipeline, we provided a proof-of-concept example where \textsc{CMB-BEst} is combined with \textsc{Primodal} to constrain inflation models with non-canonical kinetic terms. The combined pipeline is capable of constraining inflation models directly without using approximate templates. We studied the DBI inflation models while varying the speed of sound parameter to obtain the constraint $c_s^{DBI} \ge 0.056$ with 95\% confidence. We are currently preparing to publish the work presented here as \cite{Sohn2021inprep}.
+Having validated the pipeline, we provided a proof-of-concept example where \textsc{CMB-BEst} is combined with \textsc{Primodal} to constrain inflation models with non-canonical kinetic terms. The combined pipeline is capable of constraining inflation models directly without using approximate templates. We studied the DBI inflation models while varying the speed of sound parameter to obtain the constraint $c_\text{s}^\text{DBI} \ge 0.056$ with 95\% confidence. We are currently preparing to publish the work presented here as \cite{Sohn2021inprep}.
 
 
 
@@ -904,7 +904,7 @@ Having validated the pipeline, we provided a proof-of-concept example where \tex
 %	\renewcommand{\arraystretch}{1.5} 
 %	\begin{tabular}{llrrr}
 %		\toprule
-%		Template & Estimator &  $f_{NL}^T$ &  $\bar{\sigma}^T$ &  $\sigma^T$ \\
+%		Template & Estimator &  $f_\text{NL}^T$ &  $\bar{\sigma}^T$ &  $\sigma^T$ \\
 %		\toprule
 %		
 %		Local & KSW &   -2.2 &      5.5 &      5.3 \\

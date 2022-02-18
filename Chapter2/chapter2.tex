@@ -13,7 +13,7 @@
 
 The early universe consisted of hot plasma. Photons were tightly coupled to baryons through Compton scattering, and remained in thermal equilibrium with them. Since the photon energy density dropped more rapidly with the universe's expansion compared to that of matter, the universe eventually transitioned from radiation-dominated to matter-dominated. Its temperature also continued to drop until it was low enough for the electrons and protons to combine and form neutral hydrogen. Following this rather abrupt event at redshift $\approx1100$, called \textit{recombination}, the photons no longer had electrons to scatter off from and instead started streaming freely through space. These photons are now observed by us today as the Cosmic Microwave Background (CMB).
 
-The CMB follows a blackbody spectrum, since the radiation was in thermal equilibrium before it decoupled at recombination. Its temperature has been redshifted since then from approximately $3000$K to $T_{CMB}=2.725$K, which we observe today. Looking closer into the map of CMB temperature, there are fluctuations of order $10^{-5}$ that were seeded by the primordial perturbations and evolved subsequently in time. Such anisotropy in the CMB therefore contains valuable information about the universe.  Satellite surveys such as COBE \cite{Smoot1992cobe}, WMAP \cite{Spergel2003wmapfirst} and Planck \cite{PlanckCollaboration2013paramters}, as well as numerous ground-based experiments including ACT \cite{Dunkley2011act}, SPT \cite{Carlstrom2011spt}, and BICEP/Keck array \cite{Ade2016bicepkeck} have produced precise measurements of the CMB which have allowed us to constrain various cosmological parameters. The CMB anisotropy is the gold standard dataset for precision cosmology.
+The CMB follows a blackbody spectrum, since the radiation was in thermal equilibrium before it decoupled at recombination. Its temperature has been redshifted since then from approximately $3000$K to $T_\text{CMB}=2.725$K, which we observe today. Looking closer into the map of CMB temperature, there are fluctuations of order $10^{-5}$ that were seeded by the primordial perturbations and evolved subsequently in time. Such anisotropy in the CMB therefore contains valuable information about the universe.  Satellite surveys such as COBE \cite{Smoot1992cobe}, WMAP \cite{Spergel2003wmapfirst} and Planck \cite{PlanckCollaboration2013paramters}, as well as numerous ground-based experiments including ACT \cite{Dunkley2011act}, SPT \cite{Carlstrom2011spt}, and BICEP/Keck array \cite{Ade2016bicepkeck} have produced precise measurements of the CMB which have allowed us to constrain various cosmological parameters. The CMB anisotropy is the gold standard dataset for precision cosmology.
 
 This chapter provides mathematical background and some physical intuitions for studying the CMB anisotropy. We start by making a step forward from the homogeneous and isotropic universe discussed in the previous chapter, and formulate the cosmological perturbation theory in Section \ref{section:the_inhomogeneous_universe}. Focussing on scalar perturbations we derive the linearised equations governing the time evolution of the perturbative variables in Section \ref{section:linearised_equations}. In Section \ref{section:CMB_anisotropy} we introduce the Boltzmann equation for photons and outline how it is solved numerically. We connect the primordial power spectrum to the angular power spectrum of the CMB anisotropy measured today.
 
@@ -39,7 +39,7 @@ We further extract the divergence part from $B_i$ and $h_{ij}$, as well as the t
 where $\partial_{\langle i}\partial_{j \rangle} := \partial_i \partial_j - \frac{1}{3} \delta_{ij} \nabla^2$.
 The variables are chosen such that $B_i^V$ is divergence-free, while $h_{ij}^T$ is traceless and transverse.
 
-The Scalar-Vector-Tensor (SVT) theorem states that to first order in the perturbations, these modes decouple and evolve in three independent groups: scalars ($A,B,C,E$), vectors ($B_i^V,E_i^V$), and tensors ($E_{ij}^T$). These groups each contain 4, 4, and 2 degrees of freedom, again adding up to 10 as required. In this section, we are only interested in the scalar perturbations which generate the temperature anisotropy and E-mode polarisation in the CMB. We will therefore set the vector and tensor modes of the perturbations to zero.
+The Scalar-Vector-Tensor (SVT) theorem states that to linear order in the perturbations, these modes decouple and evolve in three independent groups: scalars ($A,B,C,E$), vectors ($B_i^V,E_i^V$), and tensors ($E_{ij}^T$). These groups each contain 4, 4, and 2 degrees of freedom, again adding up to 10 as required. In this section, we are only interested in the scalar perturbations which generate the temperature anisotropy and E-mode polarisation in the CMB. We will therefore set the vector and tensor modes of the perturbations to zero.
 
 Keeping only the scalar modes, the perturbed metric becomes
 \begin{align}
@@ -56,7 +56,7 @@ Consider the coordinate transformations $x^\mu \rightarrow \tilde{x}^\mu = x^\mu
 	\hspace{0.05\linewidth}
 	\frac{dx^\mu}{d\tilde{x}^\alpha} = \begin{pmatrix}
 		1 - T' & -\partial_i T \\ -\partial_i L' & \delta_{ij} - \partial_i \partial_j L
-	\end{pmatrix}.
+	\end{pmatrix}. \label{eqn:gauge_transformation_matrix}
 \end{align}
 The metric tensor in the new set of coordinates can be found using the tensor transformation rule
 \begin{align}
@@ -104,10 +104,17 @@ Transforming back to the original coordinates through $T^{\mu\nu}=(E_\alpha)^\mu
 \end{alignat}
 at first order in perturbations. Note that when only the scalar modes are considered, we may write $v^i = \partial_i v$ and $\Pi^{ij} = \partial_{\langle i} \partial_{j \rangle} \Pi$ for some $v$ and $\Pi$. If multiple fluids contribute, then the total energy-momentum tensor can be obtained by summing over the individual values for each constituent $I$; $\delta\rho = \sum_I \delta\rho_I$, $\delta P = \sum_I \delta P_I$, and $\delta \vv{q} = \sum_I \vv{q}_I$.
 
+The energy-momentum tensor is also subject to the gauge transformations \eqref{eqn:gauge_transformation_matrix}. Each perturbation variable appearing in $\delta T^{\mu\nu}$ transforms as
+\begin{align}
+	\tilde{\delta\rho} &= \delta\rho - T\bar{\rho}',  &&\tilde{\delta P} = \delta P -T\bar{P}', \label{eqn:gauge_transform_perturbations_3}\\
+	\tilde{q}^i &= q^i + (\bar{\rho} + \bar{P})L',  &&\tilde{\Pi}^{ij} = \Pi^{ij}. \label{eqn:gauge_transform_perturbations_4}
+\end{align}
+We may therefore choose to work in a gauge where some of the above vanish. For example, $\delta \rho = B = 0$ in \textit{uniform density} gauge, and spatial slices of the fluid have constant energy density.
+
 
 \subsection{Initial perturbations}
 
-With the metric and matter perturbations written down, we only need one more ingredient to solve the linearised Einstein's equations: initial conditions. In inflationary $\Lambda CDM$, deviations from the background solution originate from the quantum fluctuations of the inflation field as we discussed in Section \ref{section:quantum_fluctuations}. Statistical properties of the perturbations' distribution depend on the details of the inflationary scenario.
+With the metric and matter perturbations written down, we only need one more ingredient to solve the linearised Einstein's equations: initial conditions. In inflationary $\Lambda$CDM, deviations from the background solution originate from the quantum fluctuations of the inflation field as we discussed in Section \ref{section:quantum_fluctuations}. Statistical properties of the perturbations' distribution depend on the details of the inflationary scenario.
 
 In models where a single field drives inflation, such as slow-roll inflation, the field can be thought of as a local \textit{clock}. Classical equations of motions dictate the trajectory followed by the field, which then regulates the expansion of the universe. The spatial fluctuations of the inflation field can therefore be considered as the differences in how far the field has moved down the trajectory at each point in space. Any such perturbations can be determined solely from the variations in the local `clock' time $\delta\tau(\tau,\vv{x})$;
 \begin{align}
@@ -127,7 +134,7 @@ Perturbations satisfying the strong constraint of \eqref{eqn:adiabatic_modes_den
 
 \section{Linearised equations} \label{section:linearised_equations}
 
-In this section, we derive equations governing the time evolution of the perturbations defined in the previous section. The equations are linear in the perturbative variables to leading order. Although all calculations here are performed in Newtonian gauge, the methodology illustrated here is general and applies to any choice of gauge. In order to avoid conflicting notations later, we use $\eta$ instead of $\tau$ for conformal time in this section.
+In this section, we derive equations governing the time evolution of the perturbations defined in the previous section. The equations are linear in the perturbative variables to leading order. Although all calculations here are performed in Newtonian gauge, the methodology illustrated here is general and applies to any choice of gauge. In order to avoid conflicting notations later, we use $\eta$ instead of $\tau$ for conformal time in this section. \footnote{Unfortunately, we could not have avoided the clash by using $\eta$ to denote conformal time to begin with, since $\eta$ is also commonly used as one of the slow-roll parameters in inflation.}
 
 \subsection{Kinematics}
 
@@ -145,7 +152,7 @@ There are four components in the equation $\nabla_\nu {T^\nu}_\mu = \partial_\nu
 \begin{align}
 	(\delta\rho)' + \nabla \cdot \vv{q}+ 3 \mathcal{H} (\delta\rho + \delta P) - 3 \Phi' (\bar{\rho} + \bar{P})  = 0.  \label{eqn:perturbed_continuity_equation}
 \end{align}
-This is the continuity equation. Only the first two terms would be present if the spacetime were flat; any changes in the energy density are caused by the fluid flow. The third term accounts for the dilution of fluid density due to the expansion of the universe. The last term corrects for the perturbations in the expansion, where $\Phi'$ comes from the time derivative of the effective spatial scale factor $a(\eta)(1-\Phi(\eta,\vv{x}))$. All factors of three here originate from having three spatial dimensions.
+This is the continuity equation. Only the first two terms would be present if the spacetime were flat; any changes in the energy density perturbation $\delta\rho$ are then due to the fluid flow parametrised by the momentum density $\vv{q} = (\bar{\rho}+\bar{P})\vv{v}$. The third term accounts for the dilution of the fluid density from the expansion of the universe. The last term corrects for the perturbations in the expansion, where $\Phi'$ comes from the time derivative of the effective spatial scale factor $a(\eta)(1-\Phi(\eta,\vv{x}))$. All factors of three here originate from having three spatial dimensions.
 
 \eqref{eqn:perturbed_continuity_equation} applies to every fluid component which does not interact with others. Rewriting in terms of the equation of state $w_I = \bar{P}_I / \bar{\rho}_I$, sound speed $c_s^2 = \delta P / \delta\rho$, and density contrast $\delta_I = \delta\rho_I / \bar{\rho}_I$, we have
 \begin{align}
@@ -159,7 +166,7 @@ Meanwhile, the $\mu=i$ part of $\nabla_\nu {T^\nu}_\mu =0$ yields the Euler equa
 \end{align}
 We do not have the zeroth order terms in this case since $\vv{v}=\vv{0}$ in the homogeneous universe. Although \eqref{eqn:perturbed_Euler_equation} is a vector equation, it has only one independent scalar component after rewriting $\vv{v}=\nabla v$ for some $v$. This is because we are only considering the scalar perturbations.
 
-Physical meaning of the individual terms in \eqref{eqn:perturbed_Euler_equation} is as follows. The second term with a factor of $\mathcal{H}$ represents the dilution, or redshift, of the velocity due to the universe's expansion. The third relates to the pressure; the fluid's velocity accelerates in the direction of steepest pressure gradient. Lastly, the gravitational force pulling towards a potential well is encapsulated in the final term.
+The physical meaning of the individual terms in \eqref{eqn:perturbed_Euler_equation} is as follows. The second term with a factor of $\mathcal{H}$ represents the dilution, or redshift, of the velocity due to the universe's expansion. The third relates to the pressure; the fluid's velocity accelerates in the direction of steepest pressure gradient. Lastly, the gravitational force pulling towards a potential well is encapsulated in the final term.
 
 If we assume adiabatic initial conditions where $\bar{P}'/\bar{\rho}' = \delta P / \delta \rho = c^2_s$, then the Euler equation further simplifies to
 \begin{align}
@@ -199,7 +206,7 @@ Time derivatives of $\Phi$ on the left hand side can be removed by putting \eqre
 \begin{align}
 	\nabla^2 \Phi = 4\pi G \; a^2 (\delta\rho - 3\mathcal{H}q). \label{eqn:perturbed_poisson_eqution}
 \end{align}
-This resembles the Poisson's equation for Newtonian gravity: $\nabla^2 \phi_{\text{Newt.}} = 4\pi G \; \rho$. We confirm our previous claim that $\Phi$ corresponds to the perturbations of Newtonian gravitational potential. Note that \eqref{eqn:perturbed_poisson_eqution} is best solved in Fourier space where $\nabla^2\Phi(\eta,\vv{x})$ reduces to $-k^2 \tilde{\Phi}(\eta,\vv{k})$.
+This resembles Poisson's equation for Newtonian gravity: $\nabla^2 \phi_{\text{Newt.}} = 4\pi G \; \rho$. We confirm our previous claim that $\Phi$ corresponds to the perturbations of Newtonian gravitational potential. Note that \eqref{eqn:perturbed_poisson_eqution} is best solved in Fourier space where $\nabla^2\Phi(\eta,\vv{x})$ reduces to $-k^2 \tilde{\Phi}(\eta,\vv{k})$.
 
 
 \subsection{Curvature perturbations} \label{section:curvature_perturbations}
@@ -230,7 +237,7 @@ For this reason, the curvature perturbations play a major role in connecting inf
 
 The linearised Einstein field equations \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} dictate the time evolution of the gravitational perturbations given the total energy, momentum, and pressure of the universe's constituents. The cold dark matter's contributions to these quantities can be solved using the perturbed continuity equation \eqref{eqn:perturbed_continuity_equation} and Euler equations \eqref{eqn:perturbed_Euler_equation}. This section covers how perturbations in the photon temperature evolve and translate into the observed CMB anisotropy, the main cosmological dataset of our interest.
 
-Studying photon perturbations involves two major complications compared to the cold dark matter. First, photons interact directly with baryons through Compton scattering. Their perturbations hence stay tightly coupled until recombination, when the electrons and protons combine to form neutral hydrogen and the photons start free-streaming instead. We outline in Section \ref{section:boltzmann_equations} how the Boltzmann equations are used to find the time evolution of photon perturbations while accounting for the scattering effects. Second, unlike cold dark matter whose perturbations are characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, we require a whole hierarchy of functions to accurately describe photons. This is because the photons do not necessarily travel parallel to the wavevector when perturbed; $\vv{p} \nparallel \vv{k}$. We discuss the details in Section \ref{section:boltzmann_hierarchy}.
+Studying photon perturbations involves two major complications compared to cold dark matter. First, photons interact directly with baryons through Compton scattering. Their perturbations hence stay tightly coupled until recombination, when the electrons and protons combine to form neutral hydrogen and the photons start free-streaming instead. We outline in Section \ref{section:boltzmann_equations} how the Boltzmann equations are used to find the time evolution of photon perturbations while accounting for the scattering effects. Second, unlike cold dark matter whose perturbations are characterised by its density contrast $\delta\rho_m$ and velocity field $\vv{v}_m$, we require a whole hierarchy of functions to accurately describe photons. This is because the photons do not necessarily travel parallel to the wavevector when perturbed; $\vv{p} \nparallel \vv{k}$. We discuss the details in Section \ref{section:boltzmann_hierarchy}.
 
 
 \subsection{Boltzmann equations} \label{section:boltzmann_equations}
@@ -248,7 +255,7 @@ Recall that the 4-momentum is defined as $P^\mu = dx^\mu/\lambda$ for some affin
 \begin{align}
 	\frac{dx^i}{d\eta} =  \frac{dx^i}{d\lambda} \frac{d\lambda}{d\eta} = \frac{P^i}{P^0} = (1+\Psi+\Phi)\hat{p}^i	\label{eqn:perturbed_photon_position_total_derivative}
 \end{align}
-to first order in perturbations. Photons travel more slowly in overdense regions where the gravitational potentials $\Psi,\Phi<0$.
+to first order in perturbations. A comoving observer finds photons to be travelling more slowly while passing through overdense regions with $\Psi,\Phi<0$.
 
 The geodesic equation \eqref{eqn:geodesic} takes the form
 \begin{align}
@@ -262,7 +269,7 @@ Note that the total derivative $d/d\eta$ here is taken along the trajectory $x^\
 \begin{align}
 	\frac{1}{p} \left( \frac{dp}{d\eta} \right) = - \mathcal{H} + \Phi' - \hat{p}^i \partial_i \Psi. \label{eqn:perturbed_p_total_derivative}
 \end{align}
-Only the first term on the right hand side is present at the zeroth order in perturbations, where we get $p\propto a^{-1}$. We confirm that photons are redshifted as the universe expands, justifying the definition of the redshift $z$ in \eqref{def:redshift}. The other two terms quantify the effect of gravitational perturbations on the photon energy. Photons in a deepening potential well have to spend some of their energy to climb out of it, hence the term $\Phi'$. On the other hand, moving into a region with deeper potential provides energy equal to $-({\vv{p}}\cdot\nabla)\Psi$. Dividing by $p$ gives the last term in \eqref{eqn:perturbed_p_total_derivative}.
+Only the first term on the right hand side is present at the zeroth order in perturbations, where we get $p\propto a^{-1}$. We confirm that photons are redshifted as the universe expands, justifying the definition of the redshift $z$ in \eqref{def:redshift}. The other two terms quantify the effect of gravitational perturbations on the photon energy. Photons at a place where the potential is increasing over time \textit{gain} energy $\propto\Phi'$. On the other hand, photons moving out of a potential well \textit{lose} energy $\propto({\vv{p}}\cdot\nabla)\Psi$. Dividing by $p$ gives the last term in \eqref{eqn:perturbed_p_total_derivative}.
 
 
 \subsubsection*{Distribution function} \label{section:distribution_function}
@@ -340,7 +347,7 @@ Note that every term on the right hand side has a factor of $a\bar{n}_e \sigma_T
 \begin{align}
 	\tau(\eta) := \int_\eta^{\eta_0} d\eta'\; \left[ a(\eta') \bar{n}_e (\eta') \sigma_T \right],
 \end{align}
-where $\tau$ is not to be confused with conformal time, also denoted $\tau$ elsewhere in other chapters.\footnote{Unfortunately, we could not have avoided the clash by writing $\eta$ for conformal time to begin with, since $\eta$ is also commonly used as one of the slow-roll parameters in inflation.} Here, $-\delta\tau = a\bar{n}_e \sigma_T \delta\eta$ corresponds to the probability of scattering to occur between some small time interval $\eta$ and $\eta+\delta\eta$. The optical depth hence measures how \textit{opaque} the universe has been for photons to travel without running into something until today. The probability of a scatter between some time $\eta$ and today $\eta_0$ is in fact equal to $e^{-\tau(\eta)}$. This is $1$ for $\tau=0$ and tends to $0$ as $\tau\rightarrow\infty$. Taking the time derivative yields the \textit{visibility function} $g(\eta):=-\tau'(\eta) e^{-\tau(\eta)}$, or the probability of having last scattered at $\eta$.
+where $\tau$ is not to be confused with conformal time, also denoted $\tau$ elsewhere in other chapters. Here, $-\delta\tau = a\bar{n}_e \sigma_T \delta\eta$ corresponds to the probability of scattering to occur between some small time interval $\eta$ and $\eta+\delta\eta$. The optical depth hence measures how \textit{opaque} the universe has been for photons to travel without running into something until today. The probability of a scatter between some time $\eta$ and today $\eta_0$ is in fact equal to $e^{-\tau(\eta)}$. This is $1$ for $\tau=0$ and tends to $0$ as $\tau\rightarrow\infty$. Taking the time derivative yields the \textit{visibility function} $g(\eta):=-\tau'(\eta) e^{-\tau(\eta)}$, or the probability of having last scattered at $\eta$.
 
 Using $\tau$ and $\eta$ we may rewrite \eqref{eqn:boltzmann_equation_1} as follows.
 \begin{align}
@@ -411,7 +418,7 @@ We can then equate the coefficients of $P_l(\mu)$ from both sides for each $l$, 
 \end{align}
 for $l=0,1,2,.\cdots$ ($\Theta_{-1}$ set to $0$). Finally, the first-order differential equations from each $l$ can be solved in conjunction with other linearised equations including \eqref{eqn:perturbed_continuity_equation}, \eqref{eqn:perturbed_Euler_equation}, and \eqref{eqn:perturbed_einstein_equations_1}-\eqref{eqn:perturbed_einstein_equations_3} derived from the perturbation theory.
 
-We note two key properties of the full set of differential equations which dictate how perturbations in the metric, matter, and radiation vary as the universe expands. First, the Fourier modes `decouple'; they evolve independently from each other. The perturbative variables evaluated at different $\vv{k}$s do not affect each other to leading order and hence can be studied separately. Second, the time evolution of each Fourier mode only depends on $k=\|\vv{k}\|$ instead of $\vv{k}$ for scalar perturbations. The Euler equation \eqref{eqn:perturbed_Euler_equation} may seem to depend on the full vector $\vv{k}$ at first, but it simplifies greatly after rewriting $\vv{v}=\nabla v$ for some $v$. The same is true for the $i0$ component of the linearised Einstein's equations \eqref{eqn:perturbed_einstein_equations_2}. 
+We note two key properties of the full set of differential equations which dictate how perturbations in the metric, matter, and radiation vary as the universe expands. First, the Fourier modes `decouple'; they evolve independently from each other. The perturbative variables evaluated at different $\vv{k}$s do not affect each other to leading order and hence can be studied separately. Second, the time evolution of each Fourier mode only depends on $k=\|\vv{k}\|$ instead of $\vv{k}$ for scalar perturbations. This is because our background theory is isotropic and there is no preferred direction in our formulation. The Euler equation \eqref{eqn:perturbed_Euler_equation} may seem to depend on the full vector $\vv{k}$ at first, but it simplifies greatly after rewriting $\vv{v}=\nabla v$ for some $v$. The same is true for the $i0$ component of the linearised Einstein's equations \eqref{eqn:perturbed_einstein_equations_2}. 
 
 \iffalse
 % How the first two Boltzmann equations relate to continuity and Euler equations...
@@ -499,10 +506,16 @@ The dimensionless power spectrum $\mathcal{P}_\Phi(k) := (1/2\pi^2) P_\Phi(k)$ a
 
 The Gaussianity of primordial perturbations from slow-roll inflation means that the $a_{lm}$s, which evolved linearly from the initial fluctuations, are also Gaussian. CMB measurements show that the $a_{lm}$s are indeed consistent with a multivariate Gaussian distribution. The form of \eqref{eqn:alm_from_phi} shows that the multipoles $a_{lm}$ are uncorrelated with each other and, since they are Gaussian distributed, vanishing correlation implies independence. In particular, the $a_{lm}$s with the same $l$ but distinct $m$s are independent and identically distributed. We can therefore combine them to get a more precise estimate for $C_l$;
 \begin{align}
-	\hat{C}_l = \frac{1}{2l+1} \sum_{m=-l}^{m=l} a^*_{lm} a_{lm}.
+	\hat{C}_l = \frac{1}{2l+1} \sum_{m=-l}^{l} a^*_{lm} a_{lm}.
 \end{align}
-This allows us to do precision cosmology with the CMB data.
 
+In cosmology, we are often interested in the theoretical distribution from which an observable is sampled from. Unfortunately, there is only one realisation of the universe we may observe: the one we live in. The number of samples used to estimate the underlying distribution is therefore limited, and it imposes an inherent lower bound on the estimation error called \textit{cosmic variance}.
+
+This also applies to estimating the angular power spectrum $C_l$ from a single set of $a_{lm}$s observed from CMB experiments. Even in a perfect experiment with zero measurement noise, we expect the variance of the estimator to be
+\begin{align}
+	\text{Var}\left[ \hat{C}_l \right] = \frac{2}{2l+1} C_l^2.
+\end{align}
+Having access to $2l+1$ independent samples $a_{lm}$ for each $l$ is therefore crucial for doing precision cosmology with the CMB data; the cosmic variance for $C_l$ is suppressed by a factor of $2l+1$.
 
 \newpage
 \section*{Summary}

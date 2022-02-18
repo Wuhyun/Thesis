@@ -70,7 +70,7 @@ In the near future, we expect several new major CMB experiments. The Simons Obse
 
 This thesis is organised as follows. In Chapter \textbf{1}, we review the standard formulation of cosmology. We discuss the evolution equations of a homogeneous and isotropic universe as well as the basic theory of inflation. Chapter \textbf{2} details the cosmological perturbation theory with a focus on CMB anisotropy. We summarise how to compute the CMB power spectrum from primordial perturbations. Next in Chapter \textbf{3}, we outline how the CMB bispectrum can be used to probe primordial non-Gaussianity. We provide an example scenario to demonstrate how to calculate the bispectrum from the inflationary Lagrangian using the in-in formalism. The theory of CMB bispectrum estimation is reviewed together with the details of current implementations.
 
-Chapters 4 and 5 contain my original work based on research conducted myself under supervision of James Fergusson. Chapter 4 contains the forecast for future CMB-S4 surveys on the primordial non-Gaussianity parameter $f_{NL}$ which was published in \cite{Sohn2019}. SO experiment specifications and expected CMB-S4 setup were used to predict their improved constraints via Fisher information analysis. We focussed on models with oscillatory features, where the significant enhancement in polarisation sensitivity greatly benefits the constraining power.
+Chapters 4 and 5 contain my original work based on research conducted myself under supervision of James Fergusson. Chapter 4 contains the forecast for future CMB-S4 surveys on the primordial non-Gaussianity parameter $f_\text{NL}$ which was published in \cite{Sohn2019}. SO experiment specifications and expected CMB-S4 setup were used to predict their improved constraints via Fisher information analysis. We focussed on models with oscillatory features, where the significant enhancement in polarisation sensitivity greatly benefits the constraining power.
 
 Motivated by the positive prospects from forecasts detailed in Chapter \textbf{4}, we worked on developing a high-resolution bispectrum estimation pipeline suitable for future surveys. Chapter \textbf{5} contains the formulation and development details of the developed program, as well as many consistency checks performed during the extensive verification process. We outline the advantages of the new pipeline compared to conventional methods. Some working examples, studied in collaboration with Philip Clarke and Paul Shellard, are presented. Lastly, Chapter \textbf{6} concludes the thesis by summarising and laying out plans for future research.
 
@@ -93,31 +93,31 @@ In curved spacetime, free particles follow a trajectory given by the geodesic eq
 \begin{align}
 	\frac{d^2x^\mu}{ds^2} \,+\, \Gamma^\mu_{\nu \rho} \frac{dx^\nu}{ds} \frac{dx^\rho}{ds} \,=\, 0,  \label{eqn:geodesic}
 \end{align}
-with $s$ an affine parameter parametrising the trajectory, and $\Gamma^\mu_{\nu\rho}$ the Christoffel symbol representing metric connection. Its value is given in terms of the metric tensor by
+with $s$ an affine parameter parametrising the trajectory, and $\Gamma^\mu_{\nu\rho}$ the Christoffel symbol representing the metric connection. Its value is given in terms of the metric tensor by
 \begin{align}
 	\Gamma^{\mu}_{\nu\rho} \,=\, \frac{1}{2}~ g^{\mu\sigma} \left( \partial_\rho g_{\nu\sigma} \,+\, \partial_\nu g_{\rho\sigma} \,-\, \partial_\sigma g_{\nu\rho}  \right). \label{def:Levi_Civita}
 \end{align}
 Here and throughout this thesis, $\partial_\mu$ denotes the partial derivative with respect to local coordinate $x^\mu$. Note $g^{\nu\sigma}$ is the inverse metric satisfying $g^{\mu\nu} g_{\nu\rho} \,=\, \delta^\nu_\rho$.
 
-Defining tangent vector as $U^\mu = dx^\mu / ds$, the equation can be rewritten in a covariant form given by
+Defining the tangent vector as $U^\mu = dx^\mu / ds$, the equation can be rewritten in a covariant form given by
 \begin{align}
 	\left( \nabla_U U \right)^\mu \,=\, U^\nu \nabla_\nu U^\mu \,=\, 0. \label{eqn:geodesic_covariant}
 \end{align}
 Note that in terms of local coordinates, the covariant derivative of a vector field is defined as $\nabla_\nu U^\mu = \partial_\nu U^\mu + \Gamma^\mu_{\nu\rho} U^\rho$.
 
-Distance between two geodesics that are initially parallel may change in curved spacetime. Such geometric information is encapsulated within the Riemann curvature tensor $R^a_{bcd}$. \footnote{Consider a 1-parameter family of geodesics $\gamma(s,t)$, where $t$ is an affine parameter. The geodesic deviation equation states $T^\rho \nabla_\rho ( T^\nu \nabla_\nu S^\mu ) = R^\mu_{\nu\rho\sigma} T^\nu T^\rho S^\sigma$, where tangent vectors $T=\partial/\partial t$, $S=\partial/\partial s$.} From $R^a_{bcd}$ we can evaluate the Ricci curvature tensor $R_{ab}$, the Ricci scalar $R$, and finally the Einstein tensor $G_{ab}$. They are defined as follows.
+The distance between two geodesics that are initially parallel may change in curved spacetime. Such geometric information is encapsulated within the Riemann curvature tensor $R^a_{bcd}$. \footnote{Consider a 1-parameter family of geodesics $\gamma(s,t)$, where $t$ is an affine parameter. The geodesic deviation equation states $T^\rho \nabla_\rho ( T^\nu \nabla_\nu S^\mu ) = R^\mu_{\nu\rho\sigma} T^\nu T^\rho S^\sigma$, where tangent vectors $T=\partial/\partial t$, $S=\partial/\partial s$.} From $R^a_{bcd}$ we can evaluate the Ricci curvature tensor $R_{ab}$, the Ricci scalar $R$, and finally the Einstein tensor $G_{ab}$. They are defined as follows.
 \begin{align}
-	R^\mu_{\nu\rho\sigma} \,:=& \,\, \partial_\rho \Gamma^\mu_{\nu\sigma} \,-\, \partial_\sigma \Gamma^\mu_{\nu\rho} \,+\, \Gamma^\tau_{\nu\sigma} \Gamma^\mu_{\tau\rho} \,-\, \Gamma^\tau_{\nu\rho} \Gamma^\mu_{\tau\sigma}  \label{def:Riemann_tensor}\\
-	R_{\mu\nu} \,:=& \,\, R^\rho_{\mu\rho\nu}  \\ % Extra detail: \,=\, \partial_\rho \Gamma^\rho_{\mu\nu} \,-\, \partial_\nu \Gamma^\rho_{\mu\rho} \,+\, \Gamma^\tau_{\mu\nu} \Gamma^\rho_{\tau\rho} \,-\, \Gamma^\tau_{\mu\rho} \Gamma^\rho_{\tau\nu}
-	R \,:=& \,\, g^{\mu\nu} R_{\mu\nu} \\
-	G_{\mu\nu} \,:=& \,\, R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R \label{def:Einstein_tensor}
+	R^\mu_{\nu\rho\sigma} \,:=& \,\, \partial_\rho \Gamma^\mu_{\nu\sigma} \,-\, \partial_\sigma \Gamma^\mu_{\nu\rho} \,+\, \Gamma^\tau_{\nu\sigma} \Gamma^\mu_{\tau\rho} \,-\, \Gamma^\tau_{\nu\rho} \Gamma^\mu_{\tau\sigma},  \label{def:Riemann_tensor}\\
+	R_{\mu\nu} \,:=& \,\, R^\rho_{\mu\rho\nu},  \\ % Extra detail: \,=\, \partial_\rho \Gamma^\rho_{\mu\nu} \,-\, \partial_\nu \Gamma^\rho_{\mu\rho} \,+\, \Gamma^\tau_{\mu\nu} \Gamma^\rho_{\tau\rho} \,-\, \Gamma^\tau_{\mu\rho} \Gamma^\rho_{\tau\nu}
+	R \,:=& \,\, g^{\mu\nu} R_{\mu\nu}, \\
+	G_{\mu\nu} \,:=& \,\, R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R. \label{def:Einstein_tensor}
 \end{align}
 
 The Einstein tensor is symmetric, i.e. $G_{\mu\nu} = G_{\nu\mu}$. It is also important to note that its divergence vanishes; $\nabla^\mu G_{\mu\nu} = 0$, which can be proven using the contracted Bianchi identity.
 
 
 \subsection{The FLRW universe}
-On very large scales, our universe is observed to be uniform in space (homogeneous) and not having a favoured direction (isotropic). Spatial part of the homogeneous and isotropic metric has constant curvature and can be categorised into three classes depending on its sign: spherical ($\mathbb{S}^3$), Euclidean ($\mathbb{E}^3$), and hyperbolic ($\mathbb{H}^3$). They are induced from embedding $\mathbb{R}^3$ into submanifolds of $\mathbb{R}^4$ equipped with the Euclidean metric, defined as $K|\vv{x}|^2 + u^2 = 1$. Here $K=1,0,-1$ for $\mathbb{S}^3$, $\mathbb{E}^3$, and $\mathbb{H}^3$, respectively. Writing the embedding as $f: x^i = (x,y,z) \mapsto X^I =(x,y,z,\sqrt{1-K(x^2+y^2+z^2)})$, the induced metric
+On very large scales, our universe is observed to be uniform in space (homogeneous) and not having a favoured direction (isotropic). The spatial part of the homogeneous and isotropic metric has constant curvature and can be categorised into three classes depending on its sign: spherical ($\mathbb{S}^3$), Euclidean ($\mathbb{E}^3$), and hyperbolic ($\mathbb{H}^3$). They are induced from embedding $\mathbb{R}^3$ into submanifolds of $\mathbb{R}^4$ equipped with the Euclidean metric, defined as $K|\vv{x}|^2 + u^2 = 1$. Here $K=1,0,-1$ for $\mathbb{S}^3$, $\mathbb{E}^3$, and $\mathbb{H}^3$, respectively. Writing the embedding as $f: x^i = (x,y,z) \mapsto X^I =(x,y,z,\sqrt{1-K(x^2+y^2+z^2)})$, the induced metric is
 \begin{align}
 	\gamma_{ij} := \frac{\partial X^I}{\partial x^i} \frac{\partial X^J}{\partial x^j} \delta_{IJ}
 	= \delta_{ij} + \frac{x_i x_j}{1-Kx_k x^k}. \label{eqn:FLRW_metric_spatial}
@@ -135,7 +135,7 @@ We may now write down the form of the metric describing our universe on large sc
 \end{align}
 This is known as the FLRW metric, named after independent researchers who worked on the topic. The function $a(t)$ is called the scale factor and it dictates the growth of the universe over time. Note that the metric is invariant under rescaling $a \rightarrow \lambda a$, $r \rightarrow r / \lambda$, and $K \rightarrow k:= \lambda^2 K$. Hence we may set the scale factor to be $a(t_0) = 1$ at present time, at the cost of replacing $K \in \{-1,0,1\}$ by $k \in \mathbb{R}$.
 
-The Levi-Civita connection corresponding to the FLRW metric can be computed using the definition (\ref{def:Levi_Civita}). Its non-zero components are given as follows.
+The Levi-Civita connection corresponding to the FLRW metric can be computed using the definition (\ref{def:Levi_Civita}). Its non-zero components are given in terms of $\gamma$ \eqref{eqn:FLRW_metric_spatial} as follows.
 \begin{align}
 	\Gamma^0_{ij} =& \frac{\dot{a}}{a} \gamma_{ij}, \label{eqn:homogenous_christoffel_1}\\
 	\Gamma^i_{j0} =& \Gamma^i_{0j} = \frac{\dot{a}}{a} \delta^i_j, \label{eqn:homogenous_christoffel_2}\\
@@ -187,11 +187,11 @@ Radiation consists of relativistic particles: photons and neutrinos. The energy-
 \begin{align}
 	1 + z := \frac{1}{a}.	\label{def:redshift}
 \end{align}
-Hence, a photon with original wavelength $\lambda_0$ gets redshifted by $\Delta\lambda = z \lambda_0$. Note that the redshift is directly related to the scale factor $a(t)$. It can be used to parametrise time, as well as distance to a light source. Neutrinos show similar behaviours to photons since they remain ultra-relativistic.
+Hence, a photon with original wavelength $\lambda_0$ gets redshifted by $\Delta\lambda = z \lambda_0$. Note that the redshift is directly related to the scale factor $a(t)$. It can be used to parametrise time at and distance to a light source in a model-independent way. Neutrinos show similar behaviours to photons since they remain ultra-relativistic.
 
 Matter includes cold dark matter, electrons and protons. The latter two are often grouped as baryons, even though electrons are not technically baryonic. Pressure from non-relativistic matter is negligible, and $w = 0$. Their number density scales $\propto a^{-3}$ as the universe expands, and so does their energy density. Cold dark matter constitutes about 84\% of the matter and roughly a quarter of the total energy density today.
 
-Dark energy is perhaps the most mysterious of the three, despite having the largest contribution to the total energy density at present time. First evidence of its existence came from Type Ia supernovae measurements which implied that the universe's expansion is accelerating. Subsequent observations of CMB and baryonic acoustic oscillations provided further proof. The exact physical mechanism for dark energy is not yet known, but potential explanations include the cosmological constant and quintessence. For purposes of the $\Lambda$CDM model, dark energy has negative pressure ($w=-1$), hence its energy density is independent of the scale factor.
+Dark energy is perhaps the most mysterious of the three, despite having the largest contribution to the total energy density at present time. The first evidence of its existence came from Type Ia supernovae measurements which implied that the universe's expansion is accelerating. Subsequent observations of CMB and baryonic acoustic oscillations provided further proof. The exact physical mechanism for dark energy is not yet known, but potential explanations include the cosmological constant and quintessence. For purposes of the $\Lambda$CDM model, dark energy has negative pressure ($w=-1$), hence its energy density is independent of the scale factor.
 
 Table \ref{table:cosmic_inventory} summarises the species of the universe and their properties discussed above. The last column contains fractional energy density of particles and shows how abundant each species are at present time. A precise definition of fractional density will appear in the next section.
 
@@ -243,7 +243,7 @@ The Hubble parameter is defined as $H := \dot{a}/a$. From (\ref{eqn:Friedmann_1}
 \end{align}
 Subscripts $0$ indicate that they are evaluated at present time $t=t_0$, where $a(t_0)=1$.
 
-In reality, the energy density and pressure appearing in the Friedmann equations are sums of contributions from different fluid components. Fractional density of a given fluid X is defined as
+In reality, the energy density and pressure appearing in the Friedmann equations are sums of contributions from different fluid components. The fractional density of a given fluid X is defined as
 \begin{align}
 	\Omega_X := \frac{\rho_X}{\rho_{\text{crit},0}}.
 \end{align}
@@ -252,9 +252,9 @@ In previous section we derived how each fluid's energy density depends on the sc
 	\dot{a}^2 =& H_0^2 \left( \frac{\Omega_{r,0}}{a^2} + \frac{\Omega_{m,0}}{a} + \Omega_{\Lambda,0} \; a^2 \right) - k, \label{eqn:Friedmann_3}\\
 	\ddot{a} =& H_0^2 \left( - \frac{\Omega_{r,0}}{a^3} - \frac{\Omega_{m,0}}{2a^2} + \Omega_{\Lambda,0} \; a \right). \label{eqn:Friedmann_4}
 \end{align}
-These equations dictate the growth (or shrinking) of the universe given its curvature and energy density composition today. For $k <= 0$, the right hand side of (\ref{eqn:Friedmann_3}) is always positive regardless of fractional density value. In this case, the fact that the universe is currently expanding suffices to show that scale factor $a$ has been increasing monotonically. The universe began with the Big Bang at $a=0$.
+These equations dictate the growth (or shrinking) of the universe given its curvature and energy density composition today. For $k \le 0$, the right hand side of (\ref{eqn:Friedmann_3}) is always positive regardless of fractional density value. In this case, the fact that the universe is currently expanding suffices to show that scale factor $a$ has been increasing monotonically. The universe began with the Big Bang at $a=0$.
 
-When $k > 0$, $\dot{a}$ vanishes at one or two values of $a$. There are multiple scenarios in this case, including the Einstein's Static Universe (ESU) where $\dot{a} = \ddot{a} = 0$. The ESU is however unstable; perturbing around the static solution as $a(t)=a_{\text{ESU}}(1+\xi(t))$ in (\ref{eqn:Friedmann_4}) gives $\ddot{\xi}>0$ to leading order, which implies that there exists a growing solution for $\xi$. In fact, there are no stable static solutions to the Friedmann equations, rendering such models implausible. Another possibility is a closed universe, where the scale factor grows until it hits the maximum and then decreases. This scenario requires $\ddot{a}<0$ at all times. Measurements of Type Ia supernovae strongly suggest that the universe is in an accelerating phase, ruling out this option as well. Lastly, there is the bouncing universe model. The scale factor starts large, drops to a minimum value, and bounces back to an accelerating growth. This model has been disregarded due to the need for introduction of various new physics in the early universe, but has recently regained popularity as an alternative to inflation.
+When $k > 0$, $\dot{a}$ vanishes at one or two values of $a$. There are multiple scenarios in this case, including the Einstein's Static Universe (ESU) where $\dot{a} = \ddot{a} = 0$. The ESU is however unstable; perturbing around the static solution as $a(t)=a_{\text{ESU}}(1+\xi(t))$ in (\ref{eqn:Friedmann_4}) gives $\ddot{\xi}>0$ to leading order, which implies that there exists a growing solution for $\xi$. In fact, there are no stable static solutions to the Friedmann equations, rendering such models implausible. Another possibility is a closed universe without dark energy ($\Omega_\Lambda = 0$), where the scale factor grows until it hits the maximum and then decreases. This scenario requires $\ddot{a}<0$ at all times. Measurements of Type Ia supernovae strongly suggest that the universe is currently in an accelerating phase, ruling out this option as well. Lastly, there is the bouncing universe model. The scale factor starts large, drops to a minimum value, and bounces back to an accelerating growth. This model has been disregarded due to the need for the introduction of various new physics in the early universe, but has recently regained popularity as an alternative to inflation.
 
 Constraints from modern cosmological observations indicate that our universe is extremely flat, with $k\approx 0$. For the rest of this thesis we set the curvature $k=0$ and follow a standard Big Bang theory.
 
@@ -331,7 +331,7 @@ Note that the particle horizon is bounded as $a_i \rightarrow 0$ if and only if 
 
 According to the conventional big bang cosmology, the universe begins at $a_i=0$ with radiation contributing the most to energy density. The CMB last scattering surface lies around redshift $z \sim 1090$ (or $a_\text{rec}=9.17\times 10^{-4}$) in matter domination era. Quoting cosmological parameters from tables \ref{table:cosmic_inventory} and \ref{table:evolution_of_the_universe}, as well as treating radiation and matter domination separately in the integral, we get $\chi_\text{CMB} \approx 340$ Mpc.
 
-Conformal distance to the last scattering surface $\chi_*$ can also be computed using the same formula (\ref{eqn:particle_horizon_form}), now integrating from $a_\text{rec}$ to $a_0=1$. Approximating again by separating matter and dark energy domination era, $\chi_* \approx 15000$ Mpc. This is much larger than $\chi_\text{PH}$!
+The conformal distance to the last scattering surface $\chi_*$ can also be computed using the same formula (\ref{eqn:particle_horizon_form}), now integrating from $a_\text{rec}$ to $a_0=1$. Approximating again by separating matter and dark energy domination era, $\chi_* \approx 15000$ Mpc. This is much larger than $\chi_\text{PH}$!
 
 As shown in Figure \ref{fig:horizon_problem}, CMB photons at two different opposite sides of the sky had no causal contact at all; their particle horizons have zero overlap. Furthermore, $\chi_\text{CMB}/\chi_* \approx 1.3$ degrees. Every disjoint $1.3\deg$ patch in the sky were causally unrelated at the time of recombination. There is no obvious reason for cosmological parameters in these patches to be similar. Despite this fact, the observed CMB is isotropic everywhere in temperature to order $O(10^{-5})$. This is the horizon problem; the universe at recombination is too homogeneous considering the small particle horizon then.
 \begin{figure}[htbp!] 
@@ -341,7 +341,7 @@ As shown in Figure \ref{fig:horizon_problem}, CMB photons at two different oppos
 	\label{fig:horizon_problem}
 \end{figure}
 
-To resolve this issue, we need the particle horizon at recombination to be larger. The theory of cosmic inflation achieves this by having a period in the early universe where $3w+1<0$. In this case, we see from (\ref{eqn:particle_horizon_form}) that $\chi_\text{PH}$ is unbounded as $a_i \rightarrow 0$. The initial conformal time $\tau_i \rightarrow -\inf$, allowing enough proper time for the particle horizon growth. Then even the two opposite regions of the CMB we see can have had causal contact in the past, as depicted in Figure \ref{fig:horizon_solution}.
+To resolve this issue, we need the particle horizon at recombination to be larger. The theory of cosmic inflation achieves this by having a period in the early universe where $3w+1<0$. In this case, we see from (\ref{eqn:particle_horizon_form}) that $\chi_\text{PH}$ is unbounded as $a_i \rightarrow 0$. The initial conformal time $\tau_i \rightarrow -\infty$, allowing enough proper time for the particle horizon growth. Then even the two opposite regions of the CMB we see can have had causal contact in the past, as depicted in Figure \ref{fig:horizon_solution}.
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.6\textwidth]{horizon_solution.png}
@@ -420,7 +420,7 @@ We see that as long as the potential $V(\phi)$ is chosen such that $\epsilon_V, 
 
 \subsection{Quantum fluctuations} \label{section:quantum_fluctuations}
 
-So far our considerations on the inflation field $\phi$ has been entirely classical. Moving on to quantum theory, field values are no longer fixed at each point in spacetime. The goal of this section is to quantify statistical properties of these quantum fluctuations.
+So far our considerations on the inflation field $\phi$ have been entirely classical. Moving on to quantum theory, field values are no longer fixed at each point in spacetime. The goal of this section is to quantify statistical properties of these quantum fluctuations.
 
 We assume that the metric remains unperturbed for simplicity. Gravity is coupled with perturbations of the inflation field in reality, but this approximation will still allow us to derive most of the crucial results. We further neglect any terms suppressed by slow-roll parameters.
 
@@ -449,7 +449,7 @@ we obtain the Mukhanov-Sasaki equation;
 \begin{align}
 	v'' + (k^2 - \frac{a''}{a})v = 0.	\label{eqn:Mukhanov_Sasaki}
 \end{align}
-Tildes above $v$ have been omitted for brevity. Each $\vv{k}$ mode of the perturbative field $v(\vv{k},\tau)$ evolves independently from each other. During slow-roll inflation $a\propto-1/\tau$, and $a''/a = 2/\tau^2$. General form of the solution is given by the \textit{mode functions} $v_k(\tau)$.
+Tildes above $v$ have been omitted for brevity. Each $\vv{k}$ mode of the perturbative field $v(\vv{k},\tau)$ evolves independently from each other. During slow-roll inflation $a\propto-1/\tau$, and $a''/a = 2/\tau^2$. The general form of the solution is given by the \textit{mode functions} $v_k(\tau)$.
 \begin{align}
 	v_k(\tau) = c_+ \left( 1 - \frac{i}{k\tau} \right) e^{-ik\tau} + c_- \left( 1 + \frac{i}{k\tau} \right) e^{ik\tau}.
 \end{align}
@@ -497,7 +497,7 @@ where the divergence $\delta^{(3)}(0)$ arises only because we are integrating ov
 
 We now ask the vacuum state to be a ground state of the Hamiltonian. Minimising the energy density $E_k$ while keeping normalisation condition $W=i$, we obtain the \textit{Bunch-Davies} mode function;
 \begin{align}
-	v_\vv{k}(\tau) = \frac{1}{\sqrt{2k}} \left( 1 - \frac{i}{k\tau} \right) e^{-ik\tau}. \label{eqn:bunch_davis_mode_function}
+	v_\vv{k}(\tau) = \frac{1}{\sqrt{2k}} \left( 1 - \frac{i}{k\tau} \right) e^{-ik\tau}. \label{eqn:bunch_davies_mode_function}
 \end{align}
 For this choice of mode function and vacuum, $E_k \rightarrow \hslash\omega_k/2$ as $\tau \rightarrow -\infty$. \footnote{$\hslash$ has been reinstated here for clarity.} This is analogous to the case of the quantum harmonic oscillator.
 
