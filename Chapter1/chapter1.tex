@@ -54,7 +54,7 @@ The radio astronomers Arno Penzias and Robert Wilson were calibrating their 50-f
 
 Our modern mathematical formulation of cosmology is built on Einstein's work on general relativity in 1915. Using his framework, Friedmann, Lemaître, Robertson, and Walker contributed to writing down the unique metric for a spatially homogeneous and isotropic universe.  It was then realised that this FLRW metric has no stable static solution, and the universe likely started from a Big Bang and has been continuously expanding since. This was supported by Edwin Hubble's measurements of Cepheid variables in 1929 and confirmed by the aforementioned discovery of the CMB, which was one of the key predictions of the Big Bang cosmology.
 
-The Big Bang theory by itself, however, could not explain the apparent uniformity of the CMB in the early universe. The theory of cosmic inflation emerged to address this problem; the universe undergoes a phase of accelerated expansion shortly after the Big Bang. Inflation successfully resolved the problem and further provided a mechanism for generating the initial density fluctuations which grow into the structure in the universe we observe today. These primordial fluctuations originate from quantum fluctuation of the inflaton which has a near scale-invariant spectrum. This was confirmed when the Cosmic Background Explorer (COBE) discovered small anisotropies within the CMB in 1992 consistent with the inflationary predictions.
+The Big Bang theory by itself, however, could not explain the apparent uniformity of the CMB in the early universe. The theory of cosmic inflation emerged to address this problem; the universe undergoes a phase of accelerated expansion shortly after the Big Bang. Inflation successfully resolved the problem and further provided a mechanism for generating the initial density fluctuations which grow into the structure in the universe we observe today. These primordial fluctuations originate from quantum fluctuations of the inflaton which has a nearly scale-invariant spectrum. This was confirmed when the Cosmic Background Explorer (COBE) discovered small anisotropies within the CMB in 1992 consistent with the inflationary predictions.
 
 What is widely accepted to be the standard model of modern cosmology, the $\Lambda$CDM model, appeared only in the late 1990s. In 1998, measurements of distant type Ia supernovae showed that the universe's expansion is accelerating which implied the presence of dark energy ($\Lambda$). Various astrophysical observations including galaxy rotation curves suggested that most of the matter in the universe is in fact dark matter. The cold dark matter (CDM) scenario is currently the most favoured. The $\Lambda$CDM model considers the primary constituents of the universe to be dark energy, cold dark matter, baryons and radiation. The $\Lambda$CDM model has been extremely successful in explaining modern cosmological observations. CMB measurements from the \textit{Planck} satellite, in particular, show exceptional agreement with the model. Planck has mapped the CMB anisotropy to remarkable precision and resolution. The Planck CMB data by itself has placed one of the most stringent bounds on the theoretical parameters of $\Lambda$CDM to date.
 
@@ -62,19 +62,19 @@ How does the CMB contain so much information about the universe? The answer is t
 
 The CMB anisotropy is observed to be nearly Gaussian distributed. Statistical characteristics of a Gaussian random field can be summarised entirely using two-point correlation functions, or their Fourier counterpart: power spectra. The CMB power spectra have been thoroughly studied to constrain various cosmological parameters. Meanwhile, higher-order statistics such as three-point correlation functions (bispectra in Fourier space) allow us to test the validity of the Gaussian assumption. They probe the non-Gaussian statistics of the CMB which can arise from either primordial dynamics or late-time effects.
 
-Primordial non-Gaussianity is a key statistic for studying physics of the early universe. The theory of inflation has been successful in describing the observed data, but its exact mechanism is yet undetermined. Currently there are numerous viable inflationary models with well-founded physical motivations. Non-Gaussian signatures of primordial fluctuations are robust predictions of various models, and measuring their shape and amplitude allows us to constrain particular inflationary scenarios. CMB bispectrum analysis from Planck yielded the most precise measurements of primordial non-Gaussianity to date. So far, no statistically significant amount of non-Gaussianity has been detected.
+Primordial non-Gaussianity is a key statistic for studying the physics of the early universe. The theory of inflation has been successful in describing the observed data, but its exact mechanism is yet undetermined. Currently, there are numerous viable inflationary models with well-founded physical motivations. Non-Gaussian signatures of primordial fluctuations are robust predictions of various models, and measuring their shape and amplitude allows us to constrain particular inflationary scenarios. CMB bispectrum analysis from Planck yielded the most precise measurements of primordial non-Gaussianity to date. So far, no statistically significant amount of non-Gaussianity has been detected.
 
-In the near future, we expect several new major CMB experiments. The Simons Observatory (SO) \cite{TheSimonsObservatoryCollaboration2018} is a ground-based experiment currently under construction in the Atacama Desert of Chile. SO is expected to measure both CMB temperature and polarisation to unprecedented precision, largely improved compared to Planck. The first light from SO is planned to be observed in early 2022. Many more CMB Stage-4 (CMB-S4) experiments are proposed, brightening future prospects for CMB science. In particular, the upcoming measurements will allow us to constrain primordial non-Gaussianity further, providing discovery potential.
+In the near future, we expect several new major CMB experiments. The Simons Observatory (SO) \cite{TheSimonsObservatoryCollaboration2018} is a ground-based experiment currently under construction in the Atacama Desert of Chile. SO is expected to measure both CMB temperature and polarisation to unprecedented precision, largely improved compared to Planck. The first light from SO is planned to be observed in early 2022. Many more CMB Stage-4 (CMB-S4) experiments are proposed, brightening prospects for CMB science. In particular, the upcoming measurements will allow us to constrain primordial non-Gaussianity further, providing discovery potential.
 
 \hspace{10pt}
 
 This thesis is organised as follows. In Chapter \textbf{1}, we review the standard formulation of cosmology. We discuss the evolution equations of a homogeneous and isotropic universe as well as the basic theory of inflation. Chapter \textbf{2} details the cosmological perturbation theory with a focus on CMB anisotropy. We summarise how to compute the CMB power spectrum from primordial perturbations. Next in Chapter \textbf{3}, we outline how the CMB bispectrum can be used to probe primordial non-Gaussianity. We provide an example scenario to demonstrate how to calculate the bispectrum from the inflationary Lagrangian using the in-in formalism. The theory of CMB bispectrum estimation is reviewed together with the details of current implementations.
 
-Chapters 4 and 5 contain my original work based on research conducted myself under supervision of James Fergusson. Chapter 4 contains the forecast for future CMB-S4 surveys on the primordial non-Gaussianity parameter $f_\text{NL}$ which was published in \cite{Sohn2019}. SO experiment specifications and expected CMB-S4 setup were used to predict their improved constraints via Fisher information analysis. We focussed on models with oscillatory features, where the significant enhancement in polarisation sensitivity greatly benefits the constraining power.
+Chapters 4 and 5 contain my original work based on research conducted myself under the supervision of James Fergusson. Chapter \textbf{4} contains the forecast for future CMB-S4 surveys on the primordial non-Gaussianity parameter $f_\text{NL}$ which was published in \cite{Sohn2019}. SO experiment specifications and expected CMB-S4 setup were used to predict their improved constraints via Fisher information analysis. We focussed on models with oscillatory features, where the significant enhancement in polarisation sensitivity greatly benefits the constraining power.
 
-Motivated by the positive prospects from forecasts detailed in Chapter \textbf{4}, we worked on developing a high-resolution bispectrum estimation pipeline suitable for future surveys. Chapter \textbf{5} contains the formulation and development details of the developed program, as well as many consistency checks performed during the extensive verification process. We outline the advantages of the new pipeline compared to conventional methods. Some working examples, studied in collaboration with Philip Clarke and Paul Shellard, are presented. Lastly, Chapter \textbf{6} concludes the thesis by summarising and laying out plans for future research.
+Motivated by the positive prospects from forecasts detailed in Chapter 4, we worked on developing a high-resolution bispectrum estimation pipeline suitable for future surveys. Chapter \textbf{5} contains the formulation and development details of the developed program, as well as many consistency checks performed during the extensive verification process. We outline the advantages of the new pipeline compared to conventional methods. Some working examples, studied in collaboration with Philip Clarke and Paul Shellard, are presented. Lastly, Chapter \textbf{6} concludes the thesis by summarising and laying out plans for future research.
 
-The chapters 1 and 2 are purely introductory and contains textbook materials for cosmology based on \cite{Dodelson2003textbook,Fergusson2020cosmology,Challinor2009lecture,Baumann2018primordialNotes,Lim2012advancedCosmo}. Chapter 3 consists of literature reviews on the topic with references in the text. All written codes and plots in Chapter 4 and 5 are results of my own work unless explicitly specified otherwise.
+Chapters 1 and 2 are purely introductory and contain textbook materials for cosmology based on \cite{Dodelson2003textbook,Fergusson2020cosmology,Challinor2009lecture,Baumann2018primordialNotes,Lim2012advancedCosmo}. Chapter 3 consists of literature reviews on the topic with references in the text. All written codes and plots in Chapters 4 and 5 are results of my own work unless explicitly specified otherwise.
 
 
 \section{The homogeneous universe}
@@ -87,7 +87,7 @@ In general relativity, spacetime is represented by a 4-dimensional Lorentzian ma
 \begin{align}
 	ds^2 \,=\, g_{\mu \nu} \; dx^\mu dx^\nu	,
 \end{align}
-where the Greek letters $\mu, \nu = 0,1,2,3$ represent time ($0$) and spatial ($1,2,3$) indices of local coordinates. Flat spacetime has metric $g_{\mu\nu} = \eta_{\mu\nu} = \text{diag}\{-1, 1, 1, 1\}$, also known as the Minkowski metric. Throughout this thesis we adopt the sign convention $(-, +, +, +)$ and work in units where $c=1$. Unless specified otherwise, the Einstein summation convention is assumed. 
+where the Greek letters $\mu, \nu = 0,1,2,3$ represent time ($0$) and spatial ($1,2,3$) indices of local coordinates. Flat spacetime has metric $g_{\mu\nu} = \eta_{\mu\nu} = \text{diag}\{-1, 1, 1, 1\}$, also known as the Minkowski metric. Throughout this thesis, we adopt the sign convention $(-, +, +, +)$ and work in units where $c=1$. Unless specified otherwise, the Einstein summation convention is assumed. 
 
 In curved spacetime, free particles follow a trajectory given by the geodesic equation;
 \begin{align}
@@ -117,7 +117,7 @@ The Einstein tensor is symmetric, i.e. $G_{\mu\nu} = G_{\nu\mu}$. It is also imp
 
 
 \subsection{The FLRW universe}
-On very large scales, our universe is observed to be uniform in space (homogeneous) and not having a favoured direction (isotropic). The spatial part of the homogeneous and isotropic metric has constant curvature and can be categorised into three classes depending on its sign: spherical ($\mathbb{S}^3$), Euclidean ($\mathbb{E}^3$), and hyperbolic ($\mathbb{H}^3$). They are induced from embedding $\mathbb{R}^3$ into submanifolds of $\mathbb{R}^4$ equipped with the Euclidean metric, defined as $K|\vv{x}|^2 + u^2 = 1$. Here $K=1,0,-1$ for $\mathbb{S}^3$, $\mathbb{E}^3$, and $\mathbb{H}^3$, respectively. Writing the embedding as $f: x^i = (x,y,z) \mapsto X^I =(x,y,z,\sqrt{1-K(x^2+y^2+z^2)})$, the induced metric is
+On very large scales, our universe is observed to be uniform in space (homogeneous) and does not have a favoured direction (isotropic). The spatial part of the homogeneous and isotropic metric has constant curvature and can be categorised into three classes depending on its sign: spherical ($\mathbb{S}^3$), Euclidean ($\mathbb{E}^3$), and hyperbolic ($\mathbb{H}^3$). They are induced from embedding $\mathbb{R}^3$ into submanifolds of $\mathbb{R}^4$ equipped with the Euclidean metric, defined as $K|\vv{x}|^2 + u^2 = 1$. Here $K=1,0,-1$ for $\mathbb{S}^3$, $\mathbb{E}^3$, and $\mathbb{H}^3$, respectively. Writing the embedding as $f: x^i = (x,y,z) \mapsto X^I =(x,y,z,\sqrt{1-K(x^2+y^2+z^2)})$, the induced metric is
 \begin{align}
 	\gamma_{ij} := \frac{\partial X^I}{\partial x^i} \frac{\partial X^J}{\partial x^j} \delta_{IJ}
 	= \delta_{ij} + \frac{x_i x_j}{1-Kx_k x^k}. \label{eqn:FLRW_metric_spatial}
@@ -193,7 +193,7 @@ Matter includes cold dark matter, electrons and protons. The latter two are ofte
 
 Dark energy is perhaps the most mysterious of the three, despite having the largest contribution to the total energy density at present time. The first evidence of its existence came from Type Ia supernovae measurements which implied that the universe's expansion is accelerating. Subsequent observations of CMB and baryonic acoustic oscillations provided further proof. The exact physical mechanism for dark energy is not yet known, but potential explanations include the cosmological constant and quintessence. For purposes of the $\Lambda$CDM model, dark energy has negative pressure ($w=-1$), hence its energy density is independent of the scale factor.
 
-Table \ref{table:cosmic_inventory} summarises the species of the universe and their properties discussed above. The last column contains fractional energy density of particles and shows how abundant each species are at present time. A precise definition of fractional density will appear in the next section.
+Table \ref{table:cosmic_inventory} summarises the species of the universe and their properties discussed above. The last column contains the fractional energy density of particles and shows how abundant each species are at present time. A precise definition of fractional density will appear in the next section.
 
 \begin{table}[h]
 	\caption{Cosmic inventory. The fractional density values are quoted from Planck CMB analysis \cite{PlanckCollaboration2018Parameters}.}
@@ -225,7 +225,7 @@ We are now ready to calculate the time evolution of the homogeneous universe. Th
 \begin{align}
 	G_{\mu\nu} = 8\pi G T_{\mu\nu},
 \end{align}
-where $G$ is the Newtonian constant of gravitation. \footnote{Constant $G$ is not to be confused with the Einstein tensor $G_{\mu\nu}$ on the left hand side.} Substituting in the Einstein tensor for the FLRW metric from (\ref{eqn:Einstein_tensor_FLRW_00}-\ref{eqn:Einstein_tensor_FLRW_ij}) and the energy-momentum tensor from (\ref{eqn:em_tensor_perfect_fluid}), we obtain
+where $G$ is the Newtonian constant of gravitation. \footnote{Constant $G$ is not to be confused with the Einstein tensor $G_{\mu\nu}$ on the left-hand side.} Substituting in the Einstein tensor for the FLRW metric from (\ref{eqn:Einstein_tensor_FLRW_00}-\ref{eqn:Einstein_tensor_FLRW_ij}) and the energy-momentum tensor from (\ref{eqn:em_tensor_perfect_fluid}), we obtain
 \begin{align}
 	3 \left[ \left(\frac{\dot{a}}{a}\right) + \frac{k}{a^2} \right] =& 8\pi G \rho, \\
 	-\frac{2\ddot{a}}{a} - \left(\frac{\dot{a}}{a}\right)^2 - \frac{k}{a^2} =& 8\pi G P.
@@ -247,16 +247,16 @@ In reality, the energy density and pressure appearing in the Friedmann equations
 \begin{align}
 	\Omega_X := \frac{\rho_X}{\rho_{\text{crit},0}}.
 \end{align}
-In previous section we derived how each fluid's energy density depends on the scale factor. Quoting results summarised in Table \ref{table:cosmic_inventory}, the Friedmann equations can be rewritten as follows;
+In the previous section we derived how each fluid's energy density depends on the scale factor. Quoting results summarised in Table \ref{table:cosmic_inventory}, the Friedmann equations can be rewritten as follows;
 \begin{align}
 	\dot{a}^2 =& H_0^2 \left( \frac{\Omega_{r,0}}{a^2} + \frac{\Omega_{m,0}}{a} + \Omega_{\Lambda,0} \; a^2 \right) - k, \label{eqn:Friedmann_3}\\
 	\ddot{a} =& H_0^2 \left( - \frac{\Omega_{r,0}}{a^3} - \frac{\Omega_{m,0}}{2a^2} + \Omega_{\Lambda,0} \; a \right). \label{eqn:Friedmann_4}
 \end{align}
-These equations dictate the growth (or shrinking) of the universe given its curvature and energy density composition today. For $k \le 0$, the right hand side of (\ref{eqn:Friedmann_3}) is always positive regardless of fractional density value. In this case, the fact that the universe is currently expanding suffices to show that scale factor $a$ has been increasing monotonically. The universe began with the Big Bang at $a=0$.
+These equations dictate the growth (or shrinking) of the universe given its curvature and energy density composition today. For $k \le 0$, the right-hand side of (\ref{eqn:Friedmann_3}) is always positive regardless of fractional density value. In this case, the fact that the universe is currently expanding suffices to show that scale factor $a$ has been increasing monotonically. The universe began with the Big Bang at $a=0$.
 
-When $k > 0$, $\dot{a}$ vanishes at one or two values of $a$. There are multiple scenarios in this case, including the Einstein's Static Universe (ESU) where $\dot{a} = \ddot{a} = 0$. The ESU is however unstable; perturbing around the static solution as $a(t)=a_{\text{ESU}}(1+\xi(t))$ in (\ref{eqn:Friedmann_4}) gives $\ddot{\xi}>0$ to leading order, which implies that there exists a growing solution for $\xi$. In fact, there are no stable static solutions to the Friedmann equations, rendering such models implausible. Another possibility is a closed universe without dark energy ($\Omega_\Lambda = 0$), where the scale factor grows until it hits the maximum and then decreases. This scenario requires $\ddot{a}<0$ at all times. Measurements of Type Ia supernovae strongly suggest that the universe is currently in an accelerating phase, ruling out this option as well. Lastly, there is the bouncing universe model. The scale factor starts large, drops to a minimum value, and bounces back to an accelerating growth. This model has been disregarded due to the need for the introduction of various new physics in the early universe, but has recently regained popularity as an alternative to inflation.
+When $k > 0$, $\dot{a}$ vanishes at one or two values of $a$. There are multiple scenarios in this case, including Einstein's Static Universe (ESU) where $\dot{a} = \ddot{a} = 0$. The ESU is however unstable; perturbing around the static solution as $a(t)=a_{\text{ESU}}(1+\xi(t))$ in (\ref{eqn:Friedmann_4}) gives $\ddot{\xi}>0$ to leading order, which implies that there exists a growing solution for $\xi$. In fact, there are no stable static solutions to the Friedmann equations, rendering such models implausible. Another possibility is a closed universe without dark energy ($\Omega_\Lambda = 0$), where the scale factor grows until it hits the maximum and then decreases. This scenario requires $\ddot{a}<0$ at all times. Measurements of Type Ia supernovae strongly suggest that the universe is currently in an accelerating phase, ruling out this option as well. Lastly, there is the bouncing universe model. The scale factor starts large, drops to a minimum value, and bounces back to accelerating growth. This model has been disregarded due to the need for the introduction of various new physics in the early universe but has recently regained popularity as an alternative to inflation.
 
-Constraints from modern cosmological observations indicate that our universe is extremely flat, with $k\approx 0$. For the rest of this thesis we set the curvature $k=0$ and follow a standard Big Bang theory.
+Constraints from modern cosmological observations indicate that our universe is extremely flat, with $k\approx 0$. For the rest of this thesis, we set the curvature $k=0$ and follow a standard Big Bang theory.
 
 Note the different powers of the scale factor $a$ are associated with each component of the universe in (\ref{eqn:Friedmann_3}). According to the CMB measurements $\Omega_{r,0} \ll \Omega_{m,0} < \Omega_{\Lambda,0}$. The energy density is therefore dominated by a single component at a time, resulting in three different eras:
 \begin{itemize}
@@ -304,14 +304,14 @@ Calculations in this section are summarised in Table \ref{table:evolution_of_the
 
 Soon after the quantitative formulation of Big Bang cosmology, several issues with the initial conditions were raised. The CMB was observed to be nearly homogeneous, even though many parts of it should have been causally disconnected at the time. The curvature of the universe is extremely close to zero, while $k=0$ is an unstable stationary point. The standard Big Bang cosmology provided little justification for such initial smoothness and fine-tuning.
 
-The theory of cosmic inflation not only resolved most of these problems successfully, but also provided a physical mechanism for the generation of inhomogeneities in the universe. Quantum fluctuations of the inflationary field seeds the initial conditions, whose statistical properties are consistent with current observations. Inflation has therefore become the most widely accepted theory of the early universe to date.
+The theory of cosmic inflation not only resolved most of these problems successfully but also provided a physical mechanism for the generation of inhomogeneities in the universe. Quantum fluctuations of the inflationary field seed the initial conditions, whose statistical properties are consistent with current observations. Inflation has therefore become the most widely accepted theory of the early universe to date.
 
-In this section we formulate the puzzles which led to the introduction of inflation (\ref{section:the_horizon_problem}) and outline the basic inflationary paradigm (\ref{section:slow-roll_inflation}).
+In this section, we formulate the puzzles which led to the introduction of inflation (\ref{section:the_horizon_problem}) and outline the basic inflationary paradigm (\ref{section:slow-roll_inflation}).
 
 \subsection{The horizon problem}
 \label{section:the_horizon_problem}
 
-According to relativity, information cannot travel faster than the speed of light. It is therefore possible to have two different points in spacetime that are causally disconnected; their lightcones do not intersect, so no events since the Big Bang could have affected both. Physical properties at such two points are independent of each other. The aim of this section is to compute the size of causally disjoint regions at the epoch of recombination, when most of the CMB photons start free-streaming.
+According to relativity, information cannot travel faster than the speed of light. It is therefore possible to have two different points in spacetime that are causally disconnected; their lightcones do not intersect, so no events since the Big Bang could have affected both. Physical properties at such two points are independent of each other. The aim of this section is to compute the size of causally disjoint regions at the epoch of recombination when most of the CMB photons start free-streaming.
 
 Consider a photon travelling in a straight line. Writing the radial part of $d\vv{x}^2$ as $d\chi^2$, our spacetime metric (\ref{eqn:conformal_time}) becomes
 \begin{align}
@@ -329,11 +329,11 @@ Suppose that the universe is dominated by a single perfect fluid $X$ in between 
 \end{align}
 Note that the particle horizon is bounded as $a_i \rightarrow 0$ if and only if $3w_X+1>0$.
 
-According to the conventional big bang cosmology, the universe begins at $a_i=0$ with radiation contributing the most to energy density. The CMB last scattering surface lies around redshift $z \sim 1090$ (or $a_\text{rec}=9.17\times 10^{-4}$) in matter domination era. Quoting cosmological parameters from tables \ref{table:cosmic_inventory} and \ref{table:evolution_of_the_universe}, as well as treating radiation and matter domination separately in the integral, we get $\chi_\text{CMB} \approx 340$ Mpc.
+According to the conventional big bang cosmology, the universe begins at $a_i=0$ with radiation contributing the most to energy density. The CMB last scattering surface lies around redshift $z \sim 1090$ (or $a_\text{rec}=9.17\times 10^{-4}$) in the matter domination era. Quoting cosmological parameters from tables \ref{table:cosmic_inventory} and \ref{table:evolution_of_the_universe}, as well as treating radiation and matter domination separately in the integral, we get $\chi_\text{CMB} \approx 340$ Mpc.
 
 The conformal distance to the last scattering surface $\chi_*$ can also be computed using the same formula (\ref{eqn:particle_horizon_form}), now integrating from $a_\text{rec}$ to $a_0=1$. Approximating again by separating matter and dark energy domination era, $\chi_* \approx 15000$ Mpc. This is much larger than $\chi_\text{PH}$!
 
-As shown in Figure \ref{fig:horizon_problem}, CMB photons at two different opposite sides of the sky had no causal contact at all; their particle horizons have zero overlap. Furthermore, $\chi_\text{CMB}/\chi_* \approx 1.3$ degrees. Every disjoint $1.3\deg$ patch in the sky were causally unrelated at the time of recombination. There is no obvious reason for cosmological parameters in these patches to be similar. Despite this fact, the observed CMB is isotropic everywhere in temperature to order $O(10^{-5})$. This is the horizon problem; the universe at recombination is too homogeneous considering the small particle horizon then.
+As shown in Figure \ref{fig:horizon_problem}, CMB photons at two different opposite sides of the sky had no causal contact at all; their particle horizons have zero overlaps. Furthermore, $\chi_\text{CMB}/\chi_* \approx 1.3$ degrees. Every disjoint $1.3\deg$ patch in the sky was causally unrelated at the time of recombination. There is no obvious reason for cosmological parameters in these patches to be similar. Despite this fact, the observed CMB is isotropic everywhere in temperature to order $O(10^{-5})$. This is the horizon problem; the universe at recombination is too homogeneous considering the small particle horizon then.
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=0.7\textwidth]{horizon_problem.png}
@@ -358,9 +358,9 @@ Note that the particle horizon can then be expressed in terms of the comoving hu
 	\chi_\text{PH} = \int_{a_i}^{a_f} \frac{1}{a \dot{a}} da = \int_{\ln a_i}^{\ln a_f} \mathcal{H}^{-1} d\ln a. \label{eqn:particle_horizon_comoving_hubble}
 \end{align}
 
-The particle horizon represents the distance where objects could have \textit{ever} talked to each other. On the other hand, the comoving hubble radius is a scale for how far information can reach \textit{now}. \footnote{Two points $\mathcal{H}^{-1}$ apart drifts away with relative physical velocity $v_\text{phys} = \dot{a} \mathcal{H}^{-1} = 1$, which is equal to $c$ in our units. It is difficult for such points to have causal interaction right now, especially within Hubble time $H^{-1}$.} As can be seen from (\ref{eqn:particle_horizon_form}), $\mathcal{H}^{-1} \propto a^{(3w_X+1)/2}$, which is $\propto a$ for radiation domination and $\propto a^{1/2}$ during matter domination.
+The particle horizon represents the distance where objects could have \textit{ever} talked to each other. On the other hand, the comoving Hubble radius is a scale for how far information can reach \textit{now}. \footnote{Two points $\mathcal{H}^{-1}$ apart drifts away with relative physical velocity $v_\text{phys} = \dot{a} \mathcal{H}^{-1} = 1$, which is equal to $c$ in our units. It is difficult for such points to have causal interaction right now, especially within Hubble time $H^{-1}$.} As can be seen from (\ref{eqn:particle_horizon_form}), $\mathcal{H}^{-1} \propto a^{(3w_X+1)/2}$, which is $\propto a$ for radiation domination and $\propto a^{1/2}$ during matter domination.
 
-Inflation explains the homogeneity of the observed CMB by requiring $\mathcal{H}^{-1}$ to have shrunk rapidly in early times; $d\mathcal{H}^{-1}/d\ln a < 0$. We find that $\ddot{a} > 0$, so the universe undergoes accelerated expansion. Steep decrease in $\mathcal{H}^{-1}$ is expressed using a `slow-roll' parameter
+Inflation explains the homogeneity of the observed CMB by requiring $\mathcal{H}^{-1}$ to have shrunk rapidly in early times; $d\mathcal{H}^{-1}/d\ln a < 0$. We find that $\ddot{a} > 0$, so the universe undergoes accelerated expansion. The steep decrease in $\mathcal{H}^{-1}$ is parametrised using a `slow-roll' parameter
 \begin{align}
 	\epsilon := - \frac{d\ln H}{d\ln a} = -\frac{\dot{H}}{H^2} \ll 1. \label{def:slow_roll_epsilon}
 \end{align}
@@ -385,18 +385,18 @@ Here, we used the identity $\delta\sqrt{-g} = -(1/2) \sqrt{-g} g_{\mu\nu} \delta
 \begin{align}
 	T_{\mu\nu} = \left( \partial_\mu \phi \right) \left( \partial_\nu \phi \right) + g_{\mu\nu} \left( -\frac{1}{2} g^{\rho\sigma} \partial_\rho \phi \partial_\sigma \phi - V(\phi) \right).
 \end{align}
-Now suppose that $\phi$ drives inflation in the FLRW background. Due to the symmetries present in homogeneous and isotropic metric, the inflation field can only depend on time; $\phi(\vv{x}, t) = \bar{\phi}(t)$. We can read off the inflation field's energy density and pressure from the energy-momentum tensor.
+Now suppose that $\phi$ drives inflation in the FLRW background. Due to the symmetries present in the homogeneous and isotropic metric, the inflation field can only depend on time; $\phi(\vv{x}, t) = \bar{\phi}(t)$. We can read off the inflation field's energy density and pressure from the energy-momentum tensor.
 \begin{align}
 	\rho_{\bar{\phi}} =& -T^0_{\;\;0} = \frac{1}{2} \dot{\bar{\phi}}^2 + V(\bar{\phi}),	\\
 	P_{\bar{\phi}} \delta^i_j =& T^i_{\;\;j} = \delta^i_j \left( \frac{1}{2} \dot{\bar{\phi}}^2 - V(\bar{\phi}) \right).
 \end{align}
-The two terms $\frac{1}{2} \dot{\bar{\phi}}^2$ and $V(\bar{\phi})$ can be interpreted as the kinetic and potential energy of inflation field, respectively. The equation of state is also expressed in terms of the two;
+The two terms $\frac{1}{2} \dot{\bar{\phi}}^2$ and $V(\bar{\phi})$ can be interpreted as the kinetic and potential energy of the inflation field, respectively. The equation of state is also expressed in terms of the two;
 \begin{align}
 	w_{\bar{\phi}} = \frac{P_{\bar{\phi}}}{\rho_{\bar{\phi}}} = \frac{\frac{1}{2} \dot{\bar{\phi}}^2 + V(\bar{\phi})}{\frac{1}{2} \dot{\bar{\phi}}^2 - V(\bar{\phi})}.
 \end{align}
 It follows that $\bar{\phi}$ satisfies the condition $3w_{\bar{\phi}}+1<0$ required for inflation, as long as the potential energy dominates over kinetic energy.
 
-The classical equations of motion follows from the Euler-Lagrange equation. After some calculations we obtain
+The classical equations of motion are obtained from the Euler-Lagrange equation. After some calculations we obtain
 \begin{align}
 	\ddot{\bar{\phi}} + 3H\dot{\bar{\phi}} = - V'(\bar{\phi}). 	  \label{eqn:inflation_background_equation_of_motion}
 \end{align}
@@ -416,11 +416,11 @@ can then shown to be small. Therefore the slow roll parameters from (\ref{def:sl
 \begin{align}
 	\epsilon \approx \epsilon_V \ll 1, \;\;\;\;\; \eta \approx -2\eta_V + 4\epsilon_V \ll 1.
 \end{align}
-We see that as long as the potential $V(\phi)$ is chosen such that $\epsilon_V, \eta_V \ll 1$, the field $\phi$ can drive a period of accelerated expansion. Here, $\bar{\phi}(t)$ acts as a clock; it measures the progress of inflation, until $\epsilon$ eventually grows comparable to 1 and inflation ends.
+We see that as long as the potential $V(\phi)$ is chosen such that $\epsilon_V, \eta_V \ll 1$, the field $\phi$ can drive a period of accelerated expansion. Here, $\bar{\phi}(t)$ acts as a clock; it measures the progress of inflation until $\epsilon$ eventually grows comparable to 1 and inflation ends.
 
 \subsection{Quantum fluctuations} \label{section:quantum_fluctuations}
 
-So far our considerations on the inflation field $\phi$ have been entirely classical. Moving on to quantum theory, field values are no longer fixed at each point in spacetime. The goal of this section is to quantify statistical properties of these quantum fluctuations.
+So far our considerations on the inflation field $\phi$ have been entirely classical. Moving on to quantum theory, field values are no longer fixed at each point in spacetime. The goal of this section is to quantify the statistical properties of these quantum fluctuations.
 
 We assume that the metric remains unperturbed for simplicity. Gravity is coupled with perturbations of the inflation field in reality, but this approximation will still allow us to derive most of the crucial results. We further neglect any terms suppressed by slow-roll parameters.
 
@@ -474,7 +474,7 @@ As long as we normalise the mode functions $v_k(\tau)$ so that its Wronskian $W 
 	\left[ \hat{v}_{\vv{k}_1}(\tau), \hat{\pi}_{\vv{k}_2}(\tau) \right] =& i \left[ \hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{\vv{k}_2} \right], \\
 	\left[ \hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{\vv{k}_2} \right] =& (2\pi)^3 \delta^{(3)}(\vv{k}_1 - \vv{k}_2).	\label{eqn:canonical_quantisation_commutation_relation_a}
 \end{align}
-The constructed $\hat{a}$ and $\hat{a}^\dagger$ are analogous to the creation and annihilation operators of quantum harmonic oscillator. Our next step is to compute the Hamiltonian operator;
+The constructed $\hat{a}$ and $\hat{a}^\dagger$ are analogous to the creation and annihilation operators of a quantum harmonic oscillator. Our next step is to compute the Hamiltonian operator;
 \begin{align}
 	\hat{H} =& \int d^3 \vv{x} \left[ \frac{1}{2} \hat{\pi}^2 + \frac{1}{2} \left( \nabla \hat{v} \right)^2 - \frac{1}{2}\frac{a''}{a} \hat{v}^2 \right] \label{eqn:single_field_inflation_simple_hammiltonian}\\
 	=& \int d^3 \vv{x} \frac{d^3 \vv{k}_1}{(2\pi)^3} \frac{d^3 \vv{k}_2}{(2\pi)^3} \frac{1}{2} e^{i(\vv{k}_1 + \vv{k}_2) \cdot \vv{x}}  \left[ \hat{\pi}_{\vv{k}_1} \hat{\pi}_{\vv{k}_2} - (\vv{k_1} \cdot \vv{k_2}) \hat{v}_{\vv{k}_1} \hat{v}_{\vv{k}_2} - \frac{a''}{a} \hat{v}_{\vv{k}_1} \hat{v}_{\vv{k}_2} \right] \\
@@ -486,7 +486,7 @@ where
 	\omega_k^2 := k^2 - \frac{a''}{a}, \;\;\; E_k := \frac{1}{2}(|v'_k|^2 + \omega_k^2 |v_k|^2), \;\;\; F_k := \frac{1}{2}(v'^2_k + \omega_k^2 v^2_k).
 \end{align}
 
-Note that we are currently in Heisenberg picture where the operators depend on time. Our mode functions have two degrees of freedom: $c_+$ and $c_-$. One of them has been fixed by the normalisation condition $W=2ik(|c_+|^2-|c_-|^2)=i$. The other degree of freedom remains, availing us one-parameter family of possible initial mode functions. Note that $\hat{a}^\dagger_\vv{k}$ are defined in terms of $\hat{v}_\vv{k}$ and $\hat{\pi}_\vv{k}$. Fixing $\hat{a}_\vv{k}$ is thus equivalent to choosing $\hat{v}_\vv{k}$.
+Note that we are currently in the Heisenberg picture where the operators depend on time. Our mode functions have two degrees of freedom: $c_+$ and $c_-$. One of them has been fixed by the normalisation condition $W=2ik(|c_+|^2-|c_-|^2)=i$. The other degree of freedom remains, availing us a one-parameter family of possible initial mode functions. Note that $\hat{a}^\dagger_\vv{k}$ are defined in terms of $\hat{v}_\vv{k}$ and $\hat{\pi}_\vv{k}$. Fixing $\hat{a}_\vv{k}$ is thus equivalent to choosing $\hat{v}_\vv{k}$.
 
 We define the vacuum $|\vv{0}\rangle$ to be the state satisfying $\hat{a}_\vv{k} |\vv{0}\rangle = 0$ for all $\vv{k} \in \mathbb{R}^3$. The expected energy of the vacuum state is given by
 \begin{align}
@@ -501,7 +501,7 @@ We now ask the vacuum state to be a ground state of the Hamiltonian. Minimising 
 \end{align}
 For this choice of mode function and vacuum, $E_k \rightarrow \hslash\omega_k/2$ as $\tau \rightarrow -\infty$. \footnote{$\hslash$ has been reinstated here for clarity.} This is analogous to the case of the quantum harmonic oscillator.
 
-Lastly, we compute zero-point fluctuation of the inflation field with respect to the vacuum. The two-point function follows from the commutation relation \eqref{eqn:canonical_quantisation_commutation_relation_a};
+Lastly, we compute the zero-point fluctuation of the inflation field with respect to the vacuum. The two-point function follows from the commutation relation \eqref{eqn:canonical_quantisation_commutation_relation_a};
 \begin{align}
 	\langle \hat{v}_{\vv{k}_1} (\tau) \hat{v}_{\vv{k}_2} (\tau) \rangle &= \langle 0| [\hat{a}_{\vv{k}_1}, \hat{a}^\dagger_{-\vv{k}_2}] |0 \rangle \; v_{k_1}(\tau) v^*_{k_2}(\tau) \\
 	&= (2\pi)^3 \delta^{(3)} (\vv{k}_1 + \vv{k}_2 ) \; P_{v}(k_1,\tau),   \label{eqn:single_field_inflation_power_spectrum}
@@ -525,12 +525,12 @@ Recall that perturbations in $\phi$ is given by $\delta\phi = v/a$ from (\ref{eq
 \begin{align}
 	\mathcal{P}_{\delta\phi} (k,\tau) = \frac{\mathcal{P}_v (k,\tau)}{a(\tau)^2} = \left( \frac{H}{2\pi} \right)^2 \left(1 + (k\tau)^2 \right),
 \end{align}
-where we used the fact that $a(\tau) = -1/H\tau$ during slow-roll inflation. For scales larger than the comoving Hubble radius we have $k\tau \ll 1$. In this limit, $\mathcal{P}_{\delta\phi} \rightarrow (H/2\pi)^2$ which is nearly constant. This is a key prediction from our simplistic model of inflation; we expect a near scale-invariant power spectrum of the primordial (end-of-inflation) perturbations.
+where we used the fact that $a(\tau) = -1/H\tau$ during slow-roll inflation. For scales larger than the comoving Hubble radius we have $k\tau \ll 1$. In this limit, $\mathcal{P}_{\delta\phi} \rightarrow (H/2\pi)^2$ which is nearly constant. This is a key prediction from our simplistic model of inflation; we expect a nearly scale-invariant power spectrum of the primordial (end-of-inflation) perturbations.
 
 
 \newpage
 \section*{Summary}
 
-In this introductory chapter we covered the basic foundations of modern cosmology. Under a simplifying assumption that the universe is homogeneous and isotropic, we wrote down the most general metric tensor in which the scale factor $a(t)$ parametrises the expansion of the universe. We then considered radiation, matter and dark energy as the main constituents of the universe and derived Friedmann equations, which can be solved to determine the universe's expansion history given its energy composition. The universe likely began with a Big Bang and has been continuously expanding since. This led to another puzzle, the horizon problem; the early universe observed through the CMB seems exceptionally uniform despite supposedly having many casually disconnected regions. We discussed how inflation solves the problem by introducing a period of accelerated expansion shortly after the Big Bang, dramatically increasing the size of the particle horizon. Inflation also successfully provides a mechanism for generating the initial density fluctuations in the universe required to create the structure we observe today. We showed that quantum fluctuations in the inflation field follow a near scale-invariant spectrum which is consistent with observations to date.
+In this introductory chapter, we covered the basic foundations of modern cosmology. Under a simplifying assumption that the universe is homogeneous and isotropic, we wrote down the most general metric tensor in which the scale factor $a(t)$ parametrises the expansion of the universe. We then considered radiation, matter and dark energy as the main constituents of the universe and derived Friedmann equations, which can be solved to determine the universe's expansion history given its energy composition. The universe likely began with a Big Bang and has been continuously expanding since. This led to another puzzle, the horizon problem; the early universe observed through the CMB seems exceptionally uniform despite supposedly having many causally disconnected regions. We discussed how inflation solves the problem by introducing a period of accelerated expansion shortly after the Big Bang, dramatically increasing the size of the particle horizon. Inflation also successfully provides a mechanism for generating the initial density fluctuations in the universe required to create the structure we observe today. We showed that quantum fluctuations in the inflation field follow a nearly scale-invariant spectrum which is consistent with observations to date.
 
-The universe observed today is not quite homogeneous and isotropic at all scales. In fact, it is the distribution of inhomogeneities\textemdash perturbations about the homogeneous background\textemdash that contains valuable information of the universe and provides crucial observables for precision cosmology. We formulate the cosmological perturbation theory that describes the evolution of these primordial perturbations in the following chapter in the context of the CMB.
+The universe observed today is not quite homogeneous and isotropic at all scales. It is the distribution of inhomogeneities\textemdash perturbations about the homogeneous background\textemdash that contains valuable information about the universe and provides crucial observables for precision cosmology. We formulate the cosmological perturbation theory that describes the evolution of these primordial perturbations in the following chapter in the context of the CMB.
