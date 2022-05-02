@@ -72,8 +72,8 @@ Hence, the two free functions $T$ and $E$ can be chosen in a way that the metric
 
 Results from different gauge choices may appear dissimilar. In order to link them together, it is convenient to work with quantities constructed from the perturbative variables such that they remain invariant under the transformations \eqref{eqn:gauge_transform_perturbations_1}-\eqref{eqn:gauge_transform_perturbations_2}. The Bardeen potentials are two such examples of gauge-invariant variables;
 \begin{align}
-	\Psi_B &:= A + \mathcal{H}(B-E') + B' - E'', \\
-	\Phi_B &:= -C - \mathcal{H}(B-E') + \frac{1}{3}\nabla^2 E.
+	\Psi_\textrm{B} &:= A + \mathcal{H}(B-E') + B' - E'', \\
+	\Phi_\textrm{B} &:= -C - \mathcal{H}(B-E') + \frac{1}{3}\nabla^2 E.
 \end{align}
 
 The gauge we will be using for the rest of this chapter is the \textit{Newtonian} gauge where $B=E=0$. This allows us to identify $A$ and $C$ with the Bardeen potentials, and the metric takes the form (dropping the subscript)
@@ -98,9 +98,9 @@ The momentum density $\vv{q}$ and the mean velocity $\vv{v}$ are first-order qua
 
 Transforming back to the original coordinates through $T^{\mu\nu}=(E_\alpha)^\mu (E_\beta)^\nu \tilde{T}^{\alpha\beta}$, we get
 \begin{alignat}{2}
-	T^{00} &= a^{-2} \bar{\rho} &&\;\;+ a^{-2}\left( \delta\rho - 2\Psi\bar{\rho} \right) \label{eqn:perturbed_energy_momentum_tensor_1}\\
-	T^{0i} &= 0 &&\;\;+ a^{-2} q^i \label{eqn:perturbed_energy_momentum_tensor_2}\\
-	T^{ij} &= a^{-2} \bar{P} \delta^{ij} &&\;\;+ a^{-2} \left[ (\delta P + 2\Phi\bar{P})\delta^{ij} - \Pi^{ij} \right]\label{eqn:perturbed_energy_momentum_tensor_3}
+	T^{00} &= a^{-2} \bar{\rho} &&\;\;+ a^{-2}\left( \delta\rho - 2\Psi\bar{\rho} \right), \label{eqn:perturbed_energy_momentum_tensor_1}\\
+	T^{0i} &= 0 &&\;\;+ a^{-2} q^i, \label{eqn:perturbed_energy_momentum_tensor_2}\\
+	T^{ij} &= a^{-2} \bar{P} \delta^{ij} &&\;\;+ a^{-2} \left[ (\delta P + 2\Phi\bar{P})\delta^{ij} - \Pi^{ij} \right],\label{eqn:perturbed_energy_momentum_tensor_3}
 \end{alignat}
 at first order in perturbations. Note that when only the scalar modes are considered, we may write $v^i = \partial_i v$ and $\Pi^{ij} = \partial_{\langle i} \partial_{j \rangle} \Pi$ for some $v$ and $\Pi$. If multiple fluids contribute, then the total energy-momentum tensor can be obtained by summing over the individual values for each constituent $I$; $\delta\rho = \sum_I \delta\rho_I$, $\delta P = \sum_I \delta P_I$, and $\delta \vv{q} = \sum_I \vv{q}_I$.
 
@@ -197,7 +197,7 @@ The anisotropic stress $\Pi$ is negligible in reality. Non-relativistic matter d
 The $00$, $i0$, and $ij$ trace parts of Einstein's equations then take the form
 \begin{align}
 	\nabla^2 \Phi - 3 \mathcal{H} \Phi' - 3\mathcal{H}^2 \Phi &= 4\pi G \; a^2 \delta\rho, \label{eqn:perturbed_einstein_equations_1}\\
-	\Phi' + \mathcal{H} \Phi &= -4\pi G \; a^2 q \label{eqn:perturbed_einstein_equations_2}\\
+	\Phi' + \mathcal{H} \Phi &= -4\pi G \; a^2 q, \label{eqn:perturbed_einstein_equations_2}\\
 	\Phi'' + 3\mathcal{H} \Phi' + (2\mathcal{H}' + \mathcal{H}^2) \Phi &= 4\pi G \; a^2 \delta P. \label{eqn:perturbed_einstein_equations_3}
 \end{align}
 We used the background equations to remove terms of zeroth order in perturbations. The $i0$ part generally gives a vector identity but it only has one scalar degree of freedom since $\vv{q}=(\bar{\rho}+\bar{P})\vv{v} = \nabla q$ for some $q := (\bar{\rho}+\bar{P}) v$.
@@ -249,7 +249,7 @@ We start by calculating the path a photon takes while free-streaming within the 
 \end{align}
 where $\hat{\vv{p}}$ is a unit vector indicating the direction of propagation and $p$ is the magnitude of the 3-momentum. We can revert back to the perturbed metric using the tetrad in \eqref{eqn:newtonian_gauge_tetrad}; since $P^\mu = (E_\alpha)^\mu \tilde{P}^\alpha$,
 \begin{align}
-	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i  \label{eqn:perturbed_photon_four_momentum}
+	P^0 = a^{-1} (1 - \Psi)p, \qquad P^i = a^{-1}(1 + \Phi) p \hat{p}^i. \label{eqn:perturbed_photon_four_momentum}
 \end{align}
 Recall that the 4-momentum is defined as $P^\mu = dx^\mu/\lambda$ for some affine parameter $\lambda$. Using our definition above,
 \begin{align}
@@ -321,11 +321,11 @@ The early universe contained hot plasma in which photons bounce off charged part
 
 Thomson scattering involves a photon and a non-relativistic electron with energy $E_e (\vv{q}) = m_e + \frac{1}{2m_e} q^2$, where $m_e$ is the electron rest mass. In the electron's rest frame, the scattering term \eqref{eqn:boltzmann_equation_base_scattering} takes the form
 \begin{align}
-	\left. \frac{df}{d\eta_e} \right|_\text{scattering} = \bar{n}_e \int d^2 \hat{\vv{p}}_{in} \; \frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) \; \left[ f(p,\hat{\vv{p}}_{in}) - f(p,\hat{\vv{p}})\right], \label{eqn:thomson_scattering_electron_rest_frame}
+	\left. \frac{df}{d\eta_e} \right|_\text{scattering} = \bar{n}_e \int d^2 \hat{\vv{p}}_\textrm{in} \; \frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_\textrm{in}) \; \left[ f(p,\hat{\vv{p}}_\textrm{in}) - f(p,\hat{\vv{p}})\right], \label{eqn:thomson_scattering_electron_rest_frame}
 \end{align}
-where $\eta_e$ and $\bar{n}_e$ denote the proper time and (background) mean number density of the electrons, respectively. We have suppressed the $\eta$ and $\vv{x}$ dependencies from the photon distribution function $f(\eta,\vv{x},p,\hat{\vv{p}})$ for now. The integrand of \eqref{eqn:thomson_scattering_electron_rest_frame} comprises two parts. The former corresponds to the photons originally travelling in the direction $\hat{\vv{p}}_{in}$ but then scattered \textit{into} $\hat{\vv{p}}$. The latter is the opposite; it accounts for the photons scattering \textit{out of} $\hat{\vv{p}}$ to some other direction, say $\hat{\vv{p}}_{in}$. Both \textit{in} and \textit{out} scatters are equally effective since Thomson scattering is reversible. The rate of interaction depends on the number densities $\bar{n}_e$ and $f$, as well as the angle-dependent function given by
+where $\eta_e$ and $\bar{n}_e$ denote the proper time and (background) mean number density of the electrons, respectively. We have suppressed the $\eta$ and $\vv{x}$ dependencies from the photon distribution function $f(\eta,\vv{x},p,\hat{\vv{p}})$ for now. The integrand of \eqref{eqn:thomson_scattering_electron_rest_frame} comprises two parts. The former corresponds to the photons originally travelling in the direction $\hat{\vv{p}}_\textrm{in}$ but then scattered \textit{into} $\hat{\vv{p}}$. The latter is the opposite; it accounts for the photons scattering \textit{out of} $\hat{\vv{p}}$ to some other direction, say $\hat{\vv{p}}_\textrm{in}$. Both \textit{in} and \textit{out} scatters are equally effective since Thomson scattering is reversible. The rate of interaction depends on the number densities $\bar{n}_e$ and $f$, as well as the angle-dependent function given by
 \begin{align}
-	\frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_{in}) = \frac{3\sigma_T}{16\pi} \left[ 1 + (\hat{\vv{p}} \cdot \hat{\vv{p}}_{in})^2 \right] \label{eqn:thomson_scattering_cross_section}
+	\frac{d\sigma}{d\Omega} (\hat{\vv{p}}, \hat{\vv{p}}_\textrm{in}) = \frac{3\sigma_T}{16\pi} \left[ 1 + (\hat{\vv{p}} \cdot \hat{\vv{p}}_\textrm{in})^2 \right] \label{eqn:thomson_scattering_cross_section}
 \end{align}
 for Thomson scattering \cite{Dodelson2003textbook}. The Thomson differential cross section $\sigma_T$ is a fixed constant equal to $8\pi\hslash^2 \alpha^2 / 3c^2 m_e^2$. Note from \eqref{eqn:thomson_scattering_electron_rest_frame} and \eqref{eqn:thomson_scattering_cross_section} that Thomson scattering leaves the photon energy $p$ unchanged. This justifies our previous assumption to drop the $p$ dependence from $\Theta$; the photon energy remains unperturbed by scattering in our linear perturbation theory.
 
@@ -333,7 +333,7 @@ We now account for the bulk velocity $\vv{v}_b$ of electrons (baryons). In the n
 \begin{align}
 	\left. \frac{df}{d\eta} \right|_\text{scattering} = a \bar{n}_e \sigma_T \frac{d\bar{f}}{d(\ln p)}  \left[ \Theta(\hat{\vv{p}}) - \frac{3}{16\pi} \int d^2 \hat{\vv{n}} \; \left[ \Theta(\hat{\vv{n}}) \left( 1 + (\hat{\vv{p}} \cdot \hat{\vv{n}})^2 \right) \right] - \hat{\vv{p}} \cdot \vv{v}_b \right], \label{eqn:thomson_scattering}
 \end{align}
-where we relabelled $\hat{\vv{p}}_{in}$ as $\hat{\vv{n}}$ and performed the $\int d^2\hat{\vv{n}}$ integral for the \textit{out} term cancelling out the factor $3/16\pi$. We now have a complete form of the scattering term appearing in the Boltzmann equations.
+where we relabelled $\hat{\vv{p}}_\textrm{in}$ as $\hat{\vv{n}}$ and performed the $\int d^2\hat{\vv{n}}$ integral for the \textit{out} term cancelling out the factor $3/16\pi$. We now have a complete form of the scattering term appearing in the Boltzmann equations.
 
 
 \subsubsection*{Line of sight solution} \label{section:line_of_sight_solution}
@@ -400,7 +400,7 @@ after some calculations and noting that $P_2(\mu) = (1/2)(3\mu^2 -1)$.
 
 Incorporating the results so far, the Boltzmann equation becomes 
 \begin{align}
-	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right] \label{eqn:boltzmann_equation_in_fourier_space}
+	\Theta'(\mu) + ik\mu \Theta(\mu) - \Phi' + ik\mu\Psi = -\tau' \left[ - \Theta(\mu) + \Theta_0 + \frac{1}{2}P_2(\mu)\Theta_2 + ik\mu v_b \right], \label{eqn:boltzmann_equation_in_fourier_space}
 \end{align}
 where $\vv{v}_b = \nabla v_b$, and the $\eta$ and $\vv{k}$ dependences are omitted for clarity. We combine the above with the Legendre basis expansion \eqref{eqn:temperature_perturbation_legendre_expansion} to get
 \begin{align}

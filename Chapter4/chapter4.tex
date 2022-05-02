@@ -83,14 +83,14 @@ The bispectrum template of feature models (\ref{feature model definition}) is an
 \end{eqnarray}
 Here the real and imaginary parts of $b^\text{feat}$ correspond to the bispectra of cosine and sine feature models, respectively. Now define
 \begin{eqnarray}
-	s_l^X(r) &:=& \frac{2A^{2/3}}{\pi} \int_0^\infty dk \, \sin\,(\omega k) j_l(kr) \Delta_l^X(k) \\
+	s_l^X(r) &:=& \frac{2A^{2/3}}{\pi} \int_0^\infty dk \, \sin\,(\omega k) j_l(kr) \Delta_l^X(k), \\
 	c_l^X(r) &:=& \frac{2A^{2/3}}{\pi} \int_0^\infty dk \, \cos\,(\omega k) j_l(kr) \Delta_l^X(k).
 \end{eqnarray}
 These are analogous to $\alpha_l^X(r)$ and $\beta_l^X(r)$ we defined in \eqref{def:KSW_estimator_alpha}-\eqref{def:KSW_estimator_beta} for the vanilla KSW estimator. Then (\ref{feature model reduced bispectrum}) reduces to
 \begin{eqnarray}
 	b_{l_1 l_2 l_3}^{X_1 X_2 X_3, \text{feat}} &=& 6 \int_0^\infty r^2 dr \, \left(c_{l_1}^{X_1} c_{l_2}^{X_2} c_{l_3}^{X_3} -  c_{l_1}^{X_1} s_{l_2}^{X_2} s_{l_3}^{X_3} -  s_{l_1}^{X_1} c_{l_2}^{X_2} s_{l_3}^{X_3} -  s_{l_1}^{X_1} s_{l_2}^{X_2} c_{l_3}^{X_3} \right)  \nonumber \\
-	&\quad& +\; 6i  \int_0^\infty r^2 dr \, \left(s_{l_1}^{X_1}c_{l_2}^{X_2}c_{l_3}^{X_3} + c_{l_1}^{X_1}s_{l_2}^{X_2}c_{l_3}^{X_3} +  c_{l_1}^{X_1}c_{l_2}^{X_2}s_{l_3}^{X_3} -  s_{l_1}^{X_1}s_{l_2}^{X_2}s_{l_3}^{X_3} \right). 	\nonumber \\
-	&=& b_{l_1 l_2 l_3}^{X_1 X_2 X_3, \text{cos}} + i \; b_{l_1 l_2 l_3}^{X_1 X_2 X_3, \text{sin}}
+	&\quad& +\; 6i  \int_0^\infty r^2 dr \, \left(s_{l_1}^{X_1}c_{l_2}^{X_2}c_{l_3}^{X_3} + c_{l_1}^{X_1}s_{l_2}^{X_2}c_{l_3}^{X_3} +  c_{l_1}^{X_1}c_{l_2}^{X_2}s_{l_3}^{X_3} -  s_{l_1}^{X_1}s_{l_2}^{X_2}s_{l_3}^{X_3} \right) 	\nonumber \\
+	&=& b_{l_1 l_2 l_3}^{X_1 X_2 X_3, \text{cos}} + i \; b_{l_1 l_2 l_3}^{X_1 X_2 X_3, \text{sin}}.
 	\label{feature model reduced bispectrum sin and cos}
 \end{eqnarray}
 
@@ -130,7 +130,7 @@ Note that most CMB-S4 experiments are ground-based and inevitably probe smaller 
 
 In \cite{Fergusson2014} it was noted that orthogonalising the multipoles of temperature and polarisation maps dramatically reduces the number of terms required for computing the Modal estimator. This technique can also be applied to KSW estimators, or indeed any optimal bispectrum estimator, which is yet to be done to the authors' knowledge.
 
-In both (\ref{Estimator S definition}) and (\ref{Estimator F definition}) there are summations over indices $X$ and $X'$ to account for correlations between the CMB temperature and E-mode polarisation. This can be simplified by essentially making a change of basis in $X$ space for each $l$ so that every $C_l$ becomes orthonormal. Perform a Cholesky decomposition on $C_l$ and invert the matrix. Then $C_l^{-1} = L_l^T L_l$, where $L_l$ is a lower triangular matrix given by
+In both (\ref{Estimator S definition}) and (\ref{Estimator F definition}) there are summations over indices $X$ and $X'$ to account for correlations between the CMB temperature and E-mode polarisation. This can be simplified by essentially making a change of basis in $X$ space for each $l$ so that every $C_l$ becomes orthonormal. Perform a Cholesky decomposition on $C_l$ and invert the matrix. Then ${C_l^{-1} = L_l^T L_l}$, where $L_l$ is a lower triangular matrix given by
 \begin{equation}
 	L_l = \begin{pmatrix} \frac{1}{\sqrt{C_l^{TT}}} & 0  \\ \frac{- C_l^{TE}}{\sqrt{C_l^{TT}} \sqrt{C_l^{TT} C_l^{EE} - C_l^{TE^2}}}  &  \frac{ C_l^{TT}}{\sqrt{C_l^{TT}} \sqrt{C_l^{TT} C_l^{EE} - C_l^{TE^2}}} \end{pmatrix}
 \end{equation}
@@ -168,9 +168,8 @@ Consider the bispectrum shape of
 for a fixed value of oscillation frequency $\omega$. Here $B^{\sin}$ and $B^{\cos}$ correspond to the reduced bispectra $b^{\sin}$ and $b^{\cos}$ defined in (\ref{feature model reduced bispectrum sin and cos}). The Fisher matrix $F$ is $2\times2$ but its off-diagonal entries are 2-3 orders of magnitude smaller than the diagonal ones in most cases, as we will see in the next section. Thus, the two shapes are assumed to be uncorrelated and constrained individually. Here we present detailed computations for $f_\text{NL}^{\sin}$ only but the cosine one can be computed similarly.
 
 From (\ref{feature model reduced bispectrum sin and cos}) and the definition of Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3} = \int d\hat{\mathbf{n}} \; Y_{l_1 m_1}(\hat{\mathbf{n}}) Y_{l_2 m_2}(\hat{\mathbf{n}}) Y_{l_3 m_3}(\hat{\mathbf{n}})$ it follows that
-
 \begin{align}
-	S^\text{cub} &= \int_0^\infty r^2 dr \int d^2\hat{\mathbf{n}} \left[ - {M_s}^3 + 3 M_s {M_c}^2 \right] \quad\text{and} \\
+	S^\text{cub} &= \int_0^\infty r^2 dr \int d^2\hat{\mathbf{n}} \left[ - {M_s}^3 + 3 M_s {M_c}^2 \right], \quad\text{and} \\
 	S^\text{lin} &= -3 \int_0^\infty r^2 dr \int d^2\hat{\mathbf{n}} \left[ - {M_s} \left<{M_s}^2\right> + M_s \left< {M_c}^2 \right> + 2 {M_c} \left< {M_s} {M_c} \right> \right], \label{s_lin_using_filtered_maps}
 \end{align}
 where
@@ -191,7 +190,7 @@ where $P_{l}(\mu)$ represents the Legendre polynomial. Then,
 \end{equation}
 where we have defined
 \begin{eqnarray}
-	P_{ss}(r, r', \mu) &:=& \sum_{X} \sum_{l} (2l+1) \, \tilde{s}_l^X(r) \tilde{s}_l^X(r') P_l(\mu) \nonumber \\
+	P_{ss}(r, r', \mu) &:=& \sum_{X} \sum_{l} (2l+1) \, \tilde{s}_l^X(r) \tilde{s}_l^X(r') P_l(\mu), \nonumber \\
 	P_{sc}(r, r', \mu) &:=& \sum_{X} \sum_{l} (2l+1) \, \tilde{s}_l^X(r) \tilde{c}_l^X(r') P_l(\mu).
 	\label{P_ss definition}
 \end{eqnarray}
@@ -257,16 +256,16 @@ For smaller values of $\omega$, the phase affects the error bar primarily throug
 	\label{forecast_phase_dependence}
 \end{figure}
 
-\subsection{$l_{max}$ dependence}
+\subsection{$l_\text{max}$ dependence}
 
-Figure \ref{forecast lmax dependence} shows the graph of the forecast error bar $\sigma_{\sin}^{T+E}$ as we increase $l_{max}$. The forecasts were done within angular scale range $2\le l \le l_{max}$, the oscillation frequency $\omega$ set to 100, and assuming 1' beam and 1$\mu K\cdot$arcmin noise. The Planck noise curves were approximated by ones for 5' beam and 47 $\mu K\cdot$arcmin noise for this plot only since we extend $l_{max}$ to 4000 here. 
+Figure \ref{forecast lmax dependence} shows the graph of the forecast error bar $\sigma_{\sin}^{T+E}$ as we increase $l_\text{max}$. The forecasts were done within angular scale range $2\le l \le l_\text{max}$, the oscillation frequency $\omega$ set to 100, and assuming 1' beam and 1$\mu K\cdot$arcmin noise. The Planck noise curves were approximated by ones for 5' beam and 47 $\mu K\cdot$arcmin noise for this plot only since we extend $l_\text{max}$ to 4000 here. 
 
-The Planck error bar essentially stalls out when $l_{max}$ reaches 2000. The forecast error bar, on the other hand, keeps decreasing until $l_{max}=4000$ thanks to the improved sensitivity in measuring small scales (and large $l$'s). Despite the information loss due to smaller sky coverage $f_{sky}$, the forecast error bar reduces to about 42\% of Planck by $l_{max}=4000$. This corresponds to a factor of 2.4 times improvement to measurement precision on $f_\text{NL}$.
+The Planck error bar essentially stalls out when $l_\text{max}$ reaches 2000. The forecast error bar, on the other hand, keeps decreasing until $l_\text{max}=4000$ thanks to the improved sensitivity in measuring small scales (and large $l$'s). Despite the information loss due to smaller sky coverage $f_{sky}$, the forecast error bar reduces to about 42\% of Planck by $l_\text{max}=4000$. This corresponds to a factor of 2.4 times improvement to measurement precision on $f_\text{NL}$.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{lmax_dependence.pdf}
-	\caption{Forecast error bars $\sigma_{\sin}^{T+E}$ when multipoles $2\le l \le l_{max}$ are included, in comparison with Planck. The oscillation frequency $\omega$ is set to 100 Mpc in all cases. Planck did not have access to the information from modes $l\ge 2000$, but the CMB-S4 experiments are expected to be able to explore modes up to $l=4000$.}
+	\caption{Forecast error bars $\sigma_{\sin}^{T+E}$ when multipoles $2\le l \le l_\text{max}$ are included, in comparison with Planck. The oscillation frequency $\omega$ is set to 100 Mpc in all cases. Planck did not have access to the information from modes $l\ge 2000$, but the CMB-S4 experiments are expected to be able to explore modes up to $l=4000$.}
 	\label{forecast lmax dependence}
 \end{figure}
 

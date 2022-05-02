@@ -72,19 +72,19 @@ Contributions from the first term in \eqref{eqn:local_model_derivation_1} cancel
 
 Due to this fact, it is common in literature (e.g. \cite{Burrage2011large}) to define `the reduced bispectrum' $f_\text{NL}$ to be $f_\text{NL}(k_1,k_2,k_3) := 5B(k_1,k_2,k_3) / 6(P(k_1)P(k_2) + P(k_2)P(k_3) + P(k_3)P(k_1))$. $f_\text{NL}$ is then a three-dimensional function in general. This is potentially confusing because of a conflicting convention in the observational community where $f_\text{NL}$ represents a parameter measuring the amplitude of a specific bispectrum shape.
 
-In this thesis, we follow the latter convention and associate one $f_\text{NL}$ with each of the bispectrum shapes. For example, $f_\text{NL}$ in \eqref{eqn:local_bispectrum_using_power_spectrum} is denoted $f_\text{NL}^{local}$, tied to the local shape. The connection between the theoretical predictions and observations is often made using approximate analytic templates for the bispectrum.
+In this thesis, we follow the latter convention and associate one $f_\text{NL}$ with each of the bispectrum shapes. For example, $f_\text{NL}$ in \eqref{eqn:local_bispectrum_using_power_spectrum} is denoted $f_\text{NL}^\textrm{local}$, tied to the local shape. The connection between the theoretical predictions and observations is often made using approximate analytic templates for the bispectrum.
 
 We parametrise the power spectrum as $P_\zeta(k) = A_\zeta k^{n_s-4}$ using the power spectrum amplitude $A_\zeta$ and scalar spectral index $n_s$. The local bispectrum template is then defined as 
 \begin{align}
-	B_\zeta^{local} (k_1, k_2, k_3) := 2A^2 \left[ \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{\;2 cyc.} \right], \label{def:local_template} 
+	B_\zeta^\textrm{local} (k_1, k_2, k_3) := 2A^2 \left[ \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{\;2 cyc.} \right], \label{def:local_template} 
 \end{align}
-where $A^2 := (3/5) A_\zeta^2$. Note that we do not include $f_\text{NL}^{local}$ in our definition of the template either; it is set to $1$.
+where $A^2 := (3/5) A_\zeta^2$. Note that we do not include $f_\text{NL}^\textrm{local}$ in our definition of the template either; it is set to $1$.
 
 The primordial bispectrum from multi-field inflation models typically falls into this category (reviewed in e.g., \cite{Byrnes2010review}). The local shape peaks in the squeezed limit where ${k_1 \approx k_2 \gg k_3}$, diverging as $k_3\rightarrow0$. General single-field models, on the other hand, are better described by the equilateral and orthogonal templates \cite{Creminelli2006limits,Senatore2010orthogonal}:
 \begin{align}
-	B_\zeta^{equil} (k_1, k_2, k_3) &:= 6A^2 \left[ -\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{2 cyc.} \right) -\frac{2}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
+	B_\zeta^\textrm{equil} (k_1, k_2, k_3) &:= 6A^2 \left[ -\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{2 cyc.} \right) -\frac{2}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
 	&\hspace{0.2\textwidth} + \left. \left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right], \label{def:equilateral_template} \\
-	B_\zeta^{ortho} (k_1, k_2, k_3) &:= 6A^2 \left[ -3\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{ 2 cyc.} \right) -\frac{8}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
+	B_\zeta^\textrm{ortho} (k_1, k_2, k_3) &:= 6A^2 \left[ -3\left( \frac{1}{k_1^{4-n_s} k_2^{4-n_s}} + \text{ 2 cyc.} \right) -\frac{8}{(k_1 k_2 k_3)^{2(4-n_s)/3}} \right.\nonumber\\
 	&\hspace{0.2\textwidth} + \left. 3\left( \frac{1}{k_1^{(4-n_s)/3} k_2^{2(4-n_s)/3} k_3^{(4-n_s)}} + \text{5 cyc.} \right) \right]. \label{def:orthogonal_template} 
 \end{align}
 The equilateral and orthogonal shapes are peaked at the equilateral and flattened limits shown in Figure \ref{fig:triangle_configurations}, respectively. The latter was constructed explicitly to probe bispectrum shapes perpendicular to the equilateral shape.
@@ -109,9 +109,9 @@ where $\zeta(\vv{x},t)$ is equivalent to the curvature perturbation we defined e
 	
 We now write down the action. Compared to \eqref{eqn:real_scalar_field_action}, the Einstein-Hilbert term is added since the metric is no longer fixed. We consider a generalised form of the field Lagrangian with the action given by
 \begin{align}
-	S = \int dt d^3 \vv{x} \; \sqrt{-g} \left[ \frac{M_p}{2} R + P(X,\phi) \right],  \label{eqn:general_single_field_action}
+	S = \int dt d^3 \vv{x} \; \sqrt{-g} \left[ \frac{M_\textrm{p}}{2} R + P(X,\phi) \right],  \label{eqn:general_single_field_action}
 \end{align}
-where $M_p := (8\pi G)^{-1/2}$ is the reduced Planck mass and $X:=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ is the canonical kinetic term. We set $M_p=1$ for convenience. $P(X,\phi)$ is an arbitrary function which generalises $X-V(\phi)$ of the standard slow-roll inflation \cite{Chen2007b}.
+where $M_\textrm{p} := (8\pi G)^{-1/2}$ is the reduced Planck mass and $X:=-\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi$ is the canonical kinetic term. We set $M_\textrm{p}=1$ for convenience. $P(X,\phi)$ is an arbitrary function which generalises $X-V(\phi)$ of the standard slow-roll inflation \cite{Chen2007b}.
 
 One notable consequence of the non-trivial kinetic term $P$ is that fluctuations in the inflation field no longer necessarily propagate with speed of light. The sound speed, defined as the ratio $\delta P / \delta \rho$, in these models is given by
 \begin{align}
@@ -163,7 +163,7 @@ Meanwhile, all the information about the interactions is captured in the time ev
 
 The in-in formalism (\cite{Schwinger1961inin,Jordan1986inincosmo1,Calzetta1987inincosmo2}) allows us to calculate correlation functions at a given time $t$ using two `in' states: two copies of the vacuum at infinite past in our case. For some local operator $Q(t)$ written as a product of $\hat{\zeta}(\vv{x},t)$ and $\hat{\pi}(\vv{x},t)$, we define its expected value as follows;
 \begin{align}
-	\left< Q(t) \right> &:= \langle in |\;Q(t)\;| in \rangle \nonumber\\ &=  \langle\vv{0}| \left[ \bar{T} \exp \left( i \int_{t_0}^{t} H_\text{I}(t')dt \right) \right] Q_I(t) \left[ T \exp \left( -i \int_{t_0}^{t} H_\text{I}(t')dt \right) \right]  |\vv{0}\rangle. \label{eqn:in_in_formalism_expectation}
+	\left< Q(t) \right> &:= \langle \textrm{in} |\;Q(t)\;| \textrm{in} \rangle \nonumber\\ &=  \langle\vv{0}| \left[ \bar{T} \exp \left( i \int_{t_0}^{t} H_\text{I}(t')dt \right) \right] Q_I(t) \left[ T \exp \left( -i \int_{t_0}^{t} H_\text{I}(t')dt \right) \right]  |\vv{0}\rangle. \label{eqn:in_in_formalism_expectation}
 \end{align}
 The interaction picture vacuum, $|\vv{0}\rangle$, lies in the infinite past $t=t_0$, where we assume that it can be identified as the vacuum of non-interacting theory and hence $a_\vv{k}|\vv{0}\rangle = 0$.
 
@@ -252,7 +252,7 @@ where we replaced $\Phi$ with $\zeta$ in the integrand. Here, $X_j$s can be eith
 We may take everything but $\zeta(\vv{k_j})$s outside the brackets $\left< \cdot \right>$. From the definition of bispectrum, we have
 \begin{align}
 	\left< \zeta(\vv{k}_1) \zeta(\vv{k}_2)  \zeta(\vv{k}_3) \right> &= (2\pi)^3 \delta^{(3)}(\vv{k}_1 + \vv{k}_2 + \vv{k}_3) B(k_1, k_2, k_3) \label{eqn:primordial_bispectrum}\\
-	&= \int d^3 \vv{r} \; e^{-i\vv{r} \cdot (\vv{k}_1 + \vv{k}_2 + \vv{k}_3)}  B(k_1, k_2, k_3). \label{eqn:bispectrum_derivation_delta_function}
+	&= \int d^3 \vv{r} \; e^{-i\vv{r} \cdot (\vv{k}_1 + \vv{k}_2 + \vv{k}_3)}  B(k_1, k_2, k_3), \label{eqn:bispectrum_derivation_delta_function}
 \end{align}
 where an integral expression is substituted for the Dirac $\delta$-function in the second line. At the cost of introducing an extra integral, we managed to express the $\delta$-function in a separable form: $\exp(\vv{r} \cdot (\vv{k}_1+\vv{k}_2+\vv{k}_3)) = \exp(\vv{r}\cdot \vv{k}_1) \exp(\vv{r}\cdot \vv{k}_2) \exp(\vv{r}\cdot \vv{k}_3)$. The remaining exponentials are rewritten using the plane wave expansion;
 \begin{align}
@@ -355,7 +355,7 @@ Under these assumptions, the expected covariance of the observed bispectra is gi
 	&= \left[ \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}'_1} \right> \left< a_{\vv{l}_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_2} \right> + \cdots \right]^\ddagger \nonumber \\
 	&\;\;\;\; + \left[ \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_1} a_{\vv{l}'_2} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_3} \right> + \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> \left< a_{\vv{l}'_2} a_{\vv{l}'_3} \right> \left< a_{\vv{l}_3} a_{\vv{l}'_1} \right> + \cdots \right]^{\ddagger\ddagger} \label{eqn:bispectrum_variance_contractions2}.
 \end{align}
-\eqref{eqn:bispectrum_variance_contractions2} contains all possible contractions of the 6 $a_\vv{l}$s, 3 from each of $B^\text{obs}_\vv{L}$ and $B^\text{obs}_{\vv{L}'}$. There are 15 such contractions: 6 consisting only of terms between the two bispectra (in $\ddagger$) and 9 which also have internal contractions ($\ddagger\ddagger$). Our aim is to modify the regression variables so that the resulting covariance matrix reduces to the identity. The error in each $\vv{L}$ is required to be independent and of unit variance.
+Here, \eqref{eqn:bispectrum_variance_contractions2} contains all possible contractions of the 6 $a_\vv{l}$s, 3 from each of $B^\text{obs}_\vv{L}$ and $B^\text{obs}_{\vv{L}'}$. There are 15 such contractions: 6 consisting only of terms between the two bispectra (in $\ddagger$) and 9 which also have internal contractions ($\ddagger\ddagger$). Our aim is to modify the regression variables so that the resulting covariance matrix reduces to the identity. The error in each $\vv{L}$ is required to be independent and of unit variance.
 
 The terms in ($\ddagger$) originate from symmetries present in the bispectrum; $B^\text{obs}_\vv{L} = a_{\vv{l}_1}  a_{\vv{l}_2}  a_{\vv{l}_3}$ is invariant under permutations of ${\vv{l}_1, \vv{l}_2, \vv{l}_3}$. In order to remove duplicate elements, we restrict our $\vv{L}$s to ones satisfying $\vv{l}_1 \le \vv{l}_2 \le \vv{l}_3$. \footnote{$(l_1,m_1) < (l_2,m_2)$ if and only if ($l_1 < l_2$) \textbf{or} ($l_1 = l_2$ and $m_1 < m_2$).}
 
@@ -375,8 +375,8 @@ Each element of the regressand is now independent;
 \end{align}
 where $\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3}$ is a symmetry factor equal to $6$ if $\vv{l}_1 = \vv{l}_2 = \vv{l}_3$, $2$ if exactly two of them are identical, and $1$ if all three are distinct. The regressand and regressors are rescaled so that each element of the error term has unit variance;
 \begin{align}
-	\tilde{B}^\text{obs}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right] \\
-	\tilde{B}^{(i)}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \; \mathcal{G}_{\vv{L}} b^{(i)}_{L}
+	\tilde{B}^\text{obs}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \left[ a_{\vv{l}_1} a_{\vv{l}_2} a_{\vv{l}_3} - \left< a_{\vv{l}_1} a_{\vv{l}_2} \right> a_{\vv{l}_3} - \left< a_{\vv{l}_2} a_{\vv{l}_3} \right> a_{\vv{l}_1} - \left< a_{\vv{l}_3} a_{\vv{l}_1} \right> a_{\vv{l}_2} \right], \\
+	\tilde{B}^{(i)}_\vv{L} &:= \frac{1}{\sqrt{\Delta_{\vv{l}_1 \vv{l}_2 \vv{l}_3} C_{l_1} C_{l_2} C_{l_3}}} \; \mathcal{G}_{\vv{L}} b^{(i)}_{L}.
 \end{align}
 
 The ordinary least squares estimate for a linear model $\vv{y} = X\vv{\beta} + \vv{\epsilon}$ is given by $\hat{\beta} = (X^T X)^{-1} X^T \vv{y}$. We define the equivalent objects to $(X^T X)_{ij}$ and $(X^T \vv{y})_i$ in our linear model \eqref{eqn:bispectrum_estimation_core} as $F_{ij}$ and $S_i$, respectively. The matrix $F$ is given by
@@ -419,18 +419,18 @@ We write down the estimator for single shape analysis and restore the shortened 
 where the symmetry in indices was used to combine the linear terms into one. We also defined the normalisation factor $N$ to follow conventions in the literature. The theoretical error on $\hat{f}_\text{NL}$ is then $\sigma(\hat{f}_\text{NL}) = \sqrt{F^{-1}} = \sqrt{6/N}$.
 
 \subsection{CMB bispectrum estimators}
-The estimator \eqref{eqn:bispectrum_estimator_single_shape} can be intimidating. The multipole moments $l$ can go up to $2500$ for the Planck survey \cite{PlanckCollaboration2013paramters}, meaning that the sum over all possible $l_j, m_j$ contains $\approx 2.7\times 10^{15}$ terms.\footnote{This number was calculated considering the symmetry ($l_1 \ge l_2 \ge l_3$), triangle inequality ($l_2+l_3 \ge l_1$), and restrictions on $m_j$s from angular momentum conservation ($m_1+m_2+m_3=0$). } Direct evaluation of the Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3}$ involves calculating Wigner 3-j symbols, which are expensive to compute and store. Not to mention that the number of terms scales as $\propto l_{max}^5$.
+The estimator \eqref{eqn:bispectrum_estimator_single_shape} can be intimidating. The multipole moments $l$ can go up to $2500$ for the Planck survey \cite{PlanckCollaboration2013paramters}, meaning that the sum over all possible $l_j, m_j$ contains $\approx 2.7\times 10^{15}$ terms.\footnote{This number was calculated considering the symmetry ($l_1 \ge l_2 \ge l_3$), triangle inequality ($l_2+l_3 \ge l_1$), and restrictions on $m_j$s from angular momentum conservation ($m_1+m_2+m_3=0$). } Direct evaluation of the Gaunt integral $\mathcal{G}^{l_1 l_2 l_3}_{m_1 m_2 m_3}$ involves calculating Wigner 3-j symbols, which are expensive to compute and store. Not to mention that the number of terms scales as $\propto l_\text{max}^5$.
 
 All known CMB bispectrum estimation methods therefore deploy some ingenious techniques to reduce the computational cost. In this section, we review the three most common approaches: KSW \cite{Komatsu2005,Creminelli2006limits}, Modal \cite{Fergusson2010general,Fergusson2012}, and Binned \cite{Bucher2010,Bucher2016}.
 
 \subsubsection*{KSW estimator}
 The Komatsu-Spergel-Wandelt (KSW) estimator was first introduced in \cite{Komatsu2005} together with the construction of the bispectrum estimator and has been studied extensively since then \cite{Creminelli2006limits,Babich2005optimal,Creminelli2007estimators} (see e.g, \cite{Komatsu2010} for reviews). The core idea is to exploit the \textit{separability} of the bispectrum. Consider the local shape for example:
 \begin{align}
-	S^{loc}(k_1, k_2, k_3) = 2A_\Phi^2 \left( \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} +  \frac{k_3^2}{k_1 k_2} \right),
+	S^\textrm{local}(k_1, k_2, k_3) = 2A_\Phi^2 \left( \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} +  \frac{k_3^2}{k_1 k_2} \right),
 \end{align}
 where $A_\Phi$ is the amplitude of the power spectrum of $\Phi$ when the scalar spectral index $n_s$ is set to $1$. Note that each term can be expressed as a product of three separate functions that only depend on one of the variables: $k_1^2/(k_2 k_3) = k_1^2 \cdot k_2^{-1} \cdot k_3^{-1}$, for example. The reduced bispectrum then simplifies to an integral of separable terms;
 \begin{align}
-	b^{loc}_{l_1 l_2 l_3} = 2A^2 \int dr \; r^2 \left[ \alpha_{l_1}(r) \beta_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \alpha_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \beta_{l_2}(r) \alpha_{l_3}(r) \right], \label{eqn:local_reduced_bispectrum}
+	b^\textrm{local}_{l_1 l_2 l_3} = 2A^2 \int dr \; r^2 \left[ \alpha_{l_1}(r) \beta_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \alpha_{l_2}(r) \beta_{l_3}(r) + \beta_{l_1}(r) \beta_{l_2}(r) \alpha_{l_3}(r) \right], \label{eqn:local_reduced_bispectrum}
 \end{align}
 where
 \begin{align}
@@ -439,7 +439,7 @@ where
 \end{align}
 Substituting \eqref{eqn:local_reduced_bispectrum} into the bispectrum estimator \eqref{eqn:bispectrum_estimator_single_shape} gives
 \begin{align}
-	\hat{f}^{loc}_\text{NL} = \frac{6A^2}{N} \int dr \; r^2 \int d^2 \hat{\vv{n}} \; \left[ A(r,\hat{\vv{n}}) B(r,\hat{\vv{n}})^2 - 2 \left <A(r,\hat{\vv{n}}) B(r,\hat{\vv{n}}) \right> A(r,\hat{\vv{n}}) - \left< B(r,\hat{\vv{n}})^2 \right> A(r,\hat{\vv{n}})  \right], \label{eqn:KSW_estimator_local}
+	\hat{f}^\textrm{local}_\text{NL} = \frac{6A^2}{N} \int dr \; r^2 \int d^2 \hat{\vv{n}} \; \left[ A(r,\hat{\vv{n}}) B(r,\hat{\vv{n}})^2 - 2 \left <A(r,\hat{\vv{n}}) B(r,\hat{\vv{n}}) \right> A(r,\hat{\vv{n}}) - \left< B(r,\hat{\vv{n}})^2 \right> A(r,\hat{\vv{n}})  \right], \label{eqn:KSW_estimator_local}
 \end{align}
 where we have defined the \textit{filtered maps}
 \begin{align}
@@ -481,7 +481,7 @@ with appropriate mode functions $q_p(l)$. Polynomials and Fourier modes are comm
 
 As seen from the KSW estimator, separability greatly simplifies \eqref{eqn:bispectrum_estimator_single_shape}. We define the filtered maps analogous to the KSW ones up to some factors;
 \begin{align}
-	M_p (\hat{\vv{n}}) = \sum_{l,m} \frac{q_p(l)}{\nu_l \sqrt{C_l}} a_{lm} Y_{lm}(\hat{\vv{n}}), \label{eqn:modal_estimator_filtered_map}
+	M_p (\hat{\vv{n}}) = \sum_{l,m} \frac{q_p(l)}{\nu_l \sqrt{C_l}} a_{lm} Y_{lm}(\hat{\vv{n}}). \label{eqn:modal_estimator_filtered_map}
 \end{align}
 Note that we do not have the line-of-sight integral $r$ appearing in the KSW formalism since the mode expansion was performed in the late-time $l$ space, instead of the primordial $k$ space.
 
@@ -552,10 +552,10 @@ A bar is placed above each variable to denote that they are primordial quantitie
 \end{align}
 The mathematical formulation from here on is identical to that of the late-time case. We therefore simply write down the primordial counterparts;
 \begin{align}
-	\bar{\gamma}_{n_1 n_2} &:=  \left< \bar{\vv{Q}}_{n_1} , \bar{\vv{Q}}_{n_2} \right> \\
-	\bar{\gamma}^{-1} &= \bar{\lambda} \bar{\lambda}^T \\
-	\bar{\vv{R}}_t &:= \sum_n \bar{\lambda}_{nt} \; \bar{\vv{Q}}_{n} \\
-	\bar{\alpha}^{\bar{R}}_t &= \left< S(k_1,k_2,k_3) \;,\; \bar{\vv{R}}_t \right> \\
+	\bar{\gamma}_{n_1 n_2} &:=  \left< \bar{\vv{Q}}_{n_1} , \bar{\vv{Q}}_{n_2} \right>, \\
+	\bar{\gamma}^{-1} &= \bar{\lambda} \bar{\lambda}^T, \\
+	\bar{\vv{R}}_t &:= \sum_n \bar{\lambda}_{nt} \; \bar{\vv{Q}}_{n}, \\
+	\bar{\alpha}^{\bar{R}}_t &= \left< S(k_1,k_2,k_3) \;,\; \bar{\vv{R}}_t \right>, \\
 	\bar{\alpha}^{\bar{Q}}_n &= \sum_t \bar{\lambda}_{nt} \bar{\alpha}^{\bar{R}}_t.
 \end{align}
 

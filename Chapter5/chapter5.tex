@@ -72,12 +72,12 @@ where $a^{(i)}_{lm}$'s are represent the spherical harmonic transform of the $i$
 
 The bispectrum estimator (\ref{eqn:bispectrum_estimator_standard}) reduces to
 \begin{align}
-	\hat{f}_\text{NL}^{(i)} = \frac{1}{N} \sum_{p_j} \alpha_{p_1 p_2 p_3} (\beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3}), \label{eqn:fNL_from_betas}
+	\hat{f}_\text{NL}^{(i)} = \frac{1}{N} \sum_{p_j} \alpha_{p_1 p_2 p_3} (\beta^{\textrm{cub},(i)}_{p_1 p_2 p_3} - 3 \beta^{\textrm{lin},(i)}_{p_1 p_2 p_3}), \label{eqn:fNL_from_betas}
 \end{align}
 where most of the computation required is now contained in the `$\beta$'s, given by
 \begin{align}
-	\beta^{cub,(i)}_{p_1 p_2 p_3} &:= \int dr \int d^2\vv{n} \; M^{(i)}_{p_1} (\vv{n},r) M^{(i)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r),	\label{def:beta_cubic} \\
-	\beta^{lin,(i)}_{p_1 p_2 p_3} &:= \frac{1}{N_\text{sims}} \sum_{j \neq i} \int dr \int d^2\vv{n} \; M^{(j)}_{p_1} (\vv{n},r) M^{(j)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r). \label{def:beta_linear}
+	\beta^{\textrm{cub},(i)}_{p_1 p_2 p_3} &:= \int dr \int d^2\vv{n} \; M^{(i)}_{p_1} (\vv{n},r) M^{(i)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r),	\label{def:beta_cubic} \\
+	\beta^{\textrm{lin},(i)}_{p_1 p_2 p_3} &:= \frac{1}{N_\text{sims}} \sum_{j \neq i} \int dr \int d^2\vv{n} \; M^{(j)}_{p_1} (\vv{n},r) M^{(j)}_{p_2} (\vv{n},r) M^{(i)}_{p_3} (\vv{n},r). \label{def:beta_linear}
 \end{align}
 Here we evaluate $f_\text{NL}$ estimates for each of the Gaussian simulations $i=1,\cdots,N_\text{sims}$. Naturally, they are normally distributed with a mean of zero. Under the null hypothesis that the initial fluctuations are purely Gaussian, the value of $f_\text{NL}$ estimated from the observed CMB map is also drawn from the same normal distribution. Any statistically significant deviations from zero would therefore allow us to reject the null hypothesis.
 
@@ -106,7 +106,7 @@ First, we observe that the KSW estimator \cite{Komatsu2005} is derived from a si
 \end{align}
 All three standard templates - local, equilateral, and orthogonal - can be expressed as a sum of separable terms in the form $q_{p_1}(k_1) q_{p_2}(k_2) q_{p_3}(k_3)$. The shape function of the local template, for example, is given by
 \begin{align}
-	S^{local}(k_1 k_2 k_3) :=& 2A^2 \left[ \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} + \frac{k_3^2}{k_1 k_2}  \right] \\
+	S^\textrm{local}(k_1 k_2 k_3) :=& 2A^2 \left[ \frac{k_1^2}{k_2 k_3} + \frac{k_2^2}{k_3 k_1} + \frac{k_3^2}{k_1 k_2}  \right] \\
 	=& 2A^2 \left[q_3(k_1)q_0(k_2)q_0(k_3) + q_0(k_1)q_3(k_2)q_0(k_3) + q_0(k_1)q_0(k_2)q_3(k_3) \right],
 \end{align}
 where $A$ is the primordial power spectrum amplitude. Decomposition coefficients $\alpha_{p_1 p_2 p_3}$ have three non-zero components: $\alpha_{300} = \alpha_{030} = \alpha_{003} = 2A^2$. Coefficients for the equilateral and orthogonal templates can similarly be found.
@@ -622,7 +622,7 @@ Note that the numbers do not match up exactly between sample and theoretical var
 
 We performed further checks to ensure that this discrepancy is due to statistical fluctuations rather than systematic errors. The ratio between the sample and theoretical variances remained nearly constant across the KSW and Legendre basis from CMB-BEst, as well as Planck's Modal pipeline on the same set of simulated maps. Meanwhile, sample variances evaluated from independent sets of simulations do fluctuate around the theoretical value. A closer check has been done for each of the mode sets $(p_1,p_2,p_3)$ in the Legendre basis. The decomposition coefficient $\alpha$ is set to be 1 at $(p_1,p_2,p_3)$ and its permutations, and then vanishing everywhere else. Substituting into \eqref{eqn:fNL_from_betas} and \eqref{eqn:normlisation_from_gamma}, we get
 \begin{align}
-	f_\text{NL}^{(i)} &= \frac{1}{N} \left[ \left( \beta^{cub,(i)}_{p_1 p_2 p_3} - 3 \beta^{lin,(i)}_{p_1 p_2 p_3} \right) + \text{5 cyc.} \right], \\
+	f_\text{NL}^{(i)} &= \frac{1}{N} \left[ \left( \beta^{\textrm{cub},(i)}_{p_1 p_2 p_3} - 3 \beta^{\textrm{lin},(i)}_{p_1 p_2 p_3} \right) + \text{5 cyc.} \right], \\
 	N &= 6\left( \Gamma_{p_1 p_2 p_3, p_1 p_2 p_3} + \Gamma_{p_1 p_2 p_3, p_1 p_3 p_2} + \cdots + \Gamma_{p_1 p_2 p_3, p_3 p_2 p_1} \right).
 \end{align}
 Here we assumed that $p_1,p_2,p_3$ are distinct for convenience. Corresponding sample and theoretical variances have been compared for each of the modes. Overall, they are found to be statistically consistent as before.
@@ -634,7 +634,7 @@ While Figure \ref{fig:map_by_map_Legendre_KSW} shows excellent agreement between
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics[width=\textwidth]{map_by_map_Legendre_KSW_k_ratio_2000.pdf}
-	\caption{Map-by-map comparison of $f_\text{NL}$ estimates for standard templates from the KSW and Legendre basis sets, similar to Figure \ref{fig:map_by_map_Legendre_KSW}. Here, the Legendre basis has a wider $k$ domain: $k_\text{max}/k_\text{min} = 2000$ instead of the usual $1000$. The number of modes ($p_\text{max}$) has been reduced to $10$ instead of $30$ due to limited computational resources. We see that additional information from large scales (low $k$) fixes the small scatter present in $f_\text{NL}^{local}$ of the previous plot.}
+	\caption{Map-by-map comparison of $f_\text{NL}$ estimates for standard templates from the KSW and Legendre basis sets, similar to Figure \ref{fig:map_by_map_Legendre_KSW}. Here, the Legendre basis has a wider $k$ domain: $k_\text{max}/k_\text{min} = 2000$ instead of the usual $1000$. The number of modes ($p_\text{max}$) has been reduced to $10$ instead of $30$ due to limited computational resources. We see that additional information from large scales (low $k$) fixes the small scatter present in $f_\text{NL}^\textrm{local}$ of the previous plot.}
 	\label{fig:map_by_map_Legendre_KSW_k_ratio_2000}
 \end{figure}
 
@@ -741,7 +741,7 @@ Both the Legendre and Modal approaches involve expanding the shape function with
 	\centering    
 	\includegraphics[width=\textwidth]{sine_template_correlations_new.pdf}
 	\includegraphics[width=\textwidth]{cosine_template_correlations_new.pdf}
-	\caption{Correlations between feature model templates $S(k_1,k_2,k_3)=\sin(\omega (k_1 + k_2 + k_3) + \phi)$ with different $\omega$ values, for $\phi = 0$ (top two) and $\phi = \pi/2$ (bottom two). Results are from the Legendre basis. `Sample' correlations are obtained from $f_\text{NL}$ estimates from 140 Gaussian simulations, while `theory' correlations come from the inner product induced by $\Gamma_{p_1 p_2 p_3, p_1 p_2 p_3}$ matrix in (\ref{def:gamma}). Large non-diagonal correlations appear around $\omega \approx 300$, after which oscillations in the shape are no longer resolved by polynomials of degree up to $p_max$.}
+	\caption{Correlations between feature model templates $S(k_1,k_2,k_3)=\sin(\omega (k_1 + k_2 + k_3) + \phi)$ with different $\omega$ values, for $\phi = 0$ (top two) and $\phi = \pi/2$ (bottom two). Results are from the Legendre basis. `Sample' correlations are obtained from $f_\text{NL}$ estimates from 140 Gaussian simulations, while `theory' correlations come from the inner product induced by $\Gamma_{p_1 p_2 p_3, p_1 p_2 p_3}$ matrix in (\ref{def:gamma}). Large non-diagonal correlations appear around $\omega \approx 300$, after which oscillations in the shape are no longer resolved by polynomials of degree up to $p_\textrm{max}$.}
 	\label{fig:feature_template_correlations}
 \end{figure}
 
