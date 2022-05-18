@@ -636,7 +636,7 @@ While Figure \ref{fig:map_by_map_Legendre_KSW} shows excellent agreement between
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics{map_by_map_Legendre_KSW_k_ratio_2000.pdf}
-	\caption{A map-by-map comparison of the $f_\text{NL}$ estimates for three standard templates from the KSW and Legendre basis sets, similar to Figure \ref{fig:map_by_map_Legendre_KSW}. Here, the Legendre basis has a wider $k$ domain: $k_\text{max}/k_\text{min} = 2000$ instead of the usual $1000$. The number of modes ($p_\text{max}$) has been reduced to $10$ instead of $30$ due to limited computational resources. We see that the additional information gained from large scales (low $k$) fixes the small scatters present in $f_\text{NL}^\textrm{local}$ of the previous plot.}
+	\caption{A map-by-map comparison of the $f_\text{NL}$ estimates for three standard templates from the KSW and Legendre basis sets, similar to Figure \ref{fig:map_by_map_Legendre_KSW}. Here, the Legendre basis has a wider $k$ domain: $k_\text{max}/k_\text{min} = 2000$ instead of the usual $1000$. The number of modes ($p_\text{max}$) has been reduced to $10$ instead of $30$ due to limited computational resources. We see that the additional information gained from large scales (low $k$) fixes the small scatters present in $f_\text{NL}^\textrm{local}$ of the previous plot, however at the cost of increased spread in $f_\text{NL}^\textrm{equil}$ and $f_\text{NL}^\textrm{ortho}$.}
 	\label{fig:map_by_map_Legendre_KSW_k_ratio_2000}
 \end{figure}
 
@@ -672,7 +672,7 @@ In the previous section, we demonstrated how the integrity of \textsc{CMB-BEst} 
 We test primordial non-Gaussianity constraints on Local, Equilateral and Orthogonal templates against the Planck 2018 analysis \cite{PlanckCollaboration2018}. Two sets of basis functions, KSW and Legendre, have been used to compute $f_\text{NL}$ from the foreground-cleaned CMB map included in the final data release. We choose SMICA as the main component separation method since it was shown to be the most reliable and robust for Planck bispectrum analysis \cite{PlanckCollaboration2013ComponentSeparation, PlanckCollaboration2013,PlanckCollaboration2015,PlanckCollaboration2018}. Table \ref{table:trio_fNL_comparison_with_planck} summarises the constraints obtained, together with the quoted results from the Planck team's own KSW estimator and Modal 2 pipeline.
 
 \begin{table}[h]
-	\caption{Constraints on $f_\text{NL}$ for the standard shapes from the KSW and Legendre basis of \textsc{CMB-BEst}, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. Only temperature data from the SMICA foreground-cleaned map and FFP10 simulations were used for the analysis. Values shown are after the lensing bias subtraction, with uncertainties at 68\% CL.}
+	\caption{Constraints on $f_\text{NL}$ for the standard shapes from the KSW and Legendre basis of \textsc{CMB-BEst}, in comparison with the Planck 2018 analysis \cite{PlanckCollaboration2018}. Only the temperature data from the SMICA foreground-cleaned map and FFP10 simulations were used for the analysis. Values shown are after the lensing bias subtraction, with uncertainties at 68\% CL.}
 	\centering
 	\label{table:trio_fNL_comparison_with_planck}
 	\renewcommand{\arraystretch}{1.5} 
@@ -780,7 +780,7 @@ Recall that the sample $\sigma$ from $f_\text{NL}$ estimates of Gaussian simulat
 \begin{figure}[htbp!] 
 	\centering    
 	\includegraphics{sinlog_template_frequency_Legendre_Modal.pdf}
-	\caption{Constraints for the resonance shape $S(k_1,k_2,k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$ with varying frequency $\omega$s, while the phase $\phi$ is set to $0$ (`SinLog') and $\pi/2$ (`CosLog'). Results are obtained using \textsc{CMB-BEst}'s Legendre basis (blue) and Planck's Modal estimator (black). Top two: signal-to-noise significances of the estimated $f_\text{NL}$s with their $1\sigma$ and $2\sigma$ levels shaded in blue. Bottom two: standard deviations of the $f_\text{NL}$ estimates against $\omega$ calculated from $f_\text{NL}$s of 140 simulations (sample) and the $\Gamma$ matrix (theory).}
+	\caption{Constraints for the resonance shape $S(k_1,k_2,k_3) = \sin(\omega \log(k_1 + k_2 + k_3 ) + \phi)$ with varying frequency $\omega$s, while the phase $\phi$ is set to $0$ (`SinLog') and $\pi/2$ (`CosLog'). Results are obtained using \textsc{CMB-BEst}'s Legendre basis (blue) and Planck's Modal estimator (black). Top two: signal-to-noise significance of the estimated $f_\text{NL}$s with their $1\sigma$ and $2\sigma$ levels shaded in blue. Bottom two: standard deviations of the $f_\text{NL}$ estimates against $\omega$ calculated from $f_\text{NL}$s of 140 Gaussian simulations (sample) and the $\Gamma$ matrix (theory).}
 	\label{fig:sinlog_template_frequency_Legendre_Modal}
 \end{figure}
 
@@ -803,7 +803,7 @@ As with the feature models before, we plot the correlation matrix between the te
 	\includegraphics[width=\textwidth]{sinlog_template_correlations_new.pdf}
 	(b) $ \phi=\pi/2 $
 	\includegraphics[width=\textwidth]{coslog_template_correlations_new.pdf}
-	\caption{Correlations between resonance model templates $S(k_1,k_2,k_3) = \sin(\omega\log(k_1+k_2+k_3)+\phi)$ with different $\omega$ values, for (a) $\phi = 0$ and (b) $\phi=\pi/2$. `Sample' correlations are obtained from the Legendre basis $f_\text{NL}$ estimates from 140 Gaussian simulations. `Theory' correlations come from the inner product induced by $\Gamma$ matrix as shown in (\ref{eqn:late_time_inner_product}).}
+	\caption{Correlations between the resonance model templates of shape given by ${S(k_1,k_2,k_3) = \sin(\omega\log(k_1+k_2+k_3)+\phi)}$ with different $\omega$ values, for (a) $\phi = 0$ and (b) $\phi=\pi/2$. `Sample' correlations are obtained from the Legendre basis $f_\text{NL}$ estimates from 140 Gaussian simulations. `Theory' correlations come from the inner product induced by $\Gamma$ as shown in (\ref{eqn:late_time_inner_product}).}
 	\label{fig:sinlog_template_correlations}
 \end{figure}
 
@@ -840,11 +840,11 @@ We reproduce the DBI sound speed constraint from Planck 2018 analysis using the 
 
 One notable limitation in the current implementation of \textsc{Primodal} is that the details of how inflation ends are not prescribed. This means that the scales during inflation and what we observe cannot be mapped directly, which restricts our ability to translate the results into a constraint on more fundamental parameters such as $\beta_\text{IR}$. Our work here still serves as a useful validation of the combined pipeline. For the DBI sound speed scan, the approximate relation \eqref{eqn:DBI_fNL_and_sound_speed} is used to relate the output $c^*_s$\textemdash sound speed at some pivot scale during horizon crossing\textemdash from \textsc{Primodal} with the physical DBI sound speed $c^\text{DBI}_\text{s}$. Numerous other validation tests we performed such as convergence tests with respect to the basis size $p_\text{max}$ are unaffected by this caveat and still serve as a proof of concept for our combined pipeline.
 
-The parameter $\beta_\text{IR}$ is varied within the interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_\text{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_{pl}$, and $\phi_0 = 0.46042 M_{pl}$, where $M_{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. The results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
+The parameter $\beta_\text{IR}$ is varied within the interval $[0.1885,0.58]$ while fixing other parameters as $\lambda_\text{DBI} = 2.00475 \times 10^15$, $V_0 = 5.2 \times 10^{-12} M^4_\text{pl}$, and $\phi_0 = 0.46042 M_\text{pl}$, where $M_\text{pl}$ is the Planck mass. Further details of the scan will be included in \cite{Sohn2021inprep}. The results are depicted in Figure \ref{fig:dbi_sound_speed_scan}.
 
 \begin{figure}[htbp!] 
 	\centering    
-	\includegraphics[width=\textwidth]{dbi_sound_speed_scan_annotated_new.pdf}
+	\includegraphics{dbi_sound_speed_scan_annotated.pdf}
 	\caption{Constraints on the DBI model with varying sound speed $c_\text{s}$. Primordial bispectrum computed from \textsc{Primodal} is fed directly into \textsc{CMB-BEst} in the form of coefficients $\alpha_{p_1 p_2 p_3}$ appearing in Legendre basis expansion. Constraints from the Legendre basis with $p_\text{max}=30$ (black $+$) are shown in comparison with $p_\text{max}=29$ (black $\times$). $1\sigma$ and $2\sigma$ confidence intervals around $0$ are shaded in blue and represent the uncertainty in the estimated $f_\text{NL}$s. Bispectrum shapes are normalised so that $f_\text{NL}=1$ corresponds to the DBI model under consideration. Our constraint on DBI sound speed is $c^\text{DBI}_\text{s} > 0.056$ with $95\%$ confidence level. Equivalent results from an approximate DBI bispectrum template \eqref{eqn:dbi_bispectrum_template} (blue dashed) give the $c^\text{DBI}_\text{s}$ bound which is identical up to two significant figures.}
 	\label{fig:dbi_sound_speed_scan}
 \end{figure}
@@ -865,7 +865,7 @@ We extend the \textsc{Primodal}+\textsc{CMB-BEst} pipeline to study DBI models w
 
 \begin{figure}[htbp!] 
 	\centering    
-	\includegraphics[width=0.8\textwidth]{dbi_reso_scan_fNLs_new.pdf}
+	\includegraphics{dbi_reso_scan_fNLs_new.pdf}
 	\caption{Constraints on the DBI model with oscillations imposed on the inflationary potential, causing resonance-type bispectra approximately parametrised as $\sin(\omega \log(k_1+k_2+k_3) + \phi)$. The primordial bispectrum computed from \textsc{Primodal} for various oscillation frequency $\omega$ has been fed directly to \textsc{CMB-BEst}. The results (black line) are shown together with the ones obtained from a smaller basis where $p_\text{max}=29$ (blue $\times$). The blue regions in the plot represent $1\sigma$ and $2\sigma$ confidence intervals.}
 	\label{fig:dbi_resonance_scan}
 \end{figure}
